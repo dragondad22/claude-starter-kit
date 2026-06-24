@@ -39,6 +39,11 @@ Use this checklist when validating changes — after implementation or as a dedi
 - [ ] Failing tests documented with reproduction steps
 - [ ] Screenshots/artifacts for UI changes if applicable
 
+## Standards & Compliance
+- [ ] `/compliance` run for feature changes; fired triggers checked against `docs/compliance/COMPLIANCE_REGISTER.md`
+- [ ] No registered obligation regressed by this change
+- [ ] Store-blocking items (privacy disclosure, account deletion, target API level, age rating) verified before a mobile release
+
 ## Issue Management
 - [ ] Bugs found filed as tracked issues per `ai/STANDARDS/GITHUB_ISSUES.md`
 - [ ] Issues linked to the relevant feature/change

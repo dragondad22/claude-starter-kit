@@ -9,12 +9,12 @@ with every project-specific detail turned into a `{{PLACEHOLDER}}` you fill in o
 ```
 CLAUDE.md                 # Root project context (loaded every session) — template
 .claude/
-  commands/               # Slash commands: /bootstrap /preflight /qa /security /perf /release /checkpoint
+  commands/               # Slash commands: /bootstrap /preflight /qa /security /compliance /perf /release /checkpoint
   hooks/                  # Project automation hooks (empty; see README)
   settings.json           # Harness permissions/hooks
 ai/
   agent-setup.md          # Living orientation doc for agents
-  STANDARDS/              # 12 standards: testing, security, perf, logging, docs, versioning, schema, UI, issues, triage, UAT
+  STANDARDS/              # 13 standards: testing, security, perf, logging, docs, versioning, schema, UI, issues, triage, UAT, external-standards-&-compliance
   CHECKLISTS/             # coding / qa / validation completion gates
   TEMPLATES/              # Report + issue/task templates
   scripts/                # release, version-sync, report scaffolding, self-correction, redaction, security/perf stubs
@@ -22,6 +22,7 @@ ai/
 docs/
   architecture/decisions/ # ADR template + index
   decision_log.md         # Product/scope decisions
+  compliance/             # COMPLIANCE_REGISTER.md — external obligations that bind this project
   workflows/ uat/ sops/ runbooks/ plans/
 bootstrap/
   PLACEHOLDERS.md         # Registry of every {{TOKEN}} and its meaning

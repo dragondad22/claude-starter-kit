@@ -41,7 +41,15 @@ rather than asking blind. Group related questions.
 - Dependency/security scan command? (e.g. `npm audit`, `pip-audit`, or N/A) → `{{SECURITY_SCAN_COMMAND}}`
 - The one performance signal that matters? (e.g. an endpoint p95, cold-start time, or N/A) → `{{PERF_TARGET}}`
 
-## 7. Non-negotiables (most important)
+## 7. Platforms, audience & compliance
+These drive `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md` and seed `docs/compliance/COMPLIANCE_REGISTER.md`.
+- What platforms ship? (web / iOS / Android / desktop / API-only / CLI) → `{{TARGET_PLATFORMS}}`
+- Who's the audience, and does it include minors? If so, what age range? → `{{AUDIENCE}}`
+- What regulated/sensitive data does it handle? (PII, health, payments, location, none) → `{{REGULATED_DATA}}`
+- Any obligation-bearing features? (user-to-user messaging, UGC, payments, tracking/analytics, public API consumed by others) → `{{COMPLIANCE_FEATURES}}`
+- After collecting these, walk the trigger map and pre-populate the register's "Active obligations" with the rows that fire (mark each ☐ with today's date as Verified). The 14+/messaging worked example in the register shows the shape.
+
+## 8. Non-negotiables (most important)
 - What architectural constraints must never be re-litigated? Push for at least one real one.
   Prompts to draw them out: security/isolation invariants, data-integrity rules, privacy boundaries,
   idempotency/consistency guarantees, "we will never do X". → `{{NON_NEGOTIABLES}}`

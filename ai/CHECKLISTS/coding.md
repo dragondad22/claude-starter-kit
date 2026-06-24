@@ -52,6 +52,17 @@ default/seed value, a shared type or helper:
 - [ ] Edge cases covered (empty inputs, boundary values)
 - [ ] All tests passing (`{{TEST_COMMAND}}`)
 
+## External Standards & Compliance
+
+Run the trigger map in `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md` against this change (or run `/compliance`).
+
+- [ ] Public/consumed API changed → OpenAPI spec updated in the same change; error shape + versioning consistent
+- [ ] Web UI changed → WCAG 2.2 AA, semantic HTML, keyboard, visible focus
+- [ ] Mobile release → privacy disclosure matches reality, account deletion, current target API level, honest age rating, permissions justified
+- [ ] Messaging/UGC added or changed → report + block + moderation + a response path
+- [ ] Personal data (especially about minors) → consent/age thresholds, high-privacy defaults, retention/deletion
+- [ ] Any fired trigger not already in `docs/compliance/COMPLIANCE_REGISTER.md` → surfaced + tracked (not silently absorbed)
+
 ## Documentation
 
 - [ ] Relevant UAT/acceptance doc created or updated

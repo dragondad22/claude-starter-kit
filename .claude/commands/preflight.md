@@ -14,5 +14,7 @@ Run pre-commit validation to catch issues before committing.
    - Run `bash ai/scripts/check-version-sync.sh` and report any version drift.
 5. Documentation check (`ai/STANDARDS/DOCUMENTATION_STANDARD.md`):
    - If the diff touches user-visible behavior but no docs were updated, warn and point at the relevant doc surface.
+6. Compliance trigger check (`ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md`):
+   - If the diff touches a public API, web UI, a mobile release, messaging/UGC, payments, or personal data, run the trigger map (or suggest `/compliance`). Warn on any fired trigger missing from `docs/compliance/COMPLIANCE_REGISTER.md`.
 6. Report results: all passed, or list failures/warnings with file paths and error messages.
 7. If all checks pass, confirm ready to commit.

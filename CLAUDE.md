@@ -76,6 +76,17 @@ Full rules in `ai/STANDARDS/DOCUMENTATION_STANDARD.md`.
 - User-facing docs have one source of truth: {{DOCS_SOURCE_OF_TRUTH}}.
 - Every change that ships user-visible behavior updates the relevant docs **in the same PR**. Purely internal changes (refactor/test/infra with no user impact) are exempt.
 
+## External Standards & Compliance (mandatory)
+
+Adopt recognized external standards where they make sense, and catch obligations
+that apply *because of what a change does*. Full rules + trigger map:
+`ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md`. What binds **this** project:
+`docs/compliance/COMPLIANCE_REGISTER.md`.
+
+- Platforms: `{{TARGET_PLATFORMS}}` · Audience: `{{AUDIENCE}}` · Regulated data: `{{REGULATED_DATA}}`.
+- A change that touches a public API, web UI, a mobile release, messaging/UGC, payments, personal data, or data about minors pulls in extra requirements — run `/compliance` to check.
+- If a change fires a trigger that isn't in the register, **stop and surface it** — don't silently absorb or skip the obligation.
+
 ## Source of Truth (precedence order)
 
 1. {{DB_LAYER}} schema (if applicable)
@@ -97,6 +108,7 @@ Read the relevant standard before starting work in that area:
 - Data/schema work: `ai/STANDARDS/DATABASE_SCHEMA_STANDARD.md` (if applicable)
 - UI work: `ai/STANDARDS/UI_STANDARD.md` (if applicable)
 - User documentation: `ai/STANDARDS/DOCUMENTATION_STANDARD.md`
+- External standards + compliance (APIs/OpenAPI, web/W3C-WCAG, mobile stores, messaging/UGC, minors): `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md`
 - Versioning and CHANGELOG: `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md`
 - Bug/finding reports: `ai/STANDARDS/GITHUB_ISSUES.md`
 - Task issues: `ai/STANDARDS/TASK_ISSUE_STANDARD.md`
@@ -125,3 +137,4 @@ Use these as completion gates:
 - Do not assume prior context — verify by reading files.
 - If work surfaces that has no tracked item, stop and suggest creating one — do not proceed on untracked work.
 - Before completing any change to something shared (DB column/constraint, enum/lookup vocabulary, seed/default, shared type/helper), run the Impact Analysis (consumer sweep) gate in `ai/CHECKLISTS/coding.md` — write paths drift independently and diverge silently.
+- When a change adds/alters a feature (public API, UI, mobile release, messaging/UGC, data handling, anything touching minors), run `/compliance` — context-driven obligations don't show up in a normal code diff.

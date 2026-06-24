@@ -35,6 +35,15 @@ If no existing decision governs this: note "No existing decision — record one 
 
 ---
 
+## Standards & Compliance Impact
+
+Run the trigger map in `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md`. List any external standard or compliance obligation this task fires, and whether it's already in `docs/compliance/COMPLIANCE_REGISTER.md`.
+
+- [ ] None — no API/UI/mobile/messaging/data-handling/minors impact, OR
+- [ ] [Obligation — e.g. "adds messaging → report/block/moderation (register C-005)"; "new public endpoint → OpenAPI spec update"; "collects birthdate → minors thresholds"]
+
+---
+
 ## Scope — What to Build
 
 [Precise enumerated list. For each area/layer being changed. The headings below are example areas — set your own to match your stack/layout.]
@@ -139,4 +148,5 @@ Do not close or merge until all are checked.
 - [ ] All new and existing tests passing (`{{TEST_COMMAND}}`)
 - [ ] /preflight skill passes
 - [ ] /security skill passes (required: any auth, access-control, session, or data boundary change)
+- [ ] /compliance skill passes; any fired trigger is in `docs/compliance/COMPLIANCE_REGISTER.md` (required: any API/UI/mobile/messaging/data-handling change)
 - [ ] PR linked to this issue (Closes #N in PR description)

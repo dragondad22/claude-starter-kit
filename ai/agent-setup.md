@@ -23,12 +23,16 @@ a persistent memory system.
 - `/preflight` — pre-commit build + test + security + changelog check
 - `/qa` — QA validation against recent changes
 - `/security` — security validation
+- `/compliance` — external-standards + context-driven compliance check (APIs/OpenAPI, web/WCAG, mobile stores, messaging/UGC, minors)
 - `/perf` — performance smoke
 - `/release` — cut a release (version bump + CHANGELOG roll)
 - `/checkpoint` — save session state to memory
 
 ## Standards (`ai/STANDARDS/`)
 Read the relevant one before working in that area. Index lives in `CLAUDE.md` → Standards.
+External standards + compliance obligations (incl. mobile-store and context-driven rules)
+live in `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md`; what binds this project is
+tracked in `docs/compliance/COMPLIANCE_REGISTER.md`.
 
 ## Report Templates (`ai/TEMPLATES/`)
 Scaffold with `ai/scripts/new-report.sh <type> <id> <slug>`. Reports land in `testing-reports/`.

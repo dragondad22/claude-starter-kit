@@ -22,6 +22,7 @@ This is a one-time setup command. Run it right after copying the kit into a new 
    - Seed `VERSION` (default `0.1.0`) and `CHANGELOG.md`'s first heading.
    - Strip the one-line *genericization banner* at the top of each `ai/STANDARDS/*` and `ai/TEMPLATES/*` file (the italic / HTML-comment note telling the reader to replace tokens) — its job is done once the kit is adapted.
    - Leave the **runtime tokens** (`{{DATE}}`, `{{IMP_ID}}`, `{{FEATURE}}`) untouched in `ai/TEMPLATES/` — `new-report.sh` fills them per report. See `bootstrap/PLACEHOLDERS.md`.
+   - **Seed the compliance register.** Using the platform/audience/data/feature answers, walk the trigger map in `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md` and pre-populate `docs/compliance/COMPLIANCE_REGISTER.md`'s "Active obligations" with the rows that fire (status ☐, today's date as Verified). Remove the worked-example comment block once real rows exist.
 
 5. **Prune what doesn't apply.** Remove optional standards/sections the user opted out of:
    - No database → delete `ai/STANDARDS/DATABASE_SCHEMA_STANDARD.md` and its reference in `CLAUDE.md`.

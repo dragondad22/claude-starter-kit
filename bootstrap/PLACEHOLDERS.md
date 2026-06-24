@@ -55,6 +55,17 @@ is the single source of truth for what each token means.
 | `{{SECURITY_SCAN_COMMAND}}` | Dependency / SAST scan, or `N/A` | `npm audit` |
 | `{{PERF_TARGET}}` | The perf signal that matters, or `N/A` | `/health p95 < 200ms` |
 
+## Platforms, audience & compliance
+
+Drive `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md` and seed `docs/compliance/COMPLIANCE_REGISTER.md`.
+
+| Token | Meaning | Example |
+|---|---|---|
+| `{{TARGET_PLATFORMS}}` | Where it ships | `iOS + Android + web` / `API-only` / `CLI` |
+| `{{AUDIENCE}}` | Who uses it, incl. age if minors | `shelter staff + volunteers, 14+` / `general adult` |
+| `{{REGULATED_DATA}}` | Regulated/sensitive data handled | `PII + messages` / `none` |
+| `{{COMPLIANCE_FEATURES}}` | Features that carry obligations | `staff↔user messaging, public API` / `none` |
+
 ## Non-negotiables
 
 `{{NON_NEGOTIABLES}}` — a bulleted list of finalized architectural constraints
