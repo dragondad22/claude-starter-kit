@@ -106,7 +106,7 @@ should strip the genericization banner lines once the kit is adapted.
 ## Filling these in
 
 - **Interactive:** run `/bootstrap` and answer the interview. It rewrites files in place.
-- **Manual:** `grep -rl '{{' .` to find every file with unfilled tokens, then
-  replace per this table. `bootstrap/SETUP.md` is the hand-fill checklist.
-- After filling, `grep -rn '{{' .` should return nothing except this file and
-  `bootstrap/`.
+- **Manual:** search the repo for `{{` (any editor's project-wide search, or `rg "\{\{"`)
+  to find every file with unfilled tokens, then replace per this table.
+  `bootstrap/SETUP.md` is the hand-fill checklist.
+- After filling, a search for `{{` should return nothing outside this file and `bootstrap/`.

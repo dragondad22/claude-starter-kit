@@ -101,6 +101,32 @@ and sync on demand with the *Sync now* button…").
 Inline help text should live in the **source of truth**, never hard-coded inline in
 the component, so the same wording also lands in the manual.
 
+## OS-agnostic instructions (mandatory)
+
+Write instructions and commands so they work on **any operating system unless a step
+is inherently OS-specific** — and when it is, label it. A reader on Windows, macOS,
+or Linux should be able to follow any doc without translating it in their head.
+
+- **Prefer tool-native commands over shell built-ins.** `git`, the package manager
+  (`npm`/`pnpm`/`pip`/`cargo`…), and the project's own CLI behave identically on every
+  OS. Reach for `npm run <script>` or `git ...` before `cp`, `rm`, `grep`, `chmod`,
+  `find`, `sed`, or `&&`-chained shell one-liners.
+- **Don't assume a POSIX shell or GNU tools.** No `rm -rf`, `cp -r`, `grep -r`,
+  `chmod`, backtick subshells, `$VAR` expansion, or `/absolute/unix/paths` in
+  general-audience docs. These fail or differ on Windows `cmd`/PowerShell and even
+  between BSD and GNU `grep`/`sed`.
+- **Use forward slashes and relative paths.** Git and most cross-platform tools accept
+  `path/to/file` on every OS; avoid `\` and machine-specific absolute paths.
+- **When a shell command is unavoidable, do one of:** (a) use cross-platform tooling
+  (e.g. ripgrep `rg`, or a language one-liner), (b) provide per-OS variants under clear
+  labels — `macOS / Linux:` and `Windows (PowerShell):`, or (c) state the OS the snippet
+  targets.
+- **Label any OS-specific section explicitly** so a reader on another OS knows to adapt.
+
+**Documented exception:** the shipped automation in `ai/scripts/*.sh` is written for a
+POSIX shell (native on macOS/Linux; available on Windows via Git Bash or WSL). That is
+noted in `ai/agent-setup.md`; everything else should be OS-agnostic.
+
 ## Screenshots (if your docs use them)
 
 - Generate them with your E2E tool against a stable demo/seed dataset

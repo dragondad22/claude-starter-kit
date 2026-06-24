@@ -5,9 +5,12 @@ The hand-fill alternative to `/bootstrap`. Use this if you'd rather not run the 
 ## 1. Fill placeholders
 
 Read `bootstrap/PLACEHOLDERS.md` for what each token means, then replace every `{{TOKEN}}`
-across the repo. Find them all:
+across the repo. Find them with your editor's project-wide search for `{{`, or via CLI:
 
-```bash
+```
+# cross-platform (ripgrep):
+rg "\{\{" -g '!bootstrap/**'
+# macOS / Linux (POSIX grep):
 grep -rn '{{' . --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' | grep -v '/bootstrap/'
 ```
 
@@ -30,13 +33,15 @@ The order that matters most:
 - [ ] Add any hooks you want (`.claude/hooks/README.md` has examples)
 
 ## 4. Verify
-- [ ] This returns nothing (excludes runtime/meta tokens — see `PLACEHOLDERS.md`):
-  ```bash
+- [ ] A project-wide search for `{{` finds nothing outside `bootstrap/` (ignore the runtime/meta
+  tokens listed in `PLACEHOLDERS.md`). macOS / Linux CLI equivalent:
+  ```
   grep -rnoE '\{\{[A-Z_]+\}\}' . --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' \
     | grep -vE '/bootstrap/|/README.md|\{\{(DATE|IMP_ID|FEATURE|TOKEN|TOKENS|PLACEHOLDER|DOUBLE_BRACE)\}\}'
   ```
 - [ ] `bash ai/scripts/check-version-sync.sh` passes
-- [ ] Scripts are executable: `chmod +x ai/scripts/*.sh ai/scripts/lib/*.sh`
+- [ ] The `ai/scripts/*.sh` automation runs (POSIX shell — native on macOS/Linux; Git Bash or WSL
+  on Windows). On macOS/Linux, make them executable first: `chmod +x ai/scripts/*.sh ai/scripts/lib/*.sh`
 
 ## 5. First commit
 - [ ] Commit the bootstrapped state.

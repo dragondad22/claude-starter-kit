@@ -38,6 +38,11 @@ tracked in `docs/compliance/COMPLIANCE_REGISTER.md`.
 Scaffold with `ai/scripts/new-report.sh <type> <id> <slug>`. Reports land in `testing-reports/`.
 
 ## Scripts (`ai/scripts/`)
+
+> **OS note:** these `*.sh` scripts require a POSIX shell — native on macOS/Linux; on
+> Windows run them via Git Bash or WSL. This is the one documented OS-specific exception;
+> all other docs follow the OS-agnostic rule in `ai/STANDARDS/DOCUMENTATION_STANDARD.md`.
+
 - `release.sh` / `check-version-sync.sh` — versioning (driven by `version-files.txt`)
 - `new-report.sh` — scaffold a quality report from a template
 - `log-self-correction.sh` — record a self-correction (see below)

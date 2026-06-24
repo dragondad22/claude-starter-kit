@@ -37,7 +37,7 @@ This is a one-time setup command. Run it right after copying the kit into a new 
    grep -rnoE '\{\{[A-Z_]+\}\}' . --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' \
      | grep -vE '/bootstrap/|/README.md|\{\{(DATE|IMP_ID|FEATURE|TOKEN|TOKENS|PLACEHOLDER|DOUBLE_BRACE)\}\}'
    ```
-   It should return nothing (the excluded tokens are runtime/meta-literals — see `bootstrap/PLACEHOLDERS.md`). Report any stragglers and fix them.
+   It should return nothing (the excluded tokens are runtime/meta-literals — see `bootstrap/PLACEHOLDERS.md`). Report any stragglers and fix them. (Snippet is macOS/Linux; on Windows use `rg "\{\{"` or an editor's project-wide search and exclude the same paths/tokens.)
 
 8. **Hand off.** Summarize: what was filled, what was pruned, what the user still needs to do by hand (e.g. fill `{{NON_NEGOTIABLES}}` further, set up CI secrets, wire the issue tracker). Suggest committing the bootstrapped state as the first commit. Point them at `ai/agent-setup.md` as the project's living orientation doc.
 
