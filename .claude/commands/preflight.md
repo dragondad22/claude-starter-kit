@@ -1,0 +1,18 @@
+Run pre-commit validation to catch issues before committing.
+
+1. Run `git diff --name-only` to identify changed files and which areas they touch.
+2. For the affected areas, run in order:
+   - **Build / typecheck**: `{{BUILD_COMMAND}}`
+   - **Lint**: `{{LINT_COMMAND}}` (skip if N/A)
+   - **Tests**: `{{TEST_COMMAND}}`
+3. Quick security scan on changed files (see `ai/STANDARDS/SECURITY_REVIEW_STANDARD.md`):
+   - Missing authorization/permission checks on new entry points
+   - Untrusted input used without validation
+   - `.env` files or credentials in staged changes
+4. CHANGELOG + version checks (`ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md`):
+   - If the diff ships user-visible behavior but `CHANGELOG.md` is NOT among the changed files, warn: "user-visible change with no `[Unreleased]` entry — add one (skip only for purely internal work)."
+   - Run `bash ai/scripts/check-version-sync.sh` and report any version drift.
+5. Documentation check (`ai/STANDARDS/DOCUMENTATION_STANDARD.md`):
+   - If the diff touches user-visible behavior but no docs were updated, warn and point at the relevant doc surface.
+6. Report results: all passed, or list failures/warnings with file paths and error messages.
+7. If all checks pass, confirm ready to commit.
