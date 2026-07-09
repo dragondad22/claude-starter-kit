@@ -23,7 +23,11 @@ if [ ! -f "$VERSION_FILES_LIST" ]; then
 fi
 
 # Read the configured files (skip blanks / comments).
-mapfile -t VERSION_FILES < <(grep -vE '^[[:space:]]*(#|$)' "$VERSION_FILES_LIST" || true)
+# while-read instead of mapfile: stock macOS ships bash 3.2, which lacks mapfile.
+VERSION_FILES=()
+while IFS= read -r line; do
+  VERSION_FILES+=("$line")
+done < <(grep -vE '^[[:space:]]*(#|$)' "$VERSION_FILES_LIST" || true)
 
 if [ "${#VERSION_FILES[@]}" -eq 0 ]; then
   echo "ABORT: no version files configured in $VERSION_FILES_LIST." >&2

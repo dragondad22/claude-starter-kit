@@ -44,7 +44,11 @@ if [ ! -f "$VERSION_FILES_LIST" ]; then
   echo "ABORT: missing $VERSION_FILES_LIST (list of version files, one per line)." >&2
   exit 1
 fi
-mapfile -t VERSION_FILES < <(grep -vE '^[[:space:]]*(#|$)' "$VERSION_FILES_LIST" || true)
+# while-read instead of mapfile: stock macOS ships bash 3.2, which lacks mapfile.
+VERSION_FILES=()
+while IFS= read -r line; do
+  VERSION_FILES+=("$line")
+done < <(grep -vE '^[[:space:]]*(#|$)' "$VERSION_FILES_LIST" || true)
 if [ "${#VERSION_FILES[@]}" -eq 0 ]; then
   echo "ABORT: no version files configured in $VERSION_FILES_LIST." >&2
   exit 1
@@ -136,7 +140,16 @@ write_version() {
         local tmp="$path.tmp"
         jq --arg v "$NEW" '.version = $v' "$path" > "$tmp" && mv "$tmp" "$path"
       else
-        sed -i "0,/\"version\"[[:space:]]*:[[:space:]]*\"$CURRENT\"/s//\"version\": \"$NEW\"/" "$path"
+        # awk instead of GNU-only `sed -i "0,/addr/"`: replace the FIRST version
+        # key only, portably (BSD sed has neither -i without suffix nor 0,/addr/).
+        awk -v cur="$CURRENT" -v new="$NEW" '
+          BEGIN { gsub(/\./, "\\.", cur) }
+          !done && $0 ~ ("\"version\"[[:space:]]*:[[:space:]]*\"" cur "\"") {
+            sub("\"version\"[[:space:]]*:[[:space:]]*\"" cur "\"", "\"version\": \"" new "\"")
+            done = 1
+          }
+          { print }
+        ' "$path" > "$path.tmp" && mv "$path.tmp" "$path"
       fi
       echo "  $rel -> $NEW"
       ;;
@@ -146,10 +159,11 @@ write_version() {
       cur_build="$(grep -E '^version:' "$path" | grep -oE '\+[0-9]+' | tr -d '+' | head -1 || true)"
       if [ -n "$cur_build" ]; then
         new_suffix="+$((cur_build + 1))"
-        sed -i -E "s/^version:[[:space:]].*/version: ${NEW}${new_suffix}/" "$path"
+        # sed -i.bak + rm: portable in-place edit (BSD sed requires a suffix arg).
+        sed -i.bak -E "s/^version:[[:space:]].*/version: ${NEW}${new_suffix}/" "$path" && rm -f "$path.bak"
         echo "  $rel -> ${NEW}${new_suffix}"
       else
-        sed -i -E "s/^version:[[:space:]].*/version: ${NEW}/" "$path"
+        sed -i.bak -E "s/^version:[[:space:]].*/version: ${NEW}/" "$path" && rm -f "$path.bak"
         echo "  $rel -> ${NEW}"
       fi
       ;;
