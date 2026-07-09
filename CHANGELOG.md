@@ -7,6 +7,9 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Changed
+- Task-issue template reworked to the two-layer shape: 5–8 line human summary (what / why now / done-when) on top, full AI implementation brief in a collapsed details block; titles are clean imperatives (labels carry kind/area/priority, no more `[TASK]` prefixes); per-issue Bootstrap lists trimmed to task-specific files (#10, T13.5).
+
 ### Added
 - `ai/scripts/bootstrap-labels.sh`: single label manifest for the whole issue taxonomy (`type:*` / `area:*` / `priority:*` / `severity:*` / flow labels), applied idempotently at bootstrap; both issue standards now point at it instead of shipping their own `gh label create` blocks, and bare `task`/`bug` labels are retired into `type:*` (#9, T13.9/T13.6).
 
