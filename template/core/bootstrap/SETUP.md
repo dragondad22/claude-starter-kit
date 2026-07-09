@@ -23,11 +23,15 @@ The order that matters most:
 - [ ] `ai/CHECKLISTS/*`, `ai/TEMPLATES/*`, `ai/agent-setup.md`
 - [ ] `CHANGELOG.md` heading, `VERSION` (default `0.1.0`)
 
-## 2. Prune what doesn't apply
-Optional content ships as kit modules (db / ui / reports); only copy in what applies. If module content is present but doesn't apply:
-- [ ] No database → delete `ai/STANDARDS/DATABASE_SCHEMA_STANDARD.md` + its `CLAUDE.md` reference
-- [ ] No UI → delete `ai/STANDARDS/UI_STANDARD.md` + its references; drop UI items from checklists
-- [ ] No formal UAT process → delete `ai/STANDARDS/UAT_SOURCE_OF_TRUTH.md` + `docs/uat/`
+## 2. Install the modules that apply (additive — nothing to prune)
+Optional content ships as modules, staged dormant under `bootstrap/modules/` at scaffold
+time (`bootstrap/modules/README.md` explains the staging).
+- [ ] See what's available: `bash ai/scripts/scaffold-module.sh list`
+- [ ] Install what applies **now** (e.g. `db` if there's a database): `bash ai/scripts/scaffold-module.sh <name>`, then fill the new files' tokens
+- [ ] Leave the rest staged — install later when its trigger fires (first UI code, first deploy target, …)
+- [ ] If you copied files by hand instead of running the kit's scaffold engine, check that
+      `bootstrap/KIT_VERSION` exists and records the kit version you copied from (its header
+      comment shows the shape)
 
 ## 3. Wire the harness
 - [ ] Add this project's commands to `.claude/settings.json` `permissions.allow` so they don't prompt

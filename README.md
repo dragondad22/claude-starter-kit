@@ -28,12 +28,17 @@ CLAUDE.md  docs/plans/  …   # Everything outside template/ is kit development 
 
 ## How to use it
 
-1. **Copy the shipped tree into a new (or existing) repo:**
-   - Copy the contents of `template/core/` (including dotfiles: `.claude/`, `.gitignore`)
-     into your repo root.
-   - Copy in any modules that apply — module paths mirror the project root
-     (e.g. `template/modules/db/ai/STANDARDS/…` → `ai/STANDARDS/…`).
-   - `template/manifest.yml` lists exactly what ships per module.
+1. **Scaffold into a new (or existing) repo** — from a kit checkout:
+
+   ```bash
+   bash scripts/scaffold.sh /path/to/your-repo [module ...]   # e.g. … db ui
+   ```
+
+   Installs every core file (never overwrites existing files), stages all module
+   payloads dormant under `bootstrap/modules/` for later trigger-driven installs,
+   writes the `bootstrap/KIT_VERSION` upgrade marker, and applies any modules you
+   name now. (Hand-copy alternative: copy `template/core/` contents — including
+   dotfiles — into the repo root; `template/manifest.yml` lists what ships.)
 
 2. **Fill it in.** Open the repo in Claude Code and run **`/bootstrap`** — it inspects the
    repo, interviews you for the gaps, and replaces every placeholder in place. (Prefer the
@@ -44,7 +49,11 @@ CLAUDE.md  docs/plans/  …   # Everything outside template/ is kit development 
 
 4. **Commit** the bootstrapped state as your first commit.
 
-> An interview-driven scaffold engine that automates module selection is in progress
+5. **As the project grows**, module triggers (first schema file, first UI code, first
+   deploy target, …) are detected at `/preflight` and offered — install with
+   `bash ai/scripts/scaffold-module.sh <module>` from the project root.
+
+> The deep inception interview that drives module selection is in progress
 > (epic #14 — inception interview & additive scaffolding).
 
 ## Design principles

@@ -16,5 +16,7 @@ Run pre-commit validation to catch issues before committing.
    - If the diff touches user-visible behavior but no docs were updated, warn and point at the relevant doc surface.
 6. Compliance trigger check (`ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md`):
    - If the diff touches a public API, web UI, a mobile release, messaging/UGC, payments, or personal data, run the trigger map (or suggest `/compliance`). Warn on any fired trigger missing from `docs/compliance/COMPLIANCE_REGISTER.md`.
-7. Report results: all passed, or list failures/warnings with file paths and error messages.
-8. If all checks pass, confirm ready to commit.
+7. Scaffold-trigger check (trigger table: `bootstrap/modules/manifest.yml`):
+   - If the diff introduces a first-of-its-kind artifact — first schema/migration file, first UI code, first public/consumed API, first formal QA/UAT need, first deploy target — and the matching module is not installed (`bash ai/scripts/scaffold-module.sh list`), **offer** the module install. Never apply a module silently.
+8. Report results: all passed, or list failures/warnings with file paths and error messages.
+9. If all checks pass, confirm ready to commit.
