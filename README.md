@@ -40,9 +40,13 @@ CLAUDE.md  docs/plans/  …   # Everything outside template/ is kit development 
    name now. (Hand-copy alternative: copy `template/core/` contents — including
    dotfiles — into the repo root; `template/manifest.yml` lists what ships.)
 
-2. **Fill it in.** Open the repo in Claude Code and run **`/bootstrap`** — it inspects the
-   repo, interviews you for the gaps, and replaces every placeholder in place. (Prefer the
-   manual route? Follow `bootstrap/SETUP.md`.)
+2. **Run inception.** Open the repo in Claude Code and run **`/bootstrap`** — it generates
+   the inception interview (`docs/plans/000-inception/`, from the shipped question bank),
+   which you answer asynchronously at your own pace, in the files. When the interview is
+   complete, re-running `/bootstrap` consumes the answers: fills every placeholder,
+   generates the project README and LICENSE, seeds the founding docs (ADRs, decision log,
+   compliance register), and installs the modules the answers call for. (Prefer the manual
+   route? Follow `bootstrap/SETUP.md`.)
 
 3. **Verify no placeholders remain.** `/bootstrap` does this automatically. To check by
    hand, search the repo for `{{` (outside `bootstrap/` it should find nothing).
@@ -51,10 +55,9 @@ CLAUDE.md  docs/plans/  …   # Everything outside template/ is kit development 
 
 5. **As the project grows**, module triggers (first schema file, first UI code, first
    deploy target, …) are detected at `/preflight` and offered — install with
-   `bash ai/scripts/scaffold-module.sh <module>` from the project root.
-
-> The deep inception interview that drives module selection is in progress
-> (epic #14 — inception interview & additive scaffolding).
+   `bash ai/scripts/scaffold-module.sh <module>` from the project root. The same
+   interview process reruns for any later epic/feature (`001-<slug>/`, …), producing its
+   founding mini-docs and issue breakdown.
 
 ## Design principles
 
