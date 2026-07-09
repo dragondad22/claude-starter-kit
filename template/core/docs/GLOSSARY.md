@@ -37,7 +37,9 @@ non-obvious. _Avoid_: aliases.`
 ## Domain terms
 
 <!-- Seeded by /bootstrap from the inception interview (domain answers,
-non-negotiables vocabulary); grows via the recording rules. Example entry:
+non-negotiables vocabulary); grows via the recording rules. Role terms
+(volunteer, admin, …) cross-link to their entry in docs/PERSONAS.md.
+Example entry:
 - **Animal record** — the canonical row for one animal in the shelter, the
   record of truth for its status. _Avoid_: bare "record" (ambiguous: service
   record, music record). -->

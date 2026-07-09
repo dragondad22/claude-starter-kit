@@ -76,6 +76,7 @@ core:
     - docs/compliance/COMPLIANCE_REGISTER.md
     - docs/decision_log.md
     - docs/GLOSSARY.md
+    - docs/PERSONAS.md
     - docs/plans/README.md
     - docs/runbooks/README.md
     - docs/workflows/README.md
