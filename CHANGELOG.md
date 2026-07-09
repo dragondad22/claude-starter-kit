@@ -7,6 +7,13 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Added
+- Documentation standard gains a "Design principles (repo-wide)" section (T22) naming the kit's two design principles: *lead with the least-technical audience* and *progressive disclosure with addressability* (breadcrumbs over monoliths; never cut the vision — relocate it; grep-friendly stable IDs/anchors required for new artifact types), plus the CLAUDE.md ~150-line budget as the enforced guard (#36)
+- `/evergreen` gains a sixth lens, **context economy**: checks CLAUDE.md against its ~150-line budget; breach → demote detail behind a breadcrumb, never delete (agent-setup and evergreen-log lens lists updated) (#36)
+
+### Changed
+- Shipped CLAUDE.md trimmed 160 → 150 lines per the new budget by merging duplicate/adjacent rules (untracked-work and chat-not-authoritative rules now live once with cross-pointers; git/task/decision one-liners combined) — no rule deleted (#36)
+
 ## [0.5.0] - 2026-07-09
 
 ### Added

@@ -16,6 +16,38 @@ reviewed together, merged together.
 Purely internal changes (refactors, tests, infra with no user-visible impact) are
 exempt.
 
+## Design principles (repo-wide)
+
+Two named principles govern every artifact in this repo — user docs, standards,
+issues, specs, glossary entries — not just user-facing pages. Cite them by name.
+
+### Lead with the least-technical audience
+
+Every artifact opens with what its least-technical reader needs; technical depth
+follows, or sits behind a link. Instances across the kit: two-layer issues (human
+summary first, AI implementation brief in a collapsed block), the bidirectional
+glossary, journey-first feature specs.
+
+### Progressive disclosure with addressability
+
+- **Breadcrumbs over monoliths.** Detail lives in referenced files, linked from
+  wherever it's relevant — present *if* needed, loaded only *when* needed.
+  Referenced detail across files beats one monolithic always-loaded file: a reader
+  (human or AI) only takes on what the task needs.
+- **Never cut the vision — relocate it.** Conciseness comes from *moving* detail
+  behind a breadcrumb (the rule stays in place; the explanation relocates), never
+  from deleting it. The test for any trim: can the reader still reach the full
+  intent by following links?
+- **Grep-friendliness is a design requirement.** Everything referenceable gets a
+  stable, searchable ID or anchor — `ADR-NNN`, `SPEC-<DOMAIN>-NNN`, compliance
+  register `C-NNN` rows, interview `Q-` IDs. A new artifact type must define its
+  ID/anchor convention, so the specific detail can be *found* instead of loading
+  everything.
+
+**The guard:** `CLAUDE.md` carries a **~150-line budget**, checked by the
+`/evergreen` context-economy lens. On breach, demote detail into a standard behind
+a breadcrumb per the principles above — never delete it.
+
 ## What counts as "user-visible"
 
 A change is user-visible — and therefore needs docs — if a user could notice it:
