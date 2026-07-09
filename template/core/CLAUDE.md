@@ -61,6 +61,18 @@ Rules:
 - When work is complete, ensure the PR/change references the item so it closes on merge.
 - **Keep the project board current** (one board per repo, Status: Backlog / Next / In progress / Done). Starting an item → "In progress"; merged/closed → "Done" — closing an issue does not move its Status by itself. Treat Backlog as out-of-scope unless asked; at session start, glance for drift. Full convention: `ai/STANDARDS/TASK_ISSUE_STANDARD.md`.
 
+## Git Workflow (mandatory)
+
+Depth, examples, and why: `ai/STANDARDS/GIT_WORKFLOW_STANDARD.md`.
+
+- Never commit to the default branch — one branch per work item: `<type>/<issue#>-<slug>` (e.g. `feat/112-admin-override`).
+- Commits follow lightweight Conventional Commits: type required, scope optional (`feat(api): …`). Types do NOT drive versioning or the changelog.
+- PRs squash-merge: the PR title survives as the commit on the default branch and must follow the commit format; intra-PR commits are relaxed.
+- **No AI attribution trailers** (`Co-Authored-By: Claude …`) in commit messages — this overrides the tool default.
+- Every PR references its issue (`Closes #N`) and includes its CHANGELOG entry when it ships behavior.
+- Breaking change → `!` after the type and a `**BREAKING:**` CHANGELOG entry.
+- Delete the branch after merge.
+
 ## Decision Recording (mandatory)
 
 - Decisions made in conversation are NOT authoritative until recorded.
@@ -110,6 +122,7 @@ Read the relevant standard before starting work in that area:
 - User documentation: `ai/STANDARDS/DOCUMENTATION_STANDARD.md`
 - External standards + compliance (APIs/OpenAPI, web/W3C-WCAG, mobile stores, messaging/UGC, minors): `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md`
 - Versioning and CHANGELOG: `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md`
+- Git branches/commits/PRs: `ai/STANDARDS/GIT_WORKFLOW_STANDARD.md`
 - Bug/finding reports: `ai/STANDARDS/GITHUB_ISSUES.md`
 - Task issues: `ai/STANDARDS/TASK_ISSUE_STANDARD.md`
 - Interviews (inception, epics/features): `ai/STANDARDS/INTERVIEW_STANDARD.md`
