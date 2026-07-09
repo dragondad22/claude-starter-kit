@@ -210,7 +210,9 @@ Saved views: **Current work** (Status is Next or In progress) and **Backlog**.
   `Closes #N`) does **not** move its Status by itself — move it, or enable the
   board's built-in "Item closed → Done" workflow (a UI setting; it cannot be
   enabled via API).
-- Epics move to Done when their last sub-issue closes.
+- Epics move to Done when their last sub-issue closes. If the epic had an
+  interview (a `docs/plans/` directory), run the interview retrospective at
+  that moment (`ai/STANDARDS/INTERVIEW_STANDARD.md`).
 - At session start, glance at the board for drift (closed-but-not-Done items)
   and fix what you find.
 

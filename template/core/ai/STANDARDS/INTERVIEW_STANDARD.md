@@ -160,6 +160,29 @@ standards, decision log); question files are context/history — they explain
 
 ---
 
+## Interview Retrospective
+
+A shipped question bank fixes the quality *floor*; the retrospective is what
+raises it — without one it fossilizes at launch quality.
+
+When an interview's outputs have been **implemented** — inception: at the
+project's first release; epic/feature: when its epic closes — ask one
+question:
+
+> **What did the interview fail to ask?**
+
+Gaps that surfaced during the work (a decision made mid-build that a question
+would have caught, rework a standard answer would have avoided) are the
+answers. Each becomes a **port-back issue against the starter kit's question
+bank** (the same channel as other kit port-backs), and the retrospective is
+noted in the interview's `00-INDEX.md`. Every project's interview makes the
+next project's interview better.
+
+The triggers are wired where those moments live: the release flow (first
+release) and the epic-close lifecycle rule.
+
+---
+
 ## See Also
 
 - `docs/plans/README.md` — the plans charter (interviews live there)
