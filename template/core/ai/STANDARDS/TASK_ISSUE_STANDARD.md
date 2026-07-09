@@ -102,6 +102,11 @@ Every task issue body has two layers, in this order, per
 **Implementing agents must always expand and read the `<details>` block in
 full.** The human summary is not the spec.
 
+Issues coin vocabulary: any new domain term an issue introduces (entity, status
+value, role name) is recorded in `docs/GLOSSARY.md` at issue-creation time
+(coin-time rule — see the glossary header), and issue wording follows the
+glossary's canonical terms.
+
 ### Bootstrap
 The first section of the brief. Lists — in order — the task-specific files the
 implementer must read before touching code:

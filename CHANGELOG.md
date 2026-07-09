@@ -7,6 +7,9 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Added
+- `docs/GLOSSARY.md` (T14): bidirectional AI↔human vocabulary — Domain terms (seeded by `/bootstrap` from inception answers) + Technical terms pre-seeded with the kit's standing jargon (ADR, UAT, SCA, DPIA, SemVer, Projects v2, …); audience header, `_Avoid_:` aliases, and the four inline recording rules (explained-in-chat / coined / overloaded common word / load-bearing external concept, general programming vocab excluded). Glossary is the naming authority; wiring: CLAUDE.md conventions line, DB standard new-model step, task-issue coin-time rule, coding-checklist backstop, documentation standard's define-on-first-use pointer (#22).
+
 ### Changed
 - Compliance register split into two layers (T3.11, resolves T3.4): a pre-seeded universal **Baseline** section every project carries (B-001 secrets handling, B-002 dependency hygiene, B-003 license correctness, B-004 data-subject basics once any user data exists) and the existing conditional trigger-driven rows; `/bootstrap` stamps the baseline at inception and the external-standards trigger map is unchanged (#20).
 - Interview retrospective (T20): when an interview's outputs are implemented (inception → first release, epic → epic close), one question is asked — "what did the interview fail to ask?" — and each gap becomes a port-back issue against the kit's question bank; rationale in the interview standard, triggers wired into `/release` (step 10, first release only) and the epic-close lifecycle rule in the task-issue standard (#19).

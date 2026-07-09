@@ -67,7 +67,8 @@ reviewer goodwill is not.
 
 ## Writing for beginners
 
-- Assume no prior knowledge. Define terms the first time they appear.
+- Assume no prior knowledge. Define terms the first time they appear —
+  `docs/GLOSSARY.md` is the canonical source for what a term means here.
 - Sentence case for headings and UI references; match the in-app label exactly.
 - Prefer numbered steps for tasks; one action per step.
 - Note role differences ("Admins can also…") where access varies.
