@@ -7,15 +7,17 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
-### Changed
-- Triage rules consolidated in `GITHUB_ISSUES.md`: label discipline, severity-based board placement, and severity-is-impact-not-urgency; the backtick ban in issue comments now states its rationale (shell command substitution mangled comments) with `--body-file` as the required alternative (#13, T6/T12.2).
-- Project-board convention shipped: one board per repo (Status: Backlog / Next / In progress / Done, saved Current-work/Backlog views), mandatory lifecycle moves with a session-start drift check, Backlog out-of-scope unless asked; setup recipe in the task-issue standard, wired into `/bootstrap` and `SETUP.md` (#11, T13.8).
-- Work-item hierarchy documented: epics are parent issues (`type:epic`) with native sub-issues, features under epics, tasks under features; milestones mean releases only — stated in both the task-issue and versioning standards (#12, T13.7).
-- Task-issue template reworked to the two-layer shape: 5–8 line human summary (what / why now / done-when) on top, full AI implementation brief in a collapsed details block; titles are clean imperatives (labels carry kind/area/priority, no more `[TASK]` prefixes); per-issue Bootstrap lists trimmed to task-specific files (#10, T13.5).
+## [0.3.0] - 2026-07-09
 
 ### Added
-- `sla` module content: `ai/STANDARDS/ISSUE_SLA_STANDARD.md` — response/mitigation windows and escalation as a timing layer over core triage, with `{{SLA_*}}` numbers coming from the team-formation interview rather than shipped constants (#13, T6).
 - `ai/scripts/bootstrap-labels.sh`: single label manifest for the whole issue taxonomy (`type:*` / `area:*` / `priority:*` / `severity:*` / flow labels), applied idempotently at bootstrap; both issue standards now point at it instead of shipping their own `gh label create` blocks, and bare `task`/`bug` labels are retired into `type:*` (#9, T13.9/T13.6).
+- `sla` module content: `ai/STANDARDS/ISSUE_SLA_STANDARD.md` — response/mitigation windows and escalation as a timing layer over core triage, with `{{SLA_*}}` numbers coming from the team-formation interview rather than shipped constants (#13, T6).
+
+### Changed
+- Task-issue template reworked to the two-layer shape: 5–8 line human summary (what / why now / done-when) on top, full AI implementation brief in a collapsed details block; titles are clean imperatives (labels carry kind/area/priority, no more `[TASK]` prefixes); per-issue Bootstrap lists trimmed to task-specific files (#10, T13.5).
+- Work-item hierarchy documented: epics are parent issues (`type:epic`) with native sub-issues, features under epics, tasks under features; milestones mean releases only — stated in both the task-issue and versioning standards (#12, T13.7).
+- Project-board convention shipped: one board per repo (Status: Backlog / Next / In progress / Done, saved Current-work/Backlog views), mandatory lifecycle moves with a session-start drift check, Backlog out-of-scope unless asked; setup recipe in the task-issue standard, wired into `/bootstrap` and `SETUP.md` (#11, T13.8).
+- Triage rules consolidated in `GITHUB_ISSUES.md`: label discipline, severity-based board placement, and severity-is-impact-not-urgency; the backtick ban in issue comments now states its rationale (shell command substitution mangled comments) with `--body-file` as the required alternative (#13, T6/T12.2).
 
 ## [0.2.0] - 2026-07-09
 
