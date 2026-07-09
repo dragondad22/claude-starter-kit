@@ -92,3 +92,7 @@ Example entry:
 - **Non-negotiables** — this project's never-re-litigate architectural
   constraints, listed in `CLAUDE.md`; changing one requires a recorded decision,
   not a conversation.
+- **Feature spec** — a journey-first two-layer feature document in
+  `docs/specs/` (`SPEC-<DOMAIN>-NNN`): plain-language journey on top for
+  non-technical stakeholders, technical spec below for AI/devs/UAT.
+  _Avoid_: "workflow doc" (the pre-v2 name).

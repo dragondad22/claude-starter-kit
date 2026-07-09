@@ -14,7 +14,7 @@ these artifacts live in this project:
 1. The UAT spec for the work item: `{{UAT_DOC}}` (e.g.
    `docs/uat/UAT_{{WORK_ITEM_PREFIX}}-<ID>_*.md`).
 2. The implementation plan for the matching work item.
-3. The relevant workflow / feature-spec document(s).
+3. The relevant feature spec(s) in `docs/specs/`.
 4. ADRs and the product decision log.
 
 If conflict remains unresolved:
@@ -25,6 +25,8 @@ If conflict remains unresolved:
 ## Acceptance Criteria Discipline
 - Acceptance criteria must be **explicit, written, and traceable to a source above** —
   do not invent acceptance criteria from conversation or memory during the UAT run.
+- When a feature spec exists, criteria cite its journey step numbers and edge-case IDs
+  (EC-n) — a spec that misses reality must fail visibly here, not silently.
 - Each criterion gets a recorded outcome (pass / fail / blocked) — no criterion is
   left unaddressed.
 - A feature is not "accepted" because it appears to work; it is accepted when every

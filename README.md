@@ -13,7 +13,7 @@ template/                   # THE PRODUCT — the only tree scaffolding reads
     CLAUDE.md               #   Root project context (loaded every session) — template
     .claude/                #   Slash commands (/bootstrap /preflight /qa /security /compliance /perf /release), settings, hooks
     ai/                     #   Standards, checklists, issue templates, automation scripts
-    docs/                   #   ADR skeleton, decision log, compliance register, runbooks, workflows, plans
+    docs/                   #   ADR skeleton, decision log, glossary, personas, compliance register, runbooks, feature specs, plans
     bootstrap/              #   PLACEHOLDERS.md (token registry), INTERVIEW.md, SETUP.md
     CHANGELOG.md  VERSION  .gitignore  testing-reports/
   modules/                  # Optional — scaffolded in when a trigger fires

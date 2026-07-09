@@ -64,6 +64,7 @@ core:
     - ai/STANDARDS/TASK_ISSUE_STANDARD.md
     - ai/STANDARDS/TESTING_STANDARD.md
     - ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md
+    - ai/TEMPLATES/FEATURE_SPEC_TEMPLATE.md
     - ai/TEMPLATES/GITHUB_ISSUE_TEMPLATE.md
     - ai/TEMPLATES/TASK_ISSUE_TEMPLATE.md
     - bootstrap/INTERVIEW.md
@@ -79,7 +80,7 @@ core:
     - docs/PERSONAS.md
     - docs/plans/README.md
     - docs/runbooks/README.md
-    - docs/workflows/README.md
+    - docs/specs/README.md
     - testing-reports/README.md
 
 modules:
