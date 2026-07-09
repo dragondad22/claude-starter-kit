@@ -11,7 +11,6 @@ rather than asking blind. Group related questions.
 - What problem domain is it in, in plain words? → `{{PROJECT_DOMAIN}}`
 
 ## 2. Source control & tracking
-- Canonical remote? (detect via `git remote -v`) → `{{REPO_SLUG}}`
 - Where do tasks live? Tool + URL. → `{{ISSUE_TRACKER}}`, `{{ISSUE_TRACKER_KIND}}`
 - Prefix for work-item IDs in reports/branches? (e.g. `IMP`, `TASK`, or the tracker's own keys) → `{{WORK_ITEM_PREFIX}}`
 

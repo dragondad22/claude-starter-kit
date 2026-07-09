@@ -38,6 +38,7 @@ Never leave this empty — if there are truly none yet, write "None recorded yet
 {{BUILD_COMMAND}}       # Build / typecheck
 {{DEV_COMMAND}}         # Start locally
 {{LINT_COMMAND}}        # Lint / format check
+{{E2E_COMMAND}}         # Run end-to-end tests (omit if none)
 {{MIGRATION_COMMAND}}   # Run/create DB migrations (omit if no database)
 
 # Project automation (from repo root)

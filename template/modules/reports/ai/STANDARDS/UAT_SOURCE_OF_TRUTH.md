@@ -16,7 +16,6 @@ these artifacts live in this project:
 2. The implementation plan for the matching work item.
 3. The relevant workflow / feature-spec document(s).
 4. ADRs and the product decision log.
-5. The product features list.
 
 If conflict remains unresolved:
 - Follow the higher-precedence source.

@@ -161,6 +161,10 @@ Standard closing checklist. Do not modify between issues — it ensures consiste
 - `/preflight` skill passes
 - `/security` skill passes (required if auth, access control, session, or a data
   boundary is touched)
+- `/compliance` skill passes; any fired trigger is recorded in
+  `docs/compliance/COMPLIANCE_REGISTER.md` (required if the change touches an
+  API, UI, mobile release, messaging/UGC, or data handling)
+- PR linked to the issue (`Closes #N` in the PR description)
 
 ---
 
