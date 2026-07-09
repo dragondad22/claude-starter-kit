@@ -30,7 +30,7 @@ When a change touches the left column, the middle column **may** apply — confi
 | **Payments / monetization** | PCI DSS scope (prefer a compliant processor so you never touch PANs); platform in-app-purchase rules for digital goods | PCI SSC; store rules |
 | **Authentication / sessions / secrets** | OWASP ASVS + OWASP Top 10; platform sign-in rules (e.g. offer Sign in with Apple if you offer other third-party logins on iOS); MFA where warranted | OWASP; store rules |
 | **Accessibility in a regulated setting** (gov, EU market, public accommodation) | ADA / Section 508 (US), EN 301 549 + European Accessibility Act (EU) — these make WCAG a legal floor, not a nicety | Relevant law |
-| Dates, encoding, i18n, locales | ISO 8601 timestamps, UTF-8/Unicode, BCP 47 language tags, currency/number formatting via locale | ISO / Unicode / IETF |
+| Dates, encoding, i18n, locales | ISO 8601 timestamps, UTF-8/Unicode, BCP 47 language tags, currency/number formatting via locale — concrete list + coin-time rule: `bootstrap/PAVED_ROAD.md` → Data-format standards | ISO / Unicode / IETF |
 | Telemetry / analytics / tracking | Consent before tracking; on iOS, App Tracking Transparency; data-safety/privacy-label disclosure must match reality | Store + privacy law |
 
 If a change fires a trigger and the obligation **isn't yet in the register**, stop and surface it (file a tracked item) — don't silently take on the obligation or silently skip it.

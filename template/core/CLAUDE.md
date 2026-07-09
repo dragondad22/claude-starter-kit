@@ -139,6 +139,7 @@ Use these as completion gates:
 
 - Never commit `.env` files or real credentials.
 - **Glossary discipline**: `docs/GLOSSARY.md` is the naming authority — challenge conflicting usage; record terms inline the moment one of its four rules fires (explained-in-chat / coined / overloaded common word / load-bearing external concept).
+- **Data-format discipline**: when coining a field/entity of a well-known category (phone, date/time, currency, country, language, email), propose the matching standard from `bootstrap/PAVED_ROAD.md` → Data-format standards at introduction time; declined → ADR.
 - Verify security/authorization boundaries with negative-path checks on every feature.
 - Loading/empty/error states required for all data-driven views (if there's a UI).
 - Destructive actions require explicit confirmation.
