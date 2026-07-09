@@ -196,6 +196,8 @@ multiple organizations/accounts). Delete it otherwise.*
    to reflect the new pattern.
 4. Generate and commit the migration alongside the schema change.
 5. Run the **Impact analysis** gate above for any shared column/constraint touched.
+6. Record every new domain noun, status value, or role name the model coins in
+   `docs/GLOSSARY.md` at introduction time (coin-time rule — see the glossary header).
 
 ---
 
