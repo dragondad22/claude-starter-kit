@@ -32,6 +32,10 @@ These are finalized architectural constraints. Do not re-litigate.
 python3 scripts/validate-manifest.py   # allowlist complete, files exist, no kit-dev leaks
 python3 scripts/lint-dead-refs.py      # shipped docs cite only files that ship
 bash scripts/bootstrap-smoke.sh        # scaffold + fill + shipped automation end-to-end
+
+# Kit release cut — the shipped script run against the kit root (issue #45):
+RELEASE_ROOT="$PWD" VERSION_FILES_LIST="$PWD/scripts/version-files.txt" \
+  bash template/core/ai/scripts/release.sh <bump>
 ```
 
 All three run in CI (`.github/workflows/kit-selftest.yml`) on ubuntu + macos —
