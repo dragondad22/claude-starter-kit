@@ -37,7 +37,8 @@ are filed as port-back issues against the starter kit's copy of this bank
 
 ## 1. Identity & Problem — `IDENT`
 
-*Downstream: project README, `CLAUDE.md` header, glossary seeds, personas.*
+*Downstream: project README, `CLAUDE.md` header, glossary seeds, persona
+registry (`docs/PERSONAS.md`).*
 
 - **Q-IDENT-01 — What problem does this solve, and for whom?** The pain in
   plain words, and each distinct kind of user. Follow up until personas are

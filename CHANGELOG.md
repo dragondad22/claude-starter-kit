@@ -8,6 +8,7 @@ and this project adheres to Semantic Versioning.
 ## [Unreleased]
 
 ### Added
+- `docs/PERSONAS.md` (T17.7): centralized persona registry — who/goals/role-permission mapping/context+constraints per persona, seeded by `/bootstrap` from the inception audience answers and extended by feature interviews; specs and UAT docs reference personas by name and never redefine them inline; glossary role terms cross-link to it (#23).
 - `docs/GLOSSARY.md` (T14): bidirectional AI↔human vocabulary — Domain terms (seeded by `/bootstrap` from inception answers) + Technical terms pre-seeded with the kit's standing jargon (ADR, UAT, SCA, DPIA, SemVer, Projects v2, …); audience header, `_Avoid_:` aliases, and the four inline recording rules (explained-in-chat / coined / overloaded common word / load-bearing external concept, general programming vocab excluded). Glossary is the naming authority; wiring: CLAUDE.md conventions line, DB standard new-model step, task-issue coin-time rule, coding-checklist backstop, documentation standard's define-on-first-use pointer (#22).
 
 ### Changed
