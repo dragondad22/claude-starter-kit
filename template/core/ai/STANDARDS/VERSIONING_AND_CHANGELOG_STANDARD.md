@@ -138,6 +138,10 @@ Once `1.0.0` ships, standard SemVer applies: breaking change → MAJOR, new feat
 
 ## Release trigger
 
+**Milestones mean releases only** — a milestone represents a version being cut,
+never an epic, sprint, or theme (those are parent issues with sub-issues and the
+project board; see `ai/STANDARDS/TASK_ISSUE_STANDARD.md`).
+
 Releases are **timeboxed**, not milestone-planned. Propose cutting a release —
 and get human approval before doing it — when `[Unreleased]` is non-empty **and
 either** of these holds (whichever comes first):
