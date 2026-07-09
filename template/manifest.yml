@@ -33,6 +33,7 @@ core:
     - CHANGELOG.md
     - VERSION
     - .gitignore
+    - .github/workflows/pr-validation.yml.example
     - .claude/settings.json
     - .claude/commands/bootstrap.md
     - .claude/commands/compliance.md
@@ -104,7 +105,8 @@ modules:
 
   deploy-ci:
     trigger: first deploy target
-    files: []               # placeholder — deploy/CD config + runbooks arrive with #25 (T10.1/T10.4)
+    files: []               # placeholder — deploy/CD config + runbooks arrive when the
+                            # environments answer exists (T10.4); PR-validation CI is core, not here
 
   sla:
     trigger: team formation
