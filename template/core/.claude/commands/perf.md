@@ -8,4 +8,5 @@ Run performance smoke validation.
    - Unbounded queries or responses (missing pagination/limits)
    - Expensive work on a hot path
 5. Compare measurements against the standard's threshold.
-6. Summarize: pass/fail with measured values and any regression concerns.
+6. Summarize: pass/fail with measured values and any regression concerns. **Pass = one summary line — no report document.**
+7. On FAIL/BLOCKED, write a diagnostic bundle per `ai/TEMPLATES/DIAGNOSTIC_BUNDLE_TEMPLATE.md` into `testing-reports/` (gitignored — never committed), and recommend a tracked issue with the bundle linked.

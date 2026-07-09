@@ -34,8 +34,9 @@ live in `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md`; what binds this pro
 tracked in `docs/compliance/COMPLIANCE_REGISTER.md`.
 
 ## Templates (`ai/TEMPLATES/`)
-Issue/task body templates. Validation evidence and failure diagnostics land in
-`testing-reports/` (local only — never committed).
+Issue/task body templates + the diagnostic-bundle shape
+(`DIAGNOSTIC_BUNDLE_TEMPLATE.md`). Success is silent; failures produce a bundle in
+`testing-reports/` (local only — never committed; CI uploads them as run artifacts).
 
 ## Scripts (`ai/scripts/`)
 

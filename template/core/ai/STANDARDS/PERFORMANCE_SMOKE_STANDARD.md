@@ -34,7 +34,10 @@ Run via the project's perf entry point:
 - `BLOCKED`: the benchmark could not execute (record the exact blocker).
 
 ## Artifact Requirements
-Stored under `testing-reports/artifacts/<date>_<{{WORK_ITEM_PREFIX}}-NNN>_<feature>_<timestamp>/`:
-- Summary markdown with measured values **and** the thresholds they were judged against.
+`PASS` is silent — exit code + one-line summary with the measured value. On
+`FAIL`/`PASS-WITH-ISSUES`/`BLOCKED`, write a diagnostic bundle per
+`ai/TEMPLATES/DIAGNOSTIC_BUNDLE_TEMPLATE.md` (Performance section: measured values
+**and** the thresholds they were judged against), with artifacts under
+`testing-reports/artifacts/<date>_<{{WORK_ITEM_PREFIX}}-NNN>_<feature>_<timestamp>/`:
 - Raw sample log (per-request latencies).
 - Startup log for the process under test.

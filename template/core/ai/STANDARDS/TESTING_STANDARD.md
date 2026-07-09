@@ -81,16 +81,20 @@ When execution fails due to setup/tooling (not a real defect):
 3. Record the **exact blocker** and the **exact human action** needed to unblock.
 
 ## Evidence and Artifact Requirements
-For each run, collect artifacts under a timestamped directory, e.g.:
+**Success is silent**: a passing run reports its exit code and a one-line summary —
+no report document. **Failure is forensic**: write a diagnostic bundle per
+`ai/TEMPLATES/DIAGNOSTIC_BUNDLE_TEMPLATE.md` (what ran, what failed, evidence,
+suspected cause, direction — the template carries the formatting rules), with
+artifacts under a timestamped directory:
 - `testing-reports/artifacts/<date>_<{{WORK_ITEM_PREFIX}}-NNN>_<feature>_<timestamp>/`
 
-Minimum artifacts:
-- Command log per suite (with exit codes).
+Minimum failure artifacts:
+- Command log per failed suite (with exit codes).
 - Integrity-scan logs.
-- A summary markdown noting outcomes and exit codes.
-- Optional screenshots (for UI failures).
-- If the report itself contains markdown tables, lint them: avoid raw `|` inside inline
-  code cells within tables; escape as `\|` when unavoidable.
+- Screenshots/traces for UI failures.
+
+Bundles live in gitignored `testing-reports/` locally and CI run artifacts on
+failure — never committed.
 
 > The kit ships helper-script stubs (e.g. an evidence-collection script). Wire them to
 > `{{TEST_COMMAND}}` / `{{E2E_COMMAND}}` for this project, or run the commands directly.

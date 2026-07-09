@@ -36,6 +36,6 @@ auth, permissions, session, or data-access changes.
 - [ ] No unbounded queries or responses (pagination/limits present)
 
 ## Reporting
-- [ ] Findings documented with severity and evidence
-- [ ] On failure, evidence/diagnostics saved under `testing-reports/` (local only — never committed)
-- [ ] Tracked issues created for threshold-breaching findings per `ai/STANDARDS/GITHUB_ISSUES.md`
+- [ ] Success is silent: exit code + one summary line, no report document
+- [ ] On failure, diagnostic bundle written per `ai/TEMPLATES/DIAGNOSTIC_BUNDLE_TEMPLATE.md` under `testing-reports/` (local only — never committed; CI uploads bundles as run artifacts)
+- [ ] Tracked issues created for threshold-breaching findings per `ai/STANDARDS/GITHUB_ISSUES.md`, bundle linked
