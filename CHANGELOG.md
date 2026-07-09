@@ -8,6 +8,7 @@ and this project adheres to Semantic Versioning.
 ## [Unreleased]
 
 ### Added
+- Kit-dev identity: the kit repo now has its own `CLAUDE.md` (how to develop the kit), rewritten `README.md` (layout + adoption flow for the `template/` structure), and its own `.claude/settings.json`; LICENSE/VERSION/CHANGELOG confirmed as kit-repo artifacts (#4, T23.3/T4).
 - `template/manifest.yml`: allowlist mapping each module to its shipped files and scaffold trigger — only manifest-listed files ever ship (#3, T23.2/T3.9).
 
 ### Changed
