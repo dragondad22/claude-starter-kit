@@ -1,8 +1,8 @@
 # Module: sla
 
 Issue-triage SLA timing layer (response/mitigation windows, escalation), scaffolded by a
-team-formation trigger. SLA numbers come from interview answers, not shipped constants
-(T6). Core triage rules (labels, severity, board placement) live in
-`ai/STANDARDS/GITHUB_ISSUES.md` in core.
+team-formation trigger. SLA numbers come from the team-formation interview, not shipped
+constants (T6) — the module standard documents its own `{{SLA_*}}` tokens. Core triage
+rules (labels, severity, board placement) live in `ai/STANDARDS/GITHUB_ISSUES.md` in core.
 
-Placeholder: content arrives with the issue-process epic (#8, sub-issue #13).
+Ships: `ai/STANDARDS/ISSUE_SLA_STANDARD.md`.
