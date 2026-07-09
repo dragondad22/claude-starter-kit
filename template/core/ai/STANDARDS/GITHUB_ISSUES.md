@@ -79,8 +79,32 @@ Every created issue must be linked in the corresponding report under `Issues
 Created` with severity and area.
 
 ## Triage
-- Every new issue must include `type:bug`, one severity label, and one flow
-  label (`testing`, `uat`, `security-review`, or `performance`).
 
-## Other Rules
-- Never use backticks in issue comments.
+Core triage is three rules — labels, board placement, and severity honesty:
+
+- **Label discipline:** every new finding carries `type:bug`, exactly one
+  `severity:*` label, and one flow label (`testing`, `uat`, `security-review`,
+  or `performance`). No severity label = not triaged.
+- **Board placement:** findings land on the repo's single project board like
+  any other work (see "Project Board & Issue Lifecycle" in
+  `ai/STANDARDS/TASK_ISSUE_STANDARD.md`). Defaults by severity:
+  `severity:blocker` → Next and surfaced to the project owner immediately;
+  `severity:high` → Next; `severity:medium` / `severity:low` → Backlog until
+  deliberately promoted.
+- **Severity reflects impact, not urgency.** Don't inflate a finding's
+  severity to get it scheduled sooner — that's what board placement and
+  `priority:*` on follow-up tasks are for.
+
+Response/mitigation timing (SLA windows, escalation paths) is deliberately not
+part of core — it arrives with the `sla` module when a team forms, with
+numbers from that team's interview.
+
+## Issue Body & Comment Hygiene (CLI)
+
+- Pass issue bodies and comments to the CLI via `--body-file` (or your
+  tracker's equivalent), never as inline strings.
+- **Never use backticks in issue comments.** Rationale: a backticked snippet
+  inside an inline CLI string is shell command substitution — comments were
+  repeatedly mangled this way (commands executed, output spliced into the
+  comment) and had to be fixed by hand. `--body-file` sidesteps the whole
+  class; the comment rule stays because comments are often typed inline.

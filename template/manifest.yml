@@ -91,4 +91,5 @@ modules:
 
   sla:
     trigger: team formation
-    files: []               # placeholder — SLA timing layer arrives with #13 (T6)
+    files:
+      - ai/STANDARDS/ISSUE_SLA_STANDARD.md
