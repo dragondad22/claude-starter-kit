@@ -4,6 +4,11 @@
 documents — material that *precedes* tracked work and becomes append-only history once
 its outputs land.
 
+Interview directories follow `<NNN>-<slug>/NN-section.md` with a `00-INDEX.md`
+provenance hub — `000-inception` first, then one per epic/feature interview.
+Question format, lifecycle, Q-IDs, and the supersede model:
+`ai/STANDARDS/INTERVIEW_STANDARD.md`.
+
 Anti-catch-all routing rule — if it isn't structured discovery or a decision working
 doc, it does not go here:
 

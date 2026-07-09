@@ -7,6 +7,9 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Added
+- `ai/STANDARDS/INTERVIEW_STANDARD.md`: interview machinery — async question-file format (why-this-matters, options, recommendation, default, Answer/Discussion/Final), full lifecycle statuses, qualified Q-IDs (`000/Q-ARCH-03`), bidirectional provenance (`Derived:` lines + `Source:` fields on the ADR template and decision-log entries), append-only rule with supersede stamps, and the `docs/plans/<NNN>-<slug>/` directory convention where `000-inception` is instance one (#15, T15.3/T15.7/T15.9–T15.11).
+
 ## [0.3.0] - 2026-07-09
 
 ### Added
