@@ -37,6 +37,7 @@ core:
     - .claude/settings.json
     - .claude/commands/bootstrap.md
     - .claude/commands/compliance.md
+    - .claude/commands/evergreen.md
     - .claude/commands/perf.md
     - .claude/commands/preflight.md
     - .claude/commands/qa.md
@@ -80,6 +81,7 @@ core:
     - docs/architecture/decisions/ADR-TEMPLATE.md
     - docs/compliance/COMPLIANCE_REGISTER.md
     - docs/decision_log.md
+    - docs/evergreen-log.md
     - docs/GLOSSARY.md
     - docs/PERSONAS.md
     - docs/plans/README.md
