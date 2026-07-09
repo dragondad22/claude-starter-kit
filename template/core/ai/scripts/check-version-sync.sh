@@ -11,11 +11,16 @@
 #
 # Usage: ai/scripts/check-version-sync.sh
 # Exits 0 when all listed files agree; non-zero (printing the drift) otherwise.
+#
+# Alternate root (monorepo subdirs, or a repo hosting the scripts elsewhere):
+#   RELEASE_ROOT=<dir>        check <dir> instead of the tree the script lives in
+#   VERSION_FILES_LIST=<file> read the file list from <file> instead of
+#                             $ROOT/ai/scripts/version-files.txt
 
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-VERSION_FILES_LIST="$ROOT_DIR/ai/scripts/version-files.txt"
+ROOT_DIR="${RELEASE_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
+VERSION_FILES_LIST="${VERSION_FILES_LIST:-$ROOT_DIR/ai/scripts/version-files.txt}"
 
 if [ ! -f "$VERSION_FILES_LIST" ]; then
   echo "ABORT: missing $VERSION_FILES_LIST (list of version files, one per line)." >&2

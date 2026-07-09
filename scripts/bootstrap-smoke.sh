@@ -100,4 +100,19 @@ echo "  release.sh (recommend mode): OK"
     && grep -q '^## \[0\.2\.0\] - 2026-01-01$' CHANGELOG.md )
 echo "  release.sh minor cut: OK (0.1.0 -> 0.2.0, changelog rolled)"
 
+# 4c. Alternate-root override (#45): drive the project from OUTSIDE it with the
+#     kit's own copy of the scripts — the shape the kit repo and monorepos use.
+RELEASE_ROOT="$WORK" bash "$ROOT_DIR/template/core/ai/scripts/check-version-sync.sh" >/dev/null
+cp "$WORK/ai/scripts/version-files.txt" "$WORK/alt-version-files.txt"
+RELEASE_ROOT="$WORK" VERSION_FILES_LIST="$WORK/alt-version-files.txt" \
+  bash "$ROOT_DIR/template/core/ai/scripts/check-version-sync.sh" >/dev/null
+# Seed a Fixed entry so the patch cut has something to roll.
+awk '/^## \[Unreleased\]/{print; print ""; print "### Fixed"; print "- smoke fix entry"; next} {print}' \
+  "$WORK/CHANGELOG.md" > "$WORK/CHANGELOG.md.tmp" && mv "$WORK/CHANGELOG.md.tmp" "$WORK/CHANGELOG.md"
+RELEASE_ROOT="$WORK" bash "$ROOT_DIR/template/core/ai/scripts/release.sh" patch --date 2026-01-02 >/dev/null \
+  && grep -q '^0\.2\.1$' "$WORK/VERSION" \
+  && grep -q '^## \[0\.2\.1\] - 2026-01-02$' "$WORK/CHANGELOG.md" \
+  || { echo "FAIL: alternate-root release cut did not land" >&2; exit 1; }
+echo "  release.sh alternate-root cut: OK (0.2.0 -> 0.2.1 via RELEASE_ROOT)"
+
 echo "OK: bootstrap smoke test passed."

@@ -1,0 +1,4 @@
+# version-files.txt (kit-dev) — the kit repo's own version-file list, passed via
+# VERSION_FILES_LIST to the shipped release scripts so the kit can cut its own
+# releases with the tooling it ships (issue #45). Paths relative to the kit root.
+VERSION

@@ -20,15 +20,23 @@
 #   ai/scripts/release.sh <X.Y.Z>                  # set an explicit version
 #   ai/scripts/release.sh <bump> --date YYYY-MM-DD # override the release date (default: today)
 #
+# Alternate root (monorepo subdirs, or a repo hosting the scripts elsewhere —
+# e.g. the kit repo itself):
+#   RELEASE_ROOT=<dir>        operate on <dir>'s VERSION/CHANGELOG instead of the
+#                             tree the script lives in (default: script_dir/../..)
+#   VERSION_FILES_LIST=<file> read the version-file list from <file> instead of
+#                             $ROOT/ai/scripts/version-files.txt
+#
 # Bump rubric (pre-1.0; mechanical, from which [Unreleased] subsections have entries):
 #   only Fixed/Security                       -> patch
 #   any Added/Changed/Deprecated/Removed      -> minor   (incl. breaking; 1.0.0 is a manual call)
 
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="${RELEASE_ROOT:-$(cd "$SCRIPT_DIR/../.." && pwd)}"
 CHANGELOG="$ROOT_DIR/CHANGELOG.md"
-VERSION_FILES_LIST="$ROOT_DIR/ai/scripts/version-files.txt"
+VERSION_FILES_LIST="${VERSION_FILES_LIST:-$ROOT_DIR/ai/scripts/version-files.txt}"
 
 BUMP=""
 DATE="$(date +%F)"
@@ -86,9 +94,12 @@ if [ -z "$BUMP" ]; then
 fi
 
 # --- Precondition: the configured version files must already agree ---------------------
-if ! "$ROOT_DIR/ai/scripts/check-version-sync.sh" >/dev/null; then
+# Sibling script by SCRIPT_DIR (not $ROOT_DIR/ai/scripts): under RELEASE_ROOT the
+# root may not contain the scripts at all. The overrides are exported so it sees them.
+export RELEASE_ROOT="$ROOT_DIR" VERSION_FILES_LIST
+if ! "$SCRIPT_DIR/check-version-sync.sh" >/dev/null; then
   echo "ABORT: version files are out of sync — resolve drift before cutting a release." >&2
-  "$ROOT_DIR/ai/scripts/check-version-sync.sh" || true
+  "$SCRIPT_DIR/check-version-sync.sh" || true
   exit 1
 fi
 
