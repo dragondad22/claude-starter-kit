@@ -11,3 +11,4 @@ Follow `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md`. Versions move only a
 7. **Verify.** `[Unreleased]` is now empty, `## [X.Y.Z] - DATE` is populated, and `bash ai/scripts/check-version-sync.sh` passes at the new version.
 8. **Approval + commit + PR.** Ask the user to approve, then commit `chore(release): X.Y.Z — <highlights>`, push the branch, and open a PR into the default branch.
 9. **Publish after merge (do not skip — its own step).** Once merged: sync the default branch, tag the merge commit (`git tag -a vX.Y.Z <sha> -m "..." && git push origin vX.Y.Z`), and create the release on the host (e.g. `gh release create vX.Y.Z --notes-file <changelog section> --latest`). Verify the tag and release are published.
+10. **First release only — interview retrospective.** Ask: "what did the inception interview fail to ask?" and file each gap as a port-back issue against the starter kit's question bank (rule + rationale: `ai/STANDARDS/INTERVIEW_STANDARD.md`).

@@ -28,6 +28,11 @@ picks the sections that apply (typically scope, architecture, data, testing,
 operations) and adds its own; Identity and License are normally
 inception-only. Same codes, same format — inception is just instance one.
 
+**This bank improves by retrospective:** when an interview's outputs are
+implemented, "what did the interview fail to ask?" is asked once and the gaps
+are filed as port-back issues against the starter kit's copy of this bank
+(rule: `ai/STANDARDS/INTERVIEW_STANDARD.md`).
+
 ---
 
 ## 1. Identity & Problem — `IDENT`
