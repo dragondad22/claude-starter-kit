@@ -36,6 +36,15 @@ def main() -> int:
             sources[os.path.join(ROOT, "modules", name, f)] = f
 
     destinations = set(sources.values())
+    # Staged/generated destinations (T3.10/T18): at inception the scaffold
+    # engine stages every module payload under bootstrap/modules/<name>/ plus
+    # a manifest copy, and generates bootstrap/KIT_VERSION — all legitimate
+    # reference targets in shipped docs even though they aren't manifest rows.
+    destinations.add("bootstrap/KIT_VERSION")
+    destinations.add("bootstrap/modules/manifest.yml")
+    for name, mod in manifest["modules"].items():
+        for f in mod["files"] or []:
+            destinations.add(f"bootstrap/modules/{name}/{f}")
     dest_dirs = set()
     for d in destinations:
         parts = d.split("/")

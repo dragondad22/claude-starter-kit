@@ -25,36 +25,31 @@ echo "=== bootstrap smoke test (work dir: $WORK) ==="
 # 1. Fixture project.
 cp -R "$ROOT_DIR/test/fixtures/minimal-project/." "$WORK/"
 
-# 2. Scaffold core + db module from the manifest (allowlist: copy ONLY listed files).
-scaffold() { # $1 = manifest section dir (template/core or template/modules/<name>), $2... = files
-  local base="$1"; shift
-  local f dest
-  for f in "$@"; do
-    dest="$WORK/$f"
-    mkdir -p "$(dirname "$dest")"
-    cp "$ROOT_DIR/$base/$f" "$dest"
-  done
-}
+# 2. Scaffold via the real engine: core installed, ALL modules staged, db
+#    applied at inception (the engine reads the manifest, so the smoke test
+#    can't drift from the allowlist — it fails loudly on a missing file).
+bash "$ROOT_DIR/scripts/scaffold.sh" "$WORK" db > /dev/null
+[ -f "$WORK/CLAUDE.md" ] || { echo "FAIL: core file missing after scaffold" >&2; exit 1; }
+[ -f "$WORK/ai/STANDARDS/DATABASE_SCHEMA_STANDARD.md" ] \
+  || { echo "FAIL: db module not applied at inception" >&2; exit 1; }
+[ -f "$WORK/bootstrap/modules/manifest.yml" ] \
+  || { echo "FAIL: manifest not staged" >&2; exit 1; }
+[ -f "$WORK/bootstrap/modules/ui/ai/STANDARDS/UI_STANDARD.md" ] \
+  || { echo "FAIL: ui payload not staged" >&2; exit 1; }
+grep -q '^kit_version: ' "$WORK/bootstrap/KIT_VERSION" \
+  && grep -qE '^  db: ' "$WORK/bootstrap/KIT_VERSION" \
+  || { echo "FAIL: KIT_VERSION marker wrong" >&2; exit 1; }
+echo "  scaffold engine: core installed, modules staged, db applied, KIT_VERSION written"
 
-# Pull the file lists straight from the manifest so the smoke test can't drift
-# from the allowlist (fails loudly if a listed file is missing).
-manifest_files() { # $1 = top-level key path: "core" or a module name
-  python3 - "$ROOT_DIR/template/manifest.yml" "$1" <<'EOF'
-import sys, yaml
-m = yaml.safe_load(open(sys.argv[1]))
-section = m["core"] if sys.argv[2] == "core" else m["modules"][sys.argv[2]]
-print("\n".join(section["files"] or []))
-EOF
-}
-
-CORE_FILES=()
-while IFS= read -r line; do [ -n "$line" ] && CORE_FILES+=("$line"); done < <(manifest_files core)
-DB_FILES=()
-while IFS= read -r line; do [ -n "$line" ] && DB_FILES+=("$line"); done < <(manifest_files db)
-
-scaffold "template/core" "${CORE_FILES[@]}"
-scaffold "template/modules/db" "${DB_FILES[@]}"
-echo "  scaffolded ${#CORE_FILES[@]} core files + ${#DB_FILES[@]} db-module files"
+# 2b. Progressive scaffolding: a trigger fires later -> install a staged module
+#     in-project with the shipped engine.
+( cd "$WORK" && bash ai/scripts/scaffold-module.sh list > /dev/null )
+( cd "$WORK" && bash ai/scripts/scaffold-module.sh ui > /dev/null )
+[ -f "$WORK/ai/STANDARDS/UI_STANDARD.md" ] \
+  || { echo "FAIL: progressive ui install did not land" >&2; exit 1; }
+grep -qE '^  ui: ' "$WORK/bootstrap/KIT_VERSION" \
+  || { echo "FAIL: progressive install not recorded in KIT_VERSION" >&2; exit 1; }
+echo "  progressive install: ui module landed + recorded in KIT_VERSION"
 
 # 3. Fill every {{TOKEN}} with a dummy value (skip bootstrap/ — it documents the tokens).
 TOKENS="$(grep -rhoE '\{\{[A-Z_]+\}\}' "$WORK" \
