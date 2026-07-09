@@ -7,10 +7,7 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
-### Changed
-- Session-start checks consolidated into one protocol (T19) in `ai/agent-setup.md`, referenced from CLAUDE.md: ordered list — board drift, release trigger, evergreen cadence, scaffold triggers — each non-interruptive (one status line or a filed issue); the four scattered definitions now point at the protocol, and new checks may only be added to this list (#33)
-- `release.sh` and `check-version-sync.sh` accept `RELEASE_ROOT` and `VERSION_FILES_LIST` env overrides so they can operate on a tree other than the one they live in (monorepo subdirs; the kit now cuts its own releases with the shipped script) — default behavior unchanged; smoke test covers the override path (#45)
-- Security standard gains a Dependency Maintenance section (T10.3): Renovate as the GitHub-hosted default (Dependabot acceptable), weekly batched update PRs with immediate security PRs, maintainer-owned triage, and a manual weekly cadence for non-GitHub hosting (#29)
+## [0.5.0] - 2026-07-09
 
 ### Added
 - `/evergreen` + `docs/evergreen-log.md` (T8.4–T8.6, T18): standards & process evergreening — five lenses (repetition, platform delta, standards drift, date sweep, kit delta via the `KIT_VERSION` marker), Adopt/Sandbox/Aware/Rejected verdicts per finding, non-interruptive output (cadence-triggered runs file an "Evergreen review <date>" issue instead of derailing the session), port-back candidates become kit-repo issues, and the rolling log doubles as cadence timestamp + seen-list (Aware/Rejected don't re-surface unless something changed); `evergreen` label added to the label manifest (#32)
@@ -18,6 +15,11 @@ and this project adheres to Semantic Versioning.
 - `bootstrap/PAVED_ROAD.md` (T16): paved-road registry — per-category house tooling defaults (E2E=Playwright, unit tests/lint/package manager per language, CI=GitHub Actions, Renovate, DB+ORM, UI foundation, auth, logging, secret store, hosting ladder with smallest-that-works) plus data-format standards (E.164, ISO 8601/4217/3166, BCP 47, UTF-8, RFC 5322) with the coin-time application rule; reviewed-date per row, deviations recorded as ADRs; wired into CLAUDE.md conventions, the external-standards i18n row, and the question bank's right-sizing rule (#28)
 - `.github/workflows/pr-validation.yml.example` (T10.1): commented PR-validation CI seed — build + lint + test + version-sync + SCA gates with commented service-container and E2E (Playwright, paved-road) blocks and an on-failure diagnostics-artifact upload; activation steps in SETUP.md and agent-setup's CI Quality Gates section; forge-agnostic caveat states the durable content is the gate list; deploy/CD explicitly stays a future module (#27)
 - `ai/STANDARDS/GIT_WORKFLOW_STANDARD.md` + CLAUDE.md Git Workflow rules (T9): branch-per-issue naming, lightweight Conventional Commits (type required, scope optional, explicitly NOT driving versioning/changelog), squash-merge with the PR title as the surviving commit, no AI attribution trailers (overrides the tool default), every PR links its issue (#26)
+
+### Changed
+- Session-start checks consolidated into one protocol (T19) in `ai/agent-setup.md`, referenced from CLAUDE.md: ordered list — board drift, release trigger, evergreen cadence, scaffold triggers — each non-interruptive (one status line or a filed issue); the four scattered definitions now point at the protocol, and new checks may only be added to this list (#33)
+- `release.sh` and `check-version-sync.sh` accept `RELEASE_ROOT` and `VERSION_FILES_LIST` env overrides so they can operate on a tree other than the one they live in (monorepo subdirs; the kit now cuts its own releases with the shipped script) — default behavior unchanged; smoke test covers the override path (#45)
+- Security standard gains a Dependency Maintenance section (T10.3): Renovate as the GitHub-hosted default (Dependabot acceptable), weekly batched update PRs with immediate security PRs, maintainer-owned triage, and a manual weekly cadence for non-GitHub hosting (#29)
 
 ## [0.4.0] - 2026-07-09
 
