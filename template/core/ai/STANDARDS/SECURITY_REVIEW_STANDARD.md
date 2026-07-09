@@ -36,10 +36,23 @@ The pack must include:
 - Source scans for risky authorization-trust patterns (see Scan Interpretation Rules).
 
 ## CI Security Gates
-Wire these into `{{CI_SYSTEM}}` so they run automatically:
+Wire these into `{{CI_SYSTEM}}` so they run automatically (the kit's PR-validation
+seed at `.github/workflows/pr-validation.yml.example` carries the SCA gate):
 - **SCA gate** via `{{SECURITY_SCAN_COMMAND}}` (dependency / known-vuln scan) — fail on
   high/critical runtime vulnerabilities.
 - **Static analysis (SAST)** for best-practice security issues (e.g. a Semgrep-style job).
+
+## Dependency Maintenance
+The SCA gate catches known-vulnerable dependencies; this keeps the project from
+accumulating them. For GitHub-hosted projects the default is **Renovate** (Dependabot
+is an acceptable alternative — paved-road row in `bootstrap/PAVED_ROAD.md`): enable it
+at project setup, batch routine updates into a weekly PR, and let security updates
+raise immediate PRs. **Ownership:** update PRs are triaged by whoever holds the
+maintainer role ({{PROJECT_OWNER}} by default) — merged on green CI for routine bumps,
+and treated as priority work when the bump fixes a CVE (add a CHANGELOG `Security`
+entry when a bump fixes a runtime vulnerability). Projects not hosted on GitHub run a
+manual equivalent on the same cadence: a weekly dependency review plus
+`{{SECURITY_SCAN_COMMAND}}`, with findings triaged the same way.
 
 ## Required Preflight Gate
 Before running the pack, verify:

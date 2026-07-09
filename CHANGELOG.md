@@ -7,6 +7,9 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Changed
+- Security standard gains a Dependency Maintenance section (T10.3): Renovate as the GitHub-hosted default (Dependabot acceptable), weekly batched update PRs with immediate security PRs, maintainer-owned triage, and a manual weekly cadence for non-GitHub hosting (#29)
+
 ### Added
 - `bootstrap/PAVED_ROAD.md` (T16): paved-road registry — per-category house tooling defaults (E2E=Playwright, unit tests/lint/package manager per language, CI=GitHub Actions, Renovate, DB+ORM, UI foundation, auth, logging, secret store, hosting ladder with smallest-that-works) plus data-format standards (E.164, ISO 8601/4217/3166, BCP 47, UTF-8, RFC 5322) with the coin-time application rule; reviewed-date per row, deviations recorded as ADRs; wired into CLAUDE.md conventions, the external-standards i18n row, and the question bank's right-sizing rule (#28)
 - `.github/workflows/pr-validation.yml.example` (T10.1): commented PR-validation CI seed — build + lint + test + version-sync + SCA gates with commented service-container and E2E (Playwright, paved-road) blocks and an on-failure diagnostics-artifact upload; activation steps in SETUP.md and agent-setup's CI Quality Gates section; forge-agnostic caveat states the durable content is the gate list; deploy/CD explicitly stays a future module (#27)
