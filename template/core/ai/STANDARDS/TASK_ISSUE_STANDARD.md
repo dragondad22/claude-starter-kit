@@ -51,30 +51,24 @@ Examples:
 
 ## Required Labels
 
+The label taxonomy has one source of truth: the manifest table in
+`ai/scripts/bootstrap-labels.sh` (applied idempotently at bootstrap; re-run it
+any time labels drift). Do not maintain label lists here or anywhere else.
+
 Labels to apply at creation:
 
 | Label | Purpose |
 |---|---|
-| `task` | Identifies as an implementation task (not a bug report) |
-| `area:<name>` | Functional area (example: `area:api`, `area:web`, `area:mobile`, `area:infra` — set your own) |
+| `type:task` | The kind label — exactly one `type:*` per issue (`type:epic` / `type:feature` / `type:task` / `type:bug`) |
+| `area:<name>` | Functional area — the project defines its own set in the label manifest |
 | `priority:critical` | Blocks real-world use or is a security/data boundary gap |
 | `priority:high` | Degrades feature completeness significantly |
 | `priority:medium` | Noticeable gap but workaround exists |
 | `priority:low` | Polish, nice-to-have |
 | `<traceability-label>` | Optional tag tying the issue to a planning artifact (e.g. a gap analysis), for traceability |
 
-Bootstrap labels if not present (GitHub; adjust the `area:*` set to your project):
-```bash
-gh label create task --color 0075CA --description "Implementation task" || true
-gh label create "area:api" --color BFD4F2 --description "API area" || true
-gh label create "area:web" --color BFD4F2 --description "Web area" || true
-gh label create "area:mobile" --color BFD4F2 --description "Mobile area" || true
-gh label create "area:infra" --color BFD4F2 --description "Infrastructure area" || true
-gh label create "priority:critical" --color B60205 --description "Blocks real-world use" || true
-gh label create "priority:high" --color D93F0B --description "Significant completeness gap" || true
-gh label create "priority:medium" --color FBCA04 --description "Workaround exists" || true
-gh label create "priority:low" --color C2E0C6 --description "Polish or nice-to-have" || true
-```
+Priority is for planned work; quality findings use `severity:*` instead
+(see `ai/STANDARDS/GITHUB_ISSUES.md` — the scales are deliberately separate).
 
 ---
 

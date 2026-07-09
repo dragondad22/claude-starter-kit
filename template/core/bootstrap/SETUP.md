@@ -32,6 +32,9 @@ Optional content ships as kit modules (db / ui / reports); only copy in what app
 ## 3. Wire the harness
 - [ ] Add this project's commands to `.claude/settings.json` `permissions.allow` so they don't prompt
 - [ ] Add any hooks you want (`.claude/hooks/README.md` has examples)
+- [ ] Edit the `area:*` section of `ai/scripts/bootstrap-labels.sh` to your project's areas,
+  then apply the label taxonomy: `bash ai/scripts/bootstrap-labels.sh` (GitHub; idempotent).
+  Other trackers: mirror the manifest table by hand.
 
 ## 4. Verify
 - [ ] A project-wide search for `{{` finds nothing outside `bootstrap/` (ignore the meta

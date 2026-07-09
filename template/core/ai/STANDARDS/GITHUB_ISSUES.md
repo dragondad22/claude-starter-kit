@@ -17,38 +17,23 @@ tracked issues.
   in repo root with remote configured.
 
 ## Required Labels
-Recommended baseline labels:
-- `bug`
-- `testing`
-- `uat`
-- `security-review`
-- `performance`
-- `flaky-test`
-- `coverage-gap`
-- `ux`
-- `accessibility`
-- `documentation`
-- `severity:blocker`
-- `severity:high`
-- `severity:medium`
-- `severity:low`
 
-Optional bootstrap command (run once, GitHub):
-```bash
-gh label create testing --color 0E8A16 --description "Automated testing findings" || true
-gh label create uat --color 1D76DB --description "UAT findings" || true
-gh label create flaky-test --color B60205 --description "Flaky or nondeterministic tests" || true
-gh label create coverage-gap --color FBCA04 --description "Missing critical test coverage" || true
-gh label create ux --color 5319E7 --description "UX quality issue" || true
-gh label create accessibility --color 0052CC --description "Accessibility issue" || true
-gh label create documentation --color 006B75 --description "Documentation drift" || true
-gh label create security-review --color D93F0B --description "Security reviewer findings" || true
-gh label create performance --color 0E8A16 --description "Performance smoke findings" || true
-gh label create severity:blocker --color B60205 --description "Blocker severity issue" || true
-gh label create severity:high --color D93F0B --description "High severity issue" || true
-gh label create severity:medium --color FBCA04 --description "Medium severity issue" || true
-gh label create severity:low --color C2E0C6 --description "Low severity issue" || true
-```
+The label taxonomy has one source of truth: the manifest table in
+`ai/scripts/bootstrap-labels.sh` (applied idempotently at bootstrap; re-run it
+any time labels drift). Do not maintain label lists here or anywhere else.
+
+A quality finding carries:
+- `type:bug` — the kind label (exactly one `type:*` per issue)
+- one `severity:*` label — how bad the impact is
+- one flow label (`testing`, `uat`, `security-review`, `performance`) — which
+  quality flow produced the finding
+- optional secondary flow labels (`flaky-test`, `coverage-gap`, `ux`,
+  `accessibility`, `documentation`)
+
+Severity is for findings; **priority** (`priority:*`) is for planned work
+(tasks/features/epics — see `TASK_ISSUE_STANDARD.md`). The split is deliberate:
+"how bad is it" and "how soon do we do it" are different questions — don't
+unify the two scales.
 
 ## Severity Mapping
 - `Blocker`: broken core flow, security boundary failure, data integrity risk
@@ -85,7 +70,7 @@ Use `{{WORK_ITEM_PREFIX}}-XXX` for the work-item ID (e.g. `IMP-006`).
 ```bash
 gh issue create \
   --title "[TEST][IMP-006][High] OTP suite intermittently fails on lockout boundary" \
-  --label "bug,testing,flaky-test" \
+  --label "type:bug,severity:high,testing,flaky-test" \
   --body-file /tmp/issue.md
 ```
 
@@ -94,8 +79,8 @@ Every created issue must be linked in the corresponding report under `Issues
 Created` with severity and area.
 
 ## Triage
-- Every new issue must include one severity label and one flow label (`testing`,
-  `uat`, `security-review`, or `performance`).
+- Every new issue must include `type:bug`, one severity label, and one flow
+  label (`testing`, `uat`, `security-review`, or `performance`).
 
 ## Other Rules
 - Never use backticks in issue comments.

@@ -7,6 +7,9 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Added
+- `ai/scripts/bootstrap-labels.sh`: single label manifest for the whole issue taxonomy (`type:*` / `area:*` / `priority:*` / `severity:*` / flow labels), applied idempotently at bootstrap; both issue standards now point at it instead of shipping their own `gh label create` blocks, and bare `task`/`bug` labels are retired into `type:*` (#9, T13.9/T13.6).
+
 ## [0.2.0] - 2026-07-09
 
 ### Added
