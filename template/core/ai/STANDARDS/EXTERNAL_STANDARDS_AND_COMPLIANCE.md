@@ -86,4 +86,4 @@ A change that touches data about under-18s, or ships a service "likely to be acc
 
 ## Where to record what applies
 
-The **trigger map is generic**; the **obligations that actually bind this project** live in `docs/compliance/COMPLIANCE_REGISTER.md` — each with an owner, status, and a date the live source was last verified. Update the register when the project's platforms, audience, data, or features change. The `/compliance` command checks a diff (or a described feature) against this standard and the register.
+The **trigger map is generic**; the **obligations that actually bind this project** live in `docs/compliance/COMPLIANCE_REGISTER.md` — each with an owner, status, and a date the live source was last verified. The register has two layers: a universal **Baseline** every project carries regardless of triggers (secrets handling, dependency hygiene, license correctness, data-subject basics once any user data exists) and **conditional** rows this trigger map drives. Update the register when the project's platforms, audience, data, or features change. The `/compliance` command checks a diff (or a described feature) against this standard and the register.

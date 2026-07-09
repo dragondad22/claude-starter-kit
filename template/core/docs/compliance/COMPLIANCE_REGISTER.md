@@ -19,7 +19,19 @@ owns it, and whether it's met.
 | Regulated data handled | `{{REGULATED_DATA}}` |
 | Obligation-bearing features | `{{COMPLIANCE_FEATURES}}` |
 
-## Active obligations
+## Baseline obligations (universal)
+
+Every project carries these — they are not trigger-driven and are pre-seeded at
+inception. Statuses still get owned, met, and re-verified like any other row.
+
+| ID | Obligation | Owner | Status | Verified | Evidence |
+|----|-----------|-------|--------|----------|----------|
+| B-001 | **Secrets handling** — no credentials in the repo, ever; `.env` is local-dev only and gitignored; deployed environments use the platform secret store | | ☐ | YYYY-MM-DD | |
+| B-002 | **Dependency hygiene** — SCA/vulnerability scanning runs (`{{SECURITY_SCAN_COMMAND}}`), and dependency updates have a named owner and cadence | | ☐ | YYYY-MM-DD | |
+| B-003 | **License correctness** — the LICENSE file matches the recorded license decision, and dependency licenses are compatible with it | | ☐ | YYYY-MM-DD | |
+| B-004 | **Data-subject basics** *(applies as soon as any user data exists)* — what's collected is written down, users can get their data deleted on request, and a retention stance is recorded | | ☐ | YYYY-MM-DD | |
+
+## Active obligations (conditional — trigger-driven)
 
 | ID | Trigger | Obligation | Applies because | Owner | Status | Verified | Evidence |
 |----|---------|-----------|-----------------|-------|--------|----------|----------|
