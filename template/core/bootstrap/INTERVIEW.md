@@ -1,8 +1,12 @@
-# Bootstrap Interview
+# Bootstrap Token Map
 
-The question script the `/bootstrap` command works through. Each question maps to
-one or more tokens in `PLACEHOLDERS.md`. Detect before asking; confirm defaults
-rather than asking blind. Group related questions.
+The token-fill map `/bootstrap` works through as **the final step of inception**
+(the deep questions live in `bootstrap/QUESTION_BANK.md`; format in
+`ai/STANDARDS/INTERVIEW_STANDARD.md`). Each entry maps one or more
+`PLACEHOLDERS.md` tokens to the question that answers it — fill from the
+inception interview's `Final:` fields first, detect what's mechanical
+(commands, stack), and only ask in chat for what neither covers. Confirm
+defaults rather than asking blind; group related questions.
 
 ## 1. Identity
 - What is the project called? → `{{PROJECT_NAME}}`

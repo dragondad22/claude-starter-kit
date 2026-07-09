@@ -1,50 +1,51 @@
-Bootstrap this starter kit into a real project by interviewing the user and filling every `{{PLACEHOLDER}}` in place.
+Close out project inception: consume the inception interview's `Final:` answers to fill every `{{PLACEHOLDER}}`, generate the founding files (README, LICENSE), seed the founding docs, and wire the harness and tracker.
 
-This is a one-time setup command. Run it right after copying the kit into a new repo.
+`/bootstrap` is the **final step of inception**, not a standalone questionnaire (the interview is where the real questions live). Re-running it later is the retrofit/upgrade path — see "Re-run & retrofit" below.
 
 ## Procedure
 
-1. **Detect what you can before asking.** Inspect the repo so you don't ask what you can read:
-   - Stack: look for `package.json`, `pyproject.toml`/`requirements.txt`, `go.mod`, `Cargo.toml`, `pubspec.yaml`, `*.csproj`, `Gemfile`, etc.
-   - Test/build/dev commands: read `package.json` scripts, `Makefile`, `justfile`, `pyproject.toml`, CI workflow files.
-   - Repo remote: `git remote -v`.
-   - Existing layout: list top-level dirs.
-   Summarize what you detected and what you'll assume, so the interview only covers gaps and confirmations.
+1. **Locate the inception interview** — the `000-inception/` directory under `docs/plans/`.
+   - **None exists** → offer to start inception: generate the interview directory from `bootstrap/QUESTION_BANK.md` per `ai/STANDARDS/INTERVIEW_STANDARD.md` (a `00-INDEX.md` hub + one section file per spine section, every question expanded into the full block format). Detect what you can before writing questions — stack, commands, layout, git remote — and bake detections into each question's **Recommendation/Default** so the human confirms instead of researching. Then **stop**: answering is async and at the human's pace; `/bootstrap` resumes on a later run.
+   - **Exists, but questions are still `open`/`in-discussion`** → re-ingest new answers, update statuses and the index, generate follow-up questions where answers open threads (same format, IDs appended in-section), and report what still blocks completion. Offer to apply defaults to anything the human is happy to defer (status → `deferred`, default recorded in `Final:`). Stop unless the interview is now complete.
+   - **Complete** (every question `finalized` / `deferred` / `superseded`) → continue.
 
-2. **Read `bootstrap/PLACEHOLDERS.md`** — it is the authoritative list of every token and its meaning.
+2. **Fill placeholders from `Final:` fields.** `bootstrap/PLACEHOLDERS.md` is the authoritative token list; `bootstrap/INTERVIEW.md` maps each token to the interview answers that feed it. Replace every `{{TOKEN}}` across the repo (`CLAUDE.md`, `ai/**`, `docs/**`, `.claude/commands/*`, `CHANGELOG.md`, `VERSION`). Do NOT edit files under `bootstrap/` (they document the tokens). Also:
+   - Write the project's version files list into `ai/scripts/version-files.txt`; seed `VERSION` (default `0.1.0`) and `CHANGELOG.md`'s first heading.
+   - Strip the one-line genericization banner at the top of each `ai/STANDARDS/*` and `ai/TEMPLATES/*` file — its job is done once adapted.
+   - Anything no `Final:` answers (rare — mechanical facts like an exact migrate command), detect and confirm in chat; do not reopen interview ground.
 
-3. **Interview the user** using `bootstrap/INTERVIEW.md` as the question script. Prefer the AskUserQuestion tool for choices; ask open questions in chat for free-text (project name, tagline, non-negotiables). Group questions; don't ask one at a time. For anything you confidently detected, present it as a default to confirm rather than an open question.
-   - The single highest-value answer is **`{{NON_NEGOTIABLES}}`** — push gently for at least one real architectural constraint. If the user has none yet, write "None recorded yet; add as they are decided."
-   - For any token that genuinely doesn't apply (e.g. no database, no UI), mark it so you can prune the section (see step 5).
+3. **Generate the founding artifacts from `Final:` fields** — every derived artifact gets a `Source:` citation (qualified Q-ID, e.g. `000/Q-ARCH-03`) and is listed back on the question's `Derived:` line and in `00-INDEX.md`:
+   - **Non-negotiables** → `CLAUDE.md` (from the scope section's answers).
+   - **Initial ADRs** for the settled architecture/infrastructure/data choices; **decision-log entries** for product/scope calls.
+   - **Compliance register**: walk the trigger map in `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md` with the audience/data/feature answers and pre-populate `docs/compliance/COMPLIANCE_REGISTER.md`'s active obligations (status ☐, today's date as Verified). Remove the worked-example comment block once real rows exist.
+   - **Glossary & persona seeds**, if the project has those docs (e.g. docs/GLOSSARY.md, docs/PERSONAS.md): domain terms from the identity answers, personas from the audience answers.
+   - **Scaffold plan**: from the answers, offer the modules that apply now (database → `db`, UI → `ui`, …) and install each accepted one with `bash ai/scripts/scaffold-module.sh <module>` — offered, never silent. The rest stay staged for their triggers.
+   - **Project README** — generate it from the answers (name, tagline, what/why, commands, layout, doc pointers). Draft from `Final:` fields with a light structural skeleton: title + tagline, a short "what is this", Getting started (commands), Layout, and a pointer to `CLAUDE.md`/`ai/agent-setup.md`. The README is a user-facing doc surface: it falls under the documentation standard's same-PR keep-current rule from day one.
+   - **LICENSE** — per the license answer: write the standard MIT or Apache-2.0 text with the answered copyright holder; proprietary → no LICENSE file (all rights reserved); undecided → no file plus a revisit marker in the decision log.
 
-4. **Fill placeholders.** Replace every `{{TOKEN}}` across the repo with the collected values. Cover: `CLAUDE.md`, `ai/STANDARDS/*`, `ai/CHECKLISTS/*`, `ai/TEMPLATES/*`, `ai/agent-setup.md`, `ai/scripts/*`, `docs/*`, `CHANGELOG.md`, `VERSION`, `.claude/commands/*`. Do NOT edit files under `bootstrap/` (they document the tokens themselves).
-   - Write the version files list the project actually uses into `ai/scripts/version-files.txt`.
-   - Seed `VERSION` (default `0.1.0`) and `CHANGELOG.md`'s first heading.
-   - Strip the one-line *genericization banner* at the top of each `ai/STANDARDS/*` and `ai/TEMPLATES/*` file (the italic / HTML-comment note telling the reader to replace tokens) — its job is done once the kit is adapted.
-   - **Seed the compliance register.** Using the platform/audience/data/feature answers, walk the trigger map in `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md` and pre-populate `docs/compliance/COMPLIANCE_REGISTER.md`'s "Active obligations" with the rows that fire (status ☐, today's date as Verified). Remove the worked-example comment block once real rows exist.
+4. **Configure the harness.** Offer to set up `.claude/settings.json` permissions for the detected commands, and ask whether any project-specific hooks are wanted (see `.claude/hooks/README.md`).
 
-5. **Prune what doesn't apply.** Optional content ships as kit modules (db / ui / reports) and should only be present if it applies. If module content was copied in but doesn't apply:
-   - No database → delete `ai/STANDARDS/DATABASE_SCHEMA_STANDARD.md` and its reference in `CLAUDE.md`.
-   - No UI → delete `ai/STANDARDS/UI_STANDARD.md` and its references; drop UI items from the checklists.
-   - No formal UAT process → delete `ai/STANDARDS/UAT_SOURCE_OF_TRUTH.md` and `docs/uat/`.
-   Confirm each deletion with the user before removing a file.
+5. **Set up the issue tracker.** Two parts:
+   - **Labels:** edit the `area:*` section of `ai/scripts/bootstrap-labels.sh` to this project's functional areas (from the interview), then — if the tracker is GitHub and `gh` is authenticated — offer to run it (idempotent). Other trackers: mirror the manifest table by hand.
+   - **Project board:** every repo gets one (see "Project Board & Issue Lifecycle" in `ai/STANDARDS/TASK_ISSUE_STANDARD.md`). If `gh` has the `project` scope, offer `gh project create` + `gh project link`; walk the user through the UI-only parts either way.
 
-6. **Configure the harness.** Offer to set up `.claude/settings.json` permissions for the detected commands (the test/build/lint/dev commands) so they don't prompt each session, and ask whether any project-specific hooks are wanted (e.g. regenerate a client after a schema edit — see `.claude/hooks/README.md`).
-
-7. **Set up the issue tracker.** Two parts:
-   - **Labels:** edit the `area:*` section of the label manifest in `ai/scripts/bootstrap-labels.sh` to this project's functional areas (from the interview), then — if the tracker is GitHub and `gh` is authenticated — offer to run `bash ai/scripts/bootstrap-labels.sh` to apply the taxonomy. It is idempotent; for other trackers, mirror the manifest table by hand.
-   - **Project board:** every repo gets one (see "Project Board & Issue Lifecycle" in `ai/STANDARDS/TASK_ISSUE_STANDARD.md`). If `gh` has the `project` scope, offer to run `gh project create` + `gh project link`; the Status options, saved views, and close-to-Done workflow are UI-only — walk the user through the recipe in the standard either way.
-
-8. **Verify.** Run:
+6. **Verify.** Run:
    ```bash
    grep -rnoE '\{\{[A-Z_]+\}\}' . --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' \
      | grep -vE '/bootstrap/|/README.md|\{\{(TOKEN|TOKENS|PLACEHOLDER|DOUBLE_BRACE)\}\}'
    ```
-   It should return nothing (the excluded tokens are meta-literals — see `bootstrap/PLACEHOLDERS.md`). Report any stragglers and fix them. (Snippet is macOS/Linux; on Windows use `rg "\{\{"` or an editor's project-wide search and exclude the same paths/tokens.)
+   It should return nothing (the excluded tokens are meta-literals — see `bootstrap/PLACEHOLDERS.md`). Also confirm `bootstrap/KIT_VERSION` exists and records the scaffold. (Snippet is macOS/Linux; on Windows use `rg "\{\{"` or an editor's project-wide search.)
 
-9. **Hand off.** Summarize: what was filled, what was pruned, what the user still needs to do by hand (e.g. fill `{{NON_NEGOTIABLES}}` further, set up CI secrets, wire the issue tracker). Suggest committing the bootstrapped state as the first commit. Point them at `ai/agent-setup.md` as the project's living orientation doc.
+7. **Hand off.** Summarize: what was filled and generated, which modules were installed vs left staged, which questions were deferred on defaults, and what remains by hand (CI secrets, board UI steps). Suggest committing the bootstrapped state as the first commit. Point at `ai/agent-setup.md` as the living orientation doc.
+
+## Re-run & retrofit
+
+Re-running `/bootstrap` must be safe (idempotent-ish) and serves two cases:
+
+- **Updating an already-bootstrapped project:** re-detect, show what's filled, and offer to update specific values rather than re-asking everything. Never regenerate an artifact that has diverged by hand — propose an edit instead.
+- **Retrofitting an existing repo** (adopted the kit late, or scaffolded from an older kit): offer to add the missing kit pieces one by one — label manifest, project board, `bootstrap/KIT_VERSION` marker, staged modules, founding docs that never got seeded, an inception interview for the parts of the spine that were never answered. The same mechanism serves kit upgrades.
 
 ## Notes
 
-- Bootstrapping is idempotent-ish: re-running it should re-detect and let the user update values. If tokens are already filled, offer to update specific ones rather than re-asking everything.
+- The interview is resumable across sessions by design — never force synchronous answering; re-ingest whatever landed and report status.
 - Keep `CLAUDE.md` tight after filling — it loads every session. Delete commentary `<!-- ... -->` blocks once their guidance is no longer needed.
