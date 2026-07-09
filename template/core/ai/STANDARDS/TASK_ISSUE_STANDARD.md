@@ -31,21 +31,14 @@ gaps, or making deliberate changes** to the codebase.
 
 ## Title Format
 
-```
-[TASK][AREA][Priority] Short imperative description
-```
-
-- `AREA`: an **area label** identifying the functional area of the codebase the
-  task touches. Each project defines its own set. (example areas — set your own):
-  `API` | `WEB` | `MOBILE` | `INFRA` | `AUTH` | `DOCS` | `<your-domain-area>`
-- `Priority`: `Critical` | `High` | `Medium` | `Low`
-- Description: imperative verb phrase, under 72 characters, e.g. "Implement audit
-  log viewer API + admin UI"
+Clean imperative verb phrase, under 72 characters. No bracket prefixes — kind,
+area, and priority are carried by labels (`type:task`, `area:*`, `priority:*`),
+not the title.
 
 Examples:
-- `[TASK][MOBILE][Critical] Add HTTP client and navigation foundation`
-- `[TASK][API][Critical] Implement record transfer workflow with history`
-- `[TASK][DOCS][Medium] Add compliance report format distinct from general summaries`
+- `Add HTTP client and navigation foundation`
+- `Implement record transfer workflow with history`
+- `Add compliance report format distinct from general summaries`
 
 ---
 
@@ -72,20 +65,31 @@ Priority is for planned work; quality findings use `severity:*` instead
 
 ---
 
-## Required Body Sections
+## Required Body Structure — Two Layers
 
-Every task issue body must contain all sections from
-`ai/TEMPLATES/TASK_ISSUE_TEMPLATE.md` in order.
+Every task issue body has two layers, in this order, per
+`ai/TEMPLATES/TASK_ISSUE_TEMPLATE.md`. One source of truth, two audiences:
+
+1. **Human summary** (top, ~5–8 lines, plain language): what this is, why now,
+   and a "Done when" line stating the observable outcome. A non-technical
+   reader should understand it without opening anything else.
+2. **AI implementation brief** (a collapsed `<details>` block): every section
+   below, in template order. This is what makes the issue function as AI
+   memory — an agent picks it up with no prior conversation context.
+
+**Implementing agents must always expand and read the `<details>` block in
+full.** The human summary is not the spec.
 
 ### Bootstrap
-The first section an AI agent reads. Lists — in order — every file the implementer
-must read before touching code. Must include:
-1. `ai/agent-setup.md` — always
-2. `CLAUDE.md` — always
-3. Any sub-area `CLAUDE.md` for each area being changed
-4. Relevant standards from `ai/STANDARDS/`
-5. Relevant checklists from `ai/CHECKLISTS/`
-6. Key source files specific to this task
+The first section of the brief. Lists — in order — the task-specific files the
+implementer must read before touching code:
+1. Any sub-area `CLAUDE.md` for each area being changed
+2. Relevant standards from `ai/STANDARDS/`
+3. Relevant checklists from `ai/CHECKLISTS/`
+4. Key source files specific to this task
+
+Do not list `CLAUDE.md` or `ai/agent-setup.md` — they are mandated globally for
+every session already. Task-specific reading only.
 
 If the Bootstrap section is incomplete, the issue is not ready to implement.
 

@@ -1,26 +1,36 @@
 <!-- Generic template from the Claude starter kit. Replace {{TOKENS}}; see bootstrap/PLACEHOLDERS.md -->
-# [TASK][AREA][Priority] Short imperative description
+<!-- Title: clean imperative verb phrase, under 72 chars — kind/area/priority are
+     carried by labels (type:task, area:*, priority:*), not title prefixes. -->
+# Short imperative description
+
+<!-- LAYER 1 — human summary. 5-8 lines, plain language, no file paths.
+     What / why now / done-when. A non-technical reader should get it. -->
+
+[What this is, in one or two sentences.]
+
+[Why now — what makes this worth doing at this point.]
+
+**Done when:** [the observable outcome that closes this issue.]
+
+<details><summary>AI implementation brief</summary>
+
+<!-- LAYER 2 — everything an agent needs to execute without prior conversation
+     context. Implementing agents must expand and read this block in full. -->
 
 ## Bootstrap
 
-Read these files in order before writing any code. Do not skip.
+Task-specific reading only — `CLAUDE.md` and `ai/agent-setup.md` are mandated
+globally and don't need repeating here. Read in order before writing any code:
 
-1. ai/agent-setup.md — tooling, scripts, CI gates, credential contract
-2. CLAUDE.md — non-negotiables, architecture constraints, conventions
-3. [Sub-project / module CLAUDE.md, if the repo has nested ones]
-4. [Relevant standard — e.g. ai/STANDARDS/UI_STANDARD.md]
-5. [Relevant standard — e.g. ai/STANDARDS/TESTING_STANDARD.md]
-6. ai/CHECKLISTS/coding.md — completion gate checklist
+1. [Sub-project / module CLAUDE.md, if the repo has nested ones]
+2. [Relevant standard — e.g. ai/STANDARDS/UI_STANDARD.md]
+3. [Relevant standard — e.g. ai/STANDARDS/TESTING_STANDARD.md]
 
 Then read the Key Files section below before touching anything.
-
----
 
 ## Context
 
 [2-4 sentences. Current state of the gap/feature. Why it matters. What is broken or missing right now.]
-
----
 
 ## Governing Decisions and References
 
@@ -33,16 +43,12 @@ Then read the Key Files section below before touching anything.
 
 If no existing decision governs this: note "No existing decision — record one if implementation reveals a choice point" and follow the decision recording process in CLAUDE.md.
 
----
-
 ## Standards & Compliance Impact
 
 Run the trigger map in `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md`. List any external standard or compliance obligation this task fires, and whether it's already in `docs/compliance/COMPLIANCE_REGISTER.md`.
 
 - [ ] None — no API/UI/mobile/messaging/data-handling/minors impact, OR
 - [ ] [Obligation — e.g. "adds messaging → report/block/moderation (register C-005)"; "new public endpoint → OpenAPI spec update"; "collects birthdate → minors thresholds"]
-
----
 
 ## Scope — What to Build
 
@@ -61,16 +67,12 @@ Run the trigger map in `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md`. List
 ### (example area — e.g. mobile / client)
 - Screen `ScreenName`: [state it manages, API calls, navigation]
 
----
-
 ## Out of Scope
 
 [Explicit list of adjacent things NOT to build in this issue. Reference decisions where applicable.]
 
 - [Item] — deferred per Decision N / Post-MVP
 - [Item] — tracked separately in #issue-number
-
----
 
 ## Key Files
 
@@ -84,8 +86,6 @@ Read these before writing code. Listed in dependency order.
 [path/to/relevant-doc]      — [what to understand]
 ```
 
----
-
 ## Implementation Notes
 
 [Architectural constraints, patterns, gotchas specific to this task. Not in CLAUDE.md but critical to get right.]
@@ -93,8 +93,6 @@ Read these before writing code. Listed in dependency order.
 - [Note 1 — e.g. a non-negotiable that applies here]
 - [Note 2 — e.g. a shared abstraction that must be used rather than bypassed]
 - [Note 3]
-
----
 
 ## Acceptance Criteria
 
@@ -109,8 +107,6 @@ Read these before writing code. Listed in dependency order.
 
 ### Non-functional
 - [ ] [Performance, accessibility, theme, or UX requirement]
-
----
 
 ## Tests Required
 
@@ -129,16 +125,12 @@ Read these before writing code. Listed in dependency order.
 ### UI / E2E (if applicable)
 - `[feature].spec` — [user flow to cover]
 
----
-
 ## Docs to Update
 
 - [ ] `docs/uat/UAT_{{WORK_ITEM_PREFIX}}-NNN.md` — create or update acceptance test doc
 - [ ] `docs/architecture/decisions/ADR-NNN.md` — [create/update if decision changed]
 - [ ] `docs/decision_log.md` — [update if product/scope changed]
 - [ ] [Any gap/tracking doc] — mark gap as resolved
-
----
 
 ## Completion Gate
 
@@ -150,3 +142,5 @@ Do not close or merge until all are checked.
 - [ ] /security skill passes (required: any auth, access-control, session, or data boundary change)
 - [ ] /compliance skill passes; any fired trigger is in `docs/compliance/COMPLIANCE_REGISTER.md` (required: any API/UI/mobile/messaging/data-handling change)
 - [ ] PR linked to this issue (Closes #N in PR description)
+
+</details>
