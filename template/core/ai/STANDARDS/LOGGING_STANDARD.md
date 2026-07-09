@@ -76,7 +76,8 @@ If frontend/mobile POST uncaught errors to a backend ingest endpoint that emits 
 - *If multi-tenant:* any cross-tenant data, or another tenant's identifiers.
 
 Any endpoint that ingests externally-supplied error text must length-cap and redact it
-before logging. Derive identity/tenant from session context, never from the request body.
+before logging. Derive identity/tenant from session context, never from the request body
+(doctrine: `ai/STANDARDS/SECURITY_REVIEW_STANDARD.md` § Multi-tenant isolation).
 
 ## Sink & retention
 Define where operational logs ship and how long they live:
