@@ -31,7 +31,9 @@ This is a one-time setup command. Run it right after copying the kit into a new 
 
 6. **Configure the harness.** Offer to set up `.claude/settings.json` permissions for the detected commands (the test/build/lint/dev commands) so they don't prompt each session, and ask whether any project-specific hooks are wanted (e.g. regenerate a client after a schema edit — see `.claude/hooks/README.md`).
 
-7. **Set up the issue tracker labels.** Edit the `area:*` section of the label manifest in `ai/scripts/bootstrap-labels.sh` to this project's functional areas (from the interview), then — if the tracker is GitHub and `gh` is authenticated — offer to run `bash ai/scripts/bootstrap-labels.sh` to apply the taxonomy. It is idempotent; for other trackers, mirror the manifest table by hand.
+7. **Set up the issue tracker.** Two parts:
+   - **Labels:** edit the `area:*` section of the label manifest in `ai/scripts/bootstrap-labels.sh` to this project's functional areas (from the interview), then — if the tracker is GitHub and `gh` is authenticated — offer to run `bash ai/scripts/bootstrap-labels.sh` to apply the taxonomy. It is idempotent; for other trackers, mirror the manifest table by hand.
+   - **Project board:** every repo gets one (see "Project Board & Issue Lifecycle" in `ai/STANDARDS/TASK_ISSUE_STANDARD.md`). If `gh` has the `project` scope, offer to run `gh project create` + `gh project link`; the Status options, saved views, and close-to-Done workflow are UI-only — walk the user through the recipe in the standard either way.
 
 8. **Verify.** Run:
    ```bash
