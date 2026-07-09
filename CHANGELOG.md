@@ -8,6 +8,7 @@ and this project adheres to Semantic Versioning.
 ## [Unreleased]
 
 ### Changed
+- Work-item hierarchy documented: epics are parent issues (`type:epic`) with native sub-issues, features under epics, tasks under features; milestones mean releases only — stated in both the task-issue and versioning standards (#12, T13.7).
 - Task-issue template reworked to the two-layer shape: 5–8 line human summary (what / why now / done-when) on top, full AI implementation brief in a collapsed details block; titles are clean imperatives (labels carry kind/area/priority, no more `[TASK]` prefixes); per-issue Bootstrap lists trimmed to task-specific files (#10, T13.5).
 
 ### Added

@@ -29,6 +29,28 @@ gaps, or making deliberate changes** to the codebase.
 
 ---
 
+## Work-Item Hierarchy
+
+Three kinds of planned work, nested via native sub-issues (GitHub):
+
+- **Epic** (`type:epic`) — a parent issue grouping a body of related work. Body
+  states the goal and the done-when; the breakdown lives in its sub-issues.
+- **Feature** (`type:feature`) — a user-visible capability, a sub-issue of an
+  epic when one exists.
+- **Task** (`type:task`) — an implementation unit (this standard's subject), a
+  sub-issue of a feature or epic when one exists. Standalone tasks are fine.
+
+Attach sub-issues via the issue's "Create sub-issue / add existing" UI or
+`gh api` sub-issue endpoints. If the tracker has no sub-issue support, fall
+back to a task-list of issue links in the parent body — the hierarchy is the
+convention; sub-issues are just its best representation.
+
+**Milestones mean releases only.** Never use a milestone to represent an epic,
+sprint, or theme — that's what epics and the project board are for (see
+`ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md`).
+
+---
+
 ## Title Format
 
 Clean imperative verb phrase, under 72 characters. No bracket prefixes — kind,
