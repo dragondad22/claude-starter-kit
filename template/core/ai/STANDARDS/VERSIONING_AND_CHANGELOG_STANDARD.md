@@ -150,10 +150,10 @@ either** of these holds (whichever comes first):
 - **Batch**: `[Unreleased]` has accumulated a meaningful batch (≥2 features or
   ~8+ entries).
 
-If `[Unreleased]` is empty, skip — there is nothing to release. The AI pair checks
-this at the **start of working sessions** (it cannot fire on a wall-clock by
-itself) and surfaces it as a suggestion. No milestone or scope planning is
-required; the calendar and the accumulated batch are the trigger.
+If `[Unreleased]` is empty, skip — there is nothing to release. This check runs
+as part of the **session-start protocol** in `ai/agent-setup.md` (it cannot fire
+on a wall-clock by itself) and surfaces as a one-line suggestion. No milestone or
+scope planning is required; the calendar and the accumulated batch are the trigger.
 
 ---
 
@@ -239,8 +239,8 @@ When writing a PR:
    entry and on version drift.
 
 When cutting a release:
-1. Check the trigger (see "Release trigger") at the start of a session — if it's
-   met and `[Unreleased]` is non-empty, propose the cut.
+1. Check the trigger (see "Release trigger" — the session-start protocol runs
+   this) — if it's met and `[Unreleased]` is non-empty, propose the cut.
 2. Run the `/release` skill. If `[Unreleased]` is nearly empty after a long lull,
    audit `git log` first to make sure no PR forgot its entry.
 3. Announce the release with a link to the published release notes.

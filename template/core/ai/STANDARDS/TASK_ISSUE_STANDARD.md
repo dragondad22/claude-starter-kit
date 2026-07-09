@@ -218,8 +218,8 @@ Saved views: **Current work** (Status is Next or In progress) and **Backlog**.
 - Epics move to Done when their last sub-issue closes. If the epic had an
   interview (a `docs/plans/` directory), run the interview retrospective at
   that moment (`ai/STANDARDS/INTERVIEW_STANDARD.md`).
-- At session start, glance at the board for drift (closed-but-not-Done items)
-  and fix what you find.
+- The board-drift glance (closed-but-not-Done items) runs as part of the
+  session-start protocol in `ai/agent-setup.md` — fix what it finds.
 
 Close issues via the PR description: `Closes #<issue-number>`.
 
