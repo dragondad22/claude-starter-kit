@@ -78,11 +78,18 @@ Adapt to the project's surfaces; cover at minimum:
 ### Multi-tenant isolation (if applicable)
 *Skip this entire subsection if the project is single-tenant.*
 
+**This subsection is the single home of the tenant-isolation doctrine.** Other
+standards and checklists restate the rule as a one-liner and point here; to change
+the doctrine, change it here first, then sweep the one-liners (grep `tenant`).
+
 If the project serves multiple isolated tenants/orgs/accounts that must not see each
 other's data:
-- **Never trust a client-supplied tenant identifier.** Derive the tenant from authenticated
-  session/context server-side, and confirm the requested resource belongs to it.
-- Every data query must be scoped to the caller's tenant.
+- **Cross-tenant access is a security violation, not a bug.** A leak between tenants
+  is a `Blocker` finding — never a defect to backlog.
+- **Never trust a client-supplied tenant identifier.** A client can assert any tenant
+  id it likes; only server-side authenticated session/context is authoritative. Derive
+  the tenant there, and confirm the requested resource belongs to it.
+- Every data query — reads *and* writes — must be scoped to the caller's tenant.
 - Keep a dedicated isolation regression test proving a user from tenant A cannot read or
   mutate tenant B's data.
 

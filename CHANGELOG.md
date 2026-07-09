@@ -13,6 +13,8 @@ and this project adheres to Semantic Versioning.
 
 ### Changed
 - Shipped CLAUDE.md trimmed 160 → 150 lines per the new budget by merging duplicate/adjacent rules (untracked-work and chat-not-authoritative rules now live once with cross-pointers; git/task/decision one-liners combined) — no rule deleted (#36)
+### Changed
+- Tenant-isolation doctrine consolidated per "rules may repeat; rationale may not" (T11): the explanation (threat model, "security violation not a bug", never-trust-client-id) now lives only in the security standard's Multi-tenant isolation subsection — marked as the doctrine's single home; the DB, logging, and testing standards carry one-line rules + a pointer, and checklist/command gate lines stay self-contained (#35)
 
 ## [0.5.0] - 2026-07-09
 

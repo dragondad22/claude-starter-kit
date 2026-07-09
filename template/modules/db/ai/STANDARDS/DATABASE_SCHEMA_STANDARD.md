@@ -177,10 +177,10 @@ multiple organizations/accounts). Delete it otherwise.*
   and genuinely platform-level/global tables.
 - When adding a new tenant-owned model, also add the inverse relation on the tenant
   model — search the schema for an existing relation to copy the convention.
-- **Cross-tenant access is a security violation, not a bug.** Every read and write
-  (`findMany`/`findFirst`/`update`/`delete` and their equivalents) must include the
-  tenant id in its filter, sourced from **server-side session/request context** —
-  never from the request body or any client-supplied value.
+- Every read and write (`findMany`/`findFirst`/`update`/`delete` and their equivalents)
+  includes the tenant id in its filter, derived server-side — never client-supplied.
+  (Doctrine — why, threat model: `ai/STANDARDS/SECURITY_REVIEW_STANDARD.md`
+  § Multi-tenant isolation.)
 - Composite indexes on tenant-owned tables should **lead with `organizationId`** to
   match the tenant-scoped access pattern, and org-scoped uniqueness uses a composite
   unique that includes `organizationId`.

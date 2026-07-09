@@ -17,7 +17,8 @@ When guidance conflicts, follow the higher source:
 ## Non-Negotiables
 - **Evidence-first:** every pass/fail claim must map to command output or a captured artifact.
 - **Security-critical flows** (authentication, authorization, and — *if applicable* —
-  tenant/data isolation) are always high-priority coverage areas.
+  tenant/data isolation) are always high-priority coverage areas (tenant doctrine:
+  `ai/STANDARDS/SECURITY_REVIEW_STANDARD.md` § Multi-tenant isolation).
 - **Negative-path testing is mandatory:** for any access-controlled behavior, prove the
   *denial* path as well as the success path (unauthenticated, under-privileged, wrong owner).
 
