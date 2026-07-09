@@ -39,7 +39,7 @@ docs/plans/<NNN>-<slug>/
   interview takes the next number (e.g. `001-foster-users/`) and cross-links
   to its epic issue once created.
 - Section files are numbered in interview order. Sections vary by interview;
-  the inception spine defines the canonical set (see `bootstrap/INTERVIEW.md`).
+  the inception spine defines the canonical set (see `bootstrap/QUESTION_BANK.md`).
 
 ---
 
@@ -163,6 +163,7 @@ standards, decision log); question files are context/history — they explain
 ## See Also
 
 - `docs/plans/README.md` — the plans charter (interviews live there)
-- `bootstrap/INTERVIEW.md` — the inception question script consuming this format
+- `bootstrap/QUESTION_BANK.md` — the inception spine (sections + questions)
+- `bootstrap/INTERVIEW.md` — the token-fill script that closes inception
 - `docs/architecture/decisions/ADR-TEMPLATE.md` — `Source:` field (backward link)
 - `docs/decision_log.md` — entry format with `Source:` field
