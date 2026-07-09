@@ -8,6 +8,7 @@ and this project adheres to Semantic Versioning.
 ## [Unreleased]
 
 ### Added
+- `bootstrap/PAVED_ROAD.md` (T16): paved-road registry — per-category house tooling defaults (E2E=Playwright, unit tests/lint/package manager per language, CI=GitHub Actions, Renovate, DB+ORM, UI foundation, auth, logging, secret store, hosting ladder with smallest-that-works) plus data-format standards (E.164, ISO 8601/4217/3166, BCP 47, UTF-8, RFC 5322) with the coin-time application rule; reviewed-date per row, deviations recorded as ADRs; wired into CLAUDE.md conventions, the external-standards i18n row, and the question bank's right-sizing rule (#28)
 - `ai/STANDARDS/GIT_WORKFLOW_STANDARD.md` + CLAUDE.md Git Workflow rules (T9): branch-per-issue naming, lightweight Conventional Commits (type required, scope optional, explicitly NOT driving versioning/changelog), squash-merge with the PR title as the surviving commit, no AI attribution trailers (overrides the tool default), every PR links its issue (#26)
 
 ## [0.4.0] - 2026-07-09

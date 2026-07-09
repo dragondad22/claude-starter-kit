@@ -71,6 +71,7 @@ core:
     - bootstrap/INTERVIEW.md
     - bootstrap/QUESTION_BANK.md
     - bootstrap/modules/README.md
+    - bootstrap/PAVED_ROAD.md
     - bootstrap/PLACEHOLDERS.md
     - bootstrap/SETUP.md
     - docs/architecture/decisions/ADR-INDEX.md

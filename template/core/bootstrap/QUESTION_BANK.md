@@ -21,7 +21,7 @@ section needs another follow-up.
 smallest thing that works, moving up the ladder only with a reason. A small
 tool does not get enterprise infrastructure; "I don't care what it looks like"
 is a legitimate aesthetics answer. Where a house default exists (paved-road
-registry), recommendations cite it by name.
+registry: `bootstrap/PAVED_ROAD.md`), recommendations cite it by name.
 
 **Reuse for epics/features:** an epic/feature interview (`001-…`, `002-…`)
 picks the sections that apply (typically scope, architecture, data, testing,
