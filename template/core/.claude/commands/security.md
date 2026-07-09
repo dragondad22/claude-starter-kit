@@ -10,5 +10,6 @@ Run security validation against recent changes.
    - Missing audit logging on sensitive mutations
    - Secrets or credentials in code, logs, or config
 6. If the project is multi-tenant, verify tenant/data isolation on changed queries (no client-provided scoping IDs trusted).
-7. Summarize findings with severity (critical/major/minor) and evidence.
-8. For threshold-breaching findings, recommend filing tracked issues per `ai/STANDARDS/GITHUB_ISSUES.md`.
+7. Summarize findings with severity (critical/major/minor) and evidence. **Clean pass = one summary line — no report document.**
+8. On any finding/failure, write a diagnostic bundle per `ai/TEMPLATES/DIAGNOSTIC_BUNDLE_TEMPLATE.md` into `testing-reports/` (gitignored — never committed).
+9. For threshold-breaching findings, recommend filing tracked issues per `ai/STANDARDS/GITHUB_ISSUES.md`, linking the bundle.

@@ -19,7 +19,7 @@
 ## Actual Behavior
 
 ## Evidence
-- Report: `testing-reports/<report-file>.md`
+- Diagnostic bundle: `testing-reports/<bundle-file>.md` (or the CI run-artifact link)
 - Artifacts: `testing-reports/artifacts/<artifact-dir>`
 
 ## Impact

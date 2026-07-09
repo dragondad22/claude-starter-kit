@@ -105,11 +105,11 @@ Define the project's scans and what their results mean. Two representative patte
 - `Low`: low-impact misconfiguration or observability gap.
 
 ## Output Requirements
-- Artifacts under `testing-reports/artifacts/<date>_<{{WORK_ITEM_PREFIX}}-NNN>_<feature>_<timestamp>/`.
-- Report generated from the security-review report template.
-- Findings filed per the project's issue/bug reporting standard.
-- If the report contains markdown tables, lint them: avoid raw `|` inside inline code in
-  table rows; use pipe-free wording or escape as `\|`.
+- **Pass**: exit code + one-line summary — no report document.
+- **Fail/Blocked**: diagnostic bundle per `ai/TEMPLATES/DIAGNOSTIC_BUNDLE_TEMPLATE.md`
+  (Security section filled; the template carries the formatting rules), artifacts under
+  `testing-reports/artifacts/<date>_<{{WORK_ITEM_PREFIX}}-NNN>_<feature>_<timestamp>/`.
+- Findings filed per the project's issue/bug reporting standard, bundle linked.
 
 ## Self-Correction Protocol
 - Retry dependency install + any data-layer codegen **once** if tooling/setup fails.
