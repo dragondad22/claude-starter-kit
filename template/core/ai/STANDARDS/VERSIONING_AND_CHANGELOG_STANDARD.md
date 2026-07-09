@@ -62,7 +62,9 @@ This standard governs how {{PROJECT_NAME}} tracks user-visible changes
 
 ### Sections (Keep a Changelog)
 
-Use these headings under `[Unreleased]` and each version:
+Use these headings under `[Unreleased]` and each version. **Headers appear on
+demand**: add a section heading only when its first entry lands — never keep
+empty section headers (they would roll into releases as empty sections).
 
 - `### Added` — new features and capabilities
 - `### Changed` — changes to existing behavior

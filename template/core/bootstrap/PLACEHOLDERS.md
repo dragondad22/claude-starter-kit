@@ -21,7 +21,6 @@ is the single source of truth for what each token means.
 
 | Token | Meaning | Example |
 |---|---|---|
-| `{{REPO_SLUG}}` | `host/org/repo` for the canonical remote | `github.com/Zoolytix/sheltersync` |
 | `{{ISSUE_TRACKER}}` | Where tasks live (URL or tool name) | `https://github.com/orgs/Zoolytix/projects/2` |
 | `{{ISSUE_TRACKER_KIND}}` | `GitHub Issues`, `Jira`, `Linear`, etc. | `GitHub Issues` |
 | `{{WORK_ITEM_PREFIX}}` | Prefix for work-item IDs used in reports/branches | `IMP` (yields `IMP-008`) |

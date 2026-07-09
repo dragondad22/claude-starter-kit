@@ -1,0 +1,93 @@
+# template/manifest.yml — the shipped-file allowlist (T23.2)
+#
+# Maps each module to the files it ships and the trigger that scaffolds it.
+# ALLOWLIST MODEL: only files listed here ever land in a project. Anything in
+# template/ that is not listed (module READMEs, this file) is kit metadata and
+# does not ship — new kit-dev files are safe by default.
+#
+# Paths are relative to the module's directory (template/core/ or
+# template/modules/<name>/) and equal the file's destination relative to the
+# project root: core/CLAUDE.md -> <project>/CLAUDE.md.
+#
+# Triggers follow the T3.9 trigger table: modules are AI-detected at session
+# start / preflight and OFFERED, never silently applied. The kit self-test CI
+# (issue #6) validates this manifest: every listed file exists, and no listed
+# file references a kit-dev path.
+#
+# Decision record: docs/plans/2026-07-08-kit-review-topics.md (T23.2, T3.7, T3.9).
+
+version: 1
+
+core:
+  trigger: always            # installed at project inception, every project
+  files:
+    - CLAUDE.md
+    - CHANGELOG.md
+    - VERSION
+    - .gitignore
+    - .claude/settings.json
+    - .claude/commands/bootstrap.md
+    - .claude/commands/compliance.md
+    - .claude/commands/perf.md
+    - .claude/commands/preflight.md
+    - .claude/commands/qa.md
+    - .claude/commands/release.md
+    - .claude/commands/security.md
+    - .claude/hooks/README.md
+    - ai/agent-setup.md
+    - ai/CHECKLISTS/coding.md
+    - ai/CHECKLISTS/qa.md
+    - ai/CHECKLISTS/validation.md
+    - ai/scripts/check-version-sync.sh
+    - ai/scripts/lib/redact.sh
+    - ai/scripts/performance-smoke.sh
+    - ai/scripts/release.sh
+    - ai/scripts/security-review.sh
+    - ai/scripts/version-files.txt
+    - ai/STANDARDS/DOCUMENTATION_STANDARD.md
+    - ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md
+    - ai/STANDARDS/GITHUB_ISSUES.md
+    - ai/STANDARDS/LOGGING_STANDARD.md
+    - ai/STANDARDS/PERFORMANCE_SMOKE_STANDARD.md
+    - ai/STANDARDS/SECURITY_REVIEW_STANDARD.md
+    - ai/STANDARDS/TASK_ISSUE_STANDARD.md
+    - ai/STANDARDS/TESTING_STANDARD.md
+    - ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md
+    - ai/TEMPLATES/GITHUB_ISSUE_TEMPLATE.md
+    - ai/TEMPLATES/TASK_ISSUE_TEMPLATE.md
+    - bootstrap/INTERVIEW.md
+    - bootstrap/PLACEHOLDERS.md
+    - bootstrap/SETUP.md
+    - docs/architecture/decisions/ADR-INDEX.md
+    - docs/architecture/decisions/ADR-TEMPLATE.md
+    - docs/compliance/COMPLIANCE_REGISTER.md
+    - docs/decision_log.md
+    - docs/plans/README.md
+    - docs/runbooks/README.md
+    - docs/workflows/README.md
+    - testing-reports/README.md
+
+modules:
+  db:
+    trigger: first schema/migration file
+    files:
+      - ai/STANDARDS/DATABASE_SCHEMA_STANDARD.md
+
+  ui:
+    trigger: first UI code
+    files:
+      - ai/STANDARDS/UI_STANDARD.md
+
+  reports:
+    trigger: first formal QA/UAT need (e.g. external stakeholder acceptance)
+    files:
+      - ai/STANDARDS/UAT_SOURCE_OF_TRUTH.md
+      - docs/uat/README.md
+
+  deploy-ci:
+    trigger: first deploy target
+    files: []               # placeholder — deploy/CD config + runbooks arrive with #25 (T10.1/T10.4)
+
+  sla:
+    trigger: team formation
+    files: []               # placeholder — SLA timing layer arrives with #13 (T6)

@@ -1,0 +1,47 @@
+# Kit self-test (issue #6, T2/T23.2): the kit eats its own dogfood.
+# - manifest validation: allowlist complete, every listed file exists, no kit-dev leaks
+# - dead-cross-reference lint: shipped docs cite only files that ship
+# - portability: shipped scripts + the bootstrap smoke test run on ubuntu AND macos
+#   (stock macOS bash 3.2 / BSD sed is the portability claim being enforced)
+name: kit-selftest
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    name: manifest + dead-ref lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PyYAML
+        run: python3 -m pip install --quiet pyyaml || python3 -m pip install --quiet --break-system-packages pyyaml
+      - name: Validate template/manifest.yml
+        run: python3 scripts/validate-manifest.py
+      - name: Lint shipped files for dead cross-references
+        run: python3 scripts/lint-dead-refs.py
+
+  scripts:
+    name: shipped scripts + bootstrap smoke (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PyYAML
+        run: python3 -m pip install --quiet pyyaml || python3 -m pip install --quiet --break-system-packages pyyaml
+      - name: Report shell versions (macOS must be bash 3.2 / BSD sed)
+        run: |
+          bash --version | head -1
+          sed --version 2>/dev/null | head -1 || echo "BSD sed (no --version)"
+      - name: Syntax-check shipped scripts
+        run: |
+          for f in template/core/ai/scripts/*.sh template/core/ai/scripts/lib/*.sh; do
+            bash -n "$f" && echo "OK $f"
+          done
+      - name: Bootstrap smoke test (scaffold + fill + shipped automation)
+        run: bash scripts/bootstrap-smoke.sh
