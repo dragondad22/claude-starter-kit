@@ -34,6 +34,9 @@ time (`bootstrap/modules/README.md` explains the staging).
       comment shows the shape)
 
 ## 3. Wire the harness
+- [ ] Activate PR-validation CI: fill the tokens in `.github/workflows/pr-validation.yml.example`,
+  uncomment the gates the project has, rename to `pr-validation.yml` (GitHub Actions;
+  other CI: port the gate list — the file's header explains)
 - [ ] Add this project's commands to `.claude/settings.json` `permissions.allow` so they don't prompt
 - [ ] Add any hooks you want (`.claude/hooks/README.md` has examples)
 - [ ] Edit the `area:*` section of `ai/scripts/bootstrap-labels.sh` to your project's areas,

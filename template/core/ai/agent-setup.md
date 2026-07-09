@@ -51,6 +51,14 @@ Issue/task body templates. Validation evidence and failure diagnostics land in
 ## CI Quality Gates
 {{CI_SYSTEM}}
 
+The kit ships a commented PR-validation seed at
+`.github/workflows/pr-validation.yml.example` (GitHub Actions — paved-road default):
+test + build + lint + version-sync + SCA, with commented service-container and E2E
+(Playwright) blocks and an on-failure diagnostics upload. Fill tokens, uncomment the
+gates the project has, rename to `.yml` to activate. On another CI system, port the
+gate list — that's the durable content. Deploy/CD is not PR validation; it arrives
+with the deploy-ci module when environments are decided.
+
 <!-- Document the actual gates here once CI exists: what runs on PR vs on merge vs on a
 schedule, which gates block merge vs are advisory, and where artifacts are uploaded. -->
 
