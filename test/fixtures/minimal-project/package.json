@@ -1,0 +1,9 @@
+{
+  "name": "minimal-fixture",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "test": "node --test",
+    "build": "node --check src/index.js"
+  }
+}

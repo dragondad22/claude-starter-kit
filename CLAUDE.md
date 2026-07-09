@@ -29,11 +29,13 @@ These are finalized architectural constraints. Do not re-litigate.
 ## Commands
 
 ```bash
-# Validate the manifest (every listed file exists; nothing shipped leaks kit-dev paths)
-# CI gate arrives with issue #6; until then run the checks by hand per template/README.md
-git ls-files template/                           # what would ship + kit metadata
-grep -rn "docs/plans/2026" template/core template/modules   # must return nothing
+python3 scripts/validate-manifest.py   # allowlist complete, files exist, no kit-dev leaks
+python3 scripts/lint-dead-refs.py      # shipped docs cite only files that ship
+bash scripts/bootstrap-smoke.sh        # scaffold + fill + shipped automation end-to-end
 ```
+
+All three run in CI (`.github/workflows/kit-selftest.yml`) on ubuntu + macos —
+run them locally before pushing changes to `template/`.
 
 ## Task Tracking (mandatory)
 
