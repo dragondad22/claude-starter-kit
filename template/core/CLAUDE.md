@@ -112,6 +112,7 @@ Read the relevant standard before starting work in that area:
 - Versioning and CHANGELOG: `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md`
 - Bug/finding reports: `ai/STANDARDS/GITHUB_ISSUES.md`
 - Task issues: `ai/STANDARDS/TASK_ISSUE_STANDARD.md`
+- Interviews (inception, epics/features): `ai/STANDARDS/INTERVIEW_STANDARD.md`
 
 ## Checklists
 

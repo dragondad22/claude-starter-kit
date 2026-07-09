@@ -5,6 +5,7 @@
 **Date:** YYYY-MM-DD
 **Deciders:** (Team / role names)
 **Related ADRs:** (optional)
+**Source:** (optional — originating interview question(s), qualified: `000/Q-ARCH-03`; see `ai/STANDARDS/INTERVIEW_STANDARD.md`)
 
 ## 1. Context
 

@@ -14,6 +14,7 @@ check existing patterns in both locations.
 
 ## Decision 1: <short title>
 **Date:** YYYY-MM-DD
+**Source:** <optional — originating interview question(s), qualified: `000/Q-SCOPE-02`; see `ai/STANDARDS/INTERVIEW_STANDARD.md`>
 
 **Context:**
 <Why this decision was needed; the situation or problem that prompted it.>
@@ -36,6 +37,7 @@ check existing patterns in both locations.
 
 ## Decision 2: <short title>
 **Date:** YYYY-MM-DD
+**Source:**
 
 **Context:**
 
