@@ -93,7 +93,7 @@ that apply *because of what a change does*. Full rules + trigger map:
 1. {{DB_LAYER}} schema (if applicable)
 2. ADRs: `docs/architecture/decisions/`
 3. Product decision log: `docs/decision_log.md`
-4. Workflow docs: `docs/workflows/`
+4. Feature specs: `docs/specs/`
 5. UAT docs: `docs/uat/` (if the reports module is installed)
 6. Tracked tasks: {{ISSUE_TRACKER}}
 

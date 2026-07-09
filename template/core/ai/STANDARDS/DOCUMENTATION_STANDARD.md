@@ -157,7 +157,8 @@ Every PR that ships user-visible UI/behavior MUST, in the same PR:
 
 - add/update the surface's help content (overview/tasks/field help) — including
   inline help on any field a non-expert could trip over,
-- update the matching long-form manual page, and
+- update the matching long-form manual page,
+- update the feature spec in `docs/specs/` whose behavior the change alters, and
 - regenerate any derived artifacts (partials, screenshots) for changed surfaces.
 
 Purely internal changes (refactors, tests, infra with no UI impact) are exempt.
