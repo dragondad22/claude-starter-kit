@@ -3,10 +3,10 @@
 {{PROJECT_TAGLINE}}.
 
 <!--
-  This is the genericized CLAUDE.md from the Claude starter kit.
-  Run /bootstrap to fill the {{TOKENS}}, or edit by hand (see bootstrap/PLACEHOLDERS.md).
-  Delete sections that don't apply to this project. Keep it tight — this file is
-  loaded into context every session, so every line should earn its place.
+  Genericized CLAUDE.md from the Claude starter kit. Run /bootstrap to fill the
+  {{TOKENS}} (see bootstrap/PLACEHOLDERS.md); delete sections that don't apply.
+  Keep it tight — this file is loaded every session and carries a ~150-line
+  budget (checked by /evergreen); every line must earn its place.
 -->
 
 ## Architecture
@@ -58,32 +58,27 @@ Run the session-start protocol in `ai/agent-setup.md` — the single ordered che
 - Issue template: `ai/TEMPLATES/TASK_ISSUE_TEMPLATE.md`
 
 Rules:
-- If work is identified that is not already tracked, **suggest creating a tracked item** before proceeding. Do not silently absorb untracked work into a conversation.
-- Check for an existing item before creating a new one.
-- Do not use local todos, memory, or chat as a substitute for a tracked item — ephemeral tracking evaporates between sessions.
-- When starting work on an item, reference its ID throughout the conversation.
-- When work is complete, ensure the PR/change references the item so it closes on merge.
+- Work identified but not tracked → **suggest creating a tracked item** before proceeding; do not silently absorb untracked work into a conversation.
+- Check for an existing item first; local todos, memory, or chat are not substitutes — ephemeral tracking evaporates between sessions.
+- Reference the item's ID while working; the PR/change references it so it closes on merge.
 - **Keep the project board current** (one board per repo, Status: Backlog / Next / In progress / Done). Starting an item → "In progress"; merged/closed → "Done" — closing an issue does not move its Status by itself. Treat Backlog as out-of-scope unless asked. Full convention: `ai/STANDARDS/TASK_ISSUE_STANDARD.md`.
 
 ## Git Workflow (mandatory)
 
 Depth, examples, and why: `ai/STANDARDS/GIT_WORKFLOW_STANDARD.md`.
 
-- Never commit to the default branch — one branch per work item: `<type>/<issue#>-<slug>` (e.g. `feat/112-admin-override`).
+- Never commit to the default branch — one branch per work item: `<type>/<issue#>-<slug>` (e.g. `feat/112-admin-override`); delete it after merge.
 - Commits follow lightweight Conventional Commits: type required, scope optional (`feat(api): …`). Types do NOT drive versioning or the changelog.
 - PRs squash-merge: the PR title survives as the commit on the default branch and must follow the commit format; intra-PR commits are relaxed.
 - **No AI attribution trailers** (`Co-Authored-By: Claude …`) in commit messages — this overrides the tool default.
-- Every PR references its issue (`Closes #N`) and includes its CHANGELOG entry when it ships behavior.
-- Breaking change → `!` after the type and a `**BREAKING:**` CHANGELOG entry.
-- Delete the branch after merge.
+- Every PR references its issue (`Closes #N`) and includes its CHANGELOG entry when it ships behavior; breaking change → `!` after the type and a `**BREAKING:**` CHANGELOG entry.
 
 ## Decision Recording (mandatory)
 
 - Decisions made in conversation are NOT authoritative until recorded.
 - **Architectural decisions**: `docs/architecture/decisions/` (ADR format — see `ADR-INDEX.md`, `ADR-TEMPLATE.md`).
 - **Product/scope decisions**: `docs/decision_log.md`.
-- If implementation reveals a decision point, stop and record it.
-- If a prior decision needs to change, update the existing record — don't leave stale entries.
+- If implementation reveals a decision point, stop and record it; if a prior decision changes, update the existing record — don't leave stale entries.
 - Ask for human approval before recording or updating decisions.
 
 ## Documentation (mandatory)
@@ -95,10 +90,7 @@ Full rules in `ai/STANDARDS/DOCUMENTATION_STANDARD.md`.
 
 ## External Standards & Compliance (mandatory)
 
-Adopt recognized external standards where they make sense, and catch obligations
-that apply *because of what a change does*. Full rules + trigger map:
-`ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md`. What binds **this** project:
-`docs/compliance/COMPLIANCE_REGISTER.md`.
+Adopt recognized external standards where they make sense, and catch obligations that apply *because of what a change does*. Full rules + trigger map: `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md` · what binds **this** project: `docs/compliance/COMPLIANCE_REGISTER.md`.
 
 - Platforms: `{{TARGET_PLATFORMS}}` · Audience: `{{AUDIENCE}}` · Regulated data: `{{REGULATED_DATA}}`.
 - A change that touches a public API, web UI, a mobile release, messaging/UGC, payments, personal data, or data about minors pulls in extra requirements — run `/compliance` to check.
@@ -151,10 +143,8 @@ Use these as completion gates:
 
 ## Anti-Drift Rules
 
-- If a conversation is getting long, re-read this file and relevant standards before continuing.
-- Decisions made in chat are not authoritative until recorded in docs.
-- When in doubt about a prior decision, check ADRs and the decision log — do not trust conversation memory.
-- Do not assume prior context — verify by reading files.
-- If work surfaces that has no tracked item, stop and suggest creating one — do not proceed on untracked work.
+- Do not assume prior context — verify by reading files; if a conversation is getting long, re-read this file and the relevant standards before continuing.
+- When in doubt about a prior decision, check ADRs and the decision log — chat is not authoritative until recorded (see Decision Recording); do not trust conversation memory.
+- If work surfaces that has no tracked item, stop and suggest creating one — do not proceed on untracked work (see Task Tracking).
 - Before completing any change to something shared (DB column/constraint, enum/lookup vocabulary, seed/default, shared type/helper), run the Impact Analysis (consumer sweep) gate in `ai/CHECKLISTS/coding.md` — write paths drift independently and diverge silently.
 - When a change adds/alters a feature (public API, UI, mobile release, messaging/UGC, data handling, anything touching minors), run `/compliance` — context-driven obligations don't show up in a normal code diff.

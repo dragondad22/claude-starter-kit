@@ -18,7 +18,7 @@ Entry shape:
 
 ```markdown
 ## YYYY-MM-DD
-- Lenses: repetition · platform delta · standards drift · date sweep · kit delta
+- Lenses: repetition · platform delta · standards drift · date sweep · kit delta · context economy
 - Review issue: #NN (or "no findings")
 - Findings:
   - <finding> — **Adopt|Sandbox|Aware|Rejected** (<one-line reason / risk note>) → #NN
