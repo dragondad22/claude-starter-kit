@@ -63,6 +63,9 @@ coverage-gap|FBCA04|Missing critical test coverage
 ux|5319E7|UX quality issue
 accessibility|0052CC|Accessibility issue
 documentation|006B75|Documentation drift
+
+# --- process labels --------------------------------------------------------
+evergreen|7057FF|Standards & process evergreening review (/evergreen findings)
 '
 
 if [ "$DRY_RUN" -eq 0 ]; then

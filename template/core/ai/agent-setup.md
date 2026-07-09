@@ -26,6 +26,7 @@ a persistent memory system.
 - `/compliance` — external-standards + context-driven compliance check (APIs/OpenAPI, web/WCAG, mobile stores, messaging/UGC, minors)
 - `/perf` — performance smoke
 - `/release` — cut a release (version bump + CHANGELOG roll)
+- `/evergreen` — standards & process evergreening: 5-lens review (repetition, platform delta, standards drift, date sweep, kit delta); findings → issue, run record → `docs/evergreen-log.md` (~30-day cadence, non-interruptive)
 
 ## Standards (`ai/STANDARDS/`)
 Read the relevant one before working in that area. Index lives in `CLAUDE.md` → Standards.
