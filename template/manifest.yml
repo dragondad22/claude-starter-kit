@@ -58,6 +58,7 @@ core:
     - ai/TEMPLATES/GITHUB_ISSUE_TEMPLATE.md
     - ai/TEMPLATES/TASK_ISSUE_TEMPLATE.md
     - bootstrap/INTERVIEW.md
+    - bootstrap/QUESTION_BANK.md
     - bootstrap/PLACEHOLDERS.md
     - bootstrap/SETUP.md
     - docs/architecture/decisions/ADR-INDEX.md
