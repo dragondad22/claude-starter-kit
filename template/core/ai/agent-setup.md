@@ -44,6 +44,7 @@ Issue/task body templates. Validation evidence and failure diagnostics land in
 > all other docs follow the OS-agnostic rule in `ai/STANDARDS/DOCUMENTATION_STANDARD.md`.
 
 - `release.sh` / `check-version-sync.sh` — versioning (driven by `version-files.txt`)
+- `bootstrap-labels.sh` — issue-label taxonomy manifest; applies it idempotently (`gh`)
 - `security-review.sh` / `performance-smoke.sh` — **stubs**; customize for this stack
 - `lib/redact.sh` — strip secrets from artifacts before persisting
 

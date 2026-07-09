@@ -31,14 +31,16 @@ This is a one-time setup command. Run it right after copying the kit into a new 
 
 6. **Configure the harness.** Offer to set up `.claude/settings.json` permissions for the detected commands (the test/build/lint/dev commands) so they don't prompt each session, and ask whether any project-specific hooks are wanted (e.g. regenerate a client after a schema edit — see `.claude/hooks/README.md`).
 
-7. **Verify.** Run:
+7. **Set up the issue tracker labels.** Edit the `area:*` section of the label manifest in `ai/scripts/bootstrap-labels.sh` to this project's functional areas (from the interview), then — if the tracker is GitHub and `gh` is authenticated — offer to run `bash ai/scripts/bootstrap-labels.sh` to apply the taxonomy. It is idempotent; for other trackers, mirror the manifest table by hand.
+
+8. **Verify.** Run:
    ```bash
    grep -rnoE '\{\{[A-Z_]+\}\}' . --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' \
      | grep -vE '/bootstrap/|/README.md|\{\{(TOKEN|TOKENS|PLACEHOLDER|DOUBLE_BRACE)\}\}'
    ```
    It should return nothing (the excluded tokens are meta-literals — see `bootstrap/PLACEHOLDERS.md`). Report any stragglers and fix them. (Snippet is macOS/Linux; on Windows use `rg "\{\{"` or an editor's project-wide search and exclude the same paths/tokens.)
 
-8. **Hand off.** Summarize: what was filled, what was pruned, what the user still needs to do by hand (e.g. fill `{{NON_NEGOTIABLES}}` further, set up CI secrets, wire the issue tracker). Suggest committing the bootstrapped state as the first commit. Point them at `ai/agent-setup.md` as the project's living orientation doc.
+9. **Hand off.** Summarize: what was filled, what was pruned, what the user still needs to do by hand (e.g. fill `{{NON_NEGOTIABLES}}` further, set up CI secrets, wire the issue tracker). Suggest committing the bootstrapped state as the first commit. Point them at `ai/agent-setup.md` as the project's living orientation doc.
 
 ## Notes
 

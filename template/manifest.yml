@@ -38,6 +38,7 @@ core:
     - ai/CHECKLISTS/coding.md
     - ai/CHECKLISTS/qa.md
     - ai/CHECKLISTS/validation.md
+    - ai/scripts/bootstrap-labels.sh
     - ai/scripts/check-version-sync.sh
     - ai/scripts/lib/redact.sh
     - ai/scripts/performance-smoke.sh
