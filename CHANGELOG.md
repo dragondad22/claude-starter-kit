@@ -8,6 +8,7 @@ and this project adheres to Semantic Versioning.
 ## [Unreleased]
 
 ### Changed
+- Session-start checks consolidated into one protocol (T19) in `ai/agent-setup.md`, referenced from CLAUDE.md: ordered list — board drift, release trigger, evergreen cadence, scaffold triggers — each non-interruptive (one status line or a filed issue); the four scattered definitions now point at the protocol, and new checks may only be added to this list (#33)
 - `release.sh` and `check-version-sync.sh` accept `RELEASE_ROOT` and `VERSION_FILES_LIST` env overrides so they can operate on a tree other than the one they live in (monorepo subdirs; the kit now cuts its own releases with the shipped script) — default behavior unchanged; smoke test covers the override path (#45)
 - Security standard gains a Dependency Maintenance section (T10.3): Renovate as the GitHub-hosted default (Dependabot acceptable), weekly batched update PRs with immediate security PRs, maintainer-owned triage, and a manual weekly cadence for non-GitHub hosting (#29)
 

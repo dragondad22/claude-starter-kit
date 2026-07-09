@@ -46,6 +46,10 @@ bash ai/scripts/check-version-sync.sh           # Verify version files agree
 bash ai/scripts/release.sh                       # Show recommended version bump
 ```
 
+## Session Start
+
+Run the session-start protocol in `ai/agent-setup.md` — the single ordered check list (board drift, release trigger, evergreen cadence, scaffold triggers). Each check is non-interruptive: one status line or a filed issue, never a derailment.
+
 ## Task Tracking (mandatory)
 
 **{{ISSUE_TRACKER_KIND}} is the source of truth for all tasks, todos, and planned work** — {{ISSUE_TRACKER}}.
@@ -59,7 +63,7 @@ Rules:
 - Do not use local todos, memory, or chat as a substitute for a tracked item — ephemeral tracking evaporates between sessions.
 - When starting work on an item, reference its ID throughout the conversation.
 - When work is complete, ensure the PR/change references the item so it closes on merge.
-- **Keep the project board current** (one board per repo, Status: Backlog / Next / In progress / Done). Starting an item → "In progress"; merged/closed → "Done" — closing an issue does not move its Status by itself. Treat Backlog as out-of-scope unless asked; at session start, glance for drift. Full convention: `ai/STANDARDS/TASK_ISSUE_STANDARD.md`.
+- **Keep the project board current** (one board per repo, Status: Backlog / Next / In progress / Done). Starting an item → "In progress"; merged/closed → "Done" — closing an issue does not move its Status by itself. Treat Backlog as out-of-scope unless asked. Full convention: `ai/STANDARDS/TASK_ISSUE_STANDARD.md`.
 
 ## Git Workflow (mandatory)
 
