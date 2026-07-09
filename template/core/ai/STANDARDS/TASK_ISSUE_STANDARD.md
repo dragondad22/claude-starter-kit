@@ -188,16 +188,48 @@ Standard closing checklist. Do not modify between issues — it ensures consiste
 
 ---
 
-## Issue Lifecycle
+## Project Board & Issue Lifecycle
 
-| State | Meaning |
+Every repo has exactly **one** project board (GitHub Projects v2 or the
+tracker's equivalent) with a single-select **Status** field. The board — not
+the raw issue list — is how current work is separated from future work: the
+AI and humans both read it.
+
+| Status | Meaning |
 |---|---|
-| Open / Backlog | Not started |
-| In Progress | Branch created, work underway |
-| In Review | PR open, linked to issue |
+| Backlog | Future work — out of scope unless explicitly asked |
+| Next | Queued — the agreed next batch |
+| In progress | Branch created, work underway (includes in-review) |
 | Done | PR merged, issue closed |
 
-Close the issue via PR description: `Closes #<issue-number>`.
+Saved views: **Current work** (Status is Next or In progress) and **Backlog**.
+
+**The board is kept up to date — lifecycle moves are mandatory:**
+- Starting work on an item → set Status to "In progress".
+- PR merged / issue closed → set Status to "Done". Closing an issue (even via
+  `Closes #N`) does **not** move its Status by itself — move it, or enable the
+  board's built-in "Item closed → Done" workflow (a UI setting; it cannot be
+  enabled via API).
+- Epics move to Done when their last sub-issue closes.
+- At session start, glance at the board for drift (closed-but-not-Done items)
+  and fix what you find.
+
+Close issues via the PR description: `Closes #<issue-number>`.
+
+### Board setup (once per repo)
+
+With `gh` and the `project` token scope (`gh auth refresh -s project`):
+
+```bash
+gh project create --owner <owner> --title "<project name>"
+gh project link <number> --owner <owner> --repo <owner>/<repo>
+```
+
+The rest is UI-only — in the project's settings: rename/extend the built-in
+Status options to `Backlog / Next / In progress / Done`, create the two saved
+views above, and under Workflows enable **"Item closed → Status: Done"** and
+**"Auto-add to project"** for the repo. Without the token scope, create the
+project itself in the UI too — same steps.
 
 ---
 

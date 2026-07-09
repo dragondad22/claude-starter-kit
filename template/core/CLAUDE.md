@@ -59,6 +59,7 @@ Rules:
 - Do not use local todos, memory, or chat as a substitute for a tracked item — ephemeral tracking evaporates between sessions.
 - When starting work on an item, reference its ID throughout the conversation.
 - When work is complete, ensure the PR/change references the item so it closes on merge.
+- **Keep the project board current** (one board per repo, Status: Backlog / Next / In progress / Done). Starting an item → "In progress"; merged/closed → "Done" — closing an issue does not move its Status by itself. Treat Backlog as out-of-scope unless asked; at session start, glance for drift. Full convention: `ai/STANDARDS/TASK_ISSUE_STANDARD.md`.
 
 ## Decision Recording (mandatory)
 
