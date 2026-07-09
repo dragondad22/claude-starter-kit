@@ -7,6 +7,9 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Added
+- `ai/STANDARDS/GIT_WORKFLOW_STANDARD.md` + CLAUDE.md Git Workflow rules (T9): branch-per-issue naming, lightweight Conventional Commits (type required, scope optional, explicitly NOT driving versioning/changelog), squash-merge with the PR title as the surviving commit, no AI attribution trailers (overrides the tool default), every PR links its issue (#26)
+
 ## [0.4.0] - 2026-07-09
 
 ### Added
