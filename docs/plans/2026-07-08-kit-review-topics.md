@@ -9,7 +9,7 @@
 
 **Background (from Chris, 2026-07-08):** The kit was distilled from several real projects through trial and error. Some findings in this list are genuine staleness to clean up; others are practices that *fell off due to expediency, not because they were bad ideas* — those may deserve a better mechanism rather than deletion. Some material was also removed for privacy/redaction, which explains certain gaps. The goal of these discussions is not just to fix issues but to **make the process better**. `IMP` in the examples = "implementation plan" — AI-generated plans that started as markdown files and later moved into GitHub Issues for tracking/visibility.
 
-**Progress:** ✅ **23 / 23 decided** (T1–T17 on 2026-07-08; T18–T23 on 2026-07-09). Issue generation: in progress — see Issue map section. T23.4 ordering constraint: restructure epic first.
+**Progress:** ✅ **24 / 24 decided** (T1–T17 on 2026-07-08; T18–T24 on 2026-07-09). Issue generation: in progress — see Issue map section. T23.4 ordering constraint: restructure epic first.
 
 ---
 
@@ -531,6 +531,21 @@ Joins "every artifact leads with its least-technical audience" as the kit's seco
 - **T23.2 — Manifest-driven allowlist:** `template/manifest.yml` maps module → files → scaffold trigger (`template/core/` + `template/modules/<name>/`). Allowlist, not blocklist: new kit-dev files are safe by default. Kit self-test CI validates the manifest (all referenced files exist; no shipped file references kit-dev paths).
 - **T23.3 — Self-hosting:** the kit develops using the process it ships — own board, typed issues, plans/ directory, releases. Best test of the process and living documentation for adopters. T18's `KIT_VERSION` = the kit repo VERSION at scaffold time; evergreen kit-delta lens diffs `template/` between versions.
 - **T23.4 — Ordering constraint:** the restructure is the **first implementation epic** — everything else builds on the new layout.
+
+---
+
+## T24 — Markdown file-naming convention: reference vs working docs
+
+**Category:** Convention (codifies existing practice) · **Status:** **Decided (2026-07-09)** · **Related:** T11 (rationale lives once), T22 (grep-friendliness) · **Issue:** #75
+
+**Gap:** the shipped tree follows a consistent implicit pattern — `UPPER_SNAKE_CASE.md` for reference docs, lowercase for working docs — but no standard states it, and one file violates it (`docs/decision-log.md` snake_case vs `docs/evergreen-log.md` kebab-case).
+
+**Decision (Chris, 2026-07-09 — "standardize and update the kit to be consistent"):**
+- **T24.1 — Reference docs are `UPPER_SNAKE_CASE.md`:** documents you *consult* as an authority — standards, templates, registers, indexes, process references (`TESTING_STANDARD.md`, `GLOSSARY.md`, `COMPLIANCE_REGISTER.md`, `QUESTION_BANK.md`).
+- **T24.2 — Working docs are lowercase `kebab-case.md`:** documents you *run or append to* — rolling logs, checklists, slash commands, setup files (`decision-log.md`, `evergreen-log.md`, `agent-setup.md`, `coding.md`).
+- **T24.3 — Ecosystem-fixed names keep their conventional form:** `README.md`, `CHANGELOG.md`, `CLAUDE.md`, `LICENSE`, and `ADR-*` files follow their own ecosystem conventions and are exempt.
+- **T24.4 — Single rename:** `template/core/docs/decision-log.md` → `decision-log.md` (the only violation); manifest + all references updated in the same PR.
+- The rule's single home (T11) is `DOCUMENTATION_STANDARD.md` → "File naming" section; everywhere else is a pointer at most.
 
 ---
 

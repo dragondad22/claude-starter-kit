@@ -77,7 +77,7 @@ Depth, examples, and why: `ai/STANDARDS/GIT_WORKFLOW_STANDARD.md`.
 
 - Decisions made in conversation are NOT authoritative until recorded.
 - **Architectural decisions**: `docs/architecture/decisions/` (ADR format — see `ADR-INDEX.md`, `ADR-TEMPLATE.md`).
-- **Product/scope decisions**: `docs/decision_log.md`.
+- **Product/scope decisions**: `docs/decision-log.md`.
 - If implementation reveals a decision point, stop and record it; if a prior decision changes, update the existing record — don't leave stale entries.
 - Ask for human approval before recording or updating decisions.
 
@@ -100,7 +100,7 @@ Adopt recognized external standards where they make sense, and catch obligations
 
 1. {{DB_LAYER}} schema (if applicable)
 2. ADRs: `docs/architecture/decisions/`
-3. Product decision log: `docs/decision_log.md`
+3. Product decision log: `docs/decision-log.md`
 4. Feature specs: `docs/specs/`
 5. UAT docs: `docs/uat/` (if the reports module is installed)
 6. Tracked tasks: {{ISSUE_TRACKER}}

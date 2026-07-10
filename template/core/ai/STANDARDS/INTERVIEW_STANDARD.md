@@ -131,7 +131,7 @@ Every artifact derived from an interview must be traceable in both directions:
   `Derived:` line ("Derived: ADR-003, decision log #7, epic #42").
 - **Backward:** ADRs and decision-log entries carry a `Source:` field citing
   the originating question(s) by qualified Q-ID (the ADR template and
-  `docs/decision_log.md` entry format both have the field).
+  `docs/decision-log.md` entry format both have the field).
 - **Hub:** the interview's `00-INDEX.md` summarizes per-section status and
   aggregates all derived artifacts — the provenance hub for that interview.
 
@@ -189,4 +189,4 @@ release) and the epic-close lifecycle rule.
 - `bootstrap/QUESTION_BANK.md` — the inception spine (sections + questions)
 - `bootstrap/INTERVIEW.md` — the token-fill script that closes inception
 - `docs/architecture/decisions/ADR-TEMPLATE.md` — `Source:` field (backward link)
-- `docs/decision_log.md` — entry format with `Source:` field
+- `docs/decision-log.md` — entry format with `Source:` field

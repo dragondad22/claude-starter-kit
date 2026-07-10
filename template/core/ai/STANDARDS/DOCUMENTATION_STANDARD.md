@@ -48,6 +48,22 @@ glossary, journey-first feature specs.
 `/evergreen` context-economy lens. On breach, demote detail into a standard behind
 a breadcrumb per the principles above — never delete it.
 
+## File naming (repo-wide)
+
+The name signals how a document is used:
+
+- **Reference docs — `UPPER_SNAKE_CASE.md`.** Documents you *consult* as an
+  authority: standards, templates, registers, indexes, process references
+  (`TESTING_STANDARD.md`, `GLOSSARY.md`, `COMPLIANCE_REGISTER.md`).
+- **Working docs — lowercase `kebab-case.md`.** Documents you *run or append to*:
+  rolling logs, checklists, commands, setup files (`decision-log.md`,
+  `evergreen-log.md`, `agent-setup.md`).
+- **Ecosystem-fixed names are exempt.** `README.md`, `CHANGELOG.md`, `CLAUDE.md`,
+  `LICENSE`, and `ADR-*` files keep the form their ecosystem expects.
+
+New documents follow this split; don't mix separators within a case
+(no `snake_case` lowercase names, no `KEBAB-CASE` uppercase names).
+
 ## What counts as "user-visible"
 
 A change is user-visible — and therefore needs docs — if a user could notice it:

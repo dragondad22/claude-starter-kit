@@ -51,7 +51,7 @@ Example entry:
   Lives in `docs/architecture/decisions/`; numbered `ADR-NNN`; superseded, never
   rewritten.
 - **Decision log** — the same idea for product/scope decisions, one file
-  (`docs/decision_log.md`), append-only entries.
+  (`docs/decision-log.md`), append-only entries.
 - **Epic / sub-issue** — an epic is a parent issue grouping a workstream
   (`type:epic`); its breakdown lives in native sub-issues. Milestones mean
   releases only, never epics.
