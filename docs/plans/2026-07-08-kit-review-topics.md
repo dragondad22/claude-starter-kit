@@ -581,6 +581,29 @@ Joins "every artifact leads with its least-technical audience" as the kit's seco
 
 ---
 
+## T27 — Rebaseline: salvage-and-rebuild path for messy / false-start repos
+
+**Category:** Process (shipped command + workflow) · **Status:** **Decided (2026-07-10)** · **Related:** T15 (inception interview machinery), T18 (additive upgrade path), T8 (/evergreen), T13 (issue breakdown), T17 (feature interviews), T25 (roadmap/board), T26 (audience-first UI text)
+
+**Problem:** some repos are a complete mess or false starts — the concept is sound but the implementation is wrong or lacking. Every existing kit path is deliberately additive and non-destructive: the scaffold skips existing files, `/bootstrap` retrofit adds missing pieces one by one and never regenerates diverged artifacts, `/evergreen`'s kit-delta lens proposes changelog-granularity updates. Nothing reorganizes, renames, refactors to standards, or redesigns. Needed: an optional "take it down and rebuild it" strategy — start from scratch, but harvest the information already in the repo as bootstrap input, with the human confirming every gathered decision and assumption.
+
+**Discussion notes (Chris, 2026-07-10 — "kind of like start from scratch, but use the information gathered from the repo as part of the bootstrap allowing the human to confirm decisions and assumptions gathered"):**
+
+- **T27.1 — Harvest = inception run in reverse:** read the whole repo (code, docs, git history, existing UI) and generate the standard inception interview *pre-answered* — every question carries a Recommendation/Default cited to evidence in the repo; the human confirms or corrects asynchronously in the files. This is the existing T15 machinery ("detect what you can and bake detections into defaults") taken to its limit. Salvage verdicts are first-class answers: "this part was a false start — discard" is a legitimate `Final:`.
+- **T27.2 — Critique pass:** the process critiques the existing implementation across dimensions — UI/UX, code quality, security, test coverage, compliance, etc. — and feeds findings into the interview. For UI specifically, mirror what bootstrap does for a new build (collect what UI you want) *plus* what you like/don't like about the current design; covers both the function-only UI that needs design improvement and the UI whose UX is off.
+- **T27.3 — Plan before rebuild:** the output is a rebuild plan the human talks through until common understanding is reached (interview statuses are the record of that agreement) — never an immediate rewrite.
+- **T27.4 — Breakdown:** once agreed, the plan is decomposed into epics / features / issues / tasks per the shipped issue process (T13) and executed branch-per-issue with the normal gates — no big-bang rewrite.
+- **T27.5 — Light tier, separate:** a tidy-only path for repos that are merely untidy — conform to current standards (file renames per T24, doc reorg into the shipped layout, structure conformance), explicitly **no** behavior or design changes. Open whether this is a standalone command or a mode of `/bootstrap` retrofit / `/evergreen`.
+
+**Decision (Chris, 2026-07-10):** T27.1–T27.5 adopted as drafted, plus:
+
+- **T27.6 — In-place vs fresh repo:** an interview question — ask the human, with **in-place** (rebuild on a branch in the existing repo, history preserved) as the recommended default; fresh-repo-and-port offered when the harvest suggests the damage is structural.
+- **T27.7 — Naming (delegated to Claude):** heavy tier = **`/rebaseline`** (salvage-and-rebuild); light tier = **`/conform`** (tidy to current standards, no behavior/design change). `/clean`, `/refactor`, `/baseline` rejected: each collides with an established narrower meaning (build artifacts, code-level restructuring, ambiguous noun/verb). Neither name collides with a shipped command.
+- **T27.8 — Critique engine reuse:** the critique pass orchestrates the shipped commands (`/qa`, `/security`, `/compliance`, `/perf`) and `/evergreen` lenses rather than defining a parallel engine (T11: rationale lives once).
+- **T27.9 — Tracker/GitHub dimension (added same discussion):** the critique and conform scopes include the GitHub surface — existing issues, labels, project board, issue templates/types, repo settings — measured against the kit's tracker doctrine (T13, T25). A scoped invocation, **`/conform github`**, revamps only the GitHub side (label manifest, board fields/views, typed-issue migration of existing issues, templates, settings) for a user who wants to adopt the kit's tracker process without touching the code.
+
+---
+
 ## Issue map (generated 2026-07-09)
 
 GitHub is the source of truth for work status; this file remains the decision record. 36 issues; epics use native sub-issues (verified working on personal repos — T13.7 fallback not needed).
