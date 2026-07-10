@@ -48,6 +48,84 @@ glossary, journey-first feature specs.
 `/evergreen` context-economy lens. On breach, demote detail into a standard behind
 a breadcrumb per the principles above — never delete it.
 
+## Audience-first user-facing text (repo-wide)
+
+Everything a user can read — UI labels, subtext, empty states, error messages,
+notifications, emails, and every documentation surface — is written for the
+**target user**, not the builder. Four rules; this section is their single home
+(the UI standard and coding checklist point here).
+
+### Write for the persona
+
+Every user-facing string has a target reader: the persona(s) who use that
+surface (`docs/PERSONAS.md`). Before writing, answer three questions — what
+does this person need to know right here, how do they work, and which words do
+they already use? Different surfaces may describe the same feature differently
+(an admin console vs a volunteer's phone app), each in its own persona's
+language. If the surface's persona isn't in the registry yet, that's the gap
+to fix first.
+
+### No internal leakage
+
+User-facing text never exposes the machinery behind the product:
+
+- back-end/DB field names or internal identifiers (`org_id`, `fk_animal`) —
+  the UI shows the human name for the thing, not the column that stores it;
+- references to ADRs, issues, decision records, or conversations ("per
+  ADR-012", "as discussed") — record the rationale in the ADR or spec, then
+  tell the user what it *means for them*;
+- developer jargon the surface's persona wouldn't recognize, unless defined
+  where it appears.
+
+The test: **if understanding the sentence requires access to the repo, it does
+not belong in front of a user.** Identifiers *designed* for users (a reference
+code on a record, a support code on an error) are product surface, not leakage
+— label them in the user's terms.
+
+### Human voice, layered depth
+
+Friendly but knowledgeable: plain language, direct, no false cheer. Concise
+but complete — every surface gives the reader what they need **or a visible
+path to it**, one step up the help ladder: label → inline help → on-page help →
+manual (mechanics: the tooltip test and dual-surface pattern in this file).
+Terms use the canonical choices in `docs/GLOSSARY.md`, defined at first use
+per Writing for beginners below.
+
+**Never talk down to the reader.** No condescension in any register: no
+minimizers that shame a stuck user ("simply", "just click", "obviously",
+"easy"), no scolding ("you failed to…", "invalid input!"), no over-praise for
+routine actions. When something goes wrong, blame the situation, not the
+person. The reader is competent and busy — write to that person.
+
+### Errors say what, why, and what's next
+
+- An error message **points to the problem**: what went wrong, why, and what
+  the reader can do about it — anchored to the field or item that caused it
+  when there is one. A failed save names the offending field(s) and the fix
+  ("End date must be after the start date"), never just "Save failed" or a raw
+  validation dump.
+- **Security exception:** when the honest reason would expose something —
+  whether an account exists, why authentication failed, rate/abuse controls —
+  keep the user message deliberately generic, log the specifics, and show a
+  user-purposed support code the reader can quote instead.
+- **Central error reference:** if the product uses error codes or catches
+  specific named errors, every user-visible one is documented in a single
+  error reference inside `{{DOCS_SOURCE_OF_TRUTH}}`: the code, what happened,
+  the likely cause, and what to do. Other doc pages **cross-reference** the
+  entry rather than re-explaining it — one source of truth per error, and the
+  code itself is a stable, greppable ID (design principles above). A new
+  user-visible error code with no reference entry is an incomplete change.
+
+### No AI-tell prose
+
+User-facing text must not read machine-generated. The telltales: throat-
+clearing openers ("It's important to note…"), audience-flattering "whether
+you're an X or a seasoned Y" constructions, everything arriving in threes,
+needless intensifiers ("seamlessly", "effortlessly", "robust"), restating the
+heading as the first sentence, and closing summaries that add nothing. The
+durable test is read-aloud: **would a knowledgeable teammate say this to the
+user?** If not, rewrite it the way they would.
+
 ## File naming (repo-wide)
 
 The name signals how a document is used:

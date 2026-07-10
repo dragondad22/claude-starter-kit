@@ -564,6 +564,23 @@ Joins "every artifact leads with its least-technical audience" as the kit's seco
 
 ---
 
+## T26 — Audience-first user-facing text: personas, no internal leakage, human voice
+
+**Category:** Convention (shipped standard) · **Status:** **Decided (2026-07-10)** · **Related:** T17 (personas), T14 (glossary), T11 (rationale lives once), T22 (context economy) · **Issue:** #79
+
+**Problem:** implemented UI text and documentation drift toward the builder's perspective — screens exposing back-end ID fields, subtext citing ADRs/decisions/conversations users can't access or don't care about, prose with machine-generated tells. The kit had the mechanisms (personas, glossary, tooltip rules, "lead with the least-technical audience") but no rule tying user-facing *text* to the target *user*.
+
+**Decision (Chris, 2026-07-10 — "when writing documentation, I want it directed at the target users … this goes for UI development and documentation, anything the user sees"):**
+- **T26.1 — Write for the persona:** every user-facing string is written for its surface's target persona (`docs/PERSONAS.md`) — what they need to know, how they work, the words they use.
+- **T26.2 — No internal leakage:** user-facing text never exposes back-end/DB field names, internal identifiers, ADR/issue/decision references, conversation references, or developer jargon. Test: if understanding it requires repo access, it doesn't belong. User-purposed display IDs (reference/support codes designed to be shown) are product surface, exempt.
+- **T26.3 — Human voice, layered depth:** friendly but knowledgeable, plain language, glossary-canonical terms; concise but complete — give the information or a visible path to it via the help ladder (label → inline help → on-page help → manual), composing with the existing dual-surface pattern.
+- **T26.4 — No AI-tell prose:** avoid machine-flavored writing conventions in anything the user sees; the durable test is read-aloud ("would a knowledgeable teammate say this?"), backed by a short pattern list.
+- **T26.5 — Errors point to the problem (added same discussion, 2026-07-10):** an error message says what went wrong, why, and what to do next, anchored to the offending field/item (a failed save names the field, never bare "Save failed"); blameless and never condescending (no "simply/just/obviously", no scolding). **Security exception:** when the honest cause would expose something (account existence, auth failure reason, rate/abuse controls), keep the message generic, log the detail, show a user-purposed support code.
+- **T26.6 — Central error reference (added same discussion, 2026-07-10):** every user-visible error code / caught named error is documented once in a central error reference in the docs source of truth (code, what happened, likely cause, what to do); other doc pages cross-reference it, never re-explain. Codes are stable greppable IDs (T22). A new user-visible error code without a reference entry = incomplete change (coding-checklist gate).
+- Single home (T11): `DOCUMENTATION_STANDARD.md` new "Audience-first user-facing text" section (+ "Errors say what, why, and what's next" subsection); `UI_STANDARD.md` §6.6/§9/§10 and the coding checklist carry one-liners + pointers. No CLAUDE.md line (budget full; the existing documentation-standard breadcrumb covers it).
+
+---
+
 ## Issue map (generated 2026-07-09)
 
 GitHub is the source of truth for work status; this file remains the decision record. 36 issues; epics use native sub-issues (verified working on personal repos — T13.7 fallback not needed).
