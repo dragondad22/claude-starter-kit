@@ -7,6 +7,8 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-07-10
+
 ### Added
 - `/rebaseline` (T27): salvage-and-rebuild adoption tier for messy/false-start repos — harvest the repo (code, docs, git history, UI) into a **pre-answered inception interview** (every Recommendation/Default cited to repo evidence; "false start — discard" a first-class `Final:`), critique pass orchestrating the shipped `/qa` `/security` `/compliance` `/perf` commands + `/evergreen` lenses + the tracker surface (T27.8/T27.9), in-place vs fresh-repo as an interview question with in-place the recommended default (T27.6), then plan-to-common-understanding (interview statuses are the record) decomposed into epics/features/tasks and executed branch-per-issue — never a big-bang rewrite; nothing deleted during harvest/critique (#81)
 - `/conform` (T27.5): tidy-only adoption tier — conform an existing repo to current standards (file renames per the naming convention, doc reorg into the shipped layout, structure conformance), explicitly no behavior or design changes, approval-gated plan executed as one tracked PR with `git mv` + same-PR reference updates; **`/conform github`** scopes to the tracker surface only (label manifest, typed-issue migration, board fields/views, templates, repo settings) for adopting the kit's GitHub process without touching code (T27.9); both commands cross-referenced from `/bootstrap` retrofit and agent-setup (#81)
