@@ -45,6 +45,8 @@ Re-running `/bootstrap` must be safe (idempotent-ish) and serves two cases:
 - **Updating an already-bootstrapped project:** re-detect, show what's filled, and offer to update specific values rather than re-asking everything. Never regenerate an artifact that has diverged by hand — propose an edit instead.
 - **Retrofitting an existing repo** (adopted the kit late, or scaffolded from an older kit): offer to add the missing kit pieces one by one — label manifest, project board, `bootstrap/KIT_VERSION` marker, staged modules, founding docs that never got seeded, an inception interview for the parts of the spine that were never answered. The same mechanism serves kit upgrades.
 
+Retrofit is additive only. When the repo needs more than additions — untidy naming/layout/tracker → `/conform`; a rebuild worth salvaging inputs from → `/rebaseline`.
+
 ## Notes
 
 - The interview is resumable across sessions by design — never force synchronous answering; re-ingest whatever landed and report status.

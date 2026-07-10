@@ -37,10 +37,12 @@ core:
     - .claude/settings.json
     - .claude/commands/bootstrap.md
     - .claude/commands/compliance.md
+    - .claude/commands/conform.md
     - .claude/commands/evergreen.md
     - .claude/commands/perf.md
     - .claude/commands/preflight.md
     - .claude/commands/qa.md
+    - .claude/commands/rebaseline.md
     - .claude/commands/release.md
     - .claude/commands/security.md
     - .claude/hooks/README.md
