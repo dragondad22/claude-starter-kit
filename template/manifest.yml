@@ -77,8 +77,8 @@ core:
     - bootstrap/PAVED_ROAD.md
     - bootstrap/PLACEHOLDERS.md
     - bootstrap/SETUP.md
-    - docs/architecture/decisions/ADR-INDEX.md
-    - docs/architecture/decisions/ADR-TEMPLATE.md
+    - docs/architecture/decisions/ADR_INDEX.md
+    - docs/architecture/decisions/ADR_TEMPLATE.md
     - docs/compliance/COMPLIANCE_REGISTER.md
     - docs/decision-log.md
     - docs/evergreen-log.md

@@ -59,7 +59,9 @@ The name signals how a document is used:
   rolling logs, checklists, commands, setup files (`decision-log.md`,
   `evergreen-log.md`, `agent-setup.md`).
 - **Ecosystem-fixed names are exempt.** `README.md`, `CHANGELOG.md`, `CLAUDE.md`,
-  `LICENSE`, and `ADR-*` files keep the form their ecosystem expects.
+  and `LICENSE` keep the form their ecosystem expects. ID-anchored artifacts
+  (numbered ADRs `ADR-NNN-<slug>.md`, specs, register rows) follow their ID
+  convention — the hyphen is part of the grep-friendly ID, not the file-name case.
 
 New documents follow this split; don't mix separators within a case
 (no `snake_case` lowercase names, no `KEBAB-CASE` uppercase names).

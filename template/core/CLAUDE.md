@@ -76,7 +76,7 @@ Depth, examples, and why: `ai/STANDARDS/GIT_WORKFLOW_STANDARD.md`.
 ## Decision Recording (mandatory)
 
 - Decisions made in conversation are NOT authoritative until recorded.
-- **Architectural decisions**: `docs/architecture/decisions/` (ADR format — see `ADR-INDEX.md`, `ADR-TEMPLATE.md`).
+- **Architectural decisions**: `docs/architecture/decisions/` (ADR format — see `ADR_INDEX.md`, `ADR_TEMPLATE.md`).
 - **Product/scope decisions**: `docs/decision-log.md`.
 - If implementation reveals a decision point, stop and record it; if a prior decision changes, update the existing record — don't leave stale entries.
 - Ask for human approval before recording or updating decisions.

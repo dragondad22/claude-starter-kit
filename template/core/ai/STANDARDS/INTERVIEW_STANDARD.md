@@ -188,5 +188,5 @@ release) and the epic-close lifecycle rule.
 - `docs/plans/README.md` — the plans charter (interviews live there)
 - `bootstrap/QUESTION_BANK.md` — the inception spine (sections + questions)
 - `bootstrap/INTERVIEW.md` — the token-fill script that closes inception
-- `docs/architecture/decisions/ADR-TEMPLATE.md` — `Source:` field (backward link)
+- `docs/architecture/decisions/ADR_TEMPLATE.md` — `Source:` field (backward link)
 - `docs/decision-log.md` — entry format with `Source:` field
