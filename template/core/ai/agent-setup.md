@@ -27,6 +27,8 @@ a persistent memory system.
 - `/perf` — performance smoke
 - `/release` — cut a release (version bump + CHANGELOG roll)
 - `/evergreen` — standards & process evergreening: 6-lens review (repetition, platform delta, standards drift, date sweep, kit delta, context economy incl. the CLAUDE.md ~150-line budget); findings → issue, run record → `docs/evergreen-log.md` (~30-day cadence, non-interruptive)
+- `/conform` — tidy the repo to current kit standards (renames, doc reorg, structure; no behavior/design changes); `/conform github` = tracker surface only
+- `/rebaseline` — salvage-and-rebuild for messy/false-start repos: harvest → pre-answered inception interview → critique → agreed plan → tracked rebuild
 
 ## Standards (`ai/STANDARDS/`)
 Read the relevant one before working in that area. Index lives in `CLAUDE.md` → Standards.
