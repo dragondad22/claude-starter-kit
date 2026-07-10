@@ -8,6 +8,7 @@ and this project adheres to Semantic Versioning.
 ## [Unreleased]
 
 ### Added
+- `ai/STANDARDS/ROADMAP_STANDARD.md` (T25): feature-request intake & roadmap doctrine — ideas are `type:feature` issues in Backlog with a lightweight body; the roadmap is a **view over live issues, never a document** (hand-maintained status/phase columns prohibited): a `Horizon` single-select (Now / Next / Later; blank = unsorted) plus a saved Roadmap view on the repo's single board, with Horizon (intent) deliberately separate from Status (execution); visibility via public read-only project or generated-only exports; pointers from CLAUDE.md and the task-issue standard (#77)
 - Documentation standard gains a "Design principles (repo-wide)" section (T22) naming the kit's two design principles: *lead with the least-technical audience* and *progressive disclosure with addressability* (breadcrumbs over monoliths; never cut the vision — relocate it; grep-friendly stable IDs/anchors required for new artifact types), plus the CLAUDE.md ~150-line budget as the enforced guard (#36)
 - `/evergreen` gains a sixth lens, **context economy**: checks CLAUDE.md against its ~150-line budget; breach → demote detail behind a breadcrumb, never delete (agent-setup and evergreen-log lens lists updated) (#36)
 
