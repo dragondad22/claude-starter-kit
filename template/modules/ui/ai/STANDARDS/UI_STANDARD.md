@@ -203,6 +203,10 @@ examples — set your project's choices.)*
 
 ## 9. Content and Microcopy
 
+- **All copy follows the audience-first rules** — written for the surface's
+  persona, no internal leakage (back-end field names, internal IDs, ADR/issue
+  references), human voice, no AI-tell prose. Single home:
+  `ai/STANDARDS/DOCUMENTATION_STANDARD.md` → "Audience-first user-facing text".
 - Keep language direct and operational.
 - Buttons use action verbs (e.g. `Add item`, `Save changes`, `End activity`).
 - Confirmation copy states the object **and** the consequence.
@@ -235,3 +239,5 @@ Before marking UI work complete, verify:
 - Table, filter, and form patterns follow this standard.
 - All visible text uses sentence case per Section 9.1 (proper nouns, brands, and
   acronyms excepted).
+- Visible text passes the audience-first rules (persona-targeted, no internal
+  leakage — Section 9).
