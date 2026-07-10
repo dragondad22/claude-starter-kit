@@ -176,6 +176,10 @@ examples — set your project's choices.)*
 - **Toast:** success and minor updates.
 - **Inline:** form validation and row-level states.
 - **Top banner:** blocking warnings/errors that require attention.
+- Error copy follows "Errors say what, why, and what's next" in
+  `ai/STANDARDS/DOCUMENTATION_STANDARD.md`: anchored to the offending
+  field/item, blameless, security-sensitive causes kept generic, and any
+  user-visible error code documented in the central error reference.
 
 ### 6.7 Charts
 

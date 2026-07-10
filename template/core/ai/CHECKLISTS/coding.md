@@ -72,4 +72,5 @@ Run the trigger map in `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md` again
 - [ ] Schema/data docs updated if the data model changed
 - [ ] `CHANGELOG.md` `[Unreleased]` updated when this change ships user-visible behavior (skip only for refactor/test/doc/comment-only)
 - [ ] User docs updated for user-visible changes (see `ai/STANDARDS/DOCUMENTATION_STANDARD.md`)
+- [ ] New/changed user-visible error codes or caught errors added to the central error reference and cross-referenced, not re-explained (`ai/STANDARDS/DOCUMENTATION_STANDARD.md` → "Errors say what, why, and what's next")
 - [ ] `docs/GLOSSARY.md` updated for any term this change coined, overloaded, or had to explain (backstop — capture should have happened inline)

@@ -84,12 +84,37 @@ code on a record, a support code on an error) are product surface, not leakage
 
 ### Human voice, layered depth
 
-Friendly but knowledgeable: plain language, direct, no condescension, no false
-cheer. Concise but complete — every surface gives the reader what they need
-**or a visible path to it**, one step up the help ladder: label → inline help →
-on-page help → manual (mechanics: the tooltip test and dual-surface pattern in
-this file). Terms use the canonical choices in `docs/GLOSSARY.md`, defined at
-first use per Writing for beginners below.
+Friendly but knowledgeable: plain language, direct, no false cheer. Concise
+but complete — every surface gives the reader what they need **or a visible
+path to it**, one step up the help ladder: label → inline help → on-page help →
+manual (mechanics: the tooltip test and dual-surface pattern in this file).
+Terms use the canonical choices in `docs/GLOSSARY.md`, defined at first use
+per Writing for beginners below.
+
+**Never talk down to the reader.** No condescension in any register: no
+minimizers that shame a stuck user ("simply", "just click", "obviously",
+"easy"), no scolding ("you failed to…", "invalid input!"), no over-praise for
+routine actions. When something goes wrong, blame the situation, not the
+person. The reader is competent and busy — write to that person.
+
+### Errors say what, why, and what's next
+
+- An error message **points to the problem**: what went wrong, why, and what
+  the reader can do about it — anchored to the field or item that caused it
+  when there is one. A failed save names the offending field(s) and the fix
+  ("End date must be after the start date"), never just "Save failed" or a raw
+  validation dump.
+- **Security exception:** when the honest reason would expose something —
+  whether an account exists, why authentication failed, rate/abuse controls —
+  keep the user message deliberately generic, log the specifics, and show a
+  user-purposed support code the reader can quote instead.
+- **Central error reference:** if the product uses error codes or catches
+  specific named errors, every user-visible one is documented in a single
+  error reference inside `{{DOCS_SOURCE_OF_TRUTH}}`: the code, what happened,
+  the likely cause, and what to do. Other doc pages **cross-reference** the
+  entry rather than re-explaining it — one source of truth per error, and the
+  code itself is a stable, greppable ID (design principles above). A new
+  user-visible error code with no reference entry is an incomplete change.
 
 ### No AI-tell prose
 
