@@ -12,8 +12,8 @@ and this project adheres to Semantic Versioning.
 - `/evergreen` gains a sixth lens, **context economy**: checks CLAUDE.md against its ~150-line budget; breach → demote detail behind a breadcrumb, never delete (agent-setup and evergreen-log lens lists updated) (#36)
 
 ### Changed
+- Markdown file-naming convention codified (T24) in the documentation standard: reference docs you consult are `UPPER_SNAKE_CASE.md`, working docs you run/append to are lowercase `kebab-case.md`, ecosystem-fixed names (`README.md`, `CLAUDE.md`, …) and ID-anchored artifacts (`ADR-NNN-<slug>.md`) exempt; renamed `docs/decision_log.md` → `decision-log.md` and `ADR-INDEX.md`/`ADR-TEMPLATE.md` → `ADR_INDEX.md`/`ADR_TEMPLATE.md`, with manifest and all references updated (#75)
 - Shipped CLAUDE.md trimmed 160 → 150 lines per the new budget by merging duplicate/adjacent rules (untracked-work and chat-not-authoritative rules now live once with cross-pointers; git/task/decision one-liners combined) — no rule deleted (#36)
-### Changed
 - Tenant-isolation doctrine consolidated per "rules may repeat; rationale may not" (T11): the explanation (threat model, "security violation not a bug", never-trust-client-id) now lives only in the security standard's Multi-tenant isolation subsection — marked as the doctrine's single home; the DB, logging, and testing standards carry one-line rules + a pointer, and checklist/command gate lines stay self-contained (#35)
 
 ## [0.5.0] - 2026-07-09
