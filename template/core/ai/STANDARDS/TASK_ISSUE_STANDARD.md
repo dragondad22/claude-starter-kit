@@ -207,7 +207,10 @@ AI and humans both read it.
 | In progress | Branch created, work underway (includes in-review) |
 | Done | PR merged, issue closed |
 
-Saved views: **Current work** (Status is Next or In progress) and **Backlog**.
+Saved views: **Current work** (Status is Next or In progress), **Backlog**,
+and **Roadmap** (feature ordering via the Horizon field — see
+`ai/STANDARDS/ROADMAP_STANDARD.md`; Horizon is roadmap intent, Status is
+execution lifecycle).
 
 **The board is kept up to date — lifecycle moves are mandatory:**
 - Starting work on an item → set Status to "In progress".
@@ -262,4 +265,5 @@ original quality issue should be left open and linked from the task issue as
 
 - `ai/TEMPLATES/TASK_ISSUE_TEMPLATE.md` — fill-in body template
 - `ai/STANDARDS/GITHUB_ISSUES.md` — quality agent bug reports
+- `ai/STANDARDS/ROADMAP_STANDARD.md` — feature intake, Horizon field, Roadmap view
 - `ai/agent-setup.md` — full AI tooling context
