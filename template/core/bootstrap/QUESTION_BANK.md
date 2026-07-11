@@ -4,13 +4,17 @@ The canonical question set for the inception interview. Machinery (file layout,
 question block format, lifecycle, Q-IDs, provenance):
 `ai/STANDARDS/INTERVIEW_STANDARD.md` — read it first.
 
-**How this bank is used.** At inception the AI generates the `000-inception/`
+**How this bank is used.** Inception opens with the approved project brief —
+`000-inception/00-BRIEF.md`, the shared-understanding gate ("The Brief" in
+`ai/STANDARDS/INTERVIEW_STANDARD.md`); no questions are generated before it.
+Then the AI generates the `000-inception/`
 interview directory under `docs/plans/` from this bank: one section file per section below,
 each spine question expanded into the full question block (why-this-matters,
-options with trade-offs, recommendation, default). The spine is the floor, not
+options with trade-offs, recommendation, default), with the brief's statements
+baked into recommendations. The spine is the floor, not
 the interview: spine questions are conversation starters, and the AI **must**
-generate follow-up questions driven by the answers, appending IDs within the
-section (`Q-ARCH-07`, `-08`…).
+generate follow-up questions driven by the answers — and by what the brief
+left vague — appending IDs within the section (`Q-ARCH-07`, `-08`…).
 
 **Depth rule (when is a section done):** a section is complete when its
 downstream founding artifact can be written **without invention** — if writing
