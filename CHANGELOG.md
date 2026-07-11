@@ -7,6 +7,8 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-07-11
+
 ### Fixed
 - Horizon field + Roadmap view setup is now reachable on the bootstrap path: `/bootstrap` step 5 references ROADMAP_STANDARD's "Setup (once per repo)" alongside the base board setup (previously only `/conform github` did, so the roadmap surface never got created at inception); fixed the stale "two saved views" count in TASK_ISSUE_STANDARD's board setup and `bootstrap/SETUP.md` (the standard lists three). New repo-wide rule in DOCUMENTATION_STANDARD, checked by the `/evergreen` standards-drift lens: every "Setup (once per repo)" block needs a workflow owner in `/bootstrap` or `/conform` (#103)
 
