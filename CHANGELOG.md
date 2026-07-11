@@ -8,6 +8,7 @@ and this project adheres to Semantic Versioning.
 ## [Unreleased]
 
 ### Added
+- `/bootstrap` now generates **`SETUP_CHECKLIST.md`** (new step 6): every human-only step — `gh` scopes, board UI-only steps, CI secrets, tokens/API keys, integration signups — with what/why, instructions, and alternatives; once the human confirms completion the AI offers to delete it (recurring items graduate to runbooks). Manual path gains the equivalent checklist step in `bootstrap/SETUP.md` (#95)
 - Runtime version policy is now explicit: paved-road **evergreen** default (latest stable per toolchain unless a dependency pins, pins carry recorded reasons) + spine question **Q-ARCH-05** that confirms the default and captures pins — previously the interview never asked and the policy was inferred from whatever was installed (#102)
 - Question bank stops assuming "an app": **game** is a first-class Q-ARCH-01 shape (redirecting follow-ups to engine, platforms/stores, core loop, real-time constraints, art pipeline), and Q-UI-02 gains an orthogonal **playful/gamified** flavor for non-game projects (#94)
 - Inception spine gains **Q-INFRA-04 — data/compute locality boundaries**: local-only / self-hosted / cloud-with-conditions, asked explicitly about third-party AI services; a boundary here is flagged as a prime non-negotiable candidate and seeds compliance rows — the first trial's defining requirement (local/private AI) previously surfaced only in free text (#91)

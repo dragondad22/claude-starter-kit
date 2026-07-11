@@ -31,14 +31,16 @@ Close out project inception: consume the inception interview's `Final:` answers 
    - **Labels:** edit the `area:*` section of `ai/scripts/bootstrap-labels.sh` to this project's functional areas (from the interview), then — if the tracker is GitHub and `gh` is authenticated — offer to run it (idempotent). Other trackers: mirror the manifest table by hand.
    - **Project board:** every repo gets one (see "Project Board & Issue Lifecycle" in `ai/STANDARDS/TASK_ISSUE_STANDARD.md`). If `gh` has the `project` scope, offer `gh project create` + `gh project link`; walk the user through the UI-only parts either way.
 
-6. **Verify.** Run:
+6. **Generate the human-setup checklist.** Collect every remaining step only a human can do — from the interview answers and this run's leftovers: `gh` scopes (`gh auth refresh -s project` for the board), tracker/board UI-only steps, CI secrets, access tokens and API keys for chosen integrations, third-party signups, store/developer accounts. Write them to `SETUP_CHECKLIST.md` at the repo root — per item: what to set up and why, step-by-step instructions, and alternatives where they genuinely exist (e.g. fine-grained PAT vs. broader OAuth scopes). It's a checklist, not a living doc: anything that will be done twice belongs in `docs/runbooks/` instead. On later runs, check it — once the human confirms everything is done, **offer to delete the file** (graduating recurring items to runbooks first).
+
+7. **Verify.** Run:
    ```bash
    grep -rnoE '\{\{[A-Z_]+\}\}' . --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' \
      | grep -vE '/bootstrap/|/README.md|\{\{(TOKEN|TOKENS|PLACEHOLDER|DOUBLE_BRACE)\}\}'
    ```
    It should return nothing (the excluded tokens are meta-literals — see `bootstrap/PLACEHOLDERS.md`). Also confirm `bootstrap/KIT_VERSION` exists and records the scaffold. (Snippet is macOS/Linux; on Windows use `rg "\{\{"` or an editor's project-wide search.)
 
-7. **Hand off.** Summarize: what was filled and generated, which modules were installed vs left staged, which questions were deferred on defaults, and what remains by hand (CI secrets, board UI steps). Suggest committing the bootstrapped state as the first commit. Point at `ai/agent-setup.md` as the living orientation doc.
+8. **Hand off.** Summarize: what was filled and generated, which modules were installed vs left staged, which questions were deferred on defaults, and what remains by hand — pointing at `SETUP_CHECKLIST.md` for all of it. Suggest committing the bootstrapped state as the first commit. Point at `ai/agent-setup.md` as the living orientation doc.
 
 ## Re-run & retrofit
 

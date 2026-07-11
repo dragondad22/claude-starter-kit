@@ -57,5 +57,11 @@ time (`bootstrap/modules/README.md` explains the staging).
 - [ ] The `ai/scripts/*.sh` automation runs (POSIX shell — native on macOS/Linux; Git Bash or WSL
   on Windows). On macOS/Linux, make them executable first: `chmod +x ai/scripts/*.sh ai/scripts/lib/*.sh`
 
-## 5. First commit
+## 5. Human-only setup
+- [ ] Collect the steps no automation can do — CI secrets, access tokens/API keys for
+      chosen integrations, `gh` scopes, board UI-only steps — into `SETUP_CHECKLIST.md`
+      at the repo root (what/why, steps, alternatives). Delete it once everything is
+      confirmed done; anything recurring graduates to `docs/runbooks/` first.
+
+## 6. First commit
 - [ ] Commit the bootstrapped state.
