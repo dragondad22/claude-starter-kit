@@ -84,6 +84,12 @@ registry (`docs/PERSONAS.md`).*
 - **Q-ARCH-04 — What will you build vs. use off the shelf?** Auth, payments,
   search, email — buying is often the right call; deviations from obvious
   services deserve a reason.
+- **Q-ARCH-05 — Runtime version policy: evergreen or pinned?** House default:
+  **evergreen** — latest stable of each toolchain unless a dependency forces a
+  pin (paved-road registry: `bootstrap/PAVED_ROAD.md`). Confirm the default
+  rather than asking blind; capture any pins **with their reasons** — they
+  feed `CLAUDE.md`, pin files (`.nvmrc` etc.), and an ADR when the pin is
+  load-bearing. Never infer the policy from what happens to be installed.
 
 ## 4. Infrastructure — `INFRA`
 
