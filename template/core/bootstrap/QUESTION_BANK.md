@@ -71,7 +71,12 @@ registry (`docs/PERSONAS.md`).*
 *Downstream: initial ADRs, `CLAUDE.md` architecture section, module triggers.*
 
 - **Q-ARCH-01 — What shape is it?** CLI / library / service or API / web app /
-  mobile / desktop / a mix. A console app is a real answer, not a fallback.
+  mobile / desktop / **game** / a mix. A console app is a real answer, not a
+  fallback. A game answer redirects the follow-ups: engine or framework
+  choice, target platform(s) and stores, the core loop, real-time
+  constraints, and the art/asset pipeline — and shifts later sections (UI
+  becomes art direction, TEST leans on the failure that matters for play,
+  INFRA includes distribution).
 - **Q-ARCH-02 — What are the major pieces and how do they talk?** Components,
   boundaries, sync vs async — at whiteboard altitude.
 - **Q-ARCH-03 — Language and stack: preference or constraint?** Existing
@@ -110,7 +115,10 @@ locality non-negotiables, compliance register rows.*
 - **Q-UI-02 — How much does its look matter?** Ladder: "I don't care —
   functional defaults" / clean-but-generic / branded / design-led. Every rung
   is legitimate; the answer changes what gets scaffolded, not the project's
-  worth.
+  worth. Orthogonal to the rung: should it feel **playful/gamified** — fun
+  graphics, delightful interactions, progression mechanics — even when the
+  project isn't a game? Name that deliberately; it shapes the UI standard's
+  adaptation, not just the visuals.
 - **Q-UI-03 — Is there a design source of truth?** Figma or equivalent, or
   none. Accessibility floor for the audience.
 
