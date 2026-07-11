@@ -9,7 +9,7 @@
 
 **Background (from Chris, 2026-07-08):** The kit was distilled from several real projects through trial and error. Some findings in this list are genuine staleness to clean up; others are practices that *fell off due to expediency, not because they were bad ideas* — those may deserve a better mechanism rather than deletion. Some material was also removed for privacy/redaction, which explains certain gaps. The goal of these discussions is not just to fix issues but to **make the process better**. `IMP` in the examples = "implementation plan" — AI-generated plans that started as markdown files and later moved into GitHub Issues for tracking/visibility.
 
-**Progress:** **28 / 30 decided** (T1–T17 on 2026-07-08; T18–T25 on 2026-07-09; T26–T28 on 2026-07-10 — all implemented through v0.7.0). T29–T30 added 2026-07-11 from the life-os trial port-backs (epic #90): **not discussed yet** — their issues (#92, #93) are blocked on these topics.
+**Progress:** ✅ **30 / 30 decided** (T1–T17 on 2026-07-08; T18–T25 on 2026-07-09; T26–T28 on 2026-07-10 — implemented through v0.7.0; T29–T30 on 2026-07-11, from the life-os trial port-backs — implementation tracked as #92/#93 under epic #90).
 
 ---
 
@@ -45,8 +45,8 @@
 | [T26](kit-review-topics/T26-audience-first-text.md) | Audience-first user-facing text: personas, no internal leakage, human voice | Decided (2026-07-10) |
 | [T27](kit-review-topics/T27-rebaseline-conform.md) | Rebaseline: salvage-and-rebuild path for messy / false-start repos | Decided (2026-07-10) |
 | [T28](kit-review-topics/T28-uat-acceptance-beta-split.md) | UAT scope: agent-run acceptance vs task-based beta guides; "how do I?" is a design signal | Decided (2026-07-10) |
-| [T29](kit-review-topics/T29-project-concept-intake.md) | Project-concept intake: shared understanding before the targeted interview | Not discussed |
-| [T30](kit-review-topics/T30-kit-docs-area.md) | Shipped kit-docs area: workflow guide with flowchart + kit reference, keep-current rule | Not discussed |
+| [T29](kit-review-topics/T29-project-concept-intake.md) | Project-concept intake: shared understanding before the targeted interview | Decided (2026-07-11) |
+| [T30](kit-review-topics/T30-kit-docs-area.md) | Shipped kit-docs area: workflow guide with flowchart + kit reference, keep-current rule | Decided (2026-07-11) |
 
 ---
 
