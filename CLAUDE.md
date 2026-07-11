@@ -52,9 +52,11 @@ run them locally before pushing changes to `template/`.
 ## Decision Recording (mandatory)
 
 - Decisions made in conversation are NOT authoritative until recorded.
-- Kit decisions live in `docs/plans/` decision records
-  (`docs/plans/2026-07-08-kit-review-topics.md` is the type specimen — stable T-IDs,
-  Status/Discussion/Decision per topic, superseded entries stamped, never rewritten).
+- Kit decisions live in `docs/plans/` decision records: index
+  `docs/plans/2026-07-08-kit-review-topics.md` + one file per topic under
+  `docs/plans/kit-review-topics/` (`TNN-<slug>.md`; format: its `TOPIC_TEMPLATE.md`).
+  Stable T-IDs, Status/Discussion/Decision per topic, superseded entries stamped,
+  never rewritten; Status changes mirror to the index table.
 - `docs/plans/` is structured discovery only (T7.4): interview/decision working docs.
   A decision → decision record; work → an issue; how-to → runbook; term → glossary.
 - Ask for human approval before recording or updating decisions.
