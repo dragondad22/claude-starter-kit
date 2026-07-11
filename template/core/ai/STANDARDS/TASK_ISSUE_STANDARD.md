@@ -241,6 +241,20 @@ views above, and under Workflows enable **"Item closed → Status: Done"** and
 **"Auto-add to project"** for the repo. Without the token scope, create the
 project itself in the UI too — same steps.
 
+**Conforming an existing board — snapshot before touching Status options.**
+Replacing a single-select field's option set via the API (GraphQL
+`updateProjectV2Field`) regenerates the option IDs with no match-by-name and
+**silently clears every item's Status**. Before changing the options on a
+board that already has items:
+
+1. Snapshot current assignments: `gh project item-list <number> --owner <owner> --format json`.
+2. Prefer **renaming the existing options in the project's settings UI** —
+   renames keep item assignments; the API replacement path does not.
+3. If the API path is unavoidable, restore each item's Status from the
+   snapshot afterwards.
+
+(This is the rule's single home; `/conform github` points here.)
+
 ---
 
 ## Duplicate Check
