@@ -9,7 +9,7 @@
 
 **Background (from Chris, 2026-07-08):** The kit was distilled from several real projects through trial and error. Some findings in this list are genuine staleness to clean up; others are practices that *fell off due to expediency, not because they were bad ideas* — those may deserve a better mechanism rather than deletion. Some material was also removed for privacy/redaction, which explains certain gaps. The goal of these discussions is not just to fix issues but to **make the process better**. `IMP` in the examples = "implementation plan" — AI-generated plans that started as markdown files and later moved into GitHub Issues for tracking/visibility.
 
-**Progress:** ✅ **24 / 24 decided** (T1–T17 on 2026-07-08; T18–T24 on 2026-07-09). Issue generation: in progress — see Issue map section. T23.4 ordering constraint: restructure epic first.
+**Progress:** **28 / 30 decided** (T1–T17 on 2026-07-08; T18–T25 on 2026-07-09; T26–T28 on 2026-07-10 — all implemented through v0.7.0). T29–T30 added 2026-07-11 from the life-os trial port-backs (epic #90): **not discussed yet** — their issues (#92, #93) are blocked on these topics.
 
 ---
 
@@ -626,6 +626,36 @@ New shipped files (two templates + `docs/uat/beta/README.md`) → `template/mani
 
 ---
 
+## T29 — Project-concept intake: shared understanding before the targeted interview
+
+**Category:** Process (inception flow) · **Status:** Not discussed · **Issue:** #92 (filed at intake; implementation blocked on this topic) · **Related:** T15 (inception machinery), T27.1 (harvest = pre-answered interview from evidence — the same move at rebuild scale), T20 (arrived via the retrospective channel), T26 (the brief is human-facing text)
+
+**Origin (life-os trial, 2026-07-10/11):** first from-scratch inception. The repo was empty, yet the interview arrived already framed — the AI's concept of the project came from the repo name plus chat, with no place where the human states plainly what the app is, the problem it fixes, or its goals, and nothing reviewed or approved as the shared understanding. Risk observed: getting pigeonholed into a concept that isn't quite what the user wants.
+
+**Proposed flow (Chris, 2026-07-11):** before generating the interview from the question bank: (1) ingest existing context if present — concept doc, spec sheet, PRD, existing repo files; (2) produce a freetext **project brief** — where context exists the AI writes its understanding (what the app is, scope, goals, problem areas) for the human to edit/approve; where none exists the human fills it in, guided by thinking prompts; (3) only then generate the targeted interview, seeded by the approved brief.
+
+**To decide:** the brief's home and lifecycle (candidate: alongside `000-inception/`; is it a founding artifact with provenance links?); the approval-gate mechanics; how the brief seeds and prunes the spine; whether this is `/bootstrap` step 1 or a step before it; relationship to T27.1's harvest (one mechanism, two scales?).
+
+**Decision:** —
+
+---
+
+## T30 — Shipped kit-docs area: workflow guide with flowchart + kit reference, keep-current rule
+
+**Category:** Gap (shipped docs) · **Status:** Not discussed · **Issue:** #93 (filed at intake; implementation blocked on this topic) · **Related:** T3 (size/scope tiering — the guide's right-sizing variants), T7 (docs-directory hygiene), T22 (context economy), T18 (kit upgrades must carry doc updates downstream), T24 (file naming), T20 (arrived via the retrospective channel)
+
+**Origin (life-os trial):** nothing shipped explains the end-to-end kit flow. `ai/agent-setup.md` is a reference list, not a journey, and `/bootstrap`'s hand-off points back at it. Persistent "what do I do now / what's next?" for a first-time user — e.g. nowhere states that specs are per-feature (T17 artifact, created at T25 promotion), not generated at bootstrap.
+
+**Scope (Chris, 2026-07-11):** a dedicated folder under `docs/` (candidate: `docs/kit/`) holding: (1) a **workflow guide with flowchart** — scaffold → inception interview (brief-first once T29 lands) → `/bootstrap` → external setup → roadmap intake → per-feature spec → iterative development cycle (generalized; the kit doesn't prescribe the inner loop) → release → evergreen — with a "where am I / what's next" orientation and variants by project size/scope; written for someone who has never used the kit; (2) a **kit reference**: what the kit is, every command, the directory structure, where to find things. Existing kit-related shipped docs get gathered into or pointed from this folder.
+
+**Keep-current rule:** these docs stay current as the kit changes — kit development updates them in the same PR that changes commands, flow, or structure (binds this repo's CLAUDE.md discipline, not just downstream projects).
+
+**To decide:** folder name/location; what moves vs. what links (`bootstrap/` path stability); flowchart format; how already-scaffolded projects receive updates (T18 delta mechanism).
+
+**Decision:** —
+
+---
+
 ## Issue map (generated 2026-07-09)
 
 GitHub is the source of truth for work status; this file remains the decision record. 36 issues; epics use native sub-issues (verified working on personal repos — T13.7 fallback not needed).
@@ -639,6 +669,7 @@ GitHub is the source of truth for work status; this file remains the decision re
 | **#25 Tooling** | #26 git standard · #27 PR-validation CI · #28 paved road · #29 dep maintenance | T9, T10.1/10.3, T16 |
 | **#30 Diagnostics & evergreening** | #31 failure bundles · #32 /evergreen · #33 session-start protocol | T5, T8, T18, T19 |
 | **#34 Cleanup & principles** | #35 dedup sweep · #36 design principles + budget | T11, T22 |
+| **#90 life-os port-backs** *(added 2026-07-11)* | #91 AI/data-locality spine question · #92 concept intake · #93 kit-docs area · #94 game shape + gamified UI rung · #95 setup checklist | T20 (channel), T29 (#92), T30 (#93); #91/#94/#95 decided at issue level |
 
 Board: project creation blocked at generation time (token scope) — see conversation note; issues #1–#7 are the "Next" set once the board exists.
 
