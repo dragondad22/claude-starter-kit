@@ -82,7 +82,8 @@ registry (`docs/PERSONAS.md`).*
 
 ## 4. Infrastructure — `INFRA`
 
-*Downstream: hosting ADR, deploy-ci module shape, cost expectations.*
+*Downstream: hosting ADR, deploy-ci module shape, cost expectations,
+locality non-negotiables, compliance register rows.*
 
 - **Q-INFRA-01 — Where does it run?** The right-sizing ladder: local-only →
   single small host (Pi / VPS) → managed platform → full cloud. Recommend the
@@ -91,6 +92,14 @@ registry (`docs/PERSONAS.md`).*
   in a year. Design for the honest number, not the dream.
 - **Q-INFRA-03 — What should it cost to run?** Monthly tolerance; free-tier
   constraints if any.
+- **Q-INFRA-04 — Are there boundaries on where data or compute may go?**
+  Local-only / self-hosted only / cloud OK / cloud with conditions (named
+  providers, regions, no third-party processing). Ask **explicitly about
+  third-party AI services**: is sending code, prompts, or user data to a
+  hosted model acceptable, or must AI stay local/private? A boundary here is
+  a prime non-negotiable candidate — it constrains hosting, stack, and
+  feature design, and seeds compliance rows. (Port-back: in the first trial
+  this was the project's defining requirement, and no spine question asked.)
 
 ## 5. UI & Aesthetics — `UI`
 

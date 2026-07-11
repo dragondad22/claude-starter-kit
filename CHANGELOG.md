@@ -8,6 +8,7 @@ and this project adheres to Semantic Versioning.
 ## [Unreleased]
 
 ### Added
+- Inception spine gains **Q-INFRA-04 — data/compute locality boundaries**: local-only / self-hosted / cloud-with-conditions, asked explicitly about third-party AI services; a boundary here is flagged as a prime non-negotiable candidate and seeds compliance rows — the first trial's defining requirement (local/private AI) previously surfaced only in free text (#91)
 - Inception now opens with a **project brief** (T29): `000-inception/00-BRIEF.md` — the AI ingests existing concept context (PRD, spec, README, code) and drafts its understanding for the human to edit, or generates a prompt-guided skeleton the human writes; **no interview questions are generated until the brief is approved**, and the approved brief seeds the spine's recommendations and follow-ups. `/rebaseline`'s harvest drafts the brief from repo evidence the same way; brief format + gate live in `ai/STANDARDS/INTERVIEW_STANDARD.md` (#92)
 
 ## [0.7.0] - 2026-07-10
