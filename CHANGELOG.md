@@ -7,6 +7,8 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-07-10
+
 ### Added
 - UAT split into two artifacts by audience (T28): agent-facing acceptance verification gets `ai/TEMPLATES/ACCEPTANCE_DOC_TEMPLATE.md` (reports module — criteria table citing spec journey steps/EC-IDs, edge-case matrix, evidence, completion gate; closes the template gap behind the task-issue "Docs to Update" line), and human-facing **beta guides** arrive as a new artifact: `ai/TEMPLATES/BETA_GUIDE_TEMPLATE.md` + `docs/uat/beta/` — persona-addressed, **goals-not-steps** tasks (scenario / starting point / done-condition, never a click-path), derived from the feature spec's journey layer at feature-complete, human-reviewed, refreshed at release via the CHANGELOG delta, and handed to testers only after acceptance + E2E are green; `BETA-<DOMAIN>-NNN-<slug>.md` mirrors the spec ID (#85)
 - UI standard gains "'How do I…?' is a design finding" (T28.6): a how-question from a user or beta tester routes to a UX/design issue against the flow, not help text — help is written only after a redesign is explicitly rejected; the same test applies pre-ship to beta-guide tasks and spec journeys (#85)
