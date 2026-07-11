@@ -44,7 +44,8 @@ time (`bootstrap/modules/README.md` explains the staging).
   Other trackers: mirror the manifest table by hand.
 - [ ] Create the project board (one per repo) per "Project Board & Issue Lifecycle" in
   `ai/STANDARDS/TASK_ISSUE_STANDARD.md`: Status = Backlog / Next / In progress / Done,
-  the two saved views, and the "Item closed → Done" + auto-add workflows.
+  the three saved views (Roadmap needs the Horizon field — "Setup (once per repo)" in
+  `ai/STANDARDS/ROADMAP_STANDARD.md`), and the "Item closed → Done" + auto-add workflows.
 
 ## 4. Verify
 - [ ] A project-wide search for `{{` finds nothing outside `bootstrap/` (ignore the meta

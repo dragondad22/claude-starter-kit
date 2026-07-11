@@ -236,8 +236,9 @@ gh project link <number> --owner <owner> --repo <owner>/<repo>
 ```
 
 The rest is UI-only — in the project's settings: rename/extend the built-in
-Status options to `Backlog / Next / In progress / Done`, create the two saved
-views above, and under Workflows enable **"Item closed → Status: Done"** and
+Status options to `Backlog / Next / In progress / Done`, create the three saved
+views above (the Roadmap view needs the Horizon field first — "Setup (once per
+repo)" in `ai/STANDARDS/ROADMAP_STANDARD.md`), and under Workflows enable **"Item closed → Status: Done"** and
 **"Auto-add to project"** for the repo. Without the token scope, create the
 project itself in the UI too — same steps.
 

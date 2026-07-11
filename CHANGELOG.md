@@ -7,6 +7,9 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Fixed
+- Horizon field + Roadmap view setup is now reachable on the bootstrap path: `/bootstrap` step 5 references ROADMAP_STANDARD's "Setup (once per repo)" alongside the base board setup (previously only `/conform github` did, so the roadmap surface never got created at inception); fixed the stale "two saved views" count in TASK_ISSUE_STANDARD's board setup and `bootstrap/SETUP.md` (the standard lists three). New repo-wide rule in DOCUMENTATION_STANDARD, checked by the `/evergreen` standards-drift lens: every "Setup (once per repo)" block needs a workflow owner in `/bootstrap` or `/conform` (#103)
+
 ### Added
 - `/bootstrap` now generates **`SETUP_CHECKLIST.md`** (new step 6): every human-only step — `gh` scopes, board UI-only steps, CI secrets, tokens/API keys, integration signups — with what/why, instructions, and alternatives; once the human confirms completion the AI offers to delete it (recurring items graduate to runbooks). Manual path gains the equivalent checklist step in `bootstrap/SETUP.md` (#95)
 - Runtime version policy is now explicit: paved-road **evergreen** default (latest stable per toolchain unless a dependency pins, pins carry recorded reasons) + spine question **Q-ARCH-05** that confirms the default and captures pins — previously the interview never asked and the policy was inferred from whatever was installed (#102)
