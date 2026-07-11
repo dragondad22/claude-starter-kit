@@ -82,6 +82,8 @@ run them locally before pushing changes to `template/`.
   `template/core/bootstrap/PLACEHOLDERS.md`. Keep them; the kit repo never fills them.
 - OS-agnostic docs: no OS-specific instructions in shipped docs unless labeled
   (rule: `template/core/ai/STANDARDS/DOCUMENTATION_STANDARD.md`).
+- Kit-docs keep-current (T30.2): a PR that changes shipped commands, the workflow,
+  or the shipped directory structure updates `template/core/docs/kit/` in the same PR.
 
 ## Anti-Drift Rules
 
