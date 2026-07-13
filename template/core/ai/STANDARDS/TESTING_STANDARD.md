@@ -87,7 +87,10 @@ no report document. **Failure is forensic**: write a diagnostic bundle per
 `ai/TEMPLATES/DIAGNOSTIC_BUNDLE_TEMPLATE.md` (what ran, what failed, evidence,
 suspected cause, direction — the template carries the formatting rules), with
 artifacts under a timestamped directory:
-- `testing-reports/artifacts/<date>_<{{WORK_ITEM_PREFIX}}-NNN>_<feature>_<timestamp>/`
+- `testing-reports/artifacts/<date>_<{{WORK_ITEM_PREFIX}}-NNN>_<feature>_<run>/`
+  where `<run>` is a zero-padded counter (`001`, `002`, …) — next unused for that
+  date+item+feature. Counters collision-proof same-day re-runs and read in order,
+  which epoch timestamps don't.
 
 Minimum failure artifacts:
 - Command log per failed suite (with exit codes).
@@ -97,6 +100,22 @@ Minimum failure artifacts:
 Bundles live locally in the `artifacts/` subdir of `testing-reports/` and as CI
 run artifacts on failure — never committed (the root `.gitignore`'s whitelist
 shape keeps everything there except the README out of git).
+
+## Green-run audit (the suite is green — is it telling the truth?)
+
+Success is silent, but silence earns periodic scrutiny. Run this audit when a
+work item completes UAT (the acceptance doc has sections for it, if the reports
+module is installed) or on the `/evergreen` cadence — findings become tracked
+issues like any other:
+
+- **Test integrity** — skipped/disabled tests and why; tests that cannot fail
+  (no meaningful assertion, assertions on mocks of mocks); suspicious pass
+  patterns (a suite that never once failed through a risky change); drift
+  between suite names and what they actually exercise.
+- **Data realism** — where mocks/fixtures diverge from production-shaped data
+  enough to mask real failures: shapes (missing optional fields, no unicode/long
+  values), volumes (three rows where production has thousands), and states
+  (never-expired sessions, always-complete records).
 
 > The kit ships helper-script stubs (e.g. an evidence-collection script). Wire them to
 > `{{TEST_COMMAND}}` / `{{E2E_COMMAND}}` for this project, or run the commands directly.

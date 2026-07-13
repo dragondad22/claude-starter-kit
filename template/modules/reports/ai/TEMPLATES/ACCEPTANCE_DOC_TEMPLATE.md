@@ -65,6 +65,22 @@ viewports for web (375x812 / 768x1024 / 1280x800).
 - E2E smoke: <`{{E2E_COMMAND}}` — exit code / run link>; failure artifacts
   (screenshot / trace / video) retained and linked above.
 
+## Test integrity audit (green-but-lying check)
+
+The suite is green — audit whether it's telling the truth (rule:
+`ai/STANDARDS/TESTING_STANDARD.md` § Green-run audit):
+
+- Skipped/disabled tests touching this work item, and why: <list, or "none">
+- Tests that cannot fail (no meaningful assertion / asserting on mocks of
+  mocks): <findings, or "none observed">
+- Suite-name vs behavior drift in the touched areas: <findings, or "none">
+
+## Data realism review
+
+- Where do this run's mocks/fixtures diverge from production-shaped data
+  (shapes, volumes, states) enough to mask a real failure? <findings, or
+  "fixtures judged representative — basis: …">
+
 ## Blockers, risks, issues
 
 - <filed issues with links; risks accepted and by whom; BLOCKED items with the
@@ -85,3 +101,4 @@ Per the standard — this doc is complete only when:
 - [ ] The UX/accessibility critique is complete
 - [ ] Blockers, risks, and issues are explicitly documented
 - [ ] The E2E smoke ran with failure artifacts retained (or the non-web equivalent)
+- [ ] Test integrity audit and data realism review recorded (findings → tracked issues)
