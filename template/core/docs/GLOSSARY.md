@@ -48,10 +48,12 @@ Example entry:
 
 - **ADR (Architecture Decision Record)** — a short doc recording one
   architectural decision: context, the decision, consequences, alternatives.
-  Lives in `docs/architecture/decisions/`; numbered `ADR-NNN`; superseded, never
-  rewritten.
-- **Decision log** — the same idea for product/scope decisions, one file
-  (`docs/decision-log.md`), append-only entries.
+  Numbered `ADR-NNN`; superseded, never rewritten. Path: `CLAUDE.md` § Decision
+  Recording (kit default `docs/architecture/decisions/`).
+- **Decision log** — the same idea for product/scope decisions, one append-only
+  file. Path: `CLAUDE.md` § Decision Recording (kit default
+  `docs/decision-log.md` — retrofit repos may keep theirs elsewhere until a
+  conform pass moves it).
 - **Epic / sub-issue** — an epic is a parent issue grouping a workstream
   (`type:epic`); its breakdown lives in native sub-issues. Milestones mean
   releases only, never epics.
@@ -84,7 +86,7 @@ Example entry:
 - **ERD (Entity-Relationship Diagram)** — the canonical picture of the data
   model; updated in the same PR as any schema change.
 - **Runbook** — a step-by-step operational how-to (restore a backup, rotate a
-  secret, find errors in logs). Lives in `docs/runbooks/`.
+  secret, find errors in logs). Lives in `docs/runbooks/` (kit default).
 - **Module (kit sense)** — optional starter-kit content staged dormant under
   `bootstrap/modules/` and installed when its trigger fires (first schema file,
   first UI code, …). _Avoid_: confusing with language/package modules.
@@ -99,4 +101,7 @@ Example entry:
 - **Feature spec** — a journey-first two-layer feature document in
   `docs/specs/` (`SPEC-<DOMAIN>-NNN`): plain-language journey on top for
   non-technical stakeholders, technical spec below for AI/devs/UAT.
-  _Avoid_: "workflow doc" (the pre-v2 name).
+  _Avoid_: calling a spec a "workflow doc" — specs are journey-first and
+  two-layer, not process descriptions. (Repos with a legitimate `workflow`
+  doc surface of their own are unaffected — the rule is about what specs are
+  called, not a ban on the word.)
