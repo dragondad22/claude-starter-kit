@@ -95,6 +95,8 @@ if recorded "$MOD"; then
 fi
 
 echo "=== installing module '$MOD' ==="
+IN_GIT="$(git -C "$ROOT_DIR" rev-parse --is-inside-work-tree 2>/dev/null || echo false)"
+ignored_files=""
 installed=0
 for f in "${FILES[@]}"; do
   src="$STAGE/$MOD/$f"
@@ -107,8 +109,21 @@ for f in "${FILES[@]}"; do
     cp "$src" "$dest"
     echo "  installed: $f"
     installed=$((installed + 1))
+    # A pre-existing .gitignore can swallow an installed file: on disk, but it
+    # silently falls out of the commit. Warn so the human adjusts the rule.
+    if [ "$IN_GIT" = "true" ] && git -C "$ROOT_DIR" check-ignore -q "$f"; then
+      ignored_files="$ignored_files
+  $f"
+    fi
   fi
 done
+
+if [ -n "$ignored_files" ]; then
+  echo ""
+  echo "WARN: installed but excluded by this repo's .gitignore — adjust the ignore"
+  echo "      rule (whitelist shape: 'dir/*' + '!dir/README.md') or these files"
+  echo "      will never be committed:$ignored_files"
+fi
 
 # Record the install in the upgrade marker (kit version + date per module).
 if ! recorded "$MOD"; then
