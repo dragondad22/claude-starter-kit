@@ -50,7 +50,9 @@ these artifacts live in this project:
    `docs/uat/UAT_{{WORK_ITEM_PREFIX}}-<ID>_*.md`).
 2. The implementation plan for the matching work item.
 3. The relevant feature spec(s) in `docs/specs/`.
-4. ADRs and the product decision log.
+4. Product workflow docs, if the project keeps them as an authoritative surface
+   (e.g. a `docs/workflows/` tier listed in `CLAUDE.md`'s source-of-truth order).
+5. ADRs and the product decision log.
 
 If conflict remains unresolved:
 - Follow the higher-precedence source.

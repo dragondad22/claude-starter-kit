@@ -146,7 +146,10 @@ Releases are **timeboxed**, not milestone-planned. Propose cutting a release —
 and get human approval before doing it — when `[Unreleased]` is non-empty **and
 either** of these holds (whichever comes first):
 
-- **Time**: ~2 weeks have passed since the last release, or
+- **Time**: ~2 weeks have passed since the last release — probe it mechanically
+  with git rather than guessing: `git log -1 --format=%ci -- <a version file>`
+  (e.g. `VERSION`) gives the last release-cut date, since version files only
+  change at release time. Or
 - **Batch**: `[Unreleased]` has accumulated a meaningful batch (≥2 features or
   ~8+ entries).
 
