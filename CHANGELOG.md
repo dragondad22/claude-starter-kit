@@ -7,6 +7,8 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-07-13
+
 ### Added
 - Green-but-lying analysis gets a kit home: TESTING_STANDARD § Green-run audit (test integrity: skipped/can't-fail/suspicious-pass/name-drift; data realism: fixture shapes/volumes/states vs production) + matching sections and completion-gate line in the reports module's acceptance doc; bundle artifact naming switches from epoch timestamp to a zero-padded run counter; new shipped `ai/scripts/lint-report-markdown.sh` enforces the table-pipe-escape rule mechanically — ShelterSync port-back (#134)
 - sla module ships operational tooling: `ai/scripts/triage-sla-report.sh` (open quality findings vs response windows, OK/BREACH per issue, exit 2 on breach for scheduled CI) with the standard gaining an "Operational report" section — the table is the commitment, the script is the meter; staged-modules README warns to reconcile an existing same-role doc before installing a module standard — ShelterSync port-back (#131)
