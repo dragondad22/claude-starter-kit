@@ -47,7 +47,8 @@ helper — never raw `console.*` / direct stream writes:
 - **Stable `type`s:** keep an enumerated set (e.g. `http_request`, `unhandled_error`,
   `unhandled_rejection`, `uncaught_exception`, `server_start`, `server_shutdown`,
   `client_error`). Add a **new** `type` rather than overloading an existing one; keep fields
-  flat and stable.
+  flat and stable. When adding a new `type`, document its payload and redaction rules in
+  this standard **in the same PR** — an undocumented type is where redaction drift starts.
 
 ### Client-error ingest (if other surfaces report errors)
 If frontend/mobile POST uncaught errors to a backend ingest endpoint that emits a
@@ -59,6 +60,17 @@ If frontend/mobile POST uncaught errors to a backend ingest endpoint that emits 
 - **Correlation:** a client-supplied request id refers to the *failing* call and is distinct
   from the ingest request's own id.
 - **Rate-limit** the endpoint so a client crash-loop can't flood the sink.
+
+### Outbound messages (if the project sends email/SMS/push/webhooks)
+Log sends with dedicated stable types (e.g. `outbound_message_sent` /
+`outbound_message_failed`):
+- Log a **masked recipient identifier** (`j***@example.com`), never the full
+  address/number.
+- **Never log the message body, verification codes/OTPs, or provider credentials.**
+- **"Provider accepted" ≠ "delivered."** Log the acceptance as an acceptance; only a
+  delivery callback justifies a delivered claim.
+- **Logging is additive: log, then rethrow.** A send-failure log line must never
+  swallow the exception — the caller still needs to handle the failure.
 
 ## Levels & threshold
 - Levels: `debug | info | warn | error`.
@@ -96,4 +108,5 @@ applicable), and what a typical failure trail looks like.
 - [ ] Stable `type`; flat fields; `requestId` (and tenant id, if applicable) included where available.
 - [ ] Correct level; nothing important logged below the default threshold.
 - [ ] No token/secret/credential/PII/body/cross-tenant data in any field.
+- [ ] New `type`s documented in this standard (payload + redaction) in the same PR.
 - [ ] Domain mutation / auth activity routed to its **durable** stream — not here.

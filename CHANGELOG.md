@@ -7,6 +7,9 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Added
+- LOGGING_STANDARD: outbound-message send-logging pattern (masked recipient, never bodies/OTPs/provider credentials, accepted≠delivered, log-then-rethrow) plus the rule that a new log `type` documents its payload + redaction in the standard in the same PR — ShelterSync port-back (#128)
+
 ## [0.9.0] - 2026-07-13
 
 ### Changed
