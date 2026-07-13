@@ -7,6 +7,8 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-07-13
+
 ### Changed
 - Worked examples across the shipped tree (PLACEHOLDERS values incl. the tracker URL, PERSONAS + GLOSSARY worked examples, GITHUB_ISSUES `IMP-*` IDs) now use one obviously fictional project — RoastLog by Acme Roasters — instead of a real adopter, so examples can never be mistaken for filled values or leak a real org URL; the convention is stated in PLACEHOLDERS.md (#118)
 
