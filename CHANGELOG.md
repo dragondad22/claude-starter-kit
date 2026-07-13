@@ -7,6 +7,9 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Changed
+- Worked examples across the shipped tree (PLACEHOLDERS values incl. the tracker URL, PERSONAS + GLOSSARY worked examples, GITHUB_ISSUES `IMP-*` IDs) now use one obviously fictional project — RoastLog by Acme Roasters — instead of a real adopter, so examples can never be mistaken for filled values or leak a real org URL; the convention is stated in PLACEHOLDERS.md (#118)
+
 ### Fixed
 - GLOSSARY seed no longer asserts kit-default paths as fact (ADR / decision-log / runbook entries now route through `CLAUDE.md` § Decision Recording with the kit default noted — retrofit repos keep theirs elsewhere until conform) and the 'Feature spec' entry drops the kit-internal "pre-v2" aside; its _Avoid_ rule is now self-contained and scoped so it can't collide with a repo's own legitimate workflow-doc surface (#117, #119)
 - `/conform`'s file-naming audit gains a retrofit guard: it states the naming rule as the kit's own and, when the repo's pre-kit `DOCUMENTATION_STANDARD.md` has no naming section, defers the audit to the `/evergreen` kit-delta verdict instead of renaming against a rule the repo never adopted (#120)

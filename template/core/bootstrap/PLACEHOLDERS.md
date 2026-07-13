@@ -2,7 +2,10 @@
 
 Every customizable value in this kit is written as a `{{DOUBLE_BRACE}}` token.
 The `/bootstrap` command (or a manual find-and-replace) fills them in. This file
-is the single source of truth for what each token means.
+is the single source of truth for what each token means. Worked examples here
+and across the kit use the fictional **RoastLog** (batch tracking for coffee
+roasteries, by the equally fictional Acme Roasters) — obviously-fictional values
+can never be mistaken for filled ones.
 
 > Convention: tokens are `UPPER_SNAKE_CASE` inside `{{ }}`. A token that is
 > optional for a given project should be set to a sensible literal or removed
@@ -12,18 +15,18 @@ is the single source of truth for what each token means.
 
 | Token | Meaning | Example |
 |---|---|---|
-| `{{PROJECT_NAME}}` | Product / repo name | `ShelterSync` |
-| `{{PROJECT_TAGLINE}}` | One-line description of what it is | `Multi-tenant SaaS for animal shelters` |
-| `{{PROJECT_OWNER}}` | Company / org / individual that owns it | `Zoolytix` |
-| `{{PROJECT_DOMAIN}}` | The problem domain, in plain words | `animal shelter operations` |
+| `{{PROJECT_NAME}}` | Product / repo name | `RoastLog` |
+| `{{PROJECT_TAGLINE}}` | One-line description of what it is | `Multi-site SaaS for coffee roasteries` |
+| `{{PROJECT_OWNER}}` | Company / org / individual that owns it | `Acme Roasters` |
+| `{{PROJECT_DOMAIN}}` | The problem domain, in plain words | `coffee roastery operations` |
 
 ## Source control & tracking
 
 | Token | Meaning | Example |
 |---|---|---|
-| `{{ISSUE_TRACKER}}` | Where tasks live (URL or tool name) | `https://github.com/orgs/Zoolytix/projects/2` |
+| `{{ISSUE_TRACKER}}` | Where tasks live (URL or tool name) | `https://github.com/orgs/acme-roasters/projects/1` |
 | `{{ISSUE_TRACKER_KIND}}` | `GitHub Issues`, `Jira`, `Linear`, etc. | `GitHub Issues` |
-| `{{WORK_ITEM_PREFIX}}` | Prefix for work-item IDs used in reports/branches | `IMP` (yields `IMP-008`) |
+| `{{WORK_ITEM_PREFIX}}` | Prefix for work-item IDs used in reports/branches | `RST` (yields `RST-008`) |
 
 ## Stack & layout (stack-agnostic — fill with whatever is true)
 
@@ -61,7 +64,7 @@ Drive `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md` and seed `docs/complia
 | Token | Meaning | Example |
 |---|---|---|
 | `{{TARGET_PLATFORMS}}` | Where it ships | `iOS + Android + web` / `API-only` / `CLI` |
-| `{{AUDIENCE}}` | Who uses it, incl. age if minors | `shelter staff + volunteers, 14+` / `general adult` |
+| `{{AUDIENCE}}` | Who uses it, incl. age if minors | `roastery staff + apprentices, 16+` / `general adult` |
 | `{{REGULATED_DATA}}` | Regulated/sensitive data handled | `PII + messages` / `none` |
 | `{{COMPLIANCE_FEATURES}}` | Features that carry obligations | `staff↔user messaging, public API` / `none` |
 
@@ -69,8 +72,8 @@ Drive `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md` and seed `docs/complia
 
 `{{NON_NEGOTIABLES}}` — a bulleted list of finalized architectural constraints
 that must not be re-litigated. This is the highest-value thing the interview
-captures. ShelterSync's were: multi-org isolation, RBAC at every layer, audit
-trails, restriction-not-deactivation, stateful sessions. Yours will differ —
+captures. RoastLog's were: multi-site isolation, RBAC at every layer, audit
+trails, closed-batch immutability, stateful sessions. Yours will differ —
 many small projects have just one or two (e.g. "no PII leaves the device",
 "all writes are idempotent"). It is fine for this to be short, but never empty.
 

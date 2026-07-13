@@ -50,7 +50,7 @@ If a duplicate exists, link the existing issue in the report instead of creating
 a new one.
 
 ## Title Format
-Use `{{WORK_ITEM_PREFIX}}-XXX` for the work-item ID (e.g. `IMP-006`).
+Use `{{WORK_ITEM_PREFIX}}-XXX` for the work-item ID (e.g. `RST-006`).
 - TESTER: `[TEST][{{WORK_ITEM_PREFIX}}-XXX][Severity] Short summary`
 - UAT: `[UAT][{{WORK_ITEM_PREFIX}}-XXX][Severity] Short summary`
 - SECURITY REVIEWER: `[SEC][{{WORK_ITEM_PREFIX}}-XXX][Severity] Short summary`
@@ -69,7 +69,7 @@ Use `{{WORK_ITEM_PREFIX}}-XXX` for the work-item ID (e.g. `IMP-006`).
 ## CLI Example (GitHub)
 ```bash
 gh issue create \
-  --title "[TEST][IMP-006][High] OTP suite intermittently fails on lockout boundary" \
+  --title "[TEST][RST-006][High] OTP suite intermittently fails on lockout boundary" \
   --label "type:bug,severity:high,testing,flaky-test" \
   --body-file /tmp/issue.md
 ```
