@@ -13,7 +13,7 @@ Close out project inception: consume the inception interview's `Final:` answers 
 
 2. **Fill placeholders from `Final:` fields.** `bootstrap/PLACEHOLDERS.md` is the authoritative token list; `bootstrap/INTERVIEW.md` maps each token to the interview answers that feed it. Replace every `{{TOKEN}}` across the repo (`CLAUDE.md`, `ai/**`, `docs/**`, `.claude/commands/*`, `CHANGELOG.md`, `VERSION`). Do NOT edit files under `bootstrap/` (they document the tokens). Also:
    - Write the project's version files list into `ai/scripts/version-files.txt`; seed `VERSION` (default `0.1.0`) and `CHANGELOG.md`'s first heading.
-   - Strip the one-line genericization banner at the top of each `ai/STANDARDS/*` and `ai/TEMPLATES/*` file — its job is done once adapted.
+   - Strip the one-line genericization banner at the top of each `ai/STANDARDS/*` and `ai/TEMPLATES/*` file — its job is done once adapted, and adopting a file as-is counts (banner semantics: `bootstrap/PLACEHOLDERS.md` § Meta-literals).
    - Anything no `Final:` answers (rare — mechanical facts like an exact migrate command), detect and confirm in chat; do not reopen interview ground.
 
 3. **Generate the founding artifacts from `Final:` fields** — every derived artifact gets a `Source:` citation (qualified Q-ID, e.g. `000/Q-ARCH-03`) and is listed back on the question's `Derived:` line and in `00-INDEX.md`:

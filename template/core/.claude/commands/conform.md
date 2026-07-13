@@ -10,6 +10,7 @@ Tidy an existing repo to the kit's current standards: file renames, doc reorgani
    - File naming → `ai/STANDARDS/DOCUMENTATION_STANDARD.md` (reference docs `UPPER_SNAKE_CASE.md`, working docs `kebab-case.md`, ecosystem-fixed and ID-anchored names exempt).
    - Doc layout → the shipped tree: ADRs in `docs/architecture/decisions/`, specs in `docs/specs/`, runbooks in `docs/runbooks/`, interviews/plans in `docs/plans/`, glossary/personas/decision-log at `docs/` root.
    - Structure → standards in `ai/STANDARDS/`, templates in `ai/TEMPLATES/`, scripts in `ai/scripts/`, checklists in `ai/CHECKLISTS/`.
+   - Genericization banners → a standard/template with no unfilled `{{TOKENS}}` that still carries the kit's line-1 banner is unfinished adaptation: strip the banner (banner semantics: `bootstrap/PLACEHOLDERS.md` § Meta-literals).
    Produce a **conform plan**: a rename/move table (from → to, rule cited) plus the reference updates each rename requires. Present it and **get approval before changing anything**.
 
 3. **Execute as tracked work.** One tracked issue, one branch, one PR (`ai/STANDARDS/GIT_WORKFLOW_STANDARD.md`). Renames/moves via `git mv` so history follows. Update every reference to a renamed/moved file **in the same PR** — a conform pass must not create dead links. Verify no behavior change: build and tests pass unchanged, and the diff contains only renames, moves, and reference updates.

@@ -88,8 +88,14 @@ many small projects have just one or two (e.g. "no PII leaves the device",
 
 `{{TOKEN}}`, `{{TOKENS}}`, `{{PLACEHOLDER}}`, `{{DOUBLE_BRACE}}` appear only inside
 instructional text (this file, `README.md`, and the one-line genericization banner at the
-top of each standard/template). They are illustrative, not values to fill. Bootstrap
-should strip the genericization banner lines once the kit is adapted.
+top of each standard/template). They are illustrative, not values to fill.
+
+**Banner semantics:** the line-1 genericization banner marks a standard/template as
+*not yet adapted to this project* — and adopting a file as-is counts as adapting.
+Whichever path does the adapting strips the banner: `/bootstrap` when it fills
+placeholders, `/conform` when it tidies an adopted repo. A banner surviving on a file
+with no unfilled tokens is leftover adaptation work — `/evergreen`'s standards-drift
+lens flags it.
 
 ---
 
