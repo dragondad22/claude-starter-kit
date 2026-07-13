@@ -169,7 +169,10 @@ examples — set your project's choices.)*
 ### 6.3 Tables
 
 - Header uses a muted background with clear column labels.
-- Support sorting where meaningful; show the sort affordance.
+- **Columns are sortable by default** — opt *out* per column when sorting is
+  meaningless (icon/action columns), not in when someone asks. Show the sort
+  affordance, and make it keyboard-activatable. The weaker "sort where meaningful"
+  default generates a steady drip of "can you make this sortable" issues.
 - Row hover state required.
 - Row/table actions default to icon-only buttons (to keep dense tables scannable),
   each with hover text **and** an accessible label.
@@ -244,6 +247,18 @@ examples — set your project's choices.)*
 - Product/brand names keep their branded styling (e.g. `{{PROJECT_NAME}}`).
 - Acronyms/initialisms stay uppercase: `ID`, `CSV`, `API`, `RBAC`.
 - Do not use Title Case or ALL CAPS for emphasis; use typographic hierarchy instead.
+
+### 9.2 Humanize codes at the display layer
+
+- Enum/status codes from the backend are **humanized by a display-layer helper**
+  (one shared `humanizeCode`-style function), never rendered raw and never dressed
+  up with CSS.
+- **Never CSS `text-transform: capitalize` on data values** — it produces artifacts
+  like `In_progress` / `Uat` and breaks the moment a code changes shape.
+- **Never interpolate raw backend codes** (`{x.status}`) into visible text — the
+  second failure class of the same bug; both classes are worth sweeping for.
+- The helper owns the code→label mapping so a new enum value gets one edit, not a
+  per-view hunt.
 
 ## 10. Implementation Checklist
 
