@@ -36,9 +36,9 @@ Close out project inception: consume the inception interview's `Final:` answers 
 7. **Verify.** Run:
    ```bash
    grep -rnoE '\{\{[A-Z_]+\}\}' . --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' \
-     | grep -vE '/bootstrap/|/README.md|\{\{(TOKEN|TOKENS|PLACEHOLDER|DOUBLE_BRACE)\}\}'
+     | grep -vE -f <(grep -vE '^#|^$' bootstrap/VERIFY_IGNORE)
    ```
-   It should return nothing (the excluded tokens are meta-literals — see `bootstrap/PLACEHOLDERS.md`). Also confirm `bootstrap/KIT_VERSION` exists and records the scaffold. (Snippet is macOS/Linux; on Windows use `rg "\{\{"` or an editor's project-wide search.)
+   It should return nothing — the exclusion list lives in `bootstrap/VERIFY_IGNORE` (kit meta-literals plus, on retrofit repos, any pre-existing runtime placeholders; the file's header explains how to extend it). A remaining hit is either an unfilled token (fill it) or a legitimate runtime placeholder (add a narrow pattern to `VERIFY_IGNORE` — never edit the flagged file to appease the grep). Also confirm `bootstrap/KIT_VERSION` exists and records the scaffold. (Snippet is macOS/Linux bash; on Windows use `rg "\{\{"` or an editor's project-wide search.)
 
 8. **Hand off.** Summarize: what was filled and generated, which modules were installed vs left staged, which questions were deferred on defaults, and what remains by hand — pointing at `SETUP_CHECKLIST.md` for all of it. Suggest committing the bootstrapped state as the first commit. Point at `docs/kit/WORKFLOW.md` for what comes next and `ai/agent-setup.md` as the living orientation doc.
 

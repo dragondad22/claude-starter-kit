@@ -80,6 +80,7 @@ core:
     - bootstrap/PAVED_ROAD.md
     - bootstrap/PLACEHOLDERS.md
     - bootstrap/SETUP.md
+    - bootstrap/VERIFY_IGNORE
     - docs/architecture/decisions/ADR_INDEX.md
     - docs/architecture/decisions/ADR_TEMPLATE.md
     - docs/compliance/COMPLIANCE_REGISTER.md

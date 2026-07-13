@@ -49,10 +49,12 @@ time (`bootstrap/modules/README.md` explains the staging).
 
 ## 4. Verify
 - [ ] A project-wide search for `{{` finds nothing outside `bootstrap/` (ignore the meta
-  tokens listed in `PLACEHOLDERS.md`). macOS / Linux CLI equivalent:
+  tokens listed in `PLACEHOLDERS.md`). macOS / Linux CLI equivalent (exclusions live in
+  `bootstrap/VERIFY_IGNORE` — retrofit repos with their own runtime placeholders extend
+  that file, per its header):
   ```
   grep -rnoE '\{\{[A-Z_]+\}\}' . --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' \
-    | grep -vE '/bootstrap/|/README.md|\{\{(TOKEN|TOKENS|PLACEHOLDER|DOUBLE_BRACE)\}\}'
+    | grep -vE -f <(grep -vE '^#|^$' bootstrap/VERIFY_IGNORE)
   ```
 - [ ] `bash ai/scripts/check-version-sync.sh` passes
 - [ ] The `ai/scripts/*.sh` automation runs (POSIX shell — native on macOS/Linux; Git Bash or WSL

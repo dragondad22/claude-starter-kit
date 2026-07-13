@@ -8,6 +8,7 @@ and this project adheres to Semantic Versioning.
 ## [Unreleased]
 
 ### Fixed
+- Bootstrap verify grep exclusions moved to a new shipped `bootstrap/VERIFY_IGNORE` file (read via `grep -vE -f`), with path patterns anchored `(^|/)…` — the old inline `/bootstrap/` exclusion silently never matched on greps that emit unprefixed paths (ugrep and other drop-in `grep` replacements), making a fully-bootstrapped repo look broken (#114); retrofit repos append narrow patterns for pre-existing runtime placeholders (`{{DATE}}`-style, filled by their own scripts) instead of hand-waving caveats — the "returns nothing" contract stays mechanical (#115)
 - Genericization-banner semantics now have an owner on every adoption path: `bootstrap/PLACEHOLDERS.md` § Meta-literals defines the banner as an adaptation-pending marker (adopting a file as-is counts as adapting), `/conform`'s drift inventory strips surviving banners on token-free standards/templates, `/evergreen`'s standards-drift lens flags them, and `/bootstrap`'s strip step cites the semantics — previously only `/bootstrap` knew the rule, so repos arriving via the adoption tier kept banners on fully-adapted standards (#112)
 
 ## [0.8.0] - 2026-07-11
