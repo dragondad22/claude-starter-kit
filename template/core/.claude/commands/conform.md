@@ -7,7 +7,7 @@ Tidy an existing repo to the kit's current standards: file renames, doc reorgani
 1. **Scope.** No argument → the repo surface (files, docs, structure), and offer the tracker scope as a follow-up. `github` → tracker surface only (step 4). Missing kit pieces discovered along the way (no labels manifest, no board, no `bootstrap/KIT_VERSION`) belong to `/bootstrap` retrofit — offer it, don't absorb it.
 
 2. **Inventory drift against the standards that define "conformant".**
-   - File naming → `ai/STANDARDS/DOCUMENTATION_STANDARD.md` (reference docs `UPPER_SNAKE_CASE.md`, working docs `kebab-case.md`, ecosystem-fixed and ID-anchored names exempt).
+   - File naming → the kit's rule: reference docs `UPPER_SNAKE_CASE.md`, working docs `kebab-case.md`, ecosystem-fixed and ID-anchored names exempt (rationale: `ai/STANDARDS/DOCUMENTATION_STANDARD.md`). **Retrofit guard:** on a repo whose own pre-kit `DOCUMENTATION_STANDARD.md` has no naming section, the repo hasn't adopted this rule yet — renaming against it would front-run the `/evergreen` kit-delta verdict on that standard. Defer the naming audit, record why, and revisit after the verdict.
    - Doc layout → the shipped tree: ADRs in `docs/architecture/decisions/`, specs in `docs/specs/`, runbooks in `docs/runbooks/`, interviews/plans in `docs/plans/`, glossary/personas/decision-log at `docs/` root.
    - Structure → standards in `ai/STANDARDS/`, templates in `ai/TEMPLATES/`, scripts in `ai/scripts/`, checklists in `ai/CHECKLISTS/`.
    - Genericization banners → a standard/template with no unfilled `{{TOKENS}}` that still carries the kit's line-1 banner is unfinished adaptation: strip the banner (banner semantics: `bootstrap/PLACEHOLDERS.md` § Meta-literals).
