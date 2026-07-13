@@ -58,6 +58,17 @@ window. Unassigned past the window = the clock is already blown.
 - Repeated blown windows at any severity → the numbers are wrong for the team's
   capacity; renegotiate them here rather than quietly ignoring them.
 
+## Operational report (the meter behind the promise)
+
+The module ships `ai/scripts/triage-sla-report.sh`: a snapshot of every open
+quality finding, its age, its response window, and OK/BREACH status (exit code 2
+on any breach, so CI can run it on a schedule). Keep the script's day-windows in
+agreement with the table above — the table is the commitment, the script is only
+the meter. A standard with no meter drifts from promise to aspiration.
+
+GitHub-specific (`gh` + `jq`); other trackers: reimplement the same query,
+keeping the labels and windows aligned with this standard.
+
 ## See Also
 
 - `ai/STANDARDS/GITHUB_ISSUES.md` — core triage: labels, severity definitions,

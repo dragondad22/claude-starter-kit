@@ -14,3 +14,9 @@ first UI code, first formal QA/UAT need, first deploy target, team formation —
 the table lives in the manifest staged alongside this file) — never silently
 applied. Installs are recorded in `bootstrap/KIT_VERSION`, which also names the
 kit version this project came from.
+
+**Before installing a module that ships a standard**, check whether the repo
+already has its own doc covering that role under another name (retrofit repos
+often do — e.g. an existing SLA doc named differently). Installing anyway
+creates two authorities for one topic; reconcile first — `git mv` or merge the
+existing doc via `/conform` — rather than keeping both.
