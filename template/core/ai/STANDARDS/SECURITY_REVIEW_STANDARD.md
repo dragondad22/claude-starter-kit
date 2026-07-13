@@ -67,6 +67,9 @@ failing, the outcome must be `BLOCKED` with the exact human action required.
 
 ## Baseline Targeted Test Set
 Maintain a named, stable set of security regression tests that the pack always runs.
+**List the actual file paths of the baseline tests in this standard, not just their
+capabilities** — a capability description cannot detect a renamed or deleted test,
+but a path list visibly disagrees with the tree the moment one goes missing.
 Adapt to the project's surfaces; cover at minimum:
 - Authorization: permission-denial (under-privileged user is blocked).
 - Authentication: login success and failure paths.
