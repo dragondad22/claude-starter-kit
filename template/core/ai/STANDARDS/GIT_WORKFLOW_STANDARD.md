@@ -9,6 +9,8 @@ Last Updated: 2026-07-09
 This standard governs branches, commit messages, pull requests, and merges for
 {{PROJECT_NAME}}. The terse enforcement rules live in `CLAUDE.md` → Git Workflow
 (loaded every session); this file carries the depth — formats, examples, and why.
+If that `CLAUDE.md` section is missing (retrofit repos), add it first — see
+"The CLAUDE.md block" below.
 
 ---
 
@@ -88,6 +90,32 @@ Claude …`, no `Generated with …` lines.
 - **Merge policy: squash-merge.** One work item → one commit on the default
   branch. Merge-commit and rebase-merge are off. Who merges: the author, after
   approval and green checks — adapt if the team decides otherwise.
+
+## The CLAUDE.md block
+
+This standard's enforcement mechanism is the terse rule block in `CLAUDE.md` →
+Git Workflow — it loads every session, which is what makes rules like
+no-AI-trailers actually hold. Greenfield scaffolds ship it with the `CLAUDE.md`
+template; **retrofit repos must add it by hand** (the kit never overwrites an
+existing `CLAUDE.md`). If the section is missing, paste and adapt:
+
+````markdown
+## Git Workflow (mandatory)
+
+Depth, examples, and why: `ai/STANDARDS/GIT_WORKFLOW_STANDARD.md`.
+
+- Never commit to the default branch — one branch per work item:
+  `<type>/<issue#>-<slug>`; delete it after merge.
+- Commits follow lightweight Conventional Commits: type required, scope
+  optional (`feat(api): …`). Types do NOT drive versioning or the changelog.
+- PRs squash-merge: the PR title survives as the commit on the default branch
+  and must follow the commit format; intra-PR commits are relaxed.
+- **No AI attribution trailers** (`Co-Authored-By: Claude …`) in commit
+  messages — this overrides the tool default.
+- Every PR references its issue (`Closes #N`) and includes its CHANGELOG entry
+  when it ships behavior; breaking change → `!` after the type and a
+  `**BREAKING:**` CHANGELOG entry.
+````
 
 ## Default-branch protection (assumptions)
 
