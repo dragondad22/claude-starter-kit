@@ -124,3 +124,4 @@ modules:
     trigger: team formation
     files:
       - ai/STANDARDS/ISSUE_SLA_STANDARD.md
+      - ai/scripts/triage-sla-report.sh
