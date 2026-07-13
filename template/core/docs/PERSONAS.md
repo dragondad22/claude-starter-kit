@@ -32,15 +32,15 @@ Each persona records:
 
 <!-- WORKED EXAMPLE — delete once real personas exist.
 
-## Shelter volunteer
+## Roastery apprentice
 
-**Who:** A part-time volunteer who walks dogs and updates animal notes; not a
+**Who:** A part-time apprentice who loads batches and logs roast notes; not a
 computer person and not paid to become one.
 **Goals:**
-- Log a walk or a behavior note in under a minute
-- See which animals still need attention today
-**Role / permissions:** `volunteer` — read animals, write notes; no admin surfaces.
-**Context & constraints:** Phone only, often one-handed with a leash in the
-other; patchy connectivity in the yard; low tolerance for anything that needs
-training.
+- Log a roast note or a batch weight in under a minute
+- See which batches still need attention today
+**Role / permissions:** `apprentice` — read batches, write notes; no admin surfaces.
+**Context & constraints:** Phone only, often one-handed with a scoop in the
+other; patchy connectivity on the roastery floor; low tolerance for anything
+that needs training.
 -->
