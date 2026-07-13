@@ -51,6 +51,7 @@ core:
     - ai/CHECKLISTS/qa.md
     - ai/CHECKLISTS/validation.md
     - ai/scripts/bootstrap-labels.sh
+    - ai/scripts/lint-report-markdown.sh
     - ai/scripts/check-version-sync.sh
     - ai/scripts/lib/redact.sh
     - ai/scripts/performance-smoke.sh

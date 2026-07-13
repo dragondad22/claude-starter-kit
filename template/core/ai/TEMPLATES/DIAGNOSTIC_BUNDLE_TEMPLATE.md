@@ -18,7 +18,7 @@ failure PATTERNS across bundles are evergreen-review material, not extra issues.
 
 TABLE-LINT NOTE (single home for this rule): if a section contains markdown
 tables, avoid raw `|` inside inline code in table rows — use pipe-free wording
-or escape as `\|`.
+or escape as `\|`. Enforced mechanically: `bash ai/scripts/lint-report-markdown.sh`.
 -->
 
 ## What ran
@@ -37,7 +37,9 @@ or escape as `\|`.
 - Repro: <exact command(s) + preconditions to reproduce the failure>
 
 ## Evidence
-Artifacts under `testing-reports/artifacts/<date>_<{{WORK_ITEM_PREFIX}}-NNN>_<feature>_<timestamp>/`:
+Artifacts under `testing-reports/artifacts/<date>_<{{WORK_ITEM_PREFIX}}-NNN>_<feature>_<run>/`
+(`<run>` = next unused zero-padded counter for that date+item+feature — naming
+rule in `ai/STANDARDS/TESTING_STANDARD.md`):
 - <command/suite logs with exit codes>
 - <failing output subset — not the full green noise>
 - <UI failures: screenshots / traces / videos (Playwright writes these on failure by default)>
