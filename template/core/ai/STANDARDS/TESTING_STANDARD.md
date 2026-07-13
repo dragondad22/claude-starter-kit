@@ -94,8 +94,9 @@ Minimum failure artifacts:
 - Integrity-scan logs.
 - Screenshots/traces for UI failures.
 
-Bundles live in gitignored `testing-reports/` locally and CI run artifacts on
-failure — never committed.
+Bundles live locally in the `artifacts/` subdir of `testing-reports/` and as CI
+run artifacts on failure — never committed (the root `.gitignore`'s whitelist
+shape keeps everything there except the README out of git).
 
 > The kit ships helper-script stubs (e.g. an evidence-collection script). Wire them to
 > `{{TEST_COMMAND}}` / `{{E2E_COMMAND}}` for this project, or run the commands directly.

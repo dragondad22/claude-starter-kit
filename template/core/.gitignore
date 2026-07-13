@@ -19,8 +19,10 @@
 .idea/
 .vscode/
 
-# Generated quality artifacts
-testing-reports/artifacts/
+# Generated quality artifacts. Whitelist shape on purpose: a directory-level
+# ignore (testing-reports/) would make the shipped README un-commitable.
+testing-reports/*
+!testing-reports/README.md
 test-results/
 
 # Logs

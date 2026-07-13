@@ -69,8 +69,17 @@ copy_into() { # $1 = source file, $2 = destination file; skip existing
     mkdir -p "$(dirname "$2")"
     cp "$1" "$2"
     copied=$((copied + 1))
+    # A pre-existing .gitignore can swallow a file we just wrote (issue #121):
+    # it lands on disk but silently falls out of the adoption commit.
+    if [ "$TARGET_IS_GIT" = "true" ] && git -C "$TARGET" check-ignore -q "${2#"$TARGET"/}"; then
+      ignored_files="$ignored_files
+  ${2#"$TARGET"/}"
+    fi
   fi
 }
+
+TARGET_IS_GIT="$(git -C "$TARGET" rev-parse --is-inside-work-tree 2>/dev/null || echo false)"
+ignored_files=""
 
 echo "=== kit scaffold -> $TARGET ==="
 
@@ -115,6 +124,13 @@ fi
 for m in "$@"; do
   ( cd "$TARGET" && bash ai/scripts/scaffold-module.sh "$m" )
 done
+
+if [ -n "$ignored_files" ]; then
+  echo ""
+  echo "WARN: installed but excluded by the target repo's .gitignore — on disk, yet"
+  echo "      they will NOT be committed until the ignore rule is adjusted (whitelist"
+  echo "      shape: 'dir/*' + '!dir/README.md' instead of a directory-level 'dir/'):$ignored_files"
+fi
 
 echo ""
 echo "OK: scaffolded. Next: open the project in Claude Code and run /bootstrap"
