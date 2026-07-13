@@ -8,6 +8,7 @@ and this project adheres to Semantic Versioning.
 ## [Unreleased]
 
 ### Added
+- DOCUMENTATION_STANDARD screenshots: populate-or-shoot-empty check, clock-anchored seed data for recent/today windows, and the one-command reset+seed+capture delivery shape — the two failure modes and the fix that made captures reliable on ShelterSync (#130)
 - SECURITY_REVIEW_STANDARD: baseline security tests must be listed by actual file path, not capability alone — a path list visibly disagrees with the tree when a test is renamed/deleted; a capability list rots silently — ShelterSync port-back (#129)
 - LOGGING_STANDARD: outbound-message send-logging pattern (masked recipient, never bodies/OTPs/provider credentials, accepted≠delivered, log-then-rethrow) plus the rule that a new log `type` documents its payload + redaction in the standard in the same PR — ShelterSync port-back (#128)
 

@@ -260,6 +260,14 @@ noted in `ai/agent-setup.md`; everything else should be OS-agnostic.
 
 - Generate them with your E2E tool against a stable demo/seed dataset
   (`{{E2E_COMMAND}}`) rather than capturing by hand — hand-captured shots rot.
+- **Populate or shoot empty:** before capturing, confirm the seed actually populates
+  the surface being shot — a new page the demo seed doesn't cover captures as an
+  empty state, silently.
+- **Clock-anchored data:** any surface filtering by a recent/today/this-week window
+  must be seeded relative to the seed run's `now` (including rows dated today), never
+  fixed dates — fixed-date seeds read empty as time passes and the captures rot.
+- Prefer **one command that resets + seeds + captures** so shots are reproducible and
+  the seed/capture contract can't drift apart.
 - Mask volatile or sensitive data (names, emails, dates, ids). Capture light **and**
   dark themes if the product has both.
 - Commit generated screenshots as artifacts in a clearly-marked generated directory;
