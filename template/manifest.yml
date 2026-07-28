@@ -116,6 +116,14 @@ modules:
       - docs/uat/README.md
       - docs/uat/beta/README.md
 
+  review:
+    trigger: driveable UI + want independent (author-independent) verification
+    files:
+      - ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md
+      # Agents, driver-seam contract, journey registry, and run commands arrive
+      # in later sub-issues of the epic — added here when their content ships,
+      # so the allowlist never lists a file that does not yet exist.
+
   deploy-ci:
     trigger: first deploy target
     files: []               # placeholder — deploy/CD config + runbooks arrive when the

@@ -84,6 +84,7 @@ many small projects have just one or two (e.g. "no PII leaves the device",
 | `{{DOCS_SOURCE_OF_TRUTH}}` | Where user-facing docs live / their source of truth | `the docs site in apps/docs` / `the README` / `none yet` |
 | `{{UAT_DOC}}` | Where UAT / acceptance docs live | `docs/uat/` |
 | `{{DESIGN_SOURCE}}` | Design source of truth, if any (UI projects only) | `Figma` / `none` |
+| `{{REVIEW_BASE_URL}}` | Non-production target the independent reviewers drive (review module only; they refuse to run without it) | `http://localhost:3000` / `https://staging.example.com` |
 
 ---
 

@@ -115,6 +115,7 @@ Read the relevant standard before starting work in that area:
 - Performance: `ai/STANDARDS/PERFORMANCE_SMOKE_STANDARD.md`
 - Data/schema work: `ai/STANDARDS/DATABASE_SCHEMA_STANDARD.md` (if applicable)
 - UI work: `ai/STANDARDS/UI_STANDARD.md` (if applicable)
+- Independent review (agent-driven UAT/UX/data-integrity): `ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md` (if applicable)
 - User documentation: `ai/STANDARDS/DOCUMENTATION_STANDARD.md`
 - External standards + compliance (APIs/OpenAPI, web/W3C-WCAG, mobile stores, messaging/UGC, minors): `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md`
 - Versioning and CHANGELOG: `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md`

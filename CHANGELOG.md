@@ -7,6 +7,9 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Added
+- New opt-in **`review` module** (T33, epic #145) — independent reviewer agents that drive the running app locally as personas, verify values actually persist, and re-check flows a diff didn't touch. First sub-issue (#146) ships the module skeleton + `ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md`: the single home for independence ("read what should be true, not how it was done" + scoper/driver split), verdict/advisory authority classes (invariance is a per-agent property), the universal invariant set (round-trip / offered-means-accepted / no-silent-failure / no-dead-end — the class of the ShelterSync sentence-case save break), no-evidence-no-verdict, findings-exit routing (verdict auto-files, advisory drafts, note never), and non-production safety (`{{REVIEW_BASE_URL}}` refuse-to-run). Trigger row + manifest entry; detection-complement pointers from `ai/CHECKLISTS/coding.md` (Impact Analysis) and `ai/CHECKLISTS/qa.md`; standards-index line in `CLAUDE.md`. Agents, driver-seam contract, journey registry, and run commands arrive in #147–#149
+
 ## [0.10.0] - 2026-07-13
 
 ### Added
