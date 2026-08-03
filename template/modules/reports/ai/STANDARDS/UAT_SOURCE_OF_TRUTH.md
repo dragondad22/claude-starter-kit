@@ -62,8 +62,10 @@ If conflict remains unresolved:
 ## Acceptance Criteria Discipline
 - Acceptance criteria must be **explicit, written, and traceable to a source above** —
   do not invent acceptance criteria from conversation or memory during the UAT run.
-- When a feature spec exists, criteria cite its journey step numbers and edge-case IDs
-  (EC-n) — a spec that misses reality must fail visibly here, not silently.
+- When a feature spec exists, criteria cite its journey step numbers, edge-case IDs
+  (EC-n), and invariants (INV-n) — a spec that misses reality must fail visibly here,
+  not silently. An invariant failure is a failure even when every other criterion
+  passes.
 - Each criterion gets a recorded outcome (pass / fail / blocked) — no criterion is
   left unaddressed.
 - A feature is not "accepted" because it appears to work; it is accepted when every

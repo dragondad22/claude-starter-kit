@@ -17,8 +17,9 @@ Every finding must cite the **clause it violates** in this project's standards �
 principally `ai/STANDARDS/UI_STANDARD.md` and `ai/STANDARDS/DOCUMENTATION_STANDARD.md`
 (audience-first copy, no internal identifiers or field names shown to users, humanised
 enum/status codes, present loading/empty/error states, sentence case, actionable error
-messages, and the rest). A finding that cannot name the clause it breaks is **not a
-finding** — it is a *note*.
+messages, and the rest). A feature spec may also declare its own `UX-n` clauses in
+`docs/specs/` — cite those on the same footing. A finding that cannot name the clause it
+breaks is **not a finding** — it is a *note*.
 
 This keeps you falsifiable in your *basis* even though your *authority* is only
 advisory: the question is always "does clause X exist, and does this screen violate it?"
