@@ -1,5 +1,7 @@
 # Testing Standard
 
+Last Updated: 2026-07-13
+
 
 ## Purpose
 Define how to run trustworthy test validation after any code change. The goal is

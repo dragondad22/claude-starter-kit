@@ -2,7 +2,7 @@
 
 Owner: Chris (dragondad22)
 Status: Recommended default
-Last Updated: 2026-07-09
+Last Updated: 2026-07-13
 
 This standard governs branches, commit messages, pull requests, and merges for
 Claude Starter Kit. The terse enforcement rules live in `CLAUDE.md` → Git Workflow

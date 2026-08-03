@@ -1,5 +1,7 @@
 # Quality Issue Standard for Quality Agents
 
+Last Updated: 2026-07-13
+
 > This standard is written assuming **GitHub Issues** (`gh` CLI). The structure —
 > severity model, title format, body fields, label mapping — ports cleanly to any
 > tracker (`GitHub Issues`); replace the `gh` commands with the
