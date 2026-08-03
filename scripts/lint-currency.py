@@ -22,6 +22,14 @@ manifest — never from a second list that could itself rot:
   3. every module in manifest.yml appears in each module enumeration
   4. every shipped slash command appears in each command enumeration
 
+Why this still exists alongside `/evergreen` (T36.8 reconciliation): the
+date-sweep and standards-drift lenses ask a human-or-model to *judge* currency on
+a ~30-day cadence; this fails a PR mechanically, today, with no judgment
+involved. They compose — the lens catches what needs reading (is this rule still
+right?), the linter catches what needs counting (is this list complete, is this
+date a lie?). Neither replaces the other, and the linter is the one that would
+have stopped epic #145.
+
 Kit-dev tool: does not ship, so it is exempt from the T2 portable-shell rule.
 Needs full git history — in CI, checkout with `fetch-depth: 0`.
 
