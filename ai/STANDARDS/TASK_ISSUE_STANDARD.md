@@ -1,7 +1,5 @@
 # Task Issue Standard
 
-Last Updated: 2026-07-11
-
 > Written assuming GitHub Issues, but the structure ports to any tracker
 > (`GitHub Issues` at `https://github.com/dragondad22/claude-starter-kit/issues`). Replace `gh` commands with
 > your tracker's equivalent.

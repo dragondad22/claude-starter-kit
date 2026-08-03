@@ -1,7 +1,5 @@
 # External Standards & Compliance
 
-Last Updated: 2026-07-09
-
 Two jobs:
 
 1. **Adopt recognized external standards where they make sense** (OpenAPI, W3C/WCAG, RFCs, security baselines) instead of inventing local conventions.

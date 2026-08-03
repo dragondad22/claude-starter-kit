@@ -3,6 +3,8 @@
 # - dead-cross-reference lint: shipped docs cite only files that ship
 # - currency lint: every standard is dated and current; modules and commands appear
 #   in every enumeration (epic #172 — currency is checked, not remembered)
+# - self-conformance: the kit's own installed instance still equals the template at
+#   its pinned release, except where ADAPTATIONS.md declares otherwise (T36)
 # - portability: shipped scripts + the bootstrap smoke test run on ubuntu AND macos
 #   (stock macOS bash 3.2 / BSD sed is the portability claim being enforced)
 name: kit-selftest
@@ -28,6 +30,8 @@ jobs:
         run: python3 scripts/lint-dead-refs.py
       - name: Lint currency (dates + module/command enumerations)
         run: python3 scripts/lint-currency.py
+      - name: Verify the kit's own instance is conformant (T36)
+        run: python3 scripts/self-conform.py --check
 
   scripts:
     name: shipped scripts + bootstrap smoke (${{ matrix.os }})

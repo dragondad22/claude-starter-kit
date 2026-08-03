@@ -9,47 +9,47 @@ inception interview's `Final:` fields first, detect what's mechanical
 defaults rather than asking blind; group related questions.
 
 ## 1. Identity
-- What is the project called? → `Claude Starter Kit`
-- One line: what is it? → `A stack-agnostic starter kit for working on projects with Claude Code`
-- Who owns it (company / org / you)? → `Chris (dragondad22)`
-- What problem domain is it in, in plain words? → `AI-assisted software development process`
+- What is the project called? → `{{PROJECT_NAME}}`
+- One line: what is it? → `{{PROJECT_TAGLINE}}`
+- Who owns it (company / org / you)? → `{{PROJECT_OWNER}}`
+- What problem domain is it in, in plain words? → `{{PROJECT_DOMAIN}}`
 
 ## 2. Source control & tracking
-- Where do tasks live? Tool + URL. → `https://github.com/dragondad22/claude-starter-kit/issues`, `GitHub Issues`
-- Prefix for work-item IDs in reports/branches? (e.g. `IMP`, `TASK`, or the tracker's own keys) → `KIT`
+- Where do tasks live? Tool + URL. → `{{ISSUE_TRACKER}}`, `{{ISSUE_TRACKER_KIND}}`
+- Prefix for work-item IDs in reports/branches? (e.g. `IMP`, `TASK`, or the tracker's own keys) → `{{WORK_ITEM_PREFIX}}`
 
 ## 3. Stack & layout (detect first, confirm)
-- Primary language(s)? → `Markdown (the product) + POSIX shell and Python 3 (tooling)`
-- Top-level repo layout, one paragraph? → `template/ is the shipped product; scripts/, docs/plans/ and .github/ are kit development`
+- Primary language(s)? → `{{PRIMARY_LANGUAGE}}`
+- Top-level repo layout, one paragraph? → `{{APP_LAYOUT}}`
 - Commands (read from package.json/Makefile/etc., confirm):
-  - Run tests → `bash scripts/selftest.sh`
-  - Build / typecheck → `N/A (no build step)`
-  - Start locally → `N/A (no runtime)`
-  - Lint / format (or N/A) → `bash -n scripts/*.sh`
+  - Run tests → `{{TEST_COMMAND}}`
+  - Build / typecheck → `{{BUILD_COMMAND}}`
+  - Start locally → `{{DEV_COMMAND}}`
+  - Lint / format (or N/A) → `{{LINT_COMMAND}}`
   - E2E tests (or N/A) → `{{E2E_COMMAND}}`
-- Does it have a database? If so, ORM/migration tool + migrate command. (If no → prune DB standard) → `N/A`, `N/A`
+- Does it have a database? If so, ORM/migration tool + migrate command. (If no → prune DB standard) → `{{DB_LAYER}}`, `{{MIGRATION_COMMAND}}`
 - Does it have a UI? (If no → prune UI standard)
-- Design source of truth, if any (Figma/none)? → `none`
+- Design source of truth, if any (Figma/none)? → `{{DESIGN_SOURCE}}`
 
 ## 4. Docs
-- Where do user-facing docs live / what's their source of truth? (a docs site, a README, in-app help, "none yet") → `README.md, plus the shipped guide in template/core/docs/kit/`
-- Where do UAT / acceptance docs live? (default `docs/uat/`) → `N/A (reports module not installed)`
+- Where do user-facing docs live / what's their source of truth? (a docs site, a README, in-app help, "none yet") → `{{DOCS_SOURCE_OF_TRUTH}}`
+- Where do UAT / acceptance docs live? (default `docs/uat/`) → `{{UAT_DOC}}`
 
 ## 5. Versioning
-- Which files hold a version and must move in lockstep? (default: just `VERSION`) → `VERSION`
-- Versioning scheme? (default SemVer) → `SemVer (pre-1.0)`
+- Which files hold a version and must move in lockstep? (default: just `VERSION`) → `{{VERSION_FILES}}`
+- Versioning scheme? (default SemVer) → `{{VERSION_SCHEME}}`
 
 ## 6. Quality gates
-- CI system + key workflow file(s)? (or "none yet") → `GitHub Actions (.github/workflows/kit-selftest.yml)`
-- Dependency/security scan command? (e.g. `npm audit`, `pip-audit`, or N/A) → `N/A (no third-party dependencies)`
-- The one performance signal that matters? (e.g. an endpoint p95, cold-start time, or N/A) → `N/A`
+- CI system + key workflow file(s)? (or "none yet") → `{{CI_SYSTEM}}`
+- Dependency/security scan command? (e.g. `npm audit`, `pip-audit`, or N/A) → `{{SECURITY_SCAN_COMMAND}}`
+- The one performance signal that matters? (e.g. an endpoint p95, cold-start time, or N/A) → `{{PERF_TARGET}}`
 
 ## 7. Platforms, audience & compliance
 These drive `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md` and seed `docs/compliance/COMPLIANCE_REGISTER.md`.
-- What platforms ship? (web / iOS / Android / desktop / API-only / CLI) → `macOS + Linux developer machines (stock bash 3.2)`
-- Who's the audience, and does it include minors? If so, what age range? → `developers using Claude Code, general adult`
-- What regulated/sensitive data does it handle? (PII, health, payments, location, none) → `none`
-- Any obligation-bearing features? (user-to-user messaging, UGC, payments, tracking/analytics, public API consumed by others) → `none (MIT open-source distribution)`
+- What platforms ship? (web / iOS / Android / desktop / API-only / CLI) → `{{TARGET_PLATFORMS}}`
+- Who's the audience, and does it include minors? If so, what age range? → `{{AUDIENCE}}`
+- What regulated/sensitive data does it handle? (PII, health, payments, location, none) → `{{REGULATED_DATA}}`
+- Any obligation-bearing features? (user-to-user messaging, UGC, payments, tracking/analytics, public API consumed by others) → `{{COMPLIANCE_FEATURES}}`
 - After collecting these, walk the trigger map and pre-populate the register's "Active obligations" with the rows that fire (mark each ☐ with today's date as Verified). The 14+/messaging worked example in the register shows the shape.
 
 ## 8. Non-negotiables (most important)

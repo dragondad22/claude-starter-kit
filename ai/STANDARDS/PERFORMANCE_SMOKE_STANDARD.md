@@ -1,7 +1,5 @@
 # Performance Smoke Standard
 
-Last Updated: 2026-07-09
-
 
 ## Purpose
 Provide a lightweight performance / environment-health signal against a deployed target.

@@ -35,6 +35,7 @@ bash scripts/selftest.sh                # the whole suite (what CI runs)
 python3 scripts/validate-manifest.py   # allowlist complete, files exist, no kit-dev leaks
 python3 scripts/lint-dead-refs.py      # shipped docs cite only files that ship
 python3 scripts/lint-currency.py       # standards dated + current; modules/commands in every list
+python3 scripts/self-conform.py --check # this repo's instance still matches its pinned release
 bash scripts/bootstrap-smoke.sh        # scaffold + fill + shipped automation end-to-end
 
 # Kit release cut — the shipped script run against the kit root (issue #45):

@@ -17,7 +17,7 @@ grep -rn '{{' . --include='*.md' --include='*.sh' --include='*.json' --include='
 Do NOT edit files under `bootstrap/` — they document the tokens themselves.
 
 The order that matters most:
-- [ ] `CLAUDE.md` — identity, `template/ is the shipped product; scripts/, docs/plans/ and .github/ are kit development`, `{{NON_NEGOTIABLES}}`, commands
+- [ ] `CLAUDE.md` — identity, `{{APP_LAYOUT}}`, `{{NON_NEGOTIABLES}}`, commands
 - [ ] `ai/scripts/version-files.txt` — list the files that hold a version (default just `VERSION`)
 - [ ] `ai/STANDARDS/*` — replace command/path/tracker tokens
 - [ ] `ai/CHECKLISTS/*`, `ai/TEMPLATES/*`, `ai/agent-setup.md`
