@@ -6,7 +6,7 @@ kit itself** — `template/` is the shipped product; everything else is kit-deve
 ## Architecture
 
 - `template/core/` — shipped to every project; paths mirror the project root.
-- `template/modules/<name>/` — optional content (db, ui, reports, deploy-ci, sla),
+- `template/modules/<name>/` — optional content (db, ui, reports, review, deploy-ci, sla),
   scaffolded in when a trigger fires. Same path-mirroring rule.
 - `template/manifest.yml` — the allowlist: only manifest-listed files ever ship.
 - Repo root — kit development: this file, README, LICENSE, VERSION, CHANGELOG,
