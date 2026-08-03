@@ -13,8 +13,11 @@ upgrade path no test covers: declared adaptations colliding with upstream
 changes. Between releases the kit works against last-released standards, exactly
 as an adopter does.
 
-Deliberate divergence is legal only when declared in ADAPTATIONS.md with a
-reason. The adaptation count is reported on every run so growth stays visible
+Deliberate divergence is legal only when declared in ADAPTATIONS.md, which has
+two tables: **adapted** (the shipped file is wrong for this project — content
+not checked, the row carries the reason) and **seeded** (a starting skeleton the
+project is meant to fill, such as a rolling log or registry — existence checked,
+content not). The declared count prints on every run so growth stays visible
 rather than becoming a quiet dumping ground.
 
 Modes:
@@ -66,17 +69,30 @@ def transform(text, answers, rel):
                      if m.group(1) not in META else m.group(0), text)
 
 
-def load_adaptations():
-    """path -> reason, from the declared list."""
-    out = {}
+def load_declared():
+    """(adapted, seeded) -> {path: reason}, read from the two ADAPTATIONS.md tables.
+
+    Two kinds of legal divergence, and conflating them was a real bug:
+
+    - **adapted** — the shipped file is wrong for this project, so the instance
+      keeps its own version. Content is *not* checked; the row carries the reason.
+    - **seeded** — the shipped file is a starting skeleton the project is meant to
+      fill (rolling logs, registries, decision records). Divergence is the file
+      doing its job, so only *existence* is checked. Without this, every log entry
+      would need an adaptation row and the list would stop meaning anything.
+    """
+    adapted, seeded, table = {}, {}, 'adapted'   # rows before any heading are adaptations
     if not os.path.exists('ADAPTATIONS.md'):
-        return out
+        return adapted, seeded
     with open('ADAPTATIONS.md') as fh:
         for line in fh:
+            low = line.lower()
+            if low.startswith('## '):
+                table = 'seeded' if 'seeded' in low else 'adapted'
             m = re.match(r'^\|\s*`([^`]+)`\s*\|\s*(.+?)\s*\|\s*$', line)
             if m:
-                out[m.group(1)] = m.group(2)
-    return out
+                (seeded if table == 'seeded' else adapted)[m.group(1)] = m.group(2)
+    return adapted, seeded
 
 
 def upgrade(old_ref):
@@ -97,8 +113,8 @@ def upgrade(old_ref):
 
     changed = (git('diff', '--name-only', f'{old_ref}..{new_ref}', '--', 'template/core') or '').split()
     changed = [c[len('template/core/'):] for c in changed if c.startswith('template/core/')]
-    adaptations = load_adaptations()
-    conflicts = [c for c in changed if c in adaptations]
+    adapted, _seeded = load_declared()
+    conflicts = [c for c in changed if c in adapted]
 
     print(f'=== self-upgrade {old_ref} -> {new_ref} ===')
     print(f'  {len(changed)} core file(s) changed upstream')
@@ -106,7 +122,7 @@ def upgrade(old_ref):
     if conflicts:
         print(f'\n  !! {len(conflicts)} DECLARED ADAPTATION(S) CHANGED UPSTREAM — reconcile by hand:')
         for c in conflicts:
-            print(f'     - {c}\n       kept because: {adaptations[c]}')
+            print(f'     - {c}\n       kept because: {adapted[c]}')
         print('       The instance keeps your version. Re-read the upstream change and decide\n'
               '       whether the adaptation still earns its row in ADAPTATIONS.md.')
     else:
@@ -161,12 +177,17 @@ def main():
     with open('scripts/self-answers.yml') as fh:
         answers = {k: str(v) for k, v in yaml.safe_load(fh).items()}
 
-    adaptations = load_adaptations()
+    adapted, seeded = load_declared()
     drift, applied, skipped = [], 0, 0
 
     for rel in core:
-        if rel in adaptations:
+        if rel in adapted:
             skipped += 1
+            continue
+        if rel in seeded:
+            skipped += 1
+            if not os.path.exists(rel):
+                drift.append(f'{rel}: seeded file missing from the instance — run --apply')
             continue
         src = git('show', f'{ref}:template/core/{rel}')
         if src is None:
@@ -186,6 +207,15 @@ def main():
         elif have != want:
             drift.append(f'{rel}: differs from template@{ref}. '
                          f'Fix template/ and re-run --apply, or declare it in ADAPTATIONS.md')
+
+    for rel in seeded:
+        if args.apply and not os.path.exists(rel):
+            src = git('show', f'{ref}:template/core/{rel}')
+            if src is not None:
+                os.makedirs(os.path.dirname(rel) or '.', exist_ok=True)
+                with open(rel, 'w') as fh:
+                    fh.write(transform(src, answers, rel))
+                applied += 1
 
     if args.apply:
         print(f'OK: instance conformed to template@{ref} — {applied} file(s) rewritten, '
