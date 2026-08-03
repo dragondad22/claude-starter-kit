@@ -126,9 +126,8 @@ modules:
       - .claude/agents/review-ux-conformance.md
       - .claude/commands/review.md
       - docs/uat/JOURNEY_REGISTRY.md
-      # The ratchet (proposal → landed spec) + JSONL run-journal arrive in the
-      # next sub-issue of the epic — added here when their content ships, so the
-      # allowlist never lists a file that does not yet exist.
+      - ai/STANDARDS/REVIEW_RUN_JOURNAL.md
+      - ai/TEMPLATES/CODIFIED_SPEC_PROPOSAL_TEMPLATE.md
 
   deploy-ci:
     trigger: first deploy target

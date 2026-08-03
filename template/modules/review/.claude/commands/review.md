@@ -51,27 +51,36 @@ cases, and the invariant set. **Never put the diff or change description in the 
 Run the driver's *offered-means-accepted* invariant **exhaustively** when the change
 touched a shared vocabulary (that is the case this run exists for); cheaply otherwise.
 
-## 4. Route the findings
+## 4. Journal every finding
+
+Append one JSONL record per finding to the run journal
+(`testing-reports/artifacts/<date>_<run>/journal.jsonl`), per
+`ai/STANDARDS/REVIEW_RUN_JOURNAL.md` — objective facts and evidence pointers only. The
+journal is the substrate for de-dup and the summary; write it as you go, not at the end.
+
+## 5. Route the findings
 
 Per `ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md` → *How findings exit*:
 
 - **Verdict** findings (driver, verifier — evidence-cited) → **file** as bugs per
-  `ai/STANDARDS/GITHUB_ISSUES.md`. **De-duplicate** on (journey + invariant/criterion +
-  surface): update or reference an existing issue instead of opening a new one each run.
-  (A project may choose to draft instead of file — respect that setting.)
+  `ai/STANDARDS/GITHUB_ISSUES.md`. **De-duplicate** on `dedup_key` (journey + check +
+  surface): before filing, check prior journals and open issues for the same key —
+  a match becomes `action: "deduped:#N"`, referencing the existing issue instead of
+  opening a new one. (A project may choose to draft instead of file — respect that setting.)
 - **Advisory** findings (UX, clause-cited) → **draft** for a human to promote; never file.
-- **Notes** (no clause) → summary only; never filed.
+- **Notes** (no clause) → journal + summary only; never filed.
 
-Store evidence under a dated, per-run directory in `testing-reports/` (local only, never
-committed).
+Store evidence under the dated, per-run directory in `testing-reports/` (local only,
+never committed).
 
-## 5. One summary
+## 6. Bank the clean flows, then summarize
 
-End with a single human-readable summary: tier and journeys run, pass/fail/blocked per
-journey, what was filed, what was drafted, what was noted, and any `BLOCKED` with the
-exact human action needed. A codified-spec proposal from a clean flow is offered for a
-normal coding step to land as a committed regression test — you do not write test code
-here.
+- For each flow that came back **clean**, emit a **codified-spec proposal** per
+  `ai/TEMPLATES/CODIFIED_SPEC_PROPOSAL_TEMPLATE.md` — *data, not test code* — for a normal
+  coding step to land as a committed regression test. You do not write test code here.
+- End with a single human-readable summary, folded from this run's journal: tier and
+  journeys run, pass/fail/blocked per journey, what was filed / drafted / noted / deduped,
+  proposals emitted, and any `BLOCKED` with the exact human action needed.
 
 ## discover mode
 
