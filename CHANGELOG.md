@@ -7,6 +7,9 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Fixed
+- `docs/kit/` learns about the `review` module (#174, epic #172) — epic #145 shipped a module, the kit's first `.claude/agents/`, and the `/review` command across four PRs, and the shipped kit-docs guide recorded **none** of it despite the keep-current rule requiring exactly that. `docs/kit/WORKFLOW.md`'s module list gains `review`; `docs/kit/README.md` gains a `/review` command row and a `.claude/agents/` directory row, so the kit's first subagents are no longer invisible to a reader learning the kit. Also brings `CLAUDE.md` back inside its own **~150-line budget** (151 → 148) by folding two breadcrumb bullets into one and dropping a redundant `Rules:` header — structural compression only, no rule or pointer removed
+
 ### Added
 - **Every shipped standard now carries a `Last Updated: YYYY-MM-DD` line**, and `DOCUMENTATION_STANDARD.md` gains the rule that requires one (#173, epic #172). Previously 2 of 19 standards had the field and **no rule anywhere asked for it** — it was never a convention that decayed, just two files that happened to have it, and both of their dates were wrong (`GIT_WORKFLOW` claimed 2026-07-09 against a 2026-07-13 change; `VERSIONING` claimed 2026-06-24 against the same). Each of the 19 is stamped with its **actual** last content-change date, not today's. The rule states the trigger precisely — a PR changing a standard's *content* bumps the date; typo, formatting, and metadata-only edits do not — and records why the field is not redundant with version control: **standards get distributed**, so the reader is usually holding a copy in a repo whose history says nothing about where the text came from, and an absent or stale date reads as "current" to someone with no way to check. `/evergreen`'s date-sweep lens now points at that rule instead of describing the field it could not previously assume existed
 

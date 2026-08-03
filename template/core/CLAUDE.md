@@ -54,10 +54,7 @@ Run the session-start protocol in `ai/agent-setup.md` — the single ordered che
 
 **{{ISSUE_TRACKER_KIND}} is the source of truth for all tasks, todos, and planned work** — {{ISSUE_TRACKER}}.
 
-- Issue standard: `ai/STANDARDS/TASK_ISSUE_STANDARD.md`
-- Issue template: `ai/TEMPLATES/TASK_ISSUE_TEMPLATE.md`
-
-Rules:
+- Standard + template: `ai/STANDARDS/TASK_ISSUE_STANDARD.md` · `ai/TEMPLATES/TASK_ISSUE_TEMPLATE.md`
 - Work identified but not tracked → **suggest creating a tracked item** before proceeding; do not silently absorb untracked work into a conversation.
 - Check for an existing item first; local todos, memory, or chat are not substitutes — ephemeral tracking evaporates between sessions.
 - Reference the item's ID while working; the PR/change references it so it closes on merge.
