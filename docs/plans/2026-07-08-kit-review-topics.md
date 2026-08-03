@@ -3,13 +3,15 @@
 **Created:** 2026-07-08 · **Source:** full-kit review (all standards, checklists, templates, scripts, commands, docs — ~4,000 lines)
 **Purpose:** Working list of findings to discuss one by one, add context, and decide on — *before* converting decisions into GitHub issues. This kit seeds all future projects, so decisions here propagate.
 
-**How to use this record:** This file is the **index**; each topic lives in its own file under `kit-review-topics/` (`TNN-<slug>.md` — format: `kit-review-topics/TOPIC_TEMPLATE.md`). Each topic has `Status` / `Discussion notes` / `Decision` — update the topic file in place as it's discussed, and mirror the Status in the table below. When a topic reaches **Decided**, its Decision block becomes the source for a tracked issue. Statuses: `Not discussed` → `In discussion` → `Decided` → `Issue filed (#N)` / `Dropped`. *(Split from a single monolith 2026-07-11, issue #97 — topic content moved verbatim; pre-split history is in this file's git log.)*
+**How to use this record:** This file is the **index**; each topic lives in its own file under `kit-review-topics/` (`TNN-<slug>.md` — format: `kit-review-topics/TOPIC_TEMPLATE.md`). Each topic has `Status` / `Discussion notes` / `Decision` — update the topic file in place as it's discussed, and mirror the Status in the table below. When a topic reaches **Decided**, its Decision block becomes the source for a tracked issue. Statuses: `Not discussed` → `In discussion` → `Decided` → `Issue filed (#N)` → `Implemented (#N)` / `Dropped`. Two qualifiers ride alongside a status rather than replacing it: **`grill tracked (#N)`** on an `In discussion` topic (an issue exists to *hold the grilling session*, not to build anything — the decision must exist before work can be scoped), and a **delta issue** on a partly-shipped topic (requirements added after implementation landed). *(Split from a single monolith 2026-07-11, issue #97 — topic content moved verbatim; pre-split history is in this file's git log.)*
 
 **Referencing:** topics are `T1`+ (new topics append at the next free number, one file each); sub-items are numbered `Tn.m` (e.g. `T1.3`); lettered options within a topic are referenced as `T2(a)`, `T6(b)`, etc. IDs are stable — don't renumber when items are resolved or dropped; superseded entries are stamped in place, never rewritten.
 
 **Background (from Chris, 2026-07-08):** The kit was distilled from several real projects through trial and error. Some findings in this list are genuine staleness to clean up; others are practices that *fell off due to expediency, not because they were bad ideas* — those may deserve a better mechanism rather than deletion. Some material was also removed for privacy/redaction, which explains certain gaps. The goal of these discussions is not just to fix issues but to **make the process better**. `IMP` in the examples = "implementation plan" — AI-generated plans that started as markdown files and later moved into GitHub Issues for tracking/visibility.
 
-**Progress:** **32 / 35 decided** (T1–T17 on 2026-07-08; T18–T25 on 2026-07-09; T26–T28 on 2026-07-10 — implemented through v0.7.0; T29–T30 on 2026-07-11, from the life-os trial port-backs — implementation tracked as #92/#93 under epic #90; T31 on 2026-07-20 — impl. deferred pending T32; T32 opened 2026-07-20, in discussion — reconsiders T2/T23; T33 Decided 2026-07-28 — independent reviewer agents, grilled from a ShelterSync incident; T34–T35 opened 2026-07-28 as T33 spin-offs — UX design mode, encoding policy — both in discussion).
+**Progress:** **32 / 35 decided** (T1–T17 on 2026-07-08; T18–T25 on 2026-07-09; T26–T28 on 2026-07-10 — implemented through v0.7.0; T29–T30 on 2026-07-11, from the life-os trial port-backs — implementation tracked as #92/#93 under epic #90; T31 on 2026-07-20 — impl. deferred pending T32; T32 opened 2026-07-20, in discussion — reconsiders T2/T23; T33 Decided 2026-07-28 — independent reviewer agents, grilled from a ShelterSync incident, implemented 2026-07-28→08-03 (#145) and awaiting release; T34–T35 opened 2026-07-28 as T33 spin-offs — UX design mode, encoding policy — both in discussion).
+
+**Open work (2026-08-03):** every topic left in a draft/deferred state now has a tracked issue, so nothing incomplete is invisible — **#159** (T32 grill, blocks T31) · **#160** (T31 epic, blocked by #159) · **#161** (T34 grill) · **#162** (T35 grill) · **#163** (T17.9–T17.13 template delta). Three of the five are grilling sessions, not implementation: **T32, T34, and T35 have no decision yet**, so their scope can't be written until the session happens.
 
 ---
 
@@ -33,7 +35,7 @@
 | [T14](kit-review-topics/T14-project-glossary.md) | Project glossary: shared AI↔human vocabulary per project | Decided (2026-07-08) |
 | [T15](kit-review-topics/T15-inception-interview.md) | Project inception workflow: deep async interview → founding docs → scaffold plan | Decided (2026-07-08) |
 | [T16](kit-review-topics/T16-paved-road-registry.md) | Paved-road tooling registry: preferred frameworks/tools across projects | Decided (2026-07-08) |
-| [T17](kit-review-topics/T17-feature-specs-v2.md) | Workflow docs v2: user-journey artifacts produced by feature interviews | Requirements captured — design deferred |
+| [T17](kit-review-topics/T17-feature-specs-v2.md) | Workflow docs v2: user-journey artifacts produced by feature interviews | Requirements captured — design deferred; T17.1–T17.8 implemented (#24), T17.9–T17.13 delta tracked (#163) |
 | [T18](kit-review-topics/T18-kit-upgrade-path.md) | Kit downstream upgrade path (template-drift problem) | Decided (2026-07-09) |
 | [T19](kit-review-topics/T19-session-start-protocol.md) | Session-start protocol consolidation | Decided (2026-07-09) |
 | [T20](kit-review-topics/T20-interview-retrospective.md) | Interview retrospective (question-bank feedback loop) | Decided (2026-07-09) |
@@ -47,11 +49,11 @@
 | [T28](kit-review-topics/T28-uat-acceptance-beta-split.md) | UAT scope: agent-run acceptance vs task-based beta guides; "how do I?" is a design signal | Decided (2026-07-10) |
 | [T29](kit-review-topics/T29-project-concept-intake.md) | Project-concept intake: shared understanding before the targeted interview | Decided (2026-07-11) |
 | [T30](kit-review-topics/T30-kit-docs-area.md) | Shipped kit-docs area: workflow guide with flowchart + kit reference, keep-current rule | Decided (2026-07-11) |
-| [T31](kit-review-topics/T31-unattended-execution-mode.md) | Unattended (AFK) execution mode: coordinator + serial coding agents | Decided (2026-07-20) — impl. deferred pending T32 |
-| [T32](kit-review-topics/T32-kit-runtime-evolution.md) | Kit runtime / delivery evolution: templates-only → templates + tooling | In discussion (2026-07-20) |
-| [T33](kit-review-topics/T33-independent-reviewer-agents.md) | Independent reviewer agents: UAT persona driver, data-integrity verifier, UX evaluator | Issue filed (#145) |
-| [T34](kit-review-topics/T34-ux-design-mode.md) | UX design mode: decompose vague design intent into an enforceable UX standard + journeys | In discussion (2026-07-28) |
-| [T35](kit-review-topics/T35-encoding-policy.md) | Encoding policy: markdown-first vs fit-for-purpose formats | In discussion (2026-07-28) |
+| [T31](kit-review-topics/T31-unattended-execution-mode.md) | Unattended (AFK) execution mode: coordinator + serial coding agents | Decided (2026-07-20) — impl. deferred pending T32; epic filed (#160, blocked by #159) |
+| [T32](kit-review-topics/T32-kit-runtime-evolution.md) | Kit runtime / delivery evolution: templates-only → templates + tooling | In discussion (2026-07-20) — grill tracked (#159); blocks T31 |
+| [T33](kit-review-topics/T33-independent-reviewer-agents.md) | Independent reviewer agents: UAT persona driver, data-integrity verifier, UX evaluator | Implemented (#145 — epic + #146–#151, #157 all closed; in `[Unreleased]`) |
+| [T34](kit-review-topics/T34-ux-design-mode.md) | UX design mode: decompose vague design intent into an enforceable UX standard + journeys | In discussion (2026-07-28) — grill tracked (#161) |
+| [T35](kit-review-topics/T35-encoding-policy.md) | Encoding policy: markdown-first vs fit-for-purpose formats | In discussion (2026-07-28) — grill tracked (#162) |
 
 ---
 
@@ -69,6 +71,10 @@ GitHub is the source of truth for work status; this file remains the decision re
 | **#30 Diagnostics & evergreening** | #31 failure bundles · #32 /evergreen · #33 session-start protocol | T5, T8, T18, T19 |
 | **#34 Cleanup & principles** | #35 dedup sweep · #36 design principles + budget | T11, T22 |
 | **#90 life-os port-backs** *(added 2026-07-11)* | #91 AI/data-locality spine question · #92 concept intake · #93 kit-docs area · #94 game shape + gamified UI rung · #95 setup checklist | T20 (channel), T29 (#92), T30 (#93); #91/#94/#95 decided at issue level |
+| **#145 Independent reviewer agents** *(added 2026-07-28)* | #146 module skeleton + standard · #147 three agents + driver seam · #148 journey registry + tiered runs · #149 ratchet + JSONL journal · #150 Flutter driver spike · #151 ShelterSync replay · #157 on-device validation | T33; supplies requirements to T31, T32, T17, T34, T35 |
+| **#160 Unattended (AFK) execution** *(added 2026-08-03)* | — *(decomposed after #159 lands; the substrate decision determines what the watchdog and journal are built on)* | T31 |
+
+**Standalone issues** *(added 2026-08-03 — the draft/deferred sweep)*: **#159** T32 grill (blocks #160) · **#161** T34 grill · **#162** T35 grill · **#163** T17.9–T17.13 feature-spec template delta. The three grill issues exit on a filled `Decision:` block plus follow-on issues, not on shipped content.
 
 Board: project creation blocked at generation time (token scope) — see conversation note; issues #1–#7 are the "Next" set once the board exists.
 

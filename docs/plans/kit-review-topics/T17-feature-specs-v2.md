@@ -1,6 +1,6 @@
 # T17 — Workflow docs v2: user-journey artifacts produced by feature interviews
 
-**Category:** Process improvement (deferred design; evolves with T15 implementation) · **Status:** Requirements captured — design deferred · **Related:** T15 (producer), T7.3 (home), UAT standard (consumer)
+**Category:** Process improvement (deferred design; evolves with T15 implementation) · **Status:** Requirements captured — design deferred · **Issue:** T17.1–T17.8 implemented via #24 (under epic #21); the T17.9–T17.13 delta added by the T33 grill is tracked as **#163** (filed 2026-08-03 — verified absent from the shipped `FEATURE_SPEC_TEMPLATE.md`) · **Related:** T15 (producer), T7.3 (home), UAT standard (consumer)
 
 **Origin (Chris, 2026-07-08):** `docs/workflows/` documented user journeys derived from Q&A (examples: WF-ANIMAL-007/008). "Never worked as well as I wanted... but had useful information. I would want to rethink how all that works and what gets produced. This is something that can evolve."
 

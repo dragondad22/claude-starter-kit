@@ -6,7 +6,7 @@
 > deliberate reopening by the kit owner. Needs its own grilling session; nothing decided
 > yet. If decided toward a tool, T2/T23 must be stamped-superseded in place, not rewritten.**
 
-**Category:** Structural (reconsiders Non-Negotiables) · **Status:** In discussion (2026-07-20) — opened, not yet grilled · **Issue:** — · **Related:** T2 (portable-shell constraint), T23 (self-hosting + `template/` separation + manifest), T18 (upgrade path), T31 (the forcing feature)
+**Category:** Structural (reconsiders Non-Negotiables) · **Status:** In discussion (2026-07-20) — opened, not yet grilled; **grill tracked (#159)** · **Issue:** #159 (the grilling session itself — a decided T32 spawns its own implementation epic) · **Related:** T2 (portable-shell constraint), T23 (self-hosting + `template/` separation + manifest), T18 (upgrade path), T31 (the forcing feature)
 
 **Problem / Origin:** The kit currently uses **one delivery mechanism — copied POSIX shell + markdown templates — for two jobs that want different mechanisms:**
 - **Judgment** (standards, playbooks, gates, the confidence/verdict/advisory model): protocol a model reads and follows. Templates + standards are the *right* fit — the kit's sweet spot.
