@@ -1,6 +1,8 @@
 # Kit self-test (issue #6, T2/T23.2): the kit eats its own dogfood.
 # - manifest validation: allowlist complete, every listed file exists, no kit-dev leaks
 # - dead-cross-reference lint: shipped docs cite only files that ship
+# - currency lint: every standard is dated and current; modules and commands appear
+#   in every enumeration (epic #172 — currency is checked, not remembered)
 # - portability: shipped scripts + the bootstrap smoke test run on ubuntu AND macos
 #   (stock macOS bash 3.2 / BSD sed is the portability claim being enforced)
 name: kit-selftest
@@ -16,12 +18,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        # lint-currency.py compares Last Updated against commit history
       - name: Install PyYAML
         run: python3 -m pip install --quiet pyyaml || python3 -m pip install --quiet --break-system-packages pyyaml
       - name: Validate template/manifest.yml
         run: python3 scripts/validate-manifest.py
       - name: Lint shipped files for dead cross-references
         run: python3 scripts/lint-dead-refs.py
+      - name: Lint currency (dates + module/command enumerations)
+        run: python3 scripts/lint-currency.py
 
   scripts:
     name: shipped scripts + bootstrap smoke (${{ matrix.os }})

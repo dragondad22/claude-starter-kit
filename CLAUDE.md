@@ -31,6 +31,7 @@ These are finalized architectural constraints. Do not re-litigate.
 ```bash
 python3 scripts/validate-manifest.py   # allowlist complete, files exist, no kit-dev leaks
 python3 scripts/lint-dead-refs.py      # shipped docs cite only files that ship
+python3 scripts/lint-currency.py       # standards dated + current; modules/commands in every list
 bash scripts/bootstrap-smoke.sh        # scaffold + fill + shipped automation end-to-end
 
 # Kit release cut — the shipped script run against the kit root (issue #45):
@@ -38,7 +39,7 @@ RELEASE_ROOT="$PWD" VERSION_FILES_LIST="$PWD/scripts/version-files.txt" \
   bash template/core/ai/scripts/release.sh <bump>
 ```
 
-All three run in CI (`.github/workflows/kit-selftest.yml`) on ubuntu + macos —
+All four run in CI (`.github/workflows/kit-selftest.yml`) on ubuntu + macos —
 run them locally before pushing changes to `template/`.
 
 ## Task Tracking (mandatory)
@@ -92,4 +93,7 @@ run them locally before pushing changes to `template/`.
   do not trust conversation memory.
 - New shipped file → manifest entry, same PR. New kit-dev file → nothing to do
   (allowlist keeps it safe).
+- New module or command → every enumeration that lists them, same PR; editing a
+  standard → bump its `Last Updated`. `scripts/lint-currency.py` fails CI otherwise
+  (#172) — currency is checked, not remembered.
 - If work surfaces with no tracked issue, stop and suggest creating one.

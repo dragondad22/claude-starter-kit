@@ -21,6 +21,7 @@ template/                   # THE PRODUCT — the only tree scaffolding reads
     db/                     #   Database schema standard        (first schema/migration)
     ui/                     #   UI standard                     (first UI code)
     reports/                #   UAT process                     (first formal QA/UAT need)
+    review/                 #   Reviewer agents + /review       (driveable UI; author-independent verification)
     deploy-ci/              #   Deploy/CD + runbooks            (first deploy target; pending #25)
     sla/                    #   Triage SLA timing layer         (team formation; pending #13)
 
