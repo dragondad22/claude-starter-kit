@@ -146,6 +146,11 @@ same convention the diagnostic bundle uses
 - Every run ends with **one human-readable summary** — filed, drafted, and noted —
   so a run reads at a glance, not as a scatter of issues.
 
+De-duplication and the summary are both derived from the run journal — one
+append-only JSONL record per finding, objective facts and evidence pointers only:
+`ai/STANDARDS/REVIEW_RUN_JOURNAL.md`. Filing checks prior journals + open issues for
+the same key before opening anything new.
+
 ### "How do I…?" is a design finding, not a note
 
 A persona (or a human tester) needing to be *told how* to do something is a defect
@@ -204,6 +209,9 @@ either *interactive* (an agent steers it live — required for exploratory
 discovery) or *playback* (a committed script — regression only). A confirmed flow
 is banked as a committed regression test through the project's own end-to-end
 runner (`{{E2E_COMMAND}}`), so the expensive naïve pass is paid once and every
-re-run after it is cheap and deterministic. The driver contract, the reviewer
-agents, and the journey registry install with this module; their mechanics are
-documented where they ship.
+re-run after it is cheap and deterministic. The reviewer emits a **codified-spec
+proposal** — *data, not test code* (`ai/TEMPLATES/CODIFIED_SPEC_PROPOSAL_TEMPLATE.md`)
+— and a normal coding step lands it, so the agent that *judged* a flow never authors
+the regression that will *re-judge* it. The driver contract, the reviewer agents, the
+journey registry, and the run journal (`ai/STANDARDS/REVIEW_RUN_JOURNAL.md`) install
+with this module; their mechanics are documented where they ship.

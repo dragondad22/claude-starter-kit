@@ -32,14 +32,20 @@ note in the body rather than a line-1 genericization banner.
   (`JRN-<DOMAIN>-NNN`), with the **entities/vocabularies-touched** column that drives
   blast-radius scoping and the discovered/authored × unverified/verified status model.
 
+- `ai/STANDARDS/REVIEW_RUN_JOURNAL.md` — the append-only JSONL a run writes (one record
+  per finding, objective facts + evidence pointers), the substrate for de-dup and the
+  batch summary; forward-compatible with a future unattended-execution run journal.
+- `ai/TEMPLATES/CODIFIED_SPEC_PROPOSAL_TEMPLATE.md` — the ratchet handoff: what a reviewer
+  emits for a clean flow (*data, not test code*), which a normal coding step lands as a
+  committed regression test — so the agent that judged a flow never authors its regression.
+
 Blast-radius scoping is the untouched-flow catch: a change to a shared vocabulary selects
 every journey that *consumes* it, even if its own screens didn't change. `/preflight`
 gains a rung that strongly suggests a blast-radius `/review` after a shared-surface change.
 
-Arriving in the next sub-issue of the epic (kept out of this manifest entry until its
-content ships, so the allowlist never lists a missing file):
-
-- ratchet (proposal → landed spec) + JSONL run-journal + findings exit (#149).
+With #149 the machine is complete (module → agents → registry/runs → ratchet/journal).
+Remaining epic work is validation against real apps: the Flutter native-driver spike
+(#150) and the ShelterSync sentence-case replay acceptance test (#151).
 
 Introduces the `{{REVIEW_BASE_URL}}` placeholder (`bootstrap/PLACEHOLDERS.md`) — the
 non-production target the reviewers refuse to run without.
