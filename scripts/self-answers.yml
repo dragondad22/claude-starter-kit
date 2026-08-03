@@ -1,0 +1,47 @@
+# self-answers.yml — this project's inception answers (T36.3).
+#
+# The kit is an adopter of its own product, so it has to answer the same
+# placeholder questions every adopting project answers. These are the values
+# scripts/self-conform.py fills into the root instance when deriving it from
+# template/. Registry of what each token means: bootstrap/PLACEHOLDERS.md.
+#
+# Answered honestly for what this repo actually is: a documentation-and-scripts
+# project with no runtime, no database, and no user-facing application.
+#
+# Kit-dev file: does not ship.
+
+PROJECT_NAME: Claude Starter Kit
+PROJECT_TAGLINE: A stack-agnostic starter kit for working on projects with Claude Code
+PROJECT_OWNER: Chris (dragondad22)
+PROJECT_DOMAIN: AI-assisted software development process
+APP_LAYOUT: template/ is the shipped product; scripts/, docs/plans/ and .github/ are kit development
+
+ISSUE_TRACKER: https://github.com/dragondad22/claude-starter-kit/issues
+ISSUE_TRACKER_KIND: GitHub Issues
+WORK_ITEM_PREFIX: KIT
+REPO_SLUG: dragondad22/claude-starter-kit
+
+PRIMARY_LANGUAGE: Markdown (the product) + POSIX shell and Python 3 (tooling)
+TEST_COMMAND: bash scripts/selftest.sh
+BUILD_COMMAND: N/A (no build step)
+DEV_COMMAND: N/A (no runtime)
+LINT_COMMAND: bash -n scripts/*.sh
+E2E_COMMAND: N/A (no runtime UI)
+DB_LAYER: N/A
+MIGRATION_COMMAND: N/A
+
+VERSION_FILES: VERSION
+VERSION_SCHEME: SemVer (pre-1.0)
+CI_SYSTEM: GitHub Actions (.github/workflows/kit-selftest.yml)
+SECURITY_SCAN_COMMAND: N/A (no third-party dependencies)
+PERF_TARGET: N/A
+
+TARGET_PLATFORMS: macOS + Linux developer machines (stock bash 3.2)
+AUDIENCE: developers using Claude Code, general adult
+REGULATED_DATA: none
+COMPLIANCE_FEATURES: none (MIT open-source distribution)
+
+DOCS_SOURCE_OF_TRUTH: README.md, plus the shipped guide in template/core/docs/kit/
+UAT_DOC: N/A (reports module not installed)
+DESIGN_SOURCE: none
+REVIEW_BASE_URL: N/A (no runtime UI)

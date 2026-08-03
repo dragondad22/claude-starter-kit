@@ -13,6 +13,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 python3 scripts/validate-manifest.py
 python3 scripts/lint-dead-refs.py
 python3 scripts/lint-currency.py
+python3 scripts/self-conform.py --check
 bash scripts/bootstrap-smoke.sh
 
-echo "OK: kit self-test passed (manifest, dead refs, currency, bootstrap smoke)."
+echo "OK: kit self-test passed (manifest, dead refs, currency, self-conformance, bootstrap smoke)."

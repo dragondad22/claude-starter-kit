@@ -1,7 +1,5 @@
 # Documentation Standard
 
-Last Updated: 2026-08-03
-
 How user-facing documentation is written and **kept current**. Read before adding
 or changing any user-facing page, surface, or help text.
 
@@ -298,25 +296,6 @@ Every PR that ships user-visible UI/behavior MUST, in the same PR:
 - regenerate any derived artifacts (partials, screenshots) for changed surfaces.
 
 Purely internal changes (refactors, tests, infra with no UI impact) are exempt.
-
-## Every standard states when it was last updated (mandatory)
-
-Every file under `ai/STANDARDS/` carries a `Last Updated: YYYY-MM-DD` line
-immediately after its `#` title. A PR that changes a standard's **content**
-bumps that date in the same PR; typo, formatting, and metadata-only edits do not.
-
-**Why this is not redundant with version control.** Standards get *distributed* —
-copied into a project by scaffolding, then carried onward. The person reading a
-standard is often reading a copy, in a repo whose history says nothing about
-where the text came from, sometimes with no practical access to the originating
-project at all. For that reader the stated date is the **only** currency signal
-there is. An absent or stale date does not read as "unknown"; it reads as
-"current" to someone who cannot check, which is the failure mode worth spending a
-line of metadata to avoid.
-
-The same reasoning applies to any dated row a reader is asked to trust —
-paved-road "Last reviewed", compliance-register "Verified". The date is a claim
-made *to* someone; keep it true or remove it.
 
 ## Setup blocks need a workflow owner (repo-wide)
 

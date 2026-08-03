@@ -46,13 +46,13 @@ jobs:
       # - run: npm ci
 
       - name: Build / typecheck
-        run: "{{BUILD_COMMAND}}"
+        run: "N/A (no build step)"
 
       - name: Lint
-        run: "{{LINT_COMMAND}}"
+        run: "bash -n scripts/*.sh"
 
       - name: Tests
-        run: "{{TEST_COMMAND}}"
+        run: "bash scripts/selftest.sh"
 
       - name: Version sync
         run: bash ai/scripts/check-version-sync.sh
@@ -60,14 +60,14 @@ jobs:
       - name: Dependency scan (SCA)
         # Fail on high/critical runtime vulnerabilities — gate definition in
         # ai/STANDARDS/SECURITY_REVIEW_STANDARD.md (CI Security Gates).
-        run: "{{SECURITY_SCAN_COMMAND}}"
+        run: "N/A (no third-party dependencies)"
 
       # --- E2E ----------------------------------------------------------------
       # Uncomment when the project has UI flows. Paved road: Playwright — its
       # on-failure screenshot/trace/video defaults produce the failure evidence
       # the kit's diagnostics rules expect.
       # - name: E2E tests
-      #   run: "{{E2E_COMMAND}}"
+      #   run: "N/A (no runtime UI)"
 
       # --- Failure diagnostics -------------------------------------------------
       # Success is silent. On failure, upload whatever diagnostics the gates

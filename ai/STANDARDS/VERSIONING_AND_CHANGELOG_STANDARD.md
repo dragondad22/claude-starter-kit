@@ -2,7 +2,7 @@
 
 Owner: Chris (dragondad22)
 Status: Recommended default
-Last Updated: 2026-07-13
+Last Updated: 2026-06-24
 
 This standard governs how Claude Starter Kit tracks user-visible changes
 (`CHANGELOG.md`) and how it bumps version numbers (the files listed in

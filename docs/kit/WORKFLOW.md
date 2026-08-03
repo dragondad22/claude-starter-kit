@@ -29,7 +29,7 @@ flowchart TD
 ## The stages
 
 1. **Scaffold.** A new project gets the kit's core at inception; optional
-   modules (db, ui, reports, review, deploy-ci, sla) arrive staged, installed later
+   modules (db, ui, reports, deploy-ci, sla) arrive staged, installed later
    when their trigger fires. An existing repo instead picks an adoption tier:
    `/bootstrap` retrofit (just missing kit pieces), `/conform` (untidy naming/
    layout/tracker), `/rebaseline` (sound concept, rebuild the implementation).
