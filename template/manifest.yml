@@ -120,9 +120,13 @@ modules:
     trigger: driveable UI + want independent (author-independent) verification
     files:
       - ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md
-      # Agents, driver-seam contract, journey registry, and run commands arrive
-      # in later sub-issues of the epic — added here when their content ships,
-      # so the allowlist never lists a file that does not yet exist.
+      - ai/STANDARDS/REVIEW_DRIVER_CONTRACT.md
+      - .claude/agents/review-uat-driver.md
+      - .claude/agents/review-data-verifier.md
+      - .claude/agents/review-ux-conformance.md
+      # Journey registry and tiered run commands arrive in later sub-issues of
+      # the epic — added here when their content ships, so the allowlist never
+      # lists a file that does not yet exist.
 
   deploy-ci:
     trigger: first deploy target
