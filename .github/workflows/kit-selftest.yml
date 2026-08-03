@@ -7,6 +7,8 @@
 #   its pinned release, except where ADAPTATIONS.md declares otherwise (T36)
 # - portability: shipped scripts + the bootstrap smoke test run on ubuntu AND macos
 #   (stock macOS bash 3.2 / BSD sed is the portability claim being enforced)
+# - upgrade smoke: scaffold at a prior release, upgrade to HEAD, assert, tear down
+#   (T36.5 — the install path had a test; the upgrade path had none)
 name: kit-selftest
 
 on:
@@ -42,6 +44,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        # upgrade-smoke.sh worktrees a prior release tag
       - name: Install PyYAML
         run: python3 -m pip install --quiet pyyaml || python3 -m pip install --quiet --break-system-packages pyyaml
       - name: Report shell versions (macOS must be bash 3.2 / BSD sed)
@@ -53,5 +57,7 @@ jobs:
           for f in template/core/ai/scripts/*.sh template/core/ai/scripts/lib/*.sh; do
             bash -n "$f" && echo "OK $f"
           done
-      - name: Bootstrap smoke test (scaffold + fill + shipped automation)
+      - name: Bootstrap smoke test (install path)
         run: bash scripts/bootstrap-smoke.sh
+      - name: Upgrade smoke test (prior release -> HEAD)
+        run: bash scripts/upgrade-smoke.sh
