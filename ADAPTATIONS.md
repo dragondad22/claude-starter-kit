@@ -23,7 +23,7 @@ the kit's role as the product genuinely makes the generic file wrong.
 | `VERSION` | The kit's real version — and the thing releases bump. |
 | `.gitignore` | Kit-development ignores (fixture output, local scratch) alongside the shipped rules. |
 | `.claude/settings.json` | Merged by hand: the kit's own permissions plus the shipped ones. The scaffold can only *copy*, never merge into existing config — the config-merge gap recorded against T32 by T33 and confirmed again in #184. |
-| `docs/plans/README.md` | Here `docs/plans/` holds the kit's decision records (T-topics), not only interview working docs, so the shipped charter would be wrong about its own contents. |
+| `docs/plans/README.md` | Drops the interview-directory paragraph: this repo's `docs/plans/` holds decision working docs and the closed T-topic register, and has never held an interview directory. **Corrected 2026-08-03** — the previous reason claimed the file was adapted to resolve a routing-rule contradiction, which it never did; T37 resolved that contradiction instead, in favour of the shipped rule. |
 | `bootstrap/VERIFY_IGNORE` | Three exclusions no other adopter needs: `template/` (the product tree's tokens are unfilled by design), GitHub Actions `${{ }}` expression syntax, and `scripts/bootstrap-smoke.sh` (which manipulates token syntax by nature). |
 | `ai/CHECKLISTS/coding.md` | Adds a kit-specific completion gate: manifest entry, the kit-docs keep-current trigger named by artifact (module / command / structure), `Last Updated` bumps, and the derived-instance rule. The generic checklist cannot name kit artifacts, and an installed-but-unadapted gate does not fire (T36.8) — this is the gate whose absence let epic #145 miss the same rule four PRs running. |
 
