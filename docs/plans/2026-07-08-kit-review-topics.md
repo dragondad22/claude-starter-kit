@@ -11,7 +11,7 @@
 
 **Progress:** **32 / 35 decided** (T1–T17 on 2026-07-08; T18–T25 on 2026-07-09; T26–T28 on 2026-07-10 — implemented through v0.7.0; T29–T30 on 2026-07-11, from the life-os trial port-backs — implementation tracked as #92/#93 under epic #90; T31 on 2026-07-20 — impl. deferred pending T32; T32 opened 2026-07-20, in discussion — reconsiders T2/T23; T33 Decided 2026-07-28 — independent reviewer agents, grilled from a ShelterSync incident, implemented 2026-07-28→08-03 (#145) and awaiting release; T34–T35 opened 2026-07-28 as T33 spin-offs — UX design mode, encoding policy — both in discussion).
 
-**Open work (2026-08-03):** every topic left in a draft/deferred state now has a tracked issue, so nothing incomplete is invisible — **#159** (T32 grill, blocks T31) · **#160** (T31 epic, blocked by #159) · **#161** (T34 grill) · **#162** (T35 grill) · **#163** (T17.9–T17.13 template delta). Three of the five are grilling sessions, not implementation: **T32, T34, and T35 have no decision yet**, so their scope can't be written until the session happens.
+**Open work (2026-08-03):** every topic left in a draft/deferred state now has a tracked issue, so nothing incomplete is invisible — **#159** (T32 grill, blocks T31) · **#160** (T31 epic, blocked by #159) · **#161** (T34 grill) · **#162** (T35 grill) · ~~**#163** (T17.9–T17.13 template delta)~~ **closed 2026-08-03**, which surfaced **#166** (interview standard doesn't list the spec among an interview's produced artifacts). Three of the remaining four are grilling sessions, not implementation: **T32, T34, and T35 have no decision yet**, so their scope can't be written until the session happens.
 
 ---
 
@@ -35,7 +35,7 @@
 | [T14](kit-review-topics/T14-project-glossary.md) | Project glossary: shared AI↔human vocabulary per project | Decided (2026-07-08) |
 | [T15](kit-review-topics/T15-inception-interview.md) | Project inception workflow: deep async interview → founding docs → scaffold plan | Decided (2026-07-08) |
 | [T16](kit-review-topics/T16-paved-road-registry.md) | Paved-road tooling registry: preferred frameworks/tools across projects | Decided (2026-07-08) |
-| [T17](kit-review-topics/T17-feature-specs-v2.md) | Workflow docs v2: user-journey artifacts produced by feature interviews | Requirements captured — design deferred; T17.1–T17.8 implemented (#24), T17.9–T17.13 delta tracked (#163) |
+| [T17](kit-review-topics/T17-feature-specs-v2.md) | Workflow docs v2: user-journey artifacts produced by feature interviews | Implemented (2026-08-03) — T17.1–T17.8 (#24), T17.9–T17.13 (#163); producer seam split out (#166) |
 | [T18](kit-review-topics/T18-kit-upgrade-path.md) | Kit downstream upgrade path (template-drift problem) | Decided (2026-07-09) |
 | [T19](kit-review-topics/T19-session-start-protocol.md) | Session-start protocol consolidation | Decided (2026-07-09) |
 | [T20](kit-review-topics/T20-interview-retrospective.md) | Interview retrospective (question-bank feedback loop) | Decided (2026-07-09) |
@@ -74,7 +74,7 @@ GitHub is the source of truth for work status; this file remains the decision re
 | **#145 Independent reviewer agents** *(added 2026-07-28)* | #146 module skeleton + standard · #147 three agents + driver seam · #148 journey registry + tiered runs · #149 ratchet + JSONL journal · #150 Flutter driver spike · #151 ShelterSync replay · #157 on-device validation | T33; supplies requirements to T31, T32, T17, T34, T35 |
 | **#160 Unattended (AFK) execution** *(added 2026-08-03)* | — *(decomposed after #159 lands; the substrate decision determines what the watchdog and journal are built on)* | T31 |
 
-**Standalone issues** *(added 2026-08-03 — the draft/deferred sweep)*: **#159** T32 grill (blocks #160) · **#161** T34 grill · **#162** T35 grill · **#163** T17.9–T17.13 feature-spec template delta. The three grill issues exit on a filled `Decision:` block plus follow-on issues, not on shipped content.
+**Standalone issues** *(added 2026-08-03 — the draft/deferred sweep)*: **#159** T32 grill (blocks #160) · **#161** T34 grill · **#162** T35 grill · **#163** T17.9–T17.13 feature-spec template delta *(closed)* · **#166** interview-standard producer seam, surfaced by #163. The three grill issues exit on a filled `Decision:` block plus follow-on issues, not on shipped content.
 
 Board: project creation blocked at generation time (token scope) — see conversation note; issues #1–#7 are the "Next" set once the board exists.
 
