@@ -18,8 +18,8 @@ left vague — appending IDs within the section (`Q-ARCH-07`, `-08`…).
 
 **Depth rule (when is a section done):** a section is complete when its
 downstream founding artifact can be written **without invention** — if writing
-the ADR, register row, or scaffold-plan line would require guessing, the
-section needs another follow-up.
+the ADR, register row, scaffold-plan line, or feature-spec row would require
+guessing, the section needs another follow-up.
 
 **Right-sizing rule:** recommendations must fit the project's actual scale —
 smallest thing that works, moving up the ladder only with a reason. A small
@@ -31,6 +31,13 @@ registry: `bootstrap/PAVED_ROAD.md`), recommendations cite it by name.
 picks the sections that apply (typically scope, architecture, data, testing,
 operations) and adds its own; Identity and License are normally
 inception-only. Same codes, same format — inception is just instance one.
+Its downstream artifact is the feature's spec in `docs/specs/` alongside the
+issue breakdown, so the depth rule binds against the spec: a feature interview
+that cannot fill the spec's journey, business rules, **invariants**, and edge
+cases without guessing is not finished. The spine has no feature-level
+questions for those — they are exactly the follow-ups the AI is required to
+generate (see `ai/STANDARDS/INTERVIEW_STANDARD.md` § The Feature Spec as an
+Interview Output).
 
 **This bank improves by retrospective:** when an interview's outputs are
 implemented, "what did the interview fail to ask?" is asked once and the gaps
