@@ -22,13 +22,16 @@ These are finalized architectural constraints. Do not re-litigate.
   `template/manifest.yml` in the same PR. Unlisted files never ship.
 - **Portable shipped scripts (T2):** POSIX shell, bash 3.2-compatible — no GNU-only
   `sed -i` or `0,/addr/` forms, no `mapfile`. Must run on stock macOS.
-- **Self-hosting (T23.3):** the kit develops using the process it ships — typed issues,
-  epics via sub-issues, decision records, CHANGELOG discipline, releases.
+- **Self-hosting (T23.3, extended by T36):** the kit develops using the process it ships
+  — typed issues, epics via sub-issues, decision records, CHANGELOG discipline, releases
+  — **and installs its own core**, running against the standards, checklists and commands
+  it distributes. Root instance derived from `template/`, pinned to the last release.
 - **Open source:** MIT; the kit repo's README/LICENSE are kit artifacts, not templates.
 
 ## Commands
 
 ```bash
+bash scripts/selftest.sh                # the whole suite (what CI runs)
 python3 scripts/validate-manifest.py   # allowlist complete, files exist, no kit-dev leaks
 python3 scripts/lint-dead-refs.py      # shipped docs cite only files that ship
 python3 scripts/lint-currency.py       # standards dated + current; modules/commands in every list
@@ -39,8 +42,44 @@ RELEASE_ROOT="$PWD" VERSION_FILES_LIST="$PWD/scripts/version-files.txt" \
   bash template/core/ai/scripts/release.sh <bump>
 ```
 
-All four run in CI (`.github/workflows/kit-selftest.yml`) on ubuntu + macos —
+All of these run in CI (`.github/workflows/kit-selftest.yml`) on ubuntu + macos —
 run them locally before pushing changes to `template/`.
+
+## Session Start
+
+Run the session-start protocol in `ai/agent-setup.md` — board drift, release trigger,
+evergreen cadence, scaffold triggers. Non-interruptive: one status line or a filed issue.
+
+## Two trees, two roles (T36)
+
+This repo is **both** the product and an adopter of it. `template/` is the product —
+the tree scaffolding reads and the only thing that ships. The root `ai/`,
+`.claude/`, `docs/` are **this project's own installed instance**, scaffolded from
+`template/` and pinned to the last release (`bootstrap/KIT_VERSION`).
+
+- **Working here?** Follow the root instance — `ai/STANDARDS/`, `ai/CHECKLISTS/`,
+  `.claude/commands/`. It governs how work is done.
+- **Changing a standard?** Edit `template/`; the instance is derived, never the
+  source. Deliberate divergence is legal only as a declared adaptation.
+
+## Standards
+
+Read the relevant one before starting work in that area (this repo's instance):
+
+- Documentation + `Last Updated` rule: `ai/STANDARDS/DOCUMENTATION_STANDARD.md`
+- Git branches/commits/PRs: `ai/STANDARDS/GIT_WORKFLOW_STANDARD.md`
+- Versioning and CHANGELOG: `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md`
+- Task issues: `ai/STANDARDS/TASK_ISSUE_STANDARD.md` · Bug/finding reports: `ai/STANDARDS/GITHUB_ISSUES.md`
+- Interviews (inception, epics/features, grills): `ai/STANDARDS/INTERVIEW_STANDARD.md`
+- Testing: `ai/STANDARDS/TESTING_STANDARD.md` · Feature intake: `ai/STANDARDS/ROADMAP_STANDARD.md`
+
+## Checklists
+
+Use these as completion gates:
+
+- Coding/implementation: `ai/CHECKLISTS/coding.md`
+- QA/testing: `ai/CHECKLISTS/qa.md`
+- Security + performance validation: `ai/CHECKLISTS/validation.md`
 
 ## Task Tracking (mandatory)
 
@@ -80,7 +119,9 @@ run them locally before pushing changes to `template/`.
 - Context economy (T22): breadcrumbs over monoliths; never cut the vision — relocate
   detail behind a reference. The shipped `CLAUDE.md` stays within ~150 lines.
 - Placeholders: shipped files carry `{{TOKENS}}` documented in
-  `template/core/bootstrap/PLACEHOLDERS.md`. Keep them; the kit repo never fills them.
+  `template/core/bootstrap/PLACEHOLDERS.md`. Keep them — **`template/` is never filled**.
+  (The root instance *is* filled, with this project's answers; that is the T36 install,
+  not an exception to this rule.)
 - OS-agnostic docs: no OS-specific instructions in shipped docs unless labeled
   (rule: `template/core/ai/STANDARDS/DOCUMENTATION_STANDARD.md`).
 - Kit-docs keep-current (T30.2): a PR that changes shipped commands, the workflow,

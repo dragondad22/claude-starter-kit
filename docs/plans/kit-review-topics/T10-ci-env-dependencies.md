@@ -2,7 +2,7 @@
 
 **Category:** Gap · **Status:** **Decided (2026-07-08)** — T10.1, T10.3, T10.4 confirmed (T10.2 subsumed by T10.4)
 
-- **T10.1 — CI seed:** `{{CI_SYSTEM}}` is referenced in 5 files, security standard says "wire these gates into CI", agent-setup has an empty CI section — but the kit ships zero CI config. Proposed: one optional, commented `.github/workflows/ci.yml.example` (test + build + version-sync + SCA, TODO markers). Tension to discuss: kit is stack-agnostic *and* forge-agnostic; a GitHub Actions example breaks neutrality (but GitHub is where the kit lives).
+- **T10.1 — CI seed:** `GitHub Actions (.github/workflows/kit-selftest.yml)` is referenced in 5 files, security standard says "wire these gates into CI", agent-setup has an empty CI section — but the kit ships zero CI config. Proposed: one optional, commented `.github/workflows/ci.yml.example` (test + build + version-sync + SCA, TODO markers). Tension to discuss: kit is stack-agnostic *and* forge-agnostic; a GitHub Actions example breaks neutrality (but GitHub is where the kit lives).
 - **T10.2 — `.env.example`:** `agent-setup.md` setup step tells users to copy from it and `.gitignore` whitelists it — the file doesn't exist. Ship a stub or drop the mention.
 - **T10.3 — Dep maintenance:** SCA-in-CI is covered; nothing says who/when for dependency updates (Renovate/Dependabot or manual cadence). One paragraph in the security standard would do.
 
