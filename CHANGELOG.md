@@ -8,6 +8,9 @@ and this project adheres to Semantic Versioning.
 ## [Unreleased]
 
 ### Changed
+- `bootstrap/PAVED_ROAD.md` native-mobile UI-driving row upgraded from evidence-based recommendation to **validated on a real Flutter app** (T33 #157): drove login + a persisted survey submit + a green Maestro playback flow against a local backend on a headless emulator. Refined the semantics guidance — **labeled controls drive out of the box** via Flutter's auto-generated semantics; only **text inputs and custom-painted widgets** need a stable id (`Semantics(identifier:)` for black-box drivers like Maestro/Appium, a widget `key` for in-process like Patrol) — correcting the earlier "enrich the whole tree first." Added emulator gotchas (≥4 GB AVD or a debug build OOM-kills; host backend at `10.0.2.2`; never drive a release build). Also proves the reviewer's driver+verifier loop works on the native mobile surface, not just web
+
+### Changed
 - `bootstrap/PAVED_ROAD.md` native-mobile UI-driving guidance revised on first-contact evidence (T33 #150): it's now a **pair** — a playback runner (Flutter → Patrol, or Maestro black-box) + an agent-drivable accessibility-tree interactive driver — with **"enrich the app's semantics tree first (= screen-reader accessibility)"** as a hard prerequisite, and Maestro re-scoped as playback-only rather than "the mobile answer." Splits the old single E2E row into web (Playwright) and native-mobile rows. Validated the review module's driver-contract claim that a drivable app is an accessible one
 
 ### Added
