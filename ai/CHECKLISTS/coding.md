@@ -75,3 +75,16 @@ Run the trigger map in `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md` again
 - [ ] User docs updated for user-visible changes (see `ai/STANDARDS/DOCUMENTATION_STANDARD.md`)
 - [ ] New/changed user-visible error codes or caught errors added to the central error reference and cross-referenced, not re-explained (`ai/STANDARDS/DOCUMENTATION_STANDARD.md` → "Errors say what, why, and what's next")
 - [ ] `docs/GLOSSARY.md` updated for any term this change coined, overloaded, or had to explain (backstop — capture should have happened inline)
+
+## Kit-specific (this repo builds the kit)
+
+This repo is both the product and an adopter of it, so a change here can ship to
+every downstream project. These rows exist because the generic ones cannot name
+kit artifacts — see `ADAPTATIONS.md` for why this file diverges.
+
+- [ ] New shipped file → added to `template/manifest.yml` in the same PR (unlisted files never ship)
+- [ ] Added or renamed a **module**, a **slash command**, or changed the shipped directory structure → every enumeration that lists them updated, including `template/core/docs/kit/` (the miss that cost epic #145 four PRs)
+- [ ] Changed a standard's **content** → its `Last Updated` bumped (typo/formatting edits do not count)
+- [ ] Changed shipped content → `## [Unreleased]` entry in the root `CHANGELOG.md`
+- [ ] Instance stays **derived**: standards changed in `template/`, then `python3 scripts/self-conform.py --apply` — never edited at the root
+- [ ] `bash scripts/selftest.sh` green (manifest, dead refs, currency, self-conformance, both smoke tests)
