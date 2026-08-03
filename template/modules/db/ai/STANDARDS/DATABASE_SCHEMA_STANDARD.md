@@ -3,6 +3,8 @@
 
 # Database Schema Standard
 
+Last Updated: 2026-07-09
+
 ## Purpose
 
 Define the naming, typing, and structural conventions used in this project's schema

@@ -3,6 +3,8 @@
 
 # UI/UX Standard
 
+Last Updated: 2026-07-13
+
 This document is the visual and interaction source of truth for implementing UI.
 Read it before implementing any new screen, component, or visual change.
 

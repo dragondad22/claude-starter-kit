@@ -2,6 +2,8 @@
 
 # Interview Standard
 
+Last Updated: 2026-08-03
+
 ## Purpose
 
 Define the machinery for **structured async interviews**: deep question-driven

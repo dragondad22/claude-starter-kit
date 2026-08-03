@@ -3,6 +3,8 @@
 
 # Review Run Journal
 
+Last Updated: 2026-08-03
+
 ## Why a journal, and why JSONL
 
 Every `/review` run appends **one JSON object per line** to a run journal. The journal is

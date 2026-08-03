@@ -3,6 +3,8 @@
 
 # Review Driver Contract
 
+Last Updated: 2026-08-03
+
 ## Why this exists
 
 The reviewer agents (`ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md`) express their

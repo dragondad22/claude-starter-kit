@@ -2,6 +2,8 @@
 
 # Task Issue Standard
 
+Last Updated: 2026-07-11
+
 > Written assuming GitHub Issues, but the structure ports to any tracker
 > (`{{ISSUE_TRACKER_KIND}}` at `{{ISSUE_TRACKER}}`). Replace `gh` commands with
 > your tracker's equivalent.

@@ -3,6 +3,8 @@
 
 # Independent Review Standard
 
+Last Updated: 2026-08-03
+
 ## Purpose
 
 Every other verification surface in this kit is run by the agent that did the

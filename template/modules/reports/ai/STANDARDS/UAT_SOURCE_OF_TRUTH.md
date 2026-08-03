@@ -2,6 +2,8 @@
 
 # UAT Source of Truth Standard
 
+Last Updated: 2026-08-03
+
 ## Purpose
 Ensure UAT (user-acceptance testing) decisions are based on authoritative documents
 and observable behavior, not assumptions. When two sources disagree, there must be a
