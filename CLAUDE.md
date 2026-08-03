@@ -36,7 +36,8 @@ python3 scripts/validate-manifest.py   # allowlist complete, files exist, no kit
 python3 scripts/lint-dead-refs.py      # shipped docs cite only files that ship
 python3 scripts/lint-currency.py       # standards dated + current; modules/commands in every list
 python3 scripts/self-conform.py --check # this repo's instance still matches its pinned release
-bash scripts/bootstrap-smoke.sh        # scaffold + fill + shipped automation end-to-end
+bash scripts/bootstrap-smoke.sh        # install path: scaffold + fill + shipped automation
+bash scripts/upgrade-smoke.sh          # upgrade path: old release -> HEAD, assert, tear down
 
 # Kit release cut — the shipped script run against the kit root (issue #45):
 RELEASE_ROOT="$PWD" VERSION_FILES_LIST="$PWD/scripts/version-files.txt" \
