@@ -79,15 +79,75 @@ def load_adaptations():
     return out
 
 
+def upgrade(old_ref):
+    """Move the pin to the released VERSION and report what the upgrade costs.
+
+    This is the half of the adopter experience no test covers: what does it
+    actually take to move from one release to the next, and do the declared
+    adaptations still hold once upstream has moved underneath them?
+    """
+    with open('VERSION') as fh:
+        new = fh.read().strip()
+    new_ref = f'v{new}'
+    if git('rev-parse', '--verify', f'{new_ref}^{{commit}}') is None:
+        sys.exit(f'FAIL: {new_ref} not found — cut and tag the release before upgrading to it.')
+    if old_ref == new_ref:
+        print(f'OK: already pinned to {new_ref} — nothing to upgrade.')
+        return 0
+
+    changed = (git('diff', '--name-only', f'{old_ref}..{new_ref}', '--', 'template/core') or '').split()
+    changed = [c[len('template/core/'):] for c in changed if c.startswith('template/core/')]
+    adaptations = load_adaptations()
+    conflicts = [c for c in changed if c in adaptations]
+
+    print(f'=== self-upgrade {old_ref} -> {new_ref} ===')
+    print(f'  {len(changed)} core file(s) changed upstream')
+
+    if conflicts:
+        print(f'\n  !! {len(conflicts)} DECLARED ADAPTATION(S) CHANGED UPSTREAM — reconcile by hand:')
+        for c in conflicts:
+            print(f'     - {c}\n       kept because: {adaptations[c]}')
+        print('       The instance keeps your version. Re-read the upstream change and decide\n'
+              '       whether the adaptation still earns its row in ADAPTATIONS.md.')
+    else:
+        print('  no declared adaptation was touched upstream — clean upgrade')
+
+    with open('bootstrap/KIT_VERSION') as fh:
+        marker = fh.read()
+    marker = re.sub(r'^kit_version:.*$', f'kit_version: {new}', marker, count=1, flags=re.M)
+    with open('bootstrap/KIT_VERSION', 'w') as fh:
+        fh.write(marker)
+    print(f'\n  pin moved: bootstrap/KIT_VERSION -> {new}')
+    print(f'  now run: python3 scripts/self-conform.py --apply')
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--check', action='store_true', help='verify only; exit 1 on drift')
     ap.add_argument('--apply', action='store_true', help='rewrite the instance from the pin')
+    ap.add_argument('--upgrade', action='store_true',
+                    help='move the pin to the released VERSION and report the cost')
     args = ap.parse_args()
-    if args.check == args.apply:
-        sys.exit('FAIL: pass exactly one of --check / --apply')
+    if sum([args.check, args.apply, args.upgrade]) != 1:
+        sys.exit('FAIL: pass exactly one of --check / --apply / --upgrade')
 
     version = pinned_version()
+    if args.upgrade:
+        return upgrade(f'v{version}')
+
+    # A released-but-not-adopted kit has stopped dogfooding. Firing only once the
+    # tag exists keeps the release PR itself green (VERSION bumps before the tag
+    # is cut), and the signal clears the moment the self-upgrade lands.
+    if args.check:
+        with open('VERSION') as fh:
+            released = fh.read().strip()
+        if released != version and git('rev-parse', '--verify', f'v{released}^{{commit}}'):
+            print(f'FAIL: v{released} is released but this repo is still pinned to v{version}.\n\n'
+                  f'  The kit adopts its own releases — that is the dogfooding (T36.4).\n'
+                  f'  Run: python3 scripts/self-conform.py --upgrade '
+                  f'&& python3 scripts/self-conform.py --apply')
+            return 1
     ref = f'v{version}'
     if git('rev-parse', '--verify', f'{ref}^{{commit}}') is None:
         sys.exit(f'FAIL: pinned release tag {ref} not found. '

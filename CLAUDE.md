@@ -41,7 +41,18 @@ bash scripts/bootstrap-smoke.sh        # scaffold + fill + shipped automation en
 # Kit release cut — the shipped script run against the kit root (issue #45):
 RELEASE_ROOT="$PWD" VERSION_FILES_LIST="$PWD/scripts/version-files.txt" \
   bash template/core/ai/scripts/release.sh <bump>
+
+# Then, once the release is merged AND tagged — the kit adopts its own release:
+python3 scripts/self-conform.py --upgrade   # move the pin, report what it costs
+python3 scripts/self-conform.py --apply     # re-derive the instance
 ```
+
+**Releases are two steps.** The cut bumps `VERSION`; the **self-upgrade** moves
+`bootstrap/KIT_VERSION` to it and re-derives the instance. Until that lands,
+`--check` fails on `main` — a released-but-not-adopted kit has stopped dogfooding
+(T36.4). The upgrade reports any **declared adaptation that changed upstream**:
+that collision is the part of the adopter experience no test covers, so read it
+rather than clicking through it.
 
 All of these run in CI (`.github/workflows/kit-selftest.yml`) on ubuntu + macos —
 run them locally before pushing changes to `template/`.
