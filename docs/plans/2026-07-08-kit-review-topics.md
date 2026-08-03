@@ -9,7 +9,7 @@
 
 **Background (from Chris, 2026-07-08):** The kit was distilled from several real projects through trial and error. Some findings in this list are genuine staleness to clean up; others are practices that *fell off due to expediency, not because they were bad ideas* — those may deserve a better mechanism rather than deletion. Some material was also removed for privacy/redaction, which explains certain gaps. The goal of these discussions is not just to fix issues but to **make the process better**. `IMP` in the examples = "implementation plan" — AI-generated plans that started as markdown files and later moved into GitHub Issues for tracking/visibility.
 
-**Progress:** **32 / 35 decided** (T1–T17 on 2026-07-08; T18–T25 on 2026-07-09; T26–T28 on 2026-07-10 — implemented through v0.7.0; T29–T30 on 2026-07-11, from the life-os trial port-backs — implementation tracked as #92/#93 under epic #90; T31 on 2026-07-20 — impl. deferred pending T32; T32 opened 2026-07-20, in discussion — reconsiders T2/T23; T33 Decided 2026-07-28 — independent reviewer agents, grilled from a ShelterSync incident, implemented 2026-07-28→08-03 (#145), released in v0.11.0; T34–T35 opened 2026-07-28 as T33 spin-offs — UX design mode, encoding policy — both in discussion).
+**Progress:** **33 / 36 decided** (T1–T17 on 2026-07-08; T18–T25 on 2026-07-09; T26–T28 on 2026-07-10 — implemented through v0.7.0; T29–T30 on 2026-07-11, from the life-os trial port-backs — implementation tracked as #92/#93 under epic #90; T31 on 2026-07-20 — impl. deferred pending T32; T32 opened 2026-07-20, in discussion — reconsiders T2/T23; T33 Decided 2026-07-28 — independent reviewer agents, grilled from a ShelterSync incident, implemented 2026-07-28→08-03 (#145), released in v0.11.0; T34–T35 opened 2026-07-28 as T33 spin-offs — UX design mode, encoding policy — both in discussion; T36 opened *and decided* 2026-08-03 from the epic #172 post-mortem — the kit scaffolds itself, extending T23.3's self-hosting scope from tracking artifacts to the full working apparatus).
 
 **Open work (2026-08-03):** every topic left in a draft/deferred state now has a tracked issue, so nothing incomplete is invisible — **#159** (T32 grill, blocks T31) · **#160** (T31 epic, blocked by #159) · **#161** (T34 grill) · **#162** (T35 grill) · ~~**#163** (T17.9–T17.13 template delta)~~ **closed 2026-08-03**, which surfaced **#166** (interview standard doesn't list the spec among an interview's produced artifacts). Three of the remaining four are grilling sessions, not implementation: **T32, T34, and T35 have no decision yet**, so their scope can't be written until the session happens.
 
@@ -41,7 +41,7 @@
 | [T20](kit-review-topics/T20-interview-retrospective.md) | Interview retrospective (question-bank feedback loop) | Decided (2026-07-09) |
 | [T21](kit-review-topics/T21-data-lifecycle-question.md) | Data-lifecycle question in the inception spine | Decided (2026-07-09) |
 | [T22](kit-review-topics/T22-context-economy.md) | Context economy: the guard + the information-architecture principle | Decided (2026-07-09) |
-| [T23](kit-review-topics/T23-kit-repo-structure.md) | Kit repo structure: self-hosting kit + `template/` separation + manifest | Decided (2026-07-09) |
+| [T23](kit-review-topics/T23-kit-repo-structure.md) | Kit repo structure: self-hosting kit + `template/` separation + manifest | Decided (2026-07-09); T23.3 extended 2026-08-03 by T36 |
 | [T24](kit-review-topics/T24-file-naming-convention.md) | Markdown file-naming convention: reference vs working docs | Decided (2026-07-09) |
 | [T25](kit-review-topics/T25-roadmap-intake.md) | Feature-request intake & roadmap: views over live issues | Decided (2026-07-09) |
 | [T26](kit-review-topics/T26-audience-first-text.md) | Audience-first user-facing text: personas, no internal leakage, human voice | Decided (2026-07-10) |
@@ -54,6 +54,7 @@
 | [T33](kit-review-topics/T33-independent-reviewer-agents.md) | Independent reviewer agents: UAT persona driver, data-integrity verifier, UX evaluator | Implemented (#145 — epic + #146–#151, #157 all closed; in `[Unreleased]`) |
 | [T34](kit-review-topics/T34-ux-design-mode.md) | UX design mode: decompose vague design intent into an enforceable UX standard + journeys | In discussion (2026-07-28) — grill tracked (#161) |
 | [T35](kit-review-topics/T35-encoding-policy.md) | Encoding policy: markdown-first vs fit-for-purpose formats | In discussion (2026-07-28) — grill tracked (#162) |
+| [T36](kit-review-topics/T36-kit-scaffolds-itself.md) | Does the kit scaffold itself? Self-hosting beyond tracking artifacts | Decided (2026-08-03) — extends T23.3 (stamped in place); epic #183 filed |
 
 ---
 
