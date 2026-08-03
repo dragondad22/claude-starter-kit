@@ -1,5 +1,12 @@
 # Starter Kit Review — Decision Topics
 
+> **CLOSED 2026-08-03 by [T37](kit-review-topics/T37-decision-home.md).** This register
+> is historical and takes no new entries. Every T-ID remains valid and permanently
+> addressed — they are cited across CI output, the CHANGELOG, commit messages, issues and
+> shipped standards, and nothing here is rewritten or renumbered. **New kit decisions**
+> produce a working doc in `docs/plans/` plus an ADR or a register entry, per T37's model:
+> a proposal is consumed; a register holds standing truth.
+
 **Created:** 2026-07-08 · **Source:** full-kit review (all standards, checklists, templates, scripts, commands, docs — ~4,000 lines)
 **Purpose:** Working list of findings to discuss one by one, add context, and decide on — *before* converting decisions into GitHub issues. This kit seeds all future projects, so decisions here propagate.
 
@@ -9,7 +16,7 @@
 
 **Background (from Chris, 2026-07-08):** The kit was distilled from several real projects through trial and error. Some findings in this list are genuine staleness to clean up; others are practices that *fell off due to expediency, not because they were bad ideas* — those may deserve a better mechanism rather than deletion. Some material was also removed for privacy/redaction, which explains certain gaps. The goal of these discussions is not just to fix issues but to **make the process better**. `IMP` in the examples = "implementation plan" — AI-generated plans that started as markdown files and later moved into GitHub Issues for tracking/visibility.
 
-**Progress:** **33 / 36 decided** (T1–T17 on 2026-07-08; T18–T25 on 2026-07-09; T26–T28 on 2026-07-10 — implemented through v0.7.0; T29–T30 on 2026-07-11, from the life-os trial port-backs — implementation tracked as #92/#93 under epic #90; T31 on 2026-07-20 — impl. deferred pending T32; T32 opened 2026-07-20, in discussion — reconsiders T2/T23; T33 Decided 2026-07-28 — independent reviewer agents, grilled from a ShelterSync incident, implemented 2026-07-28→08-03 (#145), released in v0.11.0; T34–T35 opened 2026-07-28 as T33 spin-offs — UX design mode, encoding policy — both in discussion; T36 opened *and decided* 2026-08-03 from the epic #172 post-mortem — the kit scaffolds itself, extending T23.3's self-hosting scope from tracking artifacts to the full working apparatus).
+**Progress:** **34 / 37 decided** (T1–T17 on 2026-07-08; T18–T25 on 2026-07-09; T26–T28 on 2026-07-10 — implemented through v0.7.0; T29–T30 on 2026-07-11, from the life-os trial port-backs — implementation tracked as #92/#93 under epic #90; T31 on 2026-07-20 — impl. deferred pending T32; T32 opened 2026-07-20, in discussion — reconsiders T2/T23; T33 Decided 2026-07-28 — independent reviewer agents, grilled from a ShelterSync incident, implemented 2026-07-28→08-03 (#145), released in v0.11.0; T34–T35 opened 2026-07-28 as T33 spin-offs — UX design mode, encoding policy — both in discussion; T36 opened *and decided* 2026-08-03 from the epic #172 post-mortem — the kit scaffolds itself, extending T23.3's self-hosting scope from tracking artifacts to the full working apparatus; **T37 opened and decided 2026-08-03 — proposals vs registers, and the decision that closes this register**).
 
 **Open work (2026-08-03):** every topic left in a draft/deferred state now has a tracked issue, so nothing incomplete is invisible — **#159** (T32 grill, blocks T31) · **#160** (T31 epic, blocked by #159) · **#161** (T34 grill) · **#162** (T35 grill) · ~~**#163** (T17.9–T17.13 template delta)~~ **closed 2026-08-03**, which surfaced **#166** (interview standard doesn't list the spec among an interview's produced artifacts). Three of the remaining four are grilling sessions, not implementation: **T32, T34, and T35 have no decision yet**, so their scope can't be written until the session happens.
 
@@ -55,6 +62,7 @@
 | [T34](kit-review-topics/T34-ux-design-mode.md) | UX design mode: decompose vague design intent into an enforceable UX standard + journeys | In discussion (2026-07-28) — grill tracked (#161) |
 | [T35](kit-review-topics/T35-encoding-policy.md) | Encoding policy: markdown-first vs fit-for-purpose formats | In discussion (2026-07-28) — grill tracked (#162) |
 | [T36](kit-review-topics/T36-kit-scaffolds-itself.md) | Does the kit scaffold itself? Self-hosting beyond tracking artifacts | Decided (2026-08-03) — extends T23.3 (stamped in place); epic #183 filed |
+| [T37](kit-review-topics/T37-decision-home.md) | Where do landed decisions live? Proposals vs registers | **Decided (2026-08-03) — the final T-topic; this register is now closed** |
 
 ---
 
