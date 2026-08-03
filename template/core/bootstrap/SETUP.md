@@ -53,7 +53,9 @@ time (`bootstrap/modules/README.md` explains the staging).
   `bootstrap/VERIFY_IGNORE` — retrofit repos with their own runtime placeholders extend
   that file, per its header):
   ```
-  grep -rnoE '\{\{[A-Z_]+\}\}' . --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' \
+  grep -rnoE '\{\{[A-Z0-9_]+\}\}' . \
+    --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' \
+    --include='*.yml' --include='*.yaml' --include='*.example' \
     | grep -vE -f <(grep -vE '^#|^$' bootstrap/VERIFY_IGNORE)
   ```
 - [ ] `bash ai/scripts/check-version-sync.sh` passes
