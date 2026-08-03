@@ -17,7 +17,7 @@ from is recorded in `bootstrap/KIT_VERSION`.
 | `/compliance` | External-standards + obligation check | A change touches APIs, UI, mobile, messaging/UGC, payments, personal data, minors |
 | `/perf` | Performance smoke | The perf signal that matters might have moved |
 | `/release` | Version bump + CHANGELOG roll, in lockstep | `## [Unreleased]` has shipped enough |
-| `/evergreen` | Six-lens standards & process review | ~30-day cadence, non-interruptive |
+| `/evergreen` | Seven-lens standards & process review | ~30-day cadence, non-interruptive |
 | `/conform` | Tidy to current kit standards, no behavior change (`github` = tracker only) | Adopting the kit into an untidy repo |
 | `/rebaseline` | Harvest → pre-answered interview → critique → agreed rebuild plan | Sound concept, wrong implementation |
 

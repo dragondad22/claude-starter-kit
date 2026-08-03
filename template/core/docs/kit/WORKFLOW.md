@@ -85,7 +85,7 @@ flowchart TD
    against the kit.
 
 10. **Steady state.** The session-start protocol (`ai/agent-setup.md`) keeps
-    the board honest; `/evergreen` runs its six lenses on a ~30-day cadence;
+    the board honest; `/evergreen` runs its seven lenses on a ~30-day cadence;
     module triggers fire as the project grows (first schema → db, first UI
     code → ui, first deploy target → deploy-ci).
 
