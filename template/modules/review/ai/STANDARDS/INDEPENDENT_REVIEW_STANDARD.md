@@ -115,7 +115,10 @@ Rules:
   invariant — it is an advisory note.
 - **Feature-specific invariants are declared in the feature's own spec**, not here
   — e.g. an isolation rule like "no actor reads another tenant's data under any
-  request shape". This universal set is the floor every project gets for free.
+  request shape". The spec template declares them as `INV-n` rows, each naming the
+  evidence that proves it (`docs/specs/README.md`), so they arrive checkable rather
+  than buried in an NFR paragraph. This universal set is the floor every project
+  gets for free.
 - *Offered means accepted* runs cheaply by default (the option a persona would
   naturally pick) and exhaustively when the change touched a shared vocabulary.
 
@@ -162,9 +165,10 @@ I…?" rule in `ai/STANDARDS/UI_STANDARD.md`, not as help text.
 The advisory agent is not a taste engine. Its checklist is the project's own UX and
 documentation standards applied to the running app — audience-first copy, no
 internal identifiers shown to users, humanised codes, present loading/empty/error
-states, and the rest of `ai/STANDARDS/UI_STANDARD.md`. **Every advisory finding
-cites the clause it violates**, so even advisory output is falsifiable in its
-basis (advisory only in its authority). It **never proposes features**: the absence
+states, and the rest of `ai/STANDARDS/UI_STANDARD.md` — plus any `UX-n` clause the
+feature's own spec declares, which is citable on the same footing as a standard's.
+**Every advisory finding cites the clause it violates**, so even advisory output is
+falsifiable in its basis (advisory only in its authority). It **never proposes features**: the absence
 of a capability the product never claimed is out of scope — that belongs to
 feature intake, not a review. Friction that violates no existing clause becomes a
 note; a *recurring* note is evidence the UX standard is missing a clause.

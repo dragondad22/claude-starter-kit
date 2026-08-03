@@ -100,7 +100,9 @@ Example entry:
   not a conversation.
 - **Feature spec** — a journey-first two-layer feature document in
   `docs/specs/` (`SPEC-<DOMAIN>-NNN`): plain-language journey on top for
-  non-technical stakeholders, technical spec below for AI/devs/UAT.
+  non-technical stakeholders, technical spec below for AI/devs/UAT. Self-contained:
+  it states what must be true and *refers to* ADRs and decisions, never prescribing
+  them.
   _Avoid_: calling a spec a "workflow doc" — specs are journey-first and
   two-layer, not process descriptions. (Repos with a legitimate `workflow`
   doc surface of their own are unaffected — the rule is about what specs are
