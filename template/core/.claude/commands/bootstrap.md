@@ -35,7 +35,9 @@ Close out project inception: consume the inception interview's `Final:` answers 
 
 7. **Verify.** Run:
    ```bash
-   grep -rnoE '\{\{[A-Z_]+\}\}' . --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' \
+   grep -rnoE '\{\{[A-Z0-9_]+\}\}' . \
+     --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' \
+     --include='*.yml' --include='*.yaml' --include='*.example' \
      | grep -vE -f <(grep -vE '^#|^$' bootstrap/VERIFY_IGNORE)
    ```
    It should return nothing — the exclusion list lives in `bootstrap/VERIFY_IGNORE` (kit meta-literals plus, on retrofit repos, any pre-existing runtime placeholders; the file's header explains how to extend it). A remaining hit is either an unfilled token (fill it) or a legitimate runtime placeholder (add a narrow pattern to `VERIFY_IGNORE` — never edit the flagged file to appease the grep). Also confirm `bootstrap/KIT_VERSION` exists and records the scaffold. (Snippet is macOS/Linux bash; on Windows use `rg "\{\{"` or an editor's project-wide search.)

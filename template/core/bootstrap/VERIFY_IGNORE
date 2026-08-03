@@ -18,3 +18,8 @@
 (^|/)bootstrap/
 (^|/)README\.md
 \{\{(TOKEN|TOKENS|PLACEHOLDER|DOUBLE_BRACE)\}\}
+# GitHub Actions expression syntax — `${{ matrix.os }}`, `${{ secrets.X }}` — is
+# not a kit token and is never fillable, but it matches the verify's `{{`. Ships
+# by default because GitHub Actions is the paved-road CI: without this, the first
+# workflow with a matrix or a secret makes verify report a false unfilled token.
+\$\{\{
