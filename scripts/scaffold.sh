@@ -28,10 +28,21 @@ die() { echo "ABORT: $*" >&2; exit 1; }
 [ -f "$MF" ] || die "no template/manifest.yml — run from a kit checkout root"
 [ $# -ge 1 ] || die "usage: bash scripts/scaffold.sh <target-dir> [module ...]"
 
+# Self-install (T36): the kit is an adopter of its own product, so targeting the
+# kit checkout is legitimate — but only deliberately. The guard stays for every
+# other invocation, because `scaffold.sh .` from a kit checkout is otherwise a
+# very easy accident.
+SELF=false
+if [ "${1:-}" = "--self" ]; then SELF=true; shift; fi
+
+[ $# -ge 1 ] || die "usage: bash scripts/scaffold.sh [--self] <target-dir> [module ...]"
+
 TARGET="$1"; shift
 mkdir -p "$TARGET"
 TARGET="$(cd "$TARGET" && pwd)"
-[ "$TARGET" != "$ROOT_DIR" ] || die "target is the kit checkout itself"
+if [ "$TARGET" = "$ROOT_DIR" ] && [ "$SELF" != "true" ]; then
+  die "target is the kit checkout itself — pass --self to install the kit into itself (T36)"
+fi
 
 # --- manifest parsing (same constrained subset scaffold-module.sh reads) ----
 
@@ -93,6 +104,13 @@ done < <(core_files)
 echo "  core: $copied file(s) installed"
 
 # 2. Stage every module payload + the manifest (T3.10: offline, version-consistent).
+# Skipped for --self: staging exists so a project can install a module later
+# offline and version-consistent. The kit already holds every module payload in
+# template/modules/, so staged copies would be byte-identical duplicates in the
+# same repo — pure drift surface with nothing to gain. Declared adaptation (T36.2).
+if [ "$SELF" = "true" ]; then
+  echo "  modules: staging skipped (--self: template/modules/ is the source)"
+else
 copied=0
 while IFS= read -r m; do
   while IFS= read -r f; do
@@ -103,6 +121,7 @@ while IFS= read -r m; do
 done < <(module_names)
 copy_into "$MF" "$TARGET/bootstrap/modules/manifest.yml"
 echo "  modules: $copied file(s) staged under bootstrap/modules/"
+fi
 
 # 3. Upgrade marker (T18): kit version + scaffold date + installed-module list.
 if [ -e "$TARGET/bootstrap/KIT_VERSION" ]; then

@@ -8,7 +8,11 @@
       "Bash(git branch:*)",
       "Bash(git add:*)",
       "Bash(git ls-files:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(ai/scripts/*)",
+      "Bash(bash ai/scripts/*)",
+      "Bash(bash scripts/*)",
+      "Bash(python3 scripts/*)"
     ]
   },
   "hooks": {}

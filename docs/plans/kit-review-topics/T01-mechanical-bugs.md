@@ -4,7 +4,7 @@
 
 Small defects where the fix is unambiguous; grouped so they can be approved as one batch (likely one issue/PR).
 
-- [ ] **T1.1 — `{{IMP_ID}}` never lands in report bodies.** *(→ discussion of the underlying work-item process moved to T13; fix this only in whatever form survives T13.)* `new-report.sh` substitutes `{{IMP_ID}}`, and `bootstrap/PLACEHOLDERS.md` says to leave it in templates — but all four report templates hard-code `Work Item: {{WORK_ITEM_PREFIX}}-NNN` instead. After bootstrap, scaffolded reports contain the literal `IMP-NNN`; the real ID only reaches the filename. Fix: put `{{IMP_ID}}` in the templates' Work Item field.
+- [ ] **T1.1 — `{{IMP_ID}}` never lands in report bodies.** *(→ discussion of the underlying work-item process moved to T13; fix this only in whatever form survives T13.)* `new-report.sh` substitutes `{{IMP_ID}}`, and `bootstrap/PLACEHOLDERS.md` says to leave it in templates — but all four report templates hard-code `Work Item: KIT-NNN` instead. After bootstrap, scaffolded reports contain the literal `IMP-NNN`; the real ID only reaches the filename. Fix: put `{{IMP_ID}}` in the templates' Work Item field.
 - [ ] **T1.2 — `preflight.md` has two step 6s** (compliance check and report results).
 - [ ] **T1.3 — Completion Gate mismatch:** `TASK_ISSUE_STANDARD.md` says the gate is fixed and lists 4 items; `TASK_ISSUE_TEMPLATE.md` has 6 (adds `/compliance` + PR link). Sync the standard to the template.
 - [ ] **T1.4 — Dead reference:** `ISSUE_TRIAGE_SLA.md` cites `ai/scripts/triage-sla-report.sh` — doesn't exist. (Interacts with T6 — if the SLA standard is folded, this vanishes.)

@@ -1,0 +1,127 @@
+# Security Review Standard
+
+Last Updated: 2026-07-13
+
+
+## Purpose
+Define a repeatable security regression review for the project's trust boundaries:
+authentication, authorization, session/credential handling, and account-security actions.
+
+## Scope
+- Authentication and session controls.
+- Authorization / access-control enforcement (every layer it is enforced at).
+- Credential-recovery and second-factor flows (password reset, OTP/MFA), if present.
+- Admin/privileged actions that affect account security.
+- **Multi-tenant isolation (if applicable):** see the optional subsection below.
+
+## Universal Security Concerns (always in scope)
+These are not stack- or domain-specific — review them on every security-relevant change:
+- **Input validation:** all external input validated and bounded at the trust boundary.
+- **Secrets handling:** no secrets in source, logs, or error messages; secrets sourced from
+  a secret store / env, never hard-coded.
+- **Authn / authz:** identity is verified, and every privileged action is authorized
+  server-side (never trust client-asserted roles, IDs, or permissions).
+- **Least privilege:** code, tokens, and credentials hold the minimum scope needed.
+- **Dependency scanning:** known-vulnerable dependencies are surfaced and triaged.
+- **No secrets in logs:** see the logging standard — operational logs never carry tokens,
+  credentials, or sensitive bodies.
+
+## Required Regression Pack
+Run via the project's security-scan entry point:
+- `ai/scripts/security-review.sh <KIT-NNN> <feature-slug>` (kit ships a stub; wire it to the commands below)
+- Or directly: `N/A (no third-party dependencies)`
+
+The pack must include:
+- Any required data-layer codegen for the backend (so tests run against a real client).
+- Targeted security regression tests in the backend.
+- Source scans for risky authorization-trust patterns (see Scan Interpretation Rules).
+
+## CI Security Gates
+Wire these into `GitHub Actions (.github/workflows/kit-selftest.yml)` so they run automatically (the kit's PR-validation
+seed at `.github/workflows/pr-validation.yml.example` carries the SCA gate):
+- **SCA gate** via `N/A (no third-party dependencies)` (dependency / known-vuln scan) — fail on
+  high/critical runtime vulnerabilities.
+- **Static analysis (SAST)** for best-practice security issues (e.g. a Semgrep-style job).
+
+## Dependency Maintenance
+The SCA gate catches known-vulnerable dependencies; this keeps the project from
+accumulating them. For GitHub-hosted projects the default is **Renovate** (Dependabot
+is an acceptable alternative — paved-road row in `bootstrap/PAVED_ROAD.md`): enable it
+at project setup, batch routine updates into a weekly PR, and let security updates
+raise immediate PRs. **Ownership:** update PRs are triaged by whoever holds the
+maintainer role (Chris (dragondad22) by default) — merged on green CI for routine bumps,
+and treated as priority work when the bump fixes a CVE (add a CHANGELOG `Security`
+entry when a bump fixes a runtime vulnerability). Projects not hosted on GitHub run a
+manual equivalent on the same cadence: a weekly dependency review plus
+`N/A (no third-party dependencies)`, with findings triaged the same way.
+
+## Required Preflight Gate
+Before running the pack, verify:
+- Repo state is known: current commit (`git rev-parse HEAD`) and working tree (`git status --short`).
+- Required tools are present (language toolchain, package manager, `git`, search/JSON utilities, issue-tracker CLI).
+- Backend readiness: required env/config present and dependencies installed.
+- Issue-tracker readiness (authenticated, if findings will be filed).
+- Required source docs / decision records are present.
+
+If any preflight check fails, retry **once** after standard setup recovery. If still
+failing, the outcome must be `BLOCKED` with the exact human action required.
+
+## Baseline Targeted Test Set
+Maintain a named, stable set of security regression tests that the pack always runs.
+**List the actual file paths of the baseline tests in this standard, not just their
+capabilities** — a capability description cannot detect a renamed or deleted test,
+but a path list visibly disagrees with the tree the moment one goes missing.
+Adapt to the project's surfaces; cover at minimum:
+- Authorization: permission-denial (under-privileged user is blocked).
+- Authentication: login success and failure paths.
+- Credential recovery: password reset / OTP flow (if present).
+- Session controls: issuance, expiry/idle-timeout, invalidation.
+- Second factor: MFA flow (when present).
+- **Tenant isolation: cross-tenant access is denied (if applicable — see below).**
+
+### Multi-tenant isolation (if applicable)
+*Skip this entire subsection if the project is single-tenant.*
+
+**This subsection is the single home of the tenant-isolation doctrine.** Other
+standards and checklists restate the rule as a one-liner and point here; to change
+the doctrine, change it here first, then sweep the one-liners (grep `tenant`).
+
+If the project serves multiple isolated tenants/orgs/accounts that must not see each
+other's data:
+- **Cross-tenant access is a security violation, not a bug.** A leak between tenants
+  is a `Blocker` finding — never a defect to backlog.
+- **Never trust a client-supplied tenant identifier.** A client can assert any tenant
+  id it likes; only server-side authenticated session/context is authoritative. Derive
+  the tenant there, and confirm the requested resource belongs to it.
+- Every data query — reads *and* writes — must be scoped to the caller's tenant.
+- Keep a dedicated isolation regression test proving a user from tenant A cannot read or
+  mutate tenant B's data.
+
+## Scan Interpretation Rules
+Define the project's scans and what their results mean. Two representative patterns:
+- **"Tenant ID derived from request" scan** (only if multi-tenant):
+  - No matches: expected clean baseline.
+  - One or more matches: requires manual triage to confirm safe derivation and that
+    authorization boundaries are enforced regardless of the client-supplied value.
+- **"Authorization guards present" scan** (e.g. grep for the authz middleware/decorator):
+  - One or more matches: expected baseline signal (guards exist).
+  - **No matches: treat as a failed review signal (`FAIL` or `BLOCKED`)** until root cause
+    is confirmed — absence of guards is itself a finding.
+
+## Finding Severity Rules
+- `Blocker`: authentication bypass, privilege escalation, session-control failure with an
+  immediate exploit path — or (if applicable) tenant-isolation bypass.
+- `High`: reproducible auth/security failure in a critical flow.
+- `Medium`: non-critical boundary weakness or hardening gap.
+- `Low`: low-impact misconfiguration or observability gap.
+
+## Output Requirements
+- **Pass**: exit code + one-line summary — no report document.
+- **Fail/Blocked**: diagnostic bundle per `ai/TEMPLATES/DIAGNOSTIC_BUNDLE_TEMPLATE.md`
+  (Security section filled; the template carries the formatting rules), artifacts under
+  `testing-reports/artifacts/<date>_<KIT-NNN>_<feature>_<timestamp>/`.
+- Findings filed per the project's issue/bug reporting standard, bundle linked.
+
+## Self-Correction Protocol
+- Retry dependency install + any data-layer codegen **once** if tooling/setup fails.
+- If still blocked, mark the outcome `BLOCKED` with the exact action required.

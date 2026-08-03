@@ -1,0 +1,41 @@
+# Verify-grep exclusions — read by the bootstrap verify step (`/bootstrap` § Verify
+# and bootstrap/SETUP.md § Verify) via `grep -vE -f` after stripping comment and
+# blank lines. One extended-regex pattern per line, matched against the verify
+# grep's `path:line:token` output. Patterns must anchor path segments with (^|/) —
+# a bare leading slash silently fails on greps that emit unprefixed paths (ugrep
+# and other drop-in replacements).
+#
+# The kit's own exclusions ship below: bootstrap/** documents the tokens,
+# README.md files may cite them, and the meta-literal tokens are illustrative
+# (see PLACEHOLDERS.md § Meta-literals). Do not remove them.
+#
+# Retrofit repos: append patterns for pre-existing RUNTIME placeholders that are
+# not kit tokens — templating your own scripts fill at run time, e.g. a report
+# template's {{DATE}}/{{FEATURE}}:
+#   (^|/)ai/TEMPLATES/.*_REPORT_TEMPLATE\.md
+# Keep each pattern as narrow as the real exception; this file is the accepted
+# list, so a broad pattern can hide a genuinely unfilled token.
+(^|/)bootstrap/
+(^|/)README\.md
+\{\{(TOKEN|TOKENS|PLACEHOLDER|DOUBLE_BRACE)\}\}
+
+# Kit-dev adaptation (T36): this repo IS the kit, so template/ is the shipped
+# product and its {{TOKENS}} are permanently unfilled by design — the kit repo
+# never fills them (CLAUDE.md - Editing Shipped Content). No other adopter has
+# this exclusion because no other adopter carries the template tree.
+(^|/)template/
+
+# GitHub Actions expression syntax (${{ ... }}) collides with the verify grep's
+# bare `{{` pattern. Not a kit token and never fillable. Any adopter whose CI
+# uses GitHub Actions hits this — ported back to the shipped file (see findings).
+\$\{\{
+
+# Kit-dev prose that *mentions* runtime placeholders rather than carrying them
+# (retrofit mechanism, issue #115): the CHANGELOG documents tokens by name, and
+# a decision record discusses the IMP_ID convention. Neither is an unfilled token.
+(^|/)CHANGELOG\.md
+(^|/)docs/plans/
+
+# Kit-dev tooling that manipulates tokens by nature: the smoke test fills every
+# {{TOKEN}} with a dummy value, so it necessarily contains the literal syntax.
+(^|/)scripts/bootstrap-smoke\.sh
