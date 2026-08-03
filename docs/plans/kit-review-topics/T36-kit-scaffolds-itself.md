@@ -1,10 +1,9 @@
 # T36 — Does the kit scaffold itself? Self-hosting beyond tracking artifacts
 
-> **DRAFT — opened 2026-08-03 from the epic #172 post-mortem. This topic EXTENDS or
-> REVISES a finalized decision (T23.3 self-hosting). Grilling started the same day;
-> nothing decided yet. If decided, T23.3 is stamped-superseded in place, not rewritten.**
+> **Decided 2026-08-03 (grilling session with Chris). This topic EXTENDS a finalized
+> decision — T23.3's self-hosting scope, stamped in place, not rewritten.**
 
-**Category:** Structural (extends a Decided topic) · **Status:** In discussion (2026-08-03) — grilling started · **Issue:** #181 (grill tracked) · **Related:** T23.3 (the decision this extends), T18 (`KIT_VERSION` + upgrade path — the kit would become its own first adopter), T27 (`/conform` — the drift mechanism it would dogfood), T11 (duplication with sync burden — the central objection), T2 (does not bind kit-dev), T32 (delivery substrate — sequencing question)
+**Category:** Structural (extends a Decided topic) · **Status:** **Decided (2026-08-03)** — grilled · **Issue:** #181 (grill) → implementation epic **#183** (sub-issues #184–#188) · **Related:** T23.3 (the decision this extends), T18 (`KIT_VERSION` + upgrade path — the kit would become its own first adopter), T27 (`/conform` — the drift mechanism it would dogfood), T11 (duplication with sync burden — the central objection), T2 (does not bind kit-dev), T32 (delivery substrate — sequencing question)
 
 **Problem / Origin (Chris, 2026-08-03):** *"Why doesn't this repo adhere to the same
 standards that it pushes? They work really well, I code with them every day in
@@ -90,7 +89,81 @@ At least three architectures, none presumed:
 9. **Sequencing vs T32.** T32 may change delivery entirely. Does this wait, or does
    being its own adopter generate exactly the evidence T32 needs?
 
-**Decision:** — (grilling in progress)
+**Decision (2026-08-03):**
+
+- **T36.1 — Architecture: scaffold, commit, and check.** The kit installs its own core into
+  the repo root and commits the result. Drift is not managed by discipline: a **conformance
+  check** asserts each instance file equals its `template/` counterpart with tokens filled.
+  Path indirection was rejected on measured grounds — every candidate file carries
+  `{{TOKENS}}` (`preflight.md` 3, `coding.md` 1, `agent-setup.md` 2, `TESTING_STANDARD.md` 6),
+  so a symlink ships a broken checklist. A generated-and-gitignored instance was rejected as
+  new machinery while T32 is open.
+
+- **T36.2 — `template/` is truth; the instance is derived.** The rule governs the **end state
+  of a PR, not the authoring order**: fix a problem wherever you notice it, but the PR lands
+  conformant. Deliberate divergence is legal only as a **declared adaptation carrying a
+  one-line reason**, and the check reports the adaptation count so growth stays visible
+  instead of becoming a quiet dumping ground.
+
+- **T36.3 — Scope is decided by the shipped machinery, not by hand.** The kit is retrofitted
+  as a real adopting repo (`/bootstrap` retrofit / `/conform`), answering inception honestly
+  for a docs-and-scripts project with no runtime, and installs whatever that produces.
+  Hand-picking a subset was rejected as the same move that produced `lint-currency.py`
+  instead of installing the checklists. **Friction found in the retrofit is a finding about
+  the adoption path, not a kit-specific inconvenience.**
+
+- **T36.4 — The instance is pinned to the last *release*, and the upgrade is what gets
+  eaten.** Root `KIT_VERSION` tracks the last released version; the conformance check
+  compares the instance against `git show v<KIT_VERSION>:template/core/…` rather than HEAD.
+  So each release makes the kit perform a **real self-upgrade**, exercising the one part of
+  the upgrade path no test can meaningfully cover: **declared adaptations colliding with
+  upstream changes**. Cost accepted (Chris, 2026-08-03): between releases the kit works
+  against last-released standards, so an improvement does not reach the kit until it ships —
+  which is exactly what an adopter feels, and creates healthy release pressure. If a fix is
+  ever urgent, cutting a release is the escape hatch, and releases are cheap.
+
+- **T36.5 — Install is *tested*, not eaten; upgrade is *eaten* and also gets a test.**
+  Chris's framing (2026-08-03): *"New installs can be scaffolded, tested, and torn down
+  automatically. We don't eat them, but we do test them."* Half of this was already true —
+  `scripts/bootstrap-smoke.sh` does `mktemp -d` + `trap rm -rf` on ubuntu and macOS every PR.
+  The gap is that **nothing has ever read the `KIT_VERSION` marker in anger**: `scaffold.sh`
+  writes it, and the kit-delta lens has never run against a real repo. So the upgrade path
+  gains the same scaffold-test-teardown treatment (scaffold at an old release → upgrade to
+  HEAD → assert → discard), *in addition to* being eaten at each release.
+
+- **T36.6 — Derived, not decided: disambiguation follows T23.1.** With two copies present,
+  the existing frame already answers it — repo root is kit development, `template/` is the
+  product. **The instance governs how work is done here; `template/` is the thing being
+  built.** Reading a standard to know how to work → the instance. Changing a standard →
+  `template/`, propagated in the same PR.
+
+- **T36.7 — Kit-only obligations become declared adaptations.** Manifest entry, T30.2
+  kit-docs keep-current, no-kit-dev-leak have no generic home, so they are the kit's
+  *adaptation* of the shipped checklist — which is precisely what an adopting project does
+  to a generic standard. They ride the T36.2 adaptation mechanism with reasons.
+
+- **T36.8 — Installing may be necessary without being sufficient.** `/preflight` step 5 only
+  fires for the kit once "user-visible" is adapted to mean shipped content and "docs" to mean
+  `docs/kit/`. Adapting it is an acceptance criterion of the implementation, not an
+  afterthought — an installed-but-unadapted gate is a gate that does not fire.
+
+- **T36.9 — Proceed now; follows the T33 precedent, not T31's.** T36 builds almost nothing
+  new — the scaffold, `/conform` and the checklists already ship — so T32's substrate
+  decision gates none of it, and running the kit as its own adopter generates exactly the
+  install/upgrade friction evidence T32 lacks. Parking a second topic behind an undecided
+  T32 (T31 has waited since 2026-07-20) is how backlogs calcify.
+
+**Known limits — recorded, not overclaimed:** the kit dogfoods **install-and-stay-conformant**
+and, via T36.4, **upgrade**. It does **not** cover **port-back friction** — a real adopter
+feels *"I need this changed and I cannot change it,"* which is what produces port-back issues;
+the kit can always edit the product directly. Real adopters (ShelterSync, CrossWise, life-os)
+remain the only evidence source for that half. An overclaimed benefit is worse than a narrow
+honest one.
+
+**Supersession:** T23.3 is **extended, not overturned** — its four tracking artifacts (board,
+typed issues, `plans/`, releases) remain correct; self-hosting now also covers the working
+apparatus (standards, checklists, commands, session-start protocol, gates). Stamped in place
+in `T23-kit-repo-structure.md`.
 
 ## Discussion notes
 
@@ -101,3 +174,16 @@ At least three architectures, none presumed:
   and `/preflight`. `lint-currency.py` is defensible on different grounds — mechanical
   CI enforcement, which `/evergreen`'s judgment-based 30-day sweep is not — but the
   *gate* half of the problem was already solved and shipped.
+- 2026-08-03 (grill, Q7): the AI recommended accepting that a permanently-conformant
+  instance never experiences an upgrade, and recording the narrowed benefit. **Chris
+  rejected both offered options** and reframed: *"the Upgrade (with the exception of the
+  first implementation) should be the dog food we are eating. New installs can be
+  scaffolded, tested, and torn down automatically. We don't eat them, but we do test them.
+  I'm not sure the realities of that however."* Checked against the tree, the reframe held:
+  install was **already** scaffold-test-teardown (`bootstrap-smoke.sh`), and upgrade was
+  neither tested nor eaten. The realities cost one changed git argument in the conformance
+  check. Recorded as T36.4/T36.5; the AI's Q7 recommendation is superseded by this note.
+- 2026-08-03: questions Q3 (disambiguation) and Q5 (the kit's `CLAUDE.md`) were **not put to
+  Chris** — both were forced by answers already given (T23.1's frame; the retrofit path's
+  existing handling of a repo with its own `CLAUDE.md`, per #116). Asking a question whose
+  answer is determined launders the asker's assumption into the record as a decision.
