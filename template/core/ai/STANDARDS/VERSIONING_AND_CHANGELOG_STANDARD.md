@@ -4,7 +4,7 @@
 
 Owner: {{PROJECT_OWNER}}
 Status: Recommended default
-Last Updated: 2026-06-24
+Last Updated: 2026-07-13
 
 This standard governs how {{PROJECT_NAME}} tracks user-visible changes
 (`CHANGELOG.md`) and how it bumps version numbers (the files listed in

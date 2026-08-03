@@ -2,6 +2,8 @@
 
 # Roadmap Standard
 
+Last Updated: 2026-07-10
+
 > Written assuming GitHub Issues + Projects, but the model — intake as typed
 > issues, ordering as a ranked board view, visibility as a shared read-only
 > surface — ports to any tracker (`{{ISSUE_TRACKER_KIND}}` at

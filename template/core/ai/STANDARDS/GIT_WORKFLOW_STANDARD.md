@@ -4,7 +4,7 @@
 
 Owner: {{PROJECT_OWNER}}
 Status: Recommended default
-Last Updated: 2026-07-09
+Last Updated: 2026-07-13
 
 This standard governs branches, commit messages, pull requests, and merges for
 {{PROJECT_NAME}}. The terse enforcement rules live in `CLAUDE.md` → Git Workflow

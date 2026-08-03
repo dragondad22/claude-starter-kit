@@ -1,5 +1,7 @@
 # Performance Smoke Standard
 
+Last Updated: 2026-07-09
+
 *Generic standard from the Claude starter kit — adapt to this project's stack. Replace `{{TOKENS}}`; see `bootstrap/PLACEHOLDERS.md`.*
 
 ## Purpose

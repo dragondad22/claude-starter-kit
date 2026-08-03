@@ -7,6 +7,9 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Added
+- **Every shipped standard now carries a `Last Updated: YYYY-MM-DD` line**, and `DOCUMENTATION_STANDARD.md` gains the rule that requires one (#173, epic #172). Previously 2 of 19 standards had the field and **no rule anywhere asked for it** — it was never a convention that decayed, just two files that happened to have it, and both of their dates were wrong (`GIT_WORKFLOW` claimed 2026-07-09 against a 2026-07-13 change; `VERSIONING` claimed 2026-06-24 against the same). Each of the 19 is stamped with its **actual** last content-change date, not today's. The rule states the trigger precisely — a PR changing a standard's *content* bumps the date; typo, formatting, and metadata-only edits do not — and records why the field is not redundant with version control: **standards get distributed**, so the reader is usually holding a copy in a repo whose history says nothing about where the text came from, and an absent or stale date reads as "current" to someone with no way to check. `/evergreen`'s date-sweep lens now points at that rule instead of describing the field it could not previously assume existed
+
 ## [0.11.0] - 2026-08-03
 
 ### Added

@@ -4,6 +4,8 @@ team-formation interview, not project inception.*
 
 # Issue SLA Standard
 
+Last Updated: 2026-07-13
+
 ## Purpose
 
 Add a **timing layer** on top of the core triage rules: how fast findings get a
