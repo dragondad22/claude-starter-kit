@@ -4,7 +4,7 @@
 > pending [T32](T32-kit-runtime-evolution.md) (kit runtime/delivery evolution) — the
 > enforcement needs catalogued here are requirements input to T32.**
 
-**Category:** Process + Module (new capability) · **Status:** **Decided (2026-07-20)** — implementation deferred pending T32 · **Issue:** — · **Related:** T32 (blocking dependency — delivery substrate), T2 (portable-shell constraint the watchdog strains), T22 (context economy → firewall + journal), T18 (upgrade path signal)
+**Category:** Process + Module (new capability) · **Status:** **Decided (2026-07-20)** — implementation deferred pending T32 · **Issue:** epic #160 (filed 2026-08-03; blocked by #159, sub-issues decomposed after it lands) · **Related:** T32 (blocking dependency — delivery substrate), T2 (portable-shell constraint the watchdog strains), T22 (context economy → firewall + journal), T18 (upgrade path signal)
 
 **Problem / Origin:** Chris works sessions to ~50–75% context and stops to avoid compaction, because compaction introduces uncertainty in *coding* sessions specifically. He wants long-running / larger batches (motivating case: run CrossWise's issue backlog while AFK — "nothing gets done if I have to sit there") without that risk, and not as a default mode; ShelterSync would grant a low/zero autonomy ceiling. Grilled 2026-07-20 across 11 questions; the design below is the result. This is genuinely epic-sized and, per the sequencing decision, waits on T32.
 

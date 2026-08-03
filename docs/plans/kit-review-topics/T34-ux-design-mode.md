@@ -4,7 +4,7 @@
 > nothing decided. This is the *design-time* front half of the UX-agent lifecycle whose
 > *review-time* half is [T33](T33-independent-reviewer-agents.md).**
 
-**Category:** Process + Module (new capability) · **Status:** In discussion (2026-07-28) — opened, not yet grilled · **Issue:** — · **Related:** T33 (review mode — same agent identity; shared feedback loop), T17 (feature-spec v2 — journeys are a shared artifact), T15 (inception interview — the machinery this extends), T26 (audience-first text), UI_STANDARD (the best-practice base this adapts)
+**Category:** Process + Module (new capability) · **Status:** In discussion (2026-07-28) — opened, not yet grilled; **grill tracked (#161)** · **Issue:** #161 (the grilling session itself — a decided T34 spawns its own implementation issues) · **Related:** T33 (review mode — same agent identity; shared feedback loop), T17 (feature-spec v2 — journeys are a shared artifact), T15 (inception interview — the machinery this extends), T26 (audience-first text), UI_STANDARD (the best-practice base this adapts)
 
 **Problem / Origin:** ShelterSync's UX was never fully scoped up front. The T33 grill
 established that its UX-conformance reviewer can only *enforce* a standard that *exists* —

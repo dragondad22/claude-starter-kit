@@ -4,7 +4,7 @@
 > grilling session. Nothing decided. Cross-linked to [T32](T32-kit-runtime-evolution.md)
 > (runtime/delivery) — siblings, not the same: T32 is execution, T35 is data encoding.**
 
-**Category:** Structural (kit-wide convention) · **Status:** In discussion (2026-07-28) — opened, not yet grilled · **Issue:** — · **Related:** T32 (runtime/delivery — same judgment/enforcement seam, applied to encoding), T22 (context economy), T11 (duplication — the pipe-escaping-×3 note is markdown-table friction), T33 (first consumer — applied the principle in miniature)
+**Category:** Structural (kit-wide convention) · **Status:** In discussion (2026-07-28) — opened, not yet grilled; **grill tracked (#162)** · **Issue:** #162 (the grilling session itself — a decided T35 spawns its own re-encoding issues) · **Related:** T32 (runtime/delivery — same judgment/enforcement seam, applied to encoding), T22 (context economy), T11 (duplication — the pipe-escaping-×3 note is markdown-table friction), T33 (first consumer — applied the principle in miniature)
 
 **Problem / Origin:** Markdown became the kit's default because it is human-readable **and**
 human-editable — letting users understand how things work and customize prompts/standards
