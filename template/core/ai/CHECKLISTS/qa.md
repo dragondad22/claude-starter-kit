@@ -25,6 +25,7 @@ Use this checklist when validating changes — after implementation or as a dedi
 - [ ] Each acceptance criterion verified with evidence
 - [ ] Happy path works end-to-end
 - [ ] Error/edge cases handled gracefully
+- [ ] (If the review module is installed, and the change touched a shared surface) an independent review run covered the flows that *consume* the changed thing, not just the diff (`ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md`)
 
 ## UX Spot Check (if there's a UI)
 - [ ] Copy is clear and operational (action verbs on buttons, helpful empty states)

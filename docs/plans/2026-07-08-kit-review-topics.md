@@ -9,7 +9,7 @@
 
 **Background (from Chris, 2026-07-08):** The kit was distilled from several real projects through trial and error. Some findings in this list are genuine staleness to clean up; others are practices that *fell off due to expediency, not because they were bad ideas* — those may deserve a better mechanism rather than deletion. Some material was also removed for privacy/redaction, which explains certain gaps. The goal of these discussions is not just to fix issues but to **make the process better**. `IMP` in the examples = "implementation plan" — AI-generated plans that started as markdown files and later moved into GitHub Issues for tracking/visibility.
 
-**Progress:** ✅ **30 / 30 decided** (T1–T17 on 2026-07-08; T18–T25 on 2026-07-09; T26–T28 on 2026-07-10 — implemented through v0.7.0; T29–T30 on 2026-07-11, from the life-os trial port-backs — implementation tracked as #92/#93 under epic #90).
+**Progress:** **32 / 35 decided** (T1–T17 on 2026-07-08; T18–T25 on 2026-07-09; T26–T28 on 2026-07-10 — implemented through v0.7.0; T29–T30 on 2026-07-11, from the life-os trial port-backs — implementation tracked as #92/#93 under epic #90; T31 on 2026-07-20 — impl. deferred pending T32; T32 opened 2026-07-20, in discussion — reconsiders T2/T23; T33 Decided 2026-07-28 — independent reviewer agents, grilled from a ShelterSync incident; T34–T35 opened 2026-07-28 as T33 spin-offs — UX design mode, encoding policy — both in discussion).
 
 ---
 
@@ -47,6 +47,11 @@
 | [T28](kit-review-topics/T28-uat-acceptance-beta-split.md) | UAT scope: agent-run acceptance vs task-based beta guides; "how do I?" is a design signal | Decided (2026-07-10) |
 | [T29](kit-review-topics/T29-project-concept-intake.md) | Project-concept intake: shared understanding before the targeted interview | Decided (2026-07-11) |
 | [T30](kit-review-topics/T30-kit-docs-area.md) | Shipped kit-docs area: workflow guide with flowchart + kit reference, keep-current rule | Decided (2026-07-11) |
+| [T31](kit-review-topics/T31-unattended-execution-mode.md) | Unattended (AFK) execution mode: coordinator + serial coding agents | Decided (2026-07-20) — impl. deferred pending T32 |
+| [T32](kit-review-topics/T32-kit-runtime-evolution.md) | Kit runtime / delivery evolution: templates-only → templates + tooling | In discussion (2026-07-20) |
+| [T33](kit-review-topics/T33-independent-reviewer-agents.md) | Independent reviewer agents: UAT persona driver, data-integrity verifier, UX evaluator | Issue filed (#145) |
+| [T34](kit-review-topics/T34-ux-design-mode.md) | UX design mode: decompose vague design intent into an enforceable UX standard + journeys | In discussion (2026-07-28) |
+| [T35](kit-review-topics/T35-encoding-policy.md) | Encoding policy: markdown-first vs fit-for-purpose formats | In discussion (2026-07-28) |
 
 ---
 

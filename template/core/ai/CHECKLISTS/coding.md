@@ -15,6 +15,7 @@ default/seed value, a shared type or helper:
 - [ ] The change actually completes the intent of the decision/ADR it implements (re-read it; verify the code matches)
 - [ ] A tracked issue filed for any impacted consumer that can't be fixed in the same change
 - [ ] Prefer one shared constant over duplicated literals
+- [ ] (If the review module is installed) a shared-surface change is the cue to run an independent review over the flows that *consume* the changed thing — detection to pair with this prevention sweep (`ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md`)
 
 ## Security & Authorization
 
