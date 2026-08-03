@@ -1,4 +1,3 @@
-<!-- Generic template from the Claude starter kit. Replace {{TOKENS}}; see bootstrap/PLACEHOLDERS.md -->
 # ADR-NNN: Title of the Decision
 
 **Status:** Proposed | Accepted | Rejected | Superseded

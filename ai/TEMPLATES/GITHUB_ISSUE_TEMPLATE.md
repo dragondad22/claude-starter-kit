@@ -1,4 +1,3 @@
-<!-- Generic template from the Claude starter kit. Replace {{TOKENS}}; see bootstrap/PLACEHOLDERS.md -->
 # Summary
 <short description>
 
