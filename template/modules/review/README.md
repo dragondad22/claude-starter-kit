@@ -25,10 +25,20 @@ actually installed: Claude Code refuses to launch a subagent that names an absen
 Because subagent frontmatter must begin on line 1, these files carry their adaptation
 note in the body rather than a line-1 genericization banner.
 
-Arriving in later sub-issues of the epic (kept out of this manifest entry until their
+- `.claude/commands/review.md` — the `/review` command: the safety gate, the scoper
+  (it reads the diff so the agents never do), the run tiers (blast-radius / touched-by-diff
+  / critical / full), agent dispatch, findings routing, and `discover` mode.
+- `docs/uat/JOURNEY_REGISTRY.md` — the durable list of flows a review can walk
+  (`JRN-<DOMAIN>-NNN`), with the **entities/vocabularies-touched** column that drives
+  blast-radius scoping and the discovered/authored × unverified/verified status model.
+
+Blast-radius scoping is the untouched-flow catch: a change to a shared vocabulary selects
+every journey that *consumes* it, even if its own screens didn't change. `/preflight`
+gains a rung that strongly suggests a blast-radius `/review` after a shared-surface change.
+
+Arriving in the next sub-issue of the epic (kept out of this manifest entry until its
 content ships, so the allowlist never lists a missing file):
 
-- journey registry + tiered run commands + blast-radius scoping (#148).
 - ratchet (proposal → landed spec) + JSONL run-journal + findings exit (#149).
 
 Introduces the `{{REVIEW_BASE_URL}}` placeholder (`bootstrap/PLACEHOLDERS.md`) — the

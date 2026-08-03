@@ -18,5 +18,7 @@ Run pre-commit validation to catch issues before committing.
    - If the diff touches a public API, web UI, a mobile release, messaging/UGC, payments, or personal data, run the trigger map (or suggest `/compliance`). Warn on any fired trigger missing from `docs/compliance/COMPLIANCE_REGISTER.md`.
 7. Scaffold-trigger check (trigger table: `bootstrap/modules/manifest.yml`):
    - If the diff introduces a first-of-its-kind artifact — first schema/migration file, first UI code, first public/consumed API, first formal QA/UAT need, first deploy target — and the matching module is not installed (`bash ai/scripts/scaffold-module.sh list`), **offer** the module install. Never apply a module silently.
-8. Report results: all passed, or list failures/warnings with file paths and error messages.
-9. If all checks pass, confirm ready to commit.
+8. Shared-surface change check (if the review module is installed):
+   - If the diff touched a shared surface — an enum/lookup vocabulary, a DB column/constraint, a seed/default, a shared type/helper, or a migration (the Impact-Analysis categories) — **strongly suggest** running `/review` (blast-radius tier) before committing, to check the flows that *consume* the changed thing, not just the diff. Offer, never auto-run.
+9. Report results: all passed, or list failures/warnings with file paths and error messages.
+10. If all checks pass, confirm ready to commit.
