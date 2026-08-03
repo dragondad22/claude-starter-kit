@@ -8,7 +8,7 @@ Define the machinery for **structured async interviews**: deep question-driven
 discovery that precedes building. The interview produces the founding artifacts
 the AI follows afterward — non-negotiables, initial ADRs, decision-log entries,
 glossary seeds, compliance rows, and a scaffold plan (inception) or an issue
-breakdown (epics/features).
+breakdown plus the feature's own **spec** in `docs/specs/` (epics/features).
 
 The process is async-first by design: questions live in files with a standard
 structure; the human answers at their own pace (answers often need research,
@@ -168,11 +168,43 @@ Every artifact derived from an interview must be traceable in both directions:
 
 - **Forward:** each question's `Final:` block lists its derived artifacts on a
   `Derived:` line ("Derived: ADR-003, decision log #7, epic #42").
-- **Backward:** ADRs and decision-log entries carry a `Source:` field citing
-  the originating question(s) by qualified Q-ID (the ADR template and
-  `docs/decision-log.md` entry format both have the field).
+- **Backward:** ADRs, decision-log entries, and feature specs carry a `Source:`
+  field citing the originating question(s) by qualified Q-ID (the ADR template,
+  `docs/decision-log.md` entry format, and `ai/TEMPLATES/FEATURE_SPEC_TEMPLATE.md`
+  all have the field).
 - **Hub:** the interview's `00-INDEX.md` summarizes per-section status and
   aggregates all derived artifacts — the provenance hub for that interview.
+
+---
+
+## The Feature Spec as an Interview Output
+
+An epic/feature interview's headline artifact is that feature's spec in
+`docs/specs/`, the way inception's is the scaffold plan. The issue breakdown says
+*what work to do*; the spec says *what must be true once it is done*, and it
+outlives the issues that delivered it.
+
+Machinery only here — the spec's shape and its self-containment doctrine live in
+`docs/specs/README.md` and `ai/TEMPLATES/FEATURE_SPEC_TEMPLATE.md`.
+
+| Spec content | Comes from |
+|---|---|
+| `Source:` | qualified Q-IDs of the questions that settled it (`001/Q-SCOPE-02`) |
+| Journey goal and steps | the `Final:` fields of the scope/persona questions, in the persona's words |
+| `FD-n` + reasoning | a `Final:` plus the `Options:` it chose between — the rejected option *is* the reasoning |
+| `BR-n`, `INV-n`, `UX-n`, `EC-n` | `Final:` fields — one row or clause per settled rule |
+| Open questions | questions still `open` at promotion, plus any choice needing architectural context |
+
+- The spec goes on each contributing question's `Derived:` line by its
+  `SPEC-<DOMAIN>-NNN` ID, like any other derived artifact, and is aggregated in
+  `00-INDEX.md`.
+- **A `deferred` question still produces spec content.** Its default was
+  consciously accepted, so the default is what must be true — write it into the
+  spec as a rule, not into Open questions.
+- **The interview is not the spec.** Question files remain context and history
+  under the rule of altitude; the spec is the derived doc holding current truth.
+  A spec that only cites Q-IDs without restating the outcome has failed the
+  self-containment test.
 
 ---
 
@@ -229,3 +261,5 @@ release) and the epic-close lifecycle rule.
 - `bootstrap/INTERVIEW.md` — the token-fill script that closes inception
 - `docs/architecture/decisions/ADR_TEMPLATE.md` — `Source:` field (backward link)
 - `docs/decision-log.md` — entry format with `Source:` field
+- `ai/TEMPLATES/FEATURE_SPEC_TEMPLATE.md` · `docs/specs/README.md` — the spec an
+  epic/feature interview produces, and what it may not prescribe
