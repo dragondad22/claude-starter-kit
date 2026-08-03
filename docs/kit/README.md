@@ -20,6 +20,7 @@ from is recorded in `bootstrap/KIT_VERSION`.
 | `/evergreen` | Seven-lens standards & process review | ~30-day cadence, non-interruptive |
 | `/conform` | Tidy to current kit standards, no behavior change (`github` = tracker only) | Adopting the kit into an untidy repo |
 | `/rebaseline` | Harvest → pre-answered interview → critique → agreed rebuild plan | Sound concept, wrong implementation |
+| `/review` *(review module)* | Independent reviewer agents drive the running app as personas, against a non-production target | A change touched a shared surface — flows the diff never touched can break |
 
 ## Directory map
 
@@ -40,10 +41,12 @@ from is recorded in `bootstrap/KIT_VERSION`.
 | `docs/compliance/` | What externally binds this project |
 | `docs/runbooks/` | Anything operational done twice |
 | `.claude/commands/` | The slash commands above |
+| `.claude/agents/` | Subagents with their own restricted toolsets (arrives with the review module) |
 | `.github/workflows/` | PR-validation CI (from the shipped example) |
 
-Modules installed later add their own pieces (e.g. the reports module ships
-`docs/uat/` + acceptance/beta-guide templates).
+Modules installed later add their own pieces — the reports module ships `docs/uat/`
++ acceptance/beta-guide templates; the review module ships `.claude/agents/`, the
+journey registry, and `/review`.
 
 ## Where does X go?
 

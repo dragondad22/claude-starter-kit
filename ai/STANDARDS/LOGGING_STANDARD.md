@@ -1,5 +1,7 @@
 # Operational Logging Standard
 
+Last Updated: 2026-07-13
+
 
 > If the project has a decision record governing logging, link it here and read it for the
 > rationale; this standard is the day-to-day "how to log" contract.

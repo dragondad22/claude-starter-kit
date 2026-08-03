@@ -1,5 +1,7 @@
 # Security Review Standard
 
+Last Updated: 2026-07-13
+
 
 ## Purpose
 Define a repeatable security regression review for the project's trust boundaries:

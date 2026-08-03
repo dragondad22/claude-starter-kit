@@ -47,3 +47,15 @@ stops carrying any signal about real divergence.
 | `docs/architecture/decisions/ADR_INDEX.md` | Index of this project's ADRs. |
 | `docs/compliance/COMPLIANCE_REGISTER.md` | What binds this project specifically. |
 
+## Reconciliation log
+
+Each release, `self-conform.py --upgrade` names any declared adaptation that
+changed upstream. The judgement made then is recorded here, so the next upgrade
+re-reads a decision instead of re-making it.
+
+- **v0.11.0 → v0.12.0** (2026-08-03) — `CLAUDE.md` flagged. Upstream removed a
+  redundant `Rules:` header and a blank line from the shipped file's Task Tracking
+  section (#174). This repo's `CLAUDE.md` has no counterpart to either line, so
+  nothing was portable and the row stands unchanged. *First real self-upgrade;
+  the conflict report did its job on its first run.*
+
