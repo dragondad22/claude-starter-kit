@@ -14,6 +14,8 @@ run precisely so growth is noticed.
 Adopting a shipped file unchanged is the norm. Reach for a row here only when
 the kit's role as the product genuinely makes the generic file wrong.
 
+## Adapted (the shipped file is wrong for this project)
+
 | Path | Reason |
 |---|---|
 | `CLAUDE.md` | Kit-development identity: the `template/` separation, manifest allowlist and portable-shell non-negotiables have no generic equivalent, and the file must state which of the two trees governs a given task. |
@@ -24,3 +26,24 @@ the kit's role as the product genuinely makes the generic file wrong.
 | `docs/plans/README.md` | Here `docs/plans/` holds the kit's decision records (T-topics), not only interview working docs, so the shipped charter would be wrong about its own contents. |
 | `bootstrap/VERIFY_IGNORE` | Three exclusions no other adopter needs: `template/` (the product tree's tokens are unfilled by design), GitHub Actions `${{ }}` expression syntax, and `scripts/bootstrap-smoke.sh` (which manipulates token syntax by nature). |
 | `ai/CHECKLISTS/coding.md` | Adds a kit-specific completion gate: manifest entry, the kit-docs keep-current trigger named by artifact (module / command / structure), `Last Updated` bumps, and the derived-instance rule. The generic checklist cannot name kit artifacts, and an installed-but-unadapted gate does not fire (T36.8) — this is the gate whose absence let epic #145 miss the same rule four PRs running. |
+
+## Seeded (install-once, then owned by this project)
+
+A different kind of legal divergence. These ship as **starting skeletons** the
+project is meant to fill — rolling logs, registries, decision records. Diverging
+from the template is the file doing its job, not drift, so the check verifies
+they **exist** and never compares their content.
+
+Keeping them out of the table above matters: without this split, every log entry
+would need an adaptation row, and a list that grows on every ordinary action
+stops carrying any signal about real divergence.
+
+| Path | Why it is seeded |
+|---|---|
+| `docs/evergreen-log.md` | Rolling review record, append-only by design. |
+| `docs/decision-log.md` | This project's product/scope decisions. |
+| `docs/GLOSSARY.md` | This project's naming authority. |
+| `docs/PERSONAS.md` | This project's persona registry. |
+| `docs/architecture/decisions/ADR_INDEX.md` | Index of this project's ADRs. |
+| `docs/compliance/COMPLIANCE_REGISTER.md` | What binds this project specifically. |
+
