@@ -1,4 +1,3 @@
-<!-- Generic template from the Claude starter kit. Replace {{TOKENS}}; see bootstrap/PLACEHOLDERS.md -->
 <!-- Title: clean imperative verb phrase, under 72 chars — kind/area/priority are
      carried by labels (type:task, area:*, priority:*), not title prefixes. -->
 # Short imperative description

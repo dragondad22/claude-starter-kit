@@ -8,6 +8,9 @@ and this project adheres to Semantic Versioning.
 ## [Unreleased]
 
 ### Fixed
+- `scripts/self-conform.py` stripped only one of the **two** genericization-banner forms (#200) — the italic line used by standards and commands, but not the HTML-comment form used by templates and seeded docs. Three derived files (`ai/TEMPLATES/GITHUB_ISSUE_TEMPLATE.md`, `ai/TEMPLATES/TASK_ISSUE_TEMPLATE.md`, `docs/architecture/decisions/ADR_TEMPLATE.md`) therefore kept a banner marking them un-adapted, which `/evergreen`'s standards-drift lens is meant to flag. Kit-dev tooling only — no shipped content changes
+
+### Fixed
 - **The bootstrap verify step could report a clean repo that still had unfilled tokens** (#192, #190) — three defects in one snippet, all found only when the kit ran its own adoption path. (a) The pattern was `\{\{[A-Z_]+\}\}`, which **excludes digits**, so `{{E2E_COMMAND}}` — a core token in `bootstrap/PLACEHOLDERS.md` — was invisible to it; a project could fill everything, see verify pass, and ship `{{E2E_COMMAND}}` unfilled in its testing standard, QA checklist and `/qa` command. (b) The `--include` list covered `*.md *.sh *.json *.txt` only, so `.github/workflows/pr-validation.yml.example` — which the kit ships carrying **five** tokens — was never scanned at all. (c) GitHub Actions expression syntax (`${{ matrix.os }}`, `${{ secrets.X }}`) matches the verify's `{{` and produced false hits for any adopter whose CI uses it. Fixed in both places the snippet lives (`/bootstrap` § Verify and `bootstrap/SETUP.md` § Verify, which must not drift apart): the pattern now allows digits, the include list gains `*.yml`/`*.yaml`/`*.example`, and `bootstrap/VERIFY_IGNORE` ships the Actions-syntax exclusion by default rather than leaving every adopter to rediscover it
 
 ## [0.12.0] - 2026-08-03

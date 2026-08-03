@@ -35,7 +35,13 @@ import sys
 
 import yaml
 
-BANNER = re.compile(r'^\*(?:Generic|Optional)[^\n]*from the Claude starter kit[^\n]*\*\n', re.M)
+# Two banner forms ship: an italic line on standards/commands, and an HTML
+# comment on templates and seeded docs (invisible when rendered). Both mark a
+# file as not-yet-adapted, so both are stripped — missing the second left three
+# derived files carrying a banner the /evergreen drift lens would flag.
+BANNER = re.compile(
+    r'^(?:\*(?:Generic|Optional)[^\n]*from the Claude starter kit[^\n]*\*'
+    r'|<!--\s*(?:Generic|Optional)[^\n]*from the Claude starter kit[^\n]*-->)\n', re.M)
 MODULE_NOTE = re.compile(r'^\*Optional — installed with the [^\n]*\*\n', re.M)
 TOKEN = re.compile(r'\{\{([A-Z0-9_]+)\}\}')          # digits matter: E2E_COMMAND
 META = {'TOKEN', 'TOKENS', 'PLACEHOLDER', 'DOUBLE_BRACE', 'DATE', 'IMP_ID', 'NON_NEGOTIABLES'}

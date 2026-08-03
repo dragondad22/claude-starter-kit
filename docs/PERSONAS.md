@@ -1,4 +1,3 @@
-<!-- Generic template from the Claude starter kit. Seeded by /bootstrap from the inception audience answers; extended by feature interviews. -->
 # Personas — Claude Starter Kit
 
 The central persona registry: every persona this project designs for, defined
@@ -22,25 +21,37 @@ Each persona records:
 
 ---
 
-## <Persona name>
+The kit has no user interface and produces no feature specs, so this registry
+stays deliberately short. Two readers actually shape decisions here; inventing
+more would be depth this project cannot use.
 
-**Who:** <one or two sentences>
+## Adopting developer
+
+**Who:** A developer bringing the kit into a project of their own — sometimes a
+greenfield repo, more often an existing one with its own habits, layout and
+half-followed conventions. Competent, busy, and evaluating whether the kit earns
+its place.
 **Goals:**
-- <goal>
-**Role / permissions:** <system role(s) or n/a>
-**Context & constraints:** <environment, device, technical comfort, …>
+- Get a working process installed without reading the whole kit first
+- Understand *why* a rule exists when it costs them something
+- Adapt what does not fit their stack, without silently forking the kit
+**Role / permissions:** n/a — no runtime roles; they own their own repo.
+**Context & constraints:** Reads standards as **distributed copies**, in their
+repo, usually with no practical access to this project's history — so a stale
+`Last Updated` or a rule with no stated rationale is unfalsifiable from where
+they sit. Adopts mid-project far more often than at inception, which is why
+retrofit and conform paths matter as much as scaffolding.
 
-<!-- WORKED EXAMPLE — delete once real personas exist.
+## Kit maintainer
 
-## Roastery apprentice
-
-**Who:** A part-time apprentice who loads batches and logs roast notes; not a
-computer person and not paid to become one.
+**Who:** Whoever is changing the kit itself — deciding topics, editing shipped
+standards, cutting releases. Currently one person plus an AI pair.
 **Goals:**
-- Log a roast note or a batch weight in under a minute
-- See which batches still need attention today
-**Role / permissions:** `apprentice` — read batches, write notes; no admin surfaces.
-**Context & constraints:** Phone only, often one-handed with a scoop in the
-other; patchy connectivity on the roastery floor; low tolerance for anything
-that needs training.
--->
+- Change shipped content without breaking adopters downstream
+- Keep decisions findable years later, and not re-litigate them
+- Notice when the kit's own docs stop describing what it ships
+**Role / permissions:** n/a.
+**Context & constraints:** Works in a repo that is **both the product and an
+adopter of it**, so every change has two audiences and the two trees must not be
+confused. Long gaps between sessions make conversation memory worthless — the
+record is the only reliable state.

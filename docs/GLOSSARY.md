@@ -1,4 +1,3 @@
-<!-- Generic template from the Claude starter kit. Technical terms below are the kit's standing jargon; /bootstrap seeds Domain terms from the inception answers. -->
 # Glossary — Claude Starter Kit
 
 **Audience:** a competent developer who is new to this project, its domain, and
@@ -38,11 +37,92 @@ non-obvious. _Avoid_: aliases.`
 
 <!-- Seeded by /bootstrap from the inception interview (domain answers,
 non-negotiables vocabulary); grows via the recording rules. Role terms
-(apprentice, admin, …) cross-link to their entry in docs/PERSONAS.md.
-Example entry:
-- **Batch record** — the canonical row for one roast batch, the record of
-  truth for its status. _Avoid_: bare "record" (ambiguous: service record,
-  music record). -->
+(apprentice, admin, …) cross-link to their entry in docs/PERSONAS.md. -->
+
+This project's domain **is** the starter kit itself, so the terms below are the
+vocabulary of building and adopting one. Several are ordinary English words with
+a narrow meaning here — those carry `_Avoid_:` lines, because the ambiguity is
+the whole problem.
+
+### The two trees
+
+- **The kit** — this product: a stack-agnostic set of standards, checklists,
+  commands and scaffolding that a project installs and then works by.
+- **Product tree** — `template/`, the only tree scaffolding ever reads and the
+  only content that ships. _Avoid_: calling it "the templates" — it holds
+  standards and commands, not just fill-in-the-blank files.
+- **Kit development (kit-dev)** — everything outside `template/`: this repo's own
+  CI, scripts, decision records and fixtures. Never ships, and safe by default
+  because the manifest is an allowlist.
+- **Manifest allowlist** — `template/manifest.yml`, mapping module → files →
+  scaffold trigger. Only listed files ship, so a new kit-dev file needs no action
+  and an unlisted shipped file silently doesn't exist to adopters.
+
+### This repo as its own adopter (T36)
+
+- **Instance** — the copy of the kit's core installed at this repo's root
+  (`ai/`, `.claude/`, `docs/`). It is what governs work *here*; `template/` is
+  what we *build*. _Avoid_: "the root files" — the distinction that matters is
+  derived-vs-product, not location.
+- **Derived** — content generated from `template/` by filling this project's
+  answers and stripping the banner. A derived file is **never authored
+  directly**: change `template/`, then re-derive.
+- **Adaptation** — a declared, reasoned divergence of one instance file from the
+  template, listed in `ADAPTATIONS.md`. The only legal way for the instance to
+  differ, and therefore the only place divergence is visible.
+- **Seeded** — a shipped file that is a *starting skeleton* the project fills
+  (rolling logs, registries, decision records). Divergence is the file doing its
+  job, so only its existence is checked. Distinct from an adaptation: a seeded
+  file was never meant to stay equal.
+- **Pin** — the release the instance tracks (`bootstrap/KIT_VERSION`),
+  deliberately the last *release* rather than the working tree. The resulting lag
+  is what makes each release a real self-upgrade.
+- **Self-upgrade** — adopting a newly cut release into the instance. The step
+  that exercises declared adaptations colliding with upstream change.
+
+### Adopting the kit — four verbs that are not synonyms
+
+- **Scaffold** — install the kit's core into a target repo. Additive; never
+  overwrites an existing file.
+- **Retrofit** — scaffold into a repo that already exists, adding only the kit
+  pieces it lacks. Additive only.
+- **Conform** — tidy an already-adopted repo to current kit standards: naming,
+  layout, tracker. No behaviour change.
+- **Rebaseline** — the heavy tier: harvest what a messy or false-start repo knows,
+  then rebuild against an agreed plan. _Avoid_: using these four
+  interchangeably; they are ordered by how much they disturb, and picking the
+  wrong one is the difference between a tidy-up and a rebuild.
+
+### Working vocabulary
+
+- **T-topic / T-ID** — one decision in this repo's decision record, with a stable
+  id (`T36`) and sub-items (`T36.4`). Superseded entries are stamped in place,
+  never rewritten, so a T-ID is a permanent address.
+- **Grill** — a structured interrogation of an open topic before deciding it:
+  options with trade-offs, a recommendation, and an explicit record of what was
+  *not* asked and why. Produces a `Decision:` block, not a conversation.
+- **Port-back** — an improvement discovered while using the kit in a real project,
+  filed against the kit so every adopter gets it. The main channel by which the
+  kit learns from practice.
+- **Paved road** — the house default for a tool or data format
+  (`bootstrap/PAVED_ROAD.md`), with a last-reviewed date. Deviating is allowed and
+  requires a recorded decision — it is a default, not a mandate.
+- **Placeholder / token** — `{{LIKE_THIS}}`, filled per project at adoption.
+  **Meta-literals** (`{{TOKENS}}`, `{{TOKEN}}`, `{{PLACEHOLDER}}`) are
+  illustrative text *about* the system and are never filled.
+- **Genericization banner** — the line-1 note marking a shipped file as not yet
+  adapted to this project. Ships in **two forms**: an italic line on standards and
+  commands, an HTML comment on templates and seeded docs (invisible when
+  rendered) — tooling that handles only one form leaves the other behind.
+  Adopting a file unchanged still counts as adapting, so whichever path adapts it
+  strips the banner.
+- **Blast radius** — what a change can *reach*, as opposed to how many lines it
+  touched. A one-line vocabulary edit can break every form consuming it, which is
+  why "large" is defined by reach.
+- **Verdict / advisory** — the two authority classes for a reviewing agent. A
+  *verdict* is objectively falsifiable with cited evidence and may gate; an
+  *advisory* finding cites a written clause but never blocks. Invariance is a
+  property of the agent, not a blanket rule.
 
 ## Technical terms
 
