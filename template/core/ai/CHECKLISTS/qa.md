@@ -21,8 +21,9 @@ Use this checklist when validating changes — after implementation or as a dedi
 
 ## Acceptance Validation
 
-- [ ] UAT/acceptance doc identified
-- [ ] Each acceptance criterion verified with evidence
+- [ ] The register's `AC-n` rows for the touched stories identified and verified with evidence, reported by criterion ID
+- [ ] Work item's acceptance doc identified (if one exists) and its change-specific criteria verified
+- [ ] Any durable criterion invented during the run filed to the register, not left in the run's notes
 - [ ] Happy path works end-to-end
 - [ ] Error/edge cases handled gracefully
 - [ ] (If the review module is installed, and the change touched a shared surface) an independent review run covered the flows that *consume* the changed thing, not just the diff (`ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md`)

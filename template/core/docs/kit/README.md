@@ -37,7 +37,7 @@ from is recorded in `bootstrap/KIT_VERSION`.
 | `docs/specs/` | Journey-first feature specs (created at promotion) |
 | `docs/architecture/decisions/` | ADRs |
 | `docs/decision-log.md` | Product/scope decisions |
-| `docs/registers/` | Standing truth: business rules, requirements, invariants, UX clauses |
+| `docs/registers/` | Standing truth: business rules, user stories + acceptance criteria, NFRs, invariants, UX clauses |
 | `docs/GLOSSARY.md` · `docs/PERSONAS.md` | Naming authority · persona registry |
 | `docs/compliance/` | What externally binds this project |
 | `docs/runbooks/` | Anything operational done twice |

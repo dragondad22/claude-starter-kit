@@ -84,17 +84,53 @@ falsifies it.
 | BR-002 | Billing is charged in arrears: a base subscription plus per-adoption usage. | Active | 2026-08-03 | 000/Q-SCOPE-07 |
 -->
 
-## Product requirements (`PR-`)
+## User stories (`US-`)
 
-Capabilities the product must provide, named against a persona from
-`docs/PERSONAS.md`. The form is "the product must let ‹persona› do X".
+What the product must let someone do, and why they want it. The persona is named
+from `docs/PERSONAS.md` — never redefined here, because a role described twice
+drifts twice.
 
-| ID | Requirement | Persona | Status | Decided | Source |
+A need that cannot be written in this form, against a real persona, is usually a
+**mechanism rather than a need** — "the system reconciles nightly with the external
+roster" is an ADR; the need behind it is "as an administrator, I want records to
+match our other system, so that I don't enter everything twice."
+
+| ID | As a… | I want… | So that… | Status | Decided | Source |
+|---|---|---|---|---|---|---|
+| US-001 | | | | | YYYY-MM-DD | |
+
+<!-- WORKED EXAMPLE — delete once real stories exist.
+| US-001 | Shelter volunteer | to see which animals still need attention | I don't have to open every record to find out | Active | 2026-08-03 | SPEC-ACTIVITY-004 |
+-->
+
+## Acceptance criteria (`AC-`)
+
+What "working" means for a story — durable, and independent of any one change or
+test run. Each criterion states observable behavior and attaches to the story it
+closes.
+
+**Two different things get called acceptance criteria; only one belongs here.**
+
+| Kind | Example | Home |
+|---|---|---|
+| Durable — what working means for a capability | "an animal in foster never appears in the adoption queue" | Here, against its `US-` |
+| Change-specific — what *this* change must demonstrate | "the migration backfills existing rows" | The work item, and its acceptance doc if the reports module is installed |
+
+**Traceability.** A criterion cites a feature spec's journey step number, an
+edge-case ID (`EC-n`), or an invariant (`INV-n`) — the references the spec already
+declares, never a parallel scheme invented here.
+
+Because a criterion has a permanent address, a verification run records an
+**outcome against `AC-7`** rather than restating the criterion it just checked.
+Outcomes and evidence are per-run and stay with the run; the criterion stays here.
+
+| ID | Criterion (observable behavior) | Story | Traces to | Status | Decided |
 |---|---|---|---|---|---|
-| PR-001 | | | | YYYY-MM-DD | |
+| AC-001 | | | | | YYYY-MM-DD |
 
-<!-- WORKED EXAMPLE — delete once real requirements exist.
-| PR-001 | Must be able to see which animals still need attention this week without opening each record. | Shelter volunteer | Active | 2026-08-03 | SPEC-ACTIVITY-004 |
+<!-- WORKED EXAMPLE — delete once real criteria exist.
+| AC-001 | The attention list shows every animal with no logged activity in 7 days, and no others. | US-001 | SPEC-ACTIVITY-004 step 2 | Active | 2026-08-03 |
+| AC-002 | An animal with activity logged today never appears in the attention list. | US-001 | EC-3 | Active | 2026-08-03 |
 -->
 
 ## Non-functional requirements (`NFR-`)
