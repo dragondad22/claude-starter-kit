@@ -57,7 +57,8 @@ journey registry, and `/review`.
 | A rule, requirement, invariant or UX clause that stays true | `docs/registers/PRODUCT_REGISTER.md` — cite it by ID (`BR-014`), never by path |
 | A product/scope call | ADR if it's a mechanism; otherwise a register row. Reasoning stays in its `docs/plans/` working doc |
 | A feature idea | `type:feature` issue, Horizon on the board — never a document |
-| What a release promises, and to whom | `docs/releases/README.md` — the promise and the archetype; the scope itself is the release's milestone |
+| What a release promises, and to whom | `docs/releases/README.md` — the promise and the archetype |
+| Whether something is **in** a release | Its milestone — the manifest. Never a label: *"would you delay the release for this?"* has four answers (committed / stretch / triggered / out) |
 | Work to do | A tracked issue; branch `<type>/<issue#>-<slug>` |
 | A term someone had to explain | `docs/GLOSSARY.md`, at coin time |
 | A how-to you'll need twice | `docs/runbooks/` |

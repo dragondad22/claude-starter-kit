@@ -51,6 +51,16 @@ convention; sub-issues are just its best representation.
 sprint, or theme — that's what epics and the project board are for (see
 `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md`).
 
+**A release's milestone is its manifest**, and membership is decided by one
+question — *"would you delay the release for this?"* Four outcomes: **committed**
+(in the milestone), **stretch** (outside it; needs no mechanism), **triggered**
+(outside it until a named event fires — carries the `triggered` label and records
+the event in its body), and **out** (outside it, dated and reasoned). Never carry
+release scope as a label on the issue: a label has to be re-judged every time the
+release definition moves and nothing prompts anyone to do it, whereas *adding an
+item to a milestone is itself the moment that records the decision*. Rules and the
+evidence behind them: `ai/STANDARDS/RELEASE_STANDARD.md` § Membership.
+
 ---
 
 ## Title Format

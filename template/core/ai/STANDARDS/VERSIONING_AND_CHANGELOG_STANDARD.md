@@ -175,6 +175,12 @@ either** of these holds (whichever comes first):
 - **Batch**: `[Unreleased]` has accumulated a meaningful batch (≥2 features or
   ~8+ entries).
 
+**A timeboxed cut needs no milestone; a named release does.** Most releases are
+increments — accumulated work, cut on the calendar, no scope planning required,
+and the rest of this section is about those. A release that carries a **promise**
+(`ai/STANDARDS/RELEASE_STANDARD.md`) is the other kind: its milestone is its
+manifest, and it ships when the milestone empties, not when two weeks have passed.
+
 If `[Unreleased]` is empty, skip — there is nothing to release. This check runs
 as part of the **session-start protocol** in `ai/agent-setup.md` (it cannot fire
 on a wall-clock by itself) and surfaces as a one-line suggestion. No milestone or
@@ -290,3 +296,4 @@ When cutting a release:
 |------------|-----------------|--------|
 | 2026-06-24 | Starter kit     | Genericized from project-specific versioning standard |
 | 2026-08-04 | Starter kit     | MAJOR routed to `RELEASE_STANDARD.md`; dormant "After 1.0" section retired (it had no workflow owner) |
+| 2026-08-04 | Starter kit     | Timeboxed cuts distinguished from named releases, whose milestone is their manifest |

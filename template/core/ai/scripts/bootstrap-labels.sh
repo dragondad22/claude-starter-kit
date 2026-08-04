@@ -53,6 +53,13 @@ severity:high|D93F0B|Acceptance criteria failure in major workflow
 severity:medium|FBCA04|Non-blocking functional defect
 severity:low|C2E0C6|Copy polish, minor visual inconsistency
 
+# --- release membership ---------------------------------------------------
+# Release scope itself is the milestone, never a label (ai/STANDARDS/RELEASE_STANDARD.md).
+# This is the one exception, and it labels the opposite: an item deliberately OUT
+# of every milestone until a named event fires. Without it a dormant commitment is
+# indistinguishable from an abandoned one, because nobody greps issue bodies.
+triggered|5319E7|Dormant commitment: out until the event named in its body fires
+
 # --- flow labels — quality findings only: which flow produced it ----------
 testing|0E8A16|Automated testing findings
 uat|1D76DB|UAT findings
