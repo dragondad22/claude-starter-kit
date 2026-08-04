@@ -18,6 +18,19 @@
 - **T17.7 — Persona registry (gap Chris identified: personas never standardized or centralized):** `docs/PERSONAS.md` — each persona: name, who they are, goals, role/permission mapping (ties to RBAC), context/constraints (environment, device, technical comfort). Seeded by inception's audience questions (T15 spine already asks); extended by feature interviews. Specs reference personas from the registry by name — never redefine inline. Glossary role-term entries cross-link to it.
 - **T17.8 — Quality mechanisms (v1 "looked good on paper, missed a lot in practice"):** (a) keep-current hook — spec updates ride the same-PR docs rule; (b) **UAT traceability** — UAT acceptance criteria trace to journey steps and edge-case rows, so a spec that misses reality fails visibly at UAT instead of silently; (c) initial quality via T15's scenario stress-testing (invent edge-case scenarios during the interview, don't just transcribe answers); (d) evergreen drift lens covers spec-vs-behavior divergence.
 
+  > **Amended 2026-08-04 (#208, per T37.8).** **(a) is reversed and (d) falls away.** A
+  > spec is a **proposal**, authoritative about what was *proposed* and never about what
+  > the product currently does — so it is **not** kept current, and `DOCUMENTATION_STANDARD.md`'s
+  > same-PR rule now names register rows instead of specs. Rot was the symptom of one
+  > document being asked to serve as both the proposal and the record of the system;
+  > splitting them removes the failure rather than policing it, and a document that never
+  > claimed to be current cannot go stale. (d) is moot for the same reason —
+  > spec-vs-behavior divergence is the expected state after implementation, not drift.
+  > The anti-rot obligation moves to the **register**, and the gate moves to
+  > **consumption**: a spec reaching `Consumed` with an empty `Landed in` is the new
+  > failure to catch (#210). **(b) and (c) stand unchanged.** The original text stands as
+  > decided; this records what implementation revised.
+
 **Additions (2026-07-28, from the T33 grill — reviewer-consumer requirements + worked example):**
 - **T17.9 — Self-containment doctrine (decision-worthy).** A feature spec is a **complete, separate, self-contained, environment-agnostic** document (or series). It **lists** feature-decisions with their reasoning and answers to specific questions, holds BRs / journeys / personas / descriptions / NFRs, and **refers to** existing ADRs and decisions — but it **never prescribes** ADRs, architecture, physical data models, or decision-log entries. Two independent reasons (Chris, 2026-07-28): (a) ADR/decision **numbering drifts** and parallel features (fosters, volunteer-tracking, SOC 2) move the architecture underneath the spec; (b) the spec author often **lacks the architectural context** to decide *how* — it's a **separation of roles**: the spec author states *what* with the context they have; the development-time **assessor**, who has architectural context, decides *how* (ADRs, physical model) when the spec is assessed for development. SPEC-ADOPT-000 §"Scope of this document" and §3 already model this ("these are not decision-log entries and not ADRs"; "requires an architecture decision at assessment").
 - **T17.10 — The SPEC-ADOPT-000…006 set is T17's worked reference example** (adopter Companion): a 7-doc series with an overview holding cross-cutting content (scope, feature-decisions FD-n, NFRs, cross-cutting BRs, referenced existing decisions) and per-flow specs. Use it to shape the v2 template — and note what it does *well* (feature-decisions-with-reasoning, referenced-not-restated existing decisions, conservative-default BRs, per-flow ECs).

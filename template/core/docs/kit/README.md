@@ -60,7 +60,8 @@ journey registry, and `/review`.
 | Work to do | A tracked issue; branch `<type>/<issue#>-<slug>` |
 | A term someone had to explain | `docs/GLOSSARY.md`, at coin time |
 | A how-to you'll need twice | `docs/runbooks/` |
-| What a feature does | Its spec in `docs/specs/` |
+| What a feature **currently does** | The register — its `US-`/`AC-`/`BR-` rows |
+| What a feature was **proposed** to do | Its spec in `docs/specs/` — a proposal, not kept current |
 | Why the interview asked that | `docs/plans/<NNN>-*/` — history, never the spec |
 
 **Keep this folder current:** these two files ride the same-PR rule — a change

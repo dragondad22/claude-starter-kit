@@ -98,11 +98,15 @@ Example entry:
 - **Non-negotiables** — this project's never-re-litigate architectural
   constraints, listed in `CLAUDE.md`; changing one requires a recorded decision,
   not a conversation.
-- **Feature spec** — a journey-first two-layer feature document in
+- **Feature spec** — a journey-first two-layer **proposal** for a feature, in
   `docs/specs/` (`SPEC-<DOMAIN>-NNN`): plain-language journey on top for
   non-technical stakeholders, technical spec below for AI/devs/UAT. Self-contained:
   it states what must be true and *refers to* ADRs and decisions, never prescribing
-  them.
+  them. Authoritative about what was **proposed**, never about what the product
+  currently does — that is the register's job. Carries no authority until
+  **consumed** at implementation, when its content is filed to its permanent homes.
+  _Avoid_: treating a spec as the current description of a shipped feature; a
+  consumed spec is history and is deliberately not kept current.
   _Avoid_: calling a spec a "workflow doc" — specs are journey-first and
   two-layer, not process descriptions. (Repos with a legitimate `workflow`
   doc surface of their own are unaffected — the rule is about what specs are
