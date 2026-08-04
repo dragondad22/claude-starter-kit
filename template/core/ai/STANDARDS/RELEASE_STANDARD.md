@@ -26,6 +26,10 @@ the questions that one cannot.
   both, and the two identities move independently.
 - **Breaking is always breaking *for whom*.** A claim that cannot name the audience
   whose contract broke is not a breaking change.
+- **Membership is a forced choice** — *"would you delay the release for this?"* — with
+  four outcomes: committed, stretch, **triggered**, out.
+- **The milestone is the manifest.** Membership belongs to the release, not to the
+  issue, because a milestone supplies an owning moment and a label cannot.
 - Release identity is recorded in `docs/releases/README.md` and answered when the
   project first has something to version — not only at inception.
 
@@ -149,6 +153,69 @@ published.
 
 ---
 
+## Membership — what is in this release
+
+Once a release has a promise, every candidate item gets one question:
+
+> **Would you delay the release for this?**
+
+That is deliberately not *"is this valuable?"*. "Valuable" is unbounded, and two
+people — or two sessions — will rank the same backlog differently. "Would you delay
+the release" has a **cost attached**, and a question with a cost attached reproduces.
+
+| Answer | Category | Where it lives |
+|---|---|---|
+| Yes | **Committed** | In the release's milestone |
+| No, but take it if it is ready in time | **Stretch** | Outside the milestone — no mechanism needed |
+| No, and out **until a named event fires** | **Triggered** | Outside the milestone, with its trigger recorded on the item |
+| No | **Out** | Outside the milestone, dated and reasoned |
+
+**Stretch needs no mechanism.** The milestone is the commitment, so anything outside
+it is opportunistic by definition. A second list of "probably" items is a list nobody
+maintains and everybody reads as a promise.
+
+**Triggered is the category most projects are missing.** A developer API portal is out
+*until outside integration requests start*; a compliance-certification track is out
+*until a customer contract requires it*; a cross-region failover is out *until an
+availability commitment exists*. Filed as "out" they look abandoned and get quietly
+re-litigated; filed as **triggered** they are dormant commitments that activate on
+their own terms. A triggered item records **the event, not a date** — unless the event
+*is* a date, as with a recurring annual obligation.
+
+### The milestone is the manifest
+
+**Membership is a property of the release, not of the issue.** Record it as the
+release's milestone in {{ISSUE_TRACKER}} — never as a label on the item.
+
+A label has to be re-judged every time the release definition moves, and nothing
+prompts anyone to do that. Observed in practice: a project labelled its scope on the
+issues, the definition of that scope drifted, and the label decayed into roughly thirty
+freeform variants that could not be counted — so nobody could say what was in, and the
+team finished the release and moved on **without noticing it had happened**. An
+adjective has no completion event. A milestone burns down.
+
+**Scope change needs an owning moment.** The strongest case for this came from an
+issue whose scope changed in a feedback conversation and never reached the record: it
+still carried the wording that put it out of scope, months after the audience had asked
+for it, because nobody was ever prompted to re-file it. This is the project's own
+"decisions in conversation are not authoritative until recorded" rule applied to release
+scope — and **adding an item to a milestone is the moment that records it**.
+
+### Three rules that keep a manifest honest
+
+- **Deferral is a recorded removal with a reason**, not a silent drop. Take the item out
+  of the milestone, say why, and date it. Otherwise a release quietly shrinks until it is
+  trivially complete, and "we shipped everything we committed to" stops meaning anything.
+- **An item that is partly in and partly out is a membership bug — split it, do not
+  judge it.** "Half of this is committed" is not an answer the test can produce; it means
+  the item is two items, and one of them belongs in the milestone.
+- **The pass is only as good as what it read.** Judging a backlog from titles and labels
+  is fast and unreliable — a real 75-issue pass produced at least one stale label and one
+  misleading title, both of which changed the answer. Read the item, and check whether
+  anything said about it since was never written down.
+
+---
+
 ## Recording release identity
 
 Release identity is project data, not a standard, so it lives in
@@ -187,3 +254,4 @@ in the sequence.
 | Date       | Author      | Change |
 |------------|-------------|--------|
 | 2026-08-04 | Starter kit | Created: release identity — the promise, releases in sequence, the two archetypes, breaking-for-whom |
+| 2026-08-04 | Starter kit | Membership added: the delay test, four categories, the milestone as the manifest |

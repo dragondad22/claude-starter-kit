@@ -2,7 +2,7 @@
 
 # Roadmap Standard
 
-Last Updated: 2026-07-10
+Last Updated: 2026-08-04
 
 > Written assuming GitHub Issues + Projects, but the model — intake as typed
 > issues, ordering as a ranked board view, visibility as a shared read-only
@@ -63,6 +63,13 @@ is a name collision, not a link: a `Horizon: Now` feature may still sit at
 Fine-grained ordering within a Horizon bucket is the manual row order of the
 Roadmap view. No dates, no promised quarters — the roadmap orders intent; it
 does not commit schedule.
+
+**Horizon is not milestone membership either.** Horizon says how soon we *mean*
+to do something; a release milestone says we would **delay the release** without
+it. A `Horizon: Now` feature can sit outside the milestone (wanted, not
+blocking), and a `Later` item can be pulled into it the moment a published
+obligation turns out to require it. One is intent, the other is commitment —
+`ai/STANDARDS/RELEASE_STANDARD.md` § Membership.
 
 ## The Roadmap view
 
