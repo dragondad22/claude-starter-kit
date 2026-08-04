@@ -2,7 +2,7 @@
 
 # Documentation Standard
 
-Last Updated: 2026-08-03
+Last Updated: 2026-08-04
 
 How user-facing documentation is written and **kept current**. Read before adding
 or changing any user-facing page, surface, or help text.
@@ -296,10 +296,18 @@ Every PR that ships user-visible UI/behavior MUST, in the same PR:
 - add/update the surface's help content (overview/tasks/field help) — including
   inline help on any field a non-expert could trip over,
 - update the matching long-form manual page,
-- update the feature spec in `docs/specs/` whose behavior the change alters, and
+- update the **register rows** the change alters — the business rules, acceptance
+  criteria, invariants, NFRs or UX clauses in `docs/registers/` that are no longer
+  true, and
 - regenerate any derived artifacts (partials, screenshots) for changed surfaces.
 
 Purely internal changes (refactors, tests, infra with no UI impact) are exempt.
+
+**Feature specs are deliberately excluded from this rule.** A spec is a proposal —
+authoritative about what was *proposed*, never about what the product does — so it
+is dated by design and not updated when behavior later changes. Editing a consumed
+spec to match new behavior destroys the record of what was agreed and produces a
+second, weaker copy of the register. Full reasoning: `docs/specs/README.md`.
 
 ## Every standard states when it was last updated (mandatory)
 
