@@ -29,7 +29,7 @@ Precedence per `ai/STANDARDS/UAT_SOURCE_OF_TRUTH.md` — cite what governs this 
 |---|---|
 | Feature spec | <SPEC-DOMAIN-NNN, `docs/specs/`> |
 | Implementation plan / work item | <{{WORK_ITEM_PREFIX}}-NNN link> |
-| ADRs / decision log | <ADR-NNN, decision entry — or "none"> |
+| ADRs / register | <ADR-NNN, BR-nnn — or "none"> |
 
 ## Acceptance criteria
 

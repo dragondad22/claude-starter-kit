@@ -69,7 +69,7 @@ Run the trigger map in `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md` again
 
 - [ ] Relevant UAT/acceptance doc created or updated
 - [ ] ADRs updated if architectural decisions changed (`docs/architecture/decisions/`)
-- [ ] Decision log updated if product/scope decisions changed (`docs/decision-log.md`)
+- [ ] Register updated if this change establishes or alters a rule, story, acceptance criterion, NFR, invariant or UX clause (`docs/registers/PRODUCT_REGISTER.md`)
 - [ ] Schema/data docs updated if the data model changed
 - [ ] `CHANGELOG.md` `[Unreleased]` updated when this change ships user-visible behavior (skip only for refactor/test/doc/comment-only)
 - [ ] User docs updated for user-visible changes (see `ai/STANDARDS/DOCUMENTATION_STANDARD.md`)

@@ -61,7 +61,7 @@ registry (`docs/PERSONAS.md`).*
 
 ## 2. Scope — `SCOPE`
 
-*Downstream: decision-log seeds, non-negotiables, the epic breakdown.*
+*Downstream: register seeds, non-negotiables, the epic breakdown.*
 
 - **Q-SCOPE-01 — What must the first usable version do?** The shortest list
   that makes it worth using.

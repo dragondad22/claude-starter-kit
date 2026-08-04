@@ -43,7 +43,7 @@ flowchart TD
    what you defer.
 
 3. **Close inception with `/bootstrap`.** Fills every `{{PLACEHOLDER}}`,
-   generates the founding docs (README, LICENSE, ADRs, decision log,
+   generates the founding docs (README, LICENSE, ADRs, the product register,
    compliance register, glossary, personas), offers the modules that apply
    now, and sets up labels + the project board (Status lifecycle, Horizon
    field, saved views).

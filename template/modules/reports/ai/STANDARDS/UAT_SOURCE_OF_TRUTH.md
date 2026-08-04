@@ -2,7 +2,7 @@
 
 # UAT Source of Truth Standard
 
-Last Updated: 2026-08-03
+Last Updated: 2026-08-04
 
 ## Purpose
 Ensure UAT (user-acceptance testing) decisions are based on authoritative documents
@@ -57,7 +57,7 @@ these artifacts live in this project:
 4. The relevant feature spec(s) in `docs/specs/`.
 5. Product workflow docs, if the project keeps them as an authoritative surface
    (e.g. a `docs/workflows/` tier listed in `CLAUDE.md`'s source-of-truth order).
-6. ADRs and the product decision log.
+6. ADRs.
 
 The register sits above the UAT doc because the UAT doc no longer holds durable
 criteria — it cites them and records outcomes. A feature spec ranks below both: it

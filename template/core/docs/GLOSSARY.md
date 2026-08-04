@@ -50,10 +50,15 @@ Example entry:
   architectural decision: context, the decision, consequences, alternatives.
   Numbered `ADR-NNN`; superseded, never rewritten. Path: `CLAUDE.md` § Decision
   Recording (kit default `docs/architecture/decisions/`).
-- **Decision log** — the same idea for product/scope decisions, one append-only
-  file. Path: `CLAUDE.md` § Decision Recording (kit default
-  `docs/decision-log.md` — retrofit repos may keep theirs elsewhere until a
-  conform pass moves it).
+- **Register** — a document holding **standing truth**: what is currently true,
+  by ID, kept current. The kit ships several — the product register
+  (`docs/registers/`, business rules, stories, acceptance criteria, NFRs,
+  invariants, UX clauses), the compliance register, the journey registry, the
+  glossary and persona registry. Contrast a **proposal** (a feature spec), which
+  says what was *proposed* and carries no authority until consumed.
+  _Avoid_: "decision log" — a decision is an event, not a content type; what it
+  produces lands in an ADR or a register row (`CLAUDE.md` § Decision Recording).
+  Retrofit repos may still have one until a conform pass routes it.
 - **Epic / sub-issue** — an epic is a parent issue grouping a workstream
   (`type:epic`); its breakdown lives in native sub-issues. Milestones mean
   releases only, never epics.

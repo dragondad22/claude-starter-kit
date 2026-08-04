@@ -74,8 +74,8 @@ Depth, examples, and why: `ai/STANDARDS/GIT_WORKFLOW_STANDARD.md`.
 
 - Decisions made in conversation are NOT authoritative until recorded.
 - **Architectural decisions**: `docs/architecture/decisions/` (ADR format — see `ADR_INDEX.md`, `ADR_TEMPLATE.md`).
-- **Product/scope decisions**: `docs/decision-log.md`.
-- If implementation reveals a decision point, stop and record it; if a prior decision changes, update the existing record — don't leave stale entries.
+- **Everything else a decision produces**: a rule / story / acceptance criterion / NFR / invariant / UX clause → `docs/registers/PRODUCT_REGISTER.md` (its routing rule decides which); a term → `docs/GLOSSARY.md`; a whether/when call → {{ISSUE_TRACKER}}. The **reasoning** stays in the `docs/plans/` working doc and is cited by `Source:` — the record is one line, the argument one hop away.
+- If implementation reveals a decision point, stop and record it; a decision that changes is **superseded by a new entry**, never edited in place.
 - Ask for human approval before recording or updating decisions.
 
 ## Documentation (mandatory)
@@ -97,10 +97,12 @@ Adopt recognized external standards where they make sense, and catch obligations
 
 1. {{DB_LAYER}} schema (if applicable)
 2. ADRs: `docs/architecture/decisions/`
-3. Product decision log: `docs/decision-log.md`
-4. Feature specs: `docs/specs/`
+3. Registers: `docs/registers/` · `docs/compliance/COMPLIANCE_REGISTER.md`
+4. Journey registry: `docs/uat/JOURNEY_REGISTRY.md` (if the review module is installed)
 5. UAT docs: `docs/uat/` (if the reports module is installed)
 6. Tracked tasks: {{ISSUE_TRACKER}}
+
+Feature specs are deliberately **not** on this list — a spec is a proposal, authoritative about what was *proposed*, never about what the product does (`docs/specs/README.md`).
 
 ## Standards
 
@@ -142,7 +144,7 @@ Use these as completion gates:
 ## Anti-Drift Rules
 
 - Do not assume prior context — verify by reading files; if a conversation is getting long, re-read this file and the relevant standards before continuing.
-- When in doubt about a prior decision, check ADRs and the decision log — chat is not authoritative until recorded (see Decision Recording); do not trust conversation memory.
+- When in doubt about a prior decision, check ADRs and the registers — chat is not authoritative until recorded (see Decision Recording); do not trust conversation memory.
 - If work surfaces that has no tracked item, stop and suggest creating one — do not proceed on untracked work (see Task Tracking).
 - Before completing any change to something shared (DB column/constraint, enum/lookup vocabulary, seed/default, shared type/helper), run the Impact Analysis (consumer sweep) gate in `ai/CHECKLISTS/coding.md` — write paths drift independently and diverge silently.
 - When a change adds/alters a feature (public API, UI, mobile release, messaging/UGC, data handling, anything touching minors), run `/compliance` — context-driven obligations don't show up in a normal code diff.

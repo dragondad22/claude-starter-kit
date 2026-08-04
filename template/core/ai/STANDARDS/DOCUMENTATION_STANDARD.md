@@ -136,8 +136,8 @@ The name signals how a document is used:
   authority: standards, templates, registers, indexes, process references
   (`TESTING_STANDARD.md`, `GLOSSARY.md`, `COMPLIANCE_REGISTER.md`).
 - **Working docs — lowercase `kebab-case.md`.** Documents you *run or append to*:
-  rolling logs, checklists, commands, setup files (`decision-log.md`,
-  `evergreen-log.md`, `agent-setup.md`).
+  rolling logs, checklists, commands, setup files (`evergreen-log.md`,
+  `agent-setup.md`).
 - **Ecosystem-fixed names are exempt.** `README.md`, `CHANGELOG.md`, `CLAUDE.md`,
   and `LICENSE` keep the form their ecosystem expects. ID-anchored artifacts
   (numbered ADRs `ADR-NNN-<slug>.md`, specs, register rows) follow their ID
