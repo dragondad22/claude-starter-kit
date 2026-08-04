@@ -7,6 +7,10 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Fixed
+
+- **`scripts/upgrade-smoke.sh` would have failed every future PR that ships a new standard** (#234, found while implementing #225). Its fourth assertion — *"files the upgrade delivered carry no unfilled tokens"* — filled the project's tokens **before** the upgrade and then grepped for `{{` afterwards. Every shipped standard is generic by design and arrives holding `{{PROJECT_OWNER}}` and `{{PROJECT_NAME}}`; filling it is `/bootstrap`'s retrofit job, which the test does not re-run. So the assertion effectively read *"the kit may never ship a new generic standard again"*, and it passed until now only by accident: the test landed in #194 and the last new standard shipped in #78. The regression it was reaching for is the **other** one, and that one is real, silent and worth blocking a merge over: **an upgrade must never re-tokenise a file the adopter had already adapted.** The post-upgrade verify hits are now split against a snapshot of the pre-upgrade file list — a **pre-existing** file carrying a token again fails; a **newly delivered** one is expected and named in the output as part of the adopter experience, then given the same fill pass and re-verified, so what arrived is proven *fillable* rather than merely tolerated. `bootstrap/VERIFY_IGNORE` already excludes `README.md` by name, which is why a new seeded `docs/**/README.md` slipped through while a new standard did not — an asymmetry that was itself a sign the assertion was not measuring what it meant to. Kit-dev tooling only — no shipped content changes
+
 ## [0.13.0] - 2026-08-04
 
 ### Added
