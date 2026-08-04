@@ -60,7 +60,7 @@ flowchart TD
 that needs architectural context is *raised* here as an open question and
 decided at assessment — never made here.>
 
-**Referenced decisions:** <existing ADRs / decision-log entries this feature
+**Referenced decisions:** <existing ADRs / register rows this feature
 relies on, by ID. Referenced, never restated — the source moves, this list doesn't.>
 
 **Preconditions:** <state that must hold before the journey starts — auth, data, config>

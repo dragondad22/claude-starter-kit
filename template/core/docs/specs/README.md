@@ -48,7 +48,7 @@ disagreement means the spec was never fully consumed.
 A spec is a **complete, separate, environment-agnostic** document. It states
 *what* must be true, and it **refers to** existing ADRs and decisions by ID. It
 never **prescribes** an ADR, an architecture, a physical data model, or a
-decision-log entry.
+register entry.
 
 Two independent reasons:
 
