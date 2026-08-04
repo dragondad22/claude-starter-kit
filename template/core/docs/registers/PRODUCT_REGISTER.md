@@ -24,33 +24,56 @@ is a valid status, but it has to be recorded rather than left as a blank.
 
 ## The routing rule
 
-One question decides whether something belongs here at all:
+### First, split the decision into the statements it makes
+
+**A decision is routed one statement at a time, not as a whole.** Most decisions worth
+recording say several things at once — a domain rule *and* a schema change, a vocabulary
+*and* a permission, a rule *and* a scope call. Routing the document gets you a fight
+about which home it "really" belongs to; routing each statement gets you an answer.
+
+So expect one decision to produce **several records in several homes** — an ADR, a
+register row or two, a glossary entry — each stating its own part and citing the others.
+That is the normal case, not an awkward edge. Nothing is recorded twice in full.
+
+### Then, for each statement, two questions in this order
+
+**1. Does this belong in a register at all?** Check the table below first. A statement can
+be perfectly durable and still belong to the glossary, the tracker, a standard or the
+compliance register.
+
+**2. Only for what survives: register or ADR?**
 
 > **Would this still be true if this product were rebuilt on a different stack?**
 
-**Yes** → it belongs in this register. Pick the section by what would check it (below).
+**Yes** → a register row. Pick the section by what would check it.
 **No** → it is a decision about how the system is built → **ADR**
 (`docs/architecture/decisions/`).
 
-That test resolves on its own. It never requires looking at what was filed before —
-"check existing patterns and follow precedent" is how a register decays into a
-catchall, and it is explicitly not the rule here.
+Both questions resolve on their own. Neither requires looking at what was filed before —
+"check existing patterns and follow precedent" is how a register decays into a catchall,
+and it is explicitly not the rule here.
 
-### What belongs somewhere else
+### 1. What belongs somewhere else
 
 | If the content is… | It goes to | Because |
 |---|---|---|
 | Structure, technology, data model, integration approach | `docs/architecture/decisions/` (ADR) | It would not survive a rebuild |
-| What a term means | `docs/GLOSSARY.md` | It is vocabulary, not a rule |
+| What a term *means* | `docs/GLOSSARY.md` | It is vocabulary. But the **set of values a field may take** is a rule — that statement stays here as a `BR-` |
 | How *we* work — branching, naming, review, commits | `ai/STANDARDS/` | It binds the team, not the product |
 | An obligation imposed on us from outside | `docs/compliance/COMPLIANCE_REGISTER.md` | It needs an owner and a verified date |
 | Whether or when something gets built | The issue tracker (+ Horizon) | Scope is a plan, not standing truth |
 | Who the users are | `docs/PERSONAS.md` | Already a register |
 | A flow that must keep working | `docs/uat/JOURNEY_REGISTRY.md` (review module) | Already a register |
+| What seed, demo, or fixture data must contain | `docs/architecture/decisions/` (ADR) | It is a property of the build, not of the product — the rules do not change because a demo org exists |
 
-A decision that both settles architecture *and* establishes a product rule produces
-**both** an ADR and a register row — the row states the rule and cites the ADR. It is
-never recorded twice in full.
+### 2. Register or ADR — pick the section by what checks it
+
+Everything the first table did not claim goes through the rebuild test above, then into
+the section whose consumer would check it.
+
+**Two sections can both look right.** Each section states the tie-break that settles its
+own boundary — invariant vs business rule, NFR vs invariant, NFR vs business rule. Read
+the section text, not just its heading; the answer is there and it is one sentence.
 
 ## How an entry is written
 
@@ -151,6 +174,11 @@ Outcomes and evidence are per-run and stay with the run; the criterion stays her
 
 Quality targets, each with a number. A requirement that must hold under *every* input
 rather than on average is an **invariant** — record it in the next section instead.
+
+**A number does not make something an NFR.** An NFR says how *well* the product must
+perform — speed, availability, accuracy. A quota or limit the product *enforces*
+("100 GB per organisation") is a **business rule**: it has a number, but it is something
+the domain requires, not a standard the product is measured against.
 
 | ID | Requirement | Target | Status | Decided | Source |
 |---|---|---|---|---|---|
