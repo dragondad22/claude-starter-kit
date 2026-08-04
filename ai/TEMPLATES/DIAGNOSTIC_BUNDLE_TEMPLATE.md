@@ -50,7 +50,8 @@ success apparatus, and success is silent. -->
 <failing tests, assertion output>
 
 ### QA / UAT
-<acceptance criterion (journey step / EC-ID) that failed, observed vs expected>
+<acceptance criterion that failed, by ID where it has one (AC-n from the register,
+ else journey step / EC-ID), observed vs expected>
 
 ### Security
 <finding, scan output, boundary affected>

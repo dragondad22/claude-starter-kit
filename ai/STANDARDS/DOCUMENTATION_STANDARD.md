@@ -1,6 +1,6 @@
 # Documentation Standard
 
-Last Updated: 2026-08-03
+Last Updated: 2026-08-04
 
 How user-facing documentation is written and **kept current**. Read before adding
 or changing any user-facing page, surface, or help text.
@@ -134,8 +134,8 @@ The name signals how a document is used:
   authority: standards, templates, registers, indexes, process references
   (`TESTING_STANDARD.md`, `GLOSSARY.md`, `COMPLIANCE_REGISTER.md`).
 - **Working docs — lowercase `kebab-case.md`.** Documents you *run or append to*:
-  rolling logs, checklists, commands, setup files (`decision-log.md`,
-  `evergreen-log.md`, `agent-setup.md`).
+  rolling logs, checklists, commands, setup files (`evergreen-log.md`,
+  `agent-setup.md`).
 - **Ecosystem-fixed names are exempt.** `README.md`, `CHANGELOG.md`, `CLAUDE.md`,
   and `LICENSE` keep the form their ecosystem expects. ID-anchored artifacts
   (numbered ADRs `ADR-NNN-<slug>.md`, specs, register rows) follow their ID
@@ -294,10 +294,18 @@ Every PR that ships user-visible UI/behavior MUST, in the same PR:
 - add/update the surface's help content (overview/tasks/field help) — including
   inline help on any field a non-expert could trip over,
 - update the matching long-form manual page,
-- update the feature spec in `docs/specs/` whose behavior the change alters, and
+- update the **register rows** the change alters — the business rules, acceptance
+  criteria, invariants, NFRs or UX clauses in `docs/registers/` that are no longer
+  true, and
 - regenerate any derived artifacts (partials, screenshots) for changed surfaces.
 
 Purely internal changes (refactors, tests, infra with no UI impact) are exempt.
+
+**Feature specs are deliberately excluded from this rule.** A spec is a proposal —
+authoritative about what was *proposed*, never about what the product does — so it
+is dated by design and not updated when behavior later changes. Editing a consumed
+spec to match new behavior destroys the record of what was agreed and produces a
+second, weaker copy of the register. Full reasoning: `docs/specs/README.md`.
 
 ## Every standard states when it was last updated (mandatory)
 
@@ -328,5 +336,14 @@ section in a standard must be reachable from the workflow that owns that
 moment — `/bootstrap` (inception & retrofit) or `/conform` (adoption) — and a
 PR adding a setup section wires the reference in the same PR. The `/evergreen`
 standards-drift lens checks for orphaned setup blocks.
+
+**The same rule covers any artifact installed empty.** A founding doc that
+scaffolds as a skeleton — a register, glossary, persona list — carries the same
+defect in a different guise: an obligation to fill it that nobody is routed to at
+the moment it applies, and an empty file that is **indistinguishable from a
+considered-and-empty one**. So a PR that ships a new founding doc also wires the
+workflow that reports it empty (`/bootstrap`'s founding-doc audit), and the
+recording of "empty on purpose" is part of the artifact, not an afterthought —
+without it the report cannot terminate and is eventually ignored.
 A preflight/CI check should **warn** when a user-visible change carries no docs
 change; the doc-gate test (if present) is the **blocking** gate.

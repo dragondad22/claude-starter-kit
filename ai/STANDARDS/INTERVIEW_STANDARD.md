@@ -1,12 +1,12 @@
 # Interview Standard
 
-Last Updated: 2026-08-03
+Last Updated: 2026-08-04
 
 ## Purpose
 
 Define the machinery for **structured async interviews**: deep question-driven
 discovery that precedes building. The interview produces the founding artifacts
-the AI follows afterward — non-negotiables, initial ADRs, decision-log entries,
+the AI follows afterward — non-negotiables, initial ADRs, register rows,
 glossary seeds, compliance rows, and a scaffold plan (inception) or an issue
 breakdown plus the feature's own **spec** in `docs/specs/` (epics/features).
 
@@ -109,7 +109,7 @@ wrong if it's skipped.>
 - YYYY-MM-DD: <dated running log of back-and-forth, follow-ups spawned, research found>
 
 **Final:** <the settled decision, stated plainly — distinct from the discussion log>
-Derived: <artifacts produced from this answer: ADR-003, decision log #7, epic #42>
+Derived: <artifacts produced from this answer: ADR-003, BR-007, epic #42>
 ```
 
 Format rules:
@@ -167,10 +167,10 @@ origin. Never renumber.
 Every artifact derived from an interview must be traceable in both directions:
 
 - **Forward:** each question's `Final:` block lists its derived artifacts on a
-  `Derived:` line ("Derived: ADR-003, decision log #7, epic #42").
-- **Backward:** ADRs, decision-log entries, and feature specs carry a `Source:`
+  `Derived:` line ("Derived: ADR-003, BR-007, epic #42").
+- **Backward:** ADRs, register rows, and feature specs carry a `Source:`
   field citing the originating question(s) by qualified Q-ID (the ADR template,
-  `docs/decision-log.md` entry format, and `ai/TEMPLATES/FEATURE_SPEC_TEMPLATE.md`
+  the register's row format, and `ai/TEMPLATES/FEATURE_SPEC_TEMPLATE.md`
   all have the field).
 - **Hub:** the interview's `00-INDEX.md` summarizes per-section status and
   aggregates all derived artifacts — the provenance hub for that interview.
@@ -215,18 +215,18 @@ edits allowed: status flips and supersede stamps.
 
 When new information overrides a finalized answer:
 
-1. Record the override where decisions live — an ADR or decision-log entry —
+1. Record the override where decisions land — an ADR or a register row —
    explicitly citing the overridden question (`000/Q-ARCH-03`).
 2. At the same moment, stamp the question: status → `superseded`, plus one
    line: `Superseded YYYY-MM-DD by ADR-007 — see ADR-007 for current direction.`
 
 History stays intact; the stale answer is labeled stale at the point of
-reading. This is the same pattern the decision log already mandates ("never
-edit a recorded decision to mean something different — supersede it") and ADR
-statuses already implement.
+reading. This is the same pattern the registers already mandate ("never edit a row to
+mean something different — supersede it with a new ID") and ADR statuses
+already implement.
 
 **Rule of altitude:** current truth lives in the derived docs (ADRs,
-standards, decision log); question files are context/history — they explain
+standards, registers); question files are context/history — they explain
 *why*, they are never the spec.
 
 ---
@@ -260,6 +260,6 @@ release) and the epic-close lifecycle rule.
 - `bootstrap/QUESTION_BANK.md` — the inception spine (sections + questions)
 - `bootstrap/INTERVIEW.md` — the token-fill script that closes inception
 - `docs/architecture/decisions/ADR_TEMPLATE.md` — `Source:` field (backward link)
-- `docs/decision-log.md` — entry format with `Source:` field
+- `docs/registers/PRODUCT_REGISTER.md` — row format with `Source:` field
 - `ai/TEMPLATES/FEATURE_SPEC_TEMPLATE.md` · `docs/specs/README.md` — the spec an
   epic/feature interview produces, and what it may not prescribe
