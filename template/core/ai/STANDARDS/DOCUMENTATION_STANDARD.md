@@ -338,5 +338,14 @@ section in a standard must be reachable from the workflow that owns that
 moment — `/bootstrap` (inception & retrofit) or `/conform` (adoption) — and a
 PR adding a setup section wires the reference in the same PR. The `/evergreen`
 standards-drift lens checks for orphaned setup blocks.
+
+**The same rule covers any artifact installed empty.** A founding doc that
+scaffolds as a skeleton — a register, glossary, persona list — carries the same
+defect in a different guise: an obligation to fill it that nobody is routed to at
+the moment it applies, and an empty file that is **indistinguishable from a
+considered-and-empty one**. So a PR that ships a new founding doc also wires the
+workflow that reports it empty (`/bootstrap`'s founding-doc audit), and the
+recording of "empty on purpose" is part of the artifact, not an afterthought —
+without it the report cannot terminate and is eventually ignored.
 A preflight/CI check should **warn** when a user-visible change carries no docs
 change; the doc-gate test (if present) is the **blocking** gate.
