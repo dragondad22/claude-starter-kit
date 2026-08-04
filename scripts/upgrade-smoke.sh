@@ -12,7 +12,8 @@
 #   1. a project scaffolded at an old release fills and verifies cleanly
 #   2. re-running a newer scaffold over it loses no file
 #   3. every core file of the NEW release is present afterwards
-#   4. files the upgrade delivered carry no unfilled tokens
+#   4. the upgrade never re-tokenises a file the adopter had already adapted,
+#      and everything it newly delivers is fillable by the documented mechanism
 # It also REPORTS how many upstream-changed files the additive upgrade left at
 # their old content — a measured number, not a pass/fail, because that gap is a
 # property of the additive model rather than a regression.
@@ -30,9 +31,10 @@ fi
 
 WORK="$(mktemp -d)"
 OLDKIT="$(mktemp -d)"
+BEFORE_LIST="$(mktemp)"
 cleanup() {
   git -C "$ROOT" worktree remove --force "$OLDKIT" >/dev/null 2>&1 || true
-  rm -rf "$WORK" "$OLDKIT"
+  rm -rf "$WORK" "$OLDKIT" "$BEFORE_LIST"
 }
 trap cleanup EXIT
 
@@ -56,7 +58,8 @@ find "$WORK" -type f \( -name '*.md' -o -name '*.sh' -o -name '*.json' -o -name 
     sed -i.bak "s|{{${name}}}|X-${name}|g" "$file" && rm -f "$file.bak"
   done
 done
-BEFORE="$(find "$WORK" -type f | wc -l | tr -d ' ')"
+(cd "$WORK" && find . -type f | sort) > "$BEFORE_LIST"
+BEFORE="$(wc -l < "$BEFORE_LIST" | tr -d ' ')"
 echo "  filled tokens; $BEFORE file(s) in the project"
 
 # 2. The upgrade: a newer scaffold run over the same project.
@@ -74,19 +77,70 @@ done < <(awk '/^core:/{c=1;next} /^modules:/{c=0} c&&/^ *- /{sub(/^ *- /,"");pri
 [ "$missing" -eq 0 ] || { echo "FAIL: $missing core file(s) absent after upgrade"; exit 1; }
 echo "  every core file of the new release is present"
 
-# 4. Nothing the upgrade delivered may carry an unfilled token — run the
-# project's OWN verify, exactly as bootstrap.md documents it, so this test
-# exercises the shipped mechanism (meta-literals and bootstrap/** are excluded
-# by VERIFY_IGNORE, not by a second hand-maintained list here).
-LEFT="$(cd "$WORK" && grep -rn '{{' . \
-  --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' --include='*.example' 2>/dev/null \
-  | grep -vE -f <(grep -vE '^#|^$' bootstrap/VERIFY_IGNORE) || true)"
-if [ -n "$LEFT" ]; then
-  echo "FAIL: files delivered by the upgrade carry unfilled tokens:"
-  printf '%s\n' "$LEFT" | sed 's|^|    |'
+# 4. Run the project's OWN verify, exactly as bootstrap.md documents it, so this
+# test exercises the shipped mechanism (meta-literals and bootstrap/** are
+# excluded by VERIFY_IGNORE, not by a second hand-maintained list here).
+#
+# Then split the hits by whether the file existed before the upgrade, because
+# the two cases mean opposite things (#234):
+#
+#   pre-existing file tokenised again -> FAIL. The upgrade clobbered a file the
+#     adopter had already adapted. Silent, destructive, and the regression this
+#     assertion exists to catch.
+#   newly delivered file carrying tokens -> EXPECTED. Every shipped standard is
+#     generic by design and arrives holding {{PROJECT_NAME}} and friends; filling
+#     it is /bootstrap's retrofit job. Failing on this would mean the kit could
+#     never ship a new standard again — which is exactly what it meant until #234.
+#
+# The new arrivals are still proven *fillable*: they get the same fill pass the
+# adopted project got, and the verify must then come back clean.
+verify_hits() {
+  (cd "$WORK" && grep -rn '{{' . \
+    --include='*.md' --include='*.sh' --include='*.json' --include='*.txt' --include='*.example' 2>/dev/null \
+    | grep -vE -f <(grep -vE '^#|^$' bootstrap/VERIFY_IGNORE) || true)
+}
+
+LEFT="$(verify_hits)"
+readapted=""
+arrived=""
+while IFS= read -r hit; do
+  [ -n "$hit" ] || continue
+  f="${hit%%:*}"
+  if grep -qxF "$f" "$BEFORE_LIST"; then
+    readapted="$readapted$hit"$'\n'
+  else
+    arrived="$arrived$hit"$'\n'
+  fi
+done <<EOF
+$LEFT
+EOF
+
+if [ -n "$readapted" ]; then
+  echo "FAIL: the upgrade re-tokenised file(s) the project had already adapted:"
+  printf '%s' "$readapted" | sed 's|^|    |'
   exit 1
 fi
-echo "  project verify clean (no unfilled tokens)"
+
+if [ -n "$arrived" ]; then
+  NEW_FILES="$(printf '%s' "$arrived" | cut -d: -f1 | sort -u)"
+  echo "  $(printf '%s\n' "$NEW_FILES" | wc -l | tr -d ' ') new file(s) arrived generic (expected — /bootstrap fills them):"
+  printf '%s\n' "$NEW_FILES" | sed 's|^|    |'
+  # Prove they are fillable by the documented mechanism, not merely tolerated.
+  printf '%s\n' "$NEW_FILES" | while IFS= read -r rel; do
+    [ -n "$rel" ] || continue
+    for tok in $(grep -ohE '\{\{[A-Z0-9_]+\}\}' "$WORK/$rel" | sort -u); do
+      name="$(printf '%s' "$tok" | tr -d '{}')"
+      sed -i.bak "s|{{${name}}}|X-${name}|g" "$WORK/$rel" && rm -f "$WORK/$rel.bak"
+    done
+  done
+  STILL="$(verify_hits)"
+  if [ -n "$STILL" ]; then
+    echo "FAIL: newly delivered file(s) still carry tokens after a fill pass:"
+    printf '%s\n' "$STILL" | sed 's|^|    |'
+    exit 1
+  fi
+fi
+echo "  project verify clean (nothing re-tokenised; new arrivals fill cleanly)"
 
 # 5. Measured, not asserted: what the additive model does NOT carry over.
 stale=0
