@@ -3,7 +3,7 @@
 
 # Independent Review Standard
 
-Last Updated: 2026-08-03
+Last Updated: 2026-08-04
 
 ## Purpose
 
@@ -75,12 +75,33 @@ never touched. So the rule is:
 |---|---|
 | The persona | The diff |
 | The journey's **goal** and done-condition | The implementation conversation |
-| Business rules and edge cases | The journey's numbered **steps** |
+| Register rows — `BR-`, `AC-`, `INV-`, `UX-` | The journey's numbered **steps** |
 | The invariant set (below) | The source under test |
+| A feature spec, for **orientation** | A feature spec, as the basis of a **verdict** |
 
 A business rule stated as a procedure ("confirm twice before deleting") is still a
 statement of what must be true, and is legitimate reviewer input — the test is
 "can the persona do it the way specified?"
+
+### What should be true comes from the registers, not from proposals
+
+The rule above says a reviewer may read what should be **true**. That sharpens to a
+source: the **product register** — business rules, acceptance criteria, invariants
+and UX clauses — plus this project's standards. Those hold standing truth and are
+kept current.
+
+A **feature spec is a proposal**: authoritative about what was *proposed*, never
+about what the product does, and possibly superseded since (`docs/specs/README.md`).
+A reviewer handed a spec's assertions can judge a running application against intent
+that was proposed and never implemented, or that was later revised — and it would
+report a confident, evidence-backed failure against a requirement nobody holds any
+more. Nothing in a review's design detects that, because the evidence really does
+show a mismatch; only the source was wrong.
+
+So a spec may be read for **orientation** — the journey narrative, edge cases, the
+data-touchpoints map — and never as the basis of a verdict. When a spec and a
+register row disagree, the register wins and the disagreement means the spec was
+never fully consumed (`ai/CHECKLISTS/coding.md` § Assessment).
 
 **Enforcement.** Selecting *which* journeys to run needs the diff — so that
 scoping step is done by a separate scoper that hands the driver only journey
@@ -115,11 +136,12 @@ Rules:
 - **Every invariant names the evidence that proves it** (a fresh-read snapshot, a
   storage read, a captured response). If you cannot name the artefact, it is not an
   invariant — it is an advisory note.
-- **Feature-specific invariants are declared in the feature's own spec**, not here
+- **Feature-specific invariants are declared in the product register**, not here
   — e.g. an isolation rule like "no actor reads another tenant's data under any
-  request shape". The spec template declares them as `INV-n` rows, each naming the
-  evidence that proves it (`docs/specs/README.md`), so they arrive checkable rather
-  than buried in an NFR paragraph. This universal set is the floor every project
+  request shape". The register declares them as `INV-n` rows, each naming the
+  evidence that proves it, so they arrive checkable rather than buried in an NFR
+  paragraph — and they are standing truth rather than a proposal that may have been
+  revised (see Independence above). This universal set is the floor every project
   gets for free.
 - *Offered means accepted* runs cheaply by default (the option a persona would
   naturally pick) and exhaustively when the change touched a shared vocabulary.
@@ -167,8 +189,8 @@ I…?" rule in `ai/STANDARDS/UI_STANDARD.md`, not as help text.
 The advisory agent is not a taste engine. Its checklist is the project's own UX and
 documentation standards applied to the running app — audience-first copy, no
 internal identifiers shown to users, humanised codes, present loading/empty/error
-states, and the rest of `ai/STANDARDS/UI_STANDARD.md` — plus any `UX-n` clause the
-feature's own spec declares, which is citable on the same footing as a standard's.
+states, and the rest of `ai/STANDARDS/UI_STANDARD.md` — plus any `UX-n` clause in
+the product register, citable on the same footing as a standard's.
 **Every advisory finding cites the clause it violates**, so even advisory output is
 falsifiable in its basis (advisory only in its authority). It **never proposes features**: the absence
 of a capability the product never claimed is out of scope — that belongs to

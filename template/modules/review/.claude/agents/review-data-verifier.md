@@ -40,6 +40,11 @@ Where the feature's spec provides a data-touchpoints map, use it to know which
 entity/field each step writes. Where it does not, work from the action log and report
 what you could and could not reach.
 
+A spec is **orientation, never authority**: it tells you where to look, and it never
+settles whether what you found is correct. It records what was *proposed* and may have
+been superseded. If storage disagrees with the map, report what storage says — a stale
+map is itself worth reporting, not a reason to doubt the observation.
+
 ## Evidence and reporting
 
 **No evidence, no verdict.** Every verdict cites the actual storage read — the query or
