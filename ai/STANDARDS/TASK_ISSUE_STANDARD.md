@@ -1,6 +1,6 @@
 # Task Issue Standard
 
-Last Updated: 2026-07-11
+Last Updated: 2026-08-04
 
 > Written assuming GitHub Issues, but the structure ports to any tracker
 > (`GitHub Issues` at `https://github.com/dragondad22/claude-starter-kit/issues`). Replace `gh` commands with
@@ -126,7 +126,7 @@ implementation details here — just the "what is broken or missing and why does
 matter."
 
 ### Governing Decisions and References
-Table of every ADR, decision-log entry, workflow doc, or SOP that constrains or
+Table of every ADR, register row, workflow doc, or SOP that constrains or
 informs implementation. Include the reference ID and a one-line summary of what it
 governs for this task.
 
@@ -175,7 +175,7 @@ Include:
 - Edge cases specific to this task
 
 ### Docs to Update
-Checkboxes. Every ADR, decision-log entry, or workflow/user doc that must be
+Checkboxes. Every ADR, register row, or workflow/user doc that must be
 created or updated as part of this task. An issue is not complete until all doc
 updates are made.
 

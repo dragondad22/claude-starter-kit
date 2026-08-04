@@ -2,7 +2,7 @@
 
 Owner: Chris (dragondad22)
 Status: Recommended default
-Last Updated: 2026-07-13
+Last Updated: 2026-08-04
 
 This standard governs how Claude Starter Kit tracks user-visible changes
 (`CHANGELOG.md`) and how it bumps version numbers (the files listed in
@@ -51,7 +51,7 @@ This standard governs how Claude Starter Kit tracks user-visible changes
 
 - Pure refactors with identical observable behavior
 - Test-only changes
-- Doc-only changes (README, ADR, decision log, this standard)
+- Doc-only changes (README, ADR, register, this standard)
 - Comment, formatting, lint, or rename-only commits
 - Dependency bumps that do not change behavior (still note transitively if a
   dep bump fixes a CVE or changes runtime behavior)

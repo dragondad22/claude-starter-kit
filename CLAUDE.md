@@ -105,13 +105,11 @@ Use these as completion gates:
 ## Decision Recording (mandatory)
 
 - Decisions made in conversation are NOT authoritative until recorded.
-- Kit decisions live in `docs/plans/` decision records: index
-  `docs/plans/2026-07-08-kit-review-topics.md` + one file per topic under
-  `docs/plans/kit-review-topics/` (`TNN-<slug>.md`; format: its `TOPIC_TEMPLATE.md`).
-  Stable T-IDs, Status/Discussion/Decision per topic, superseded entries stamped,
-  never rewritten; Status changes mirror to the index table.
-- `docs/plans/` is structured discovery only (T7.4): interview/decision working docs.
-  A decision → decision record; work → an issue; how-to → runbook; term → glossary.
+- **The T-topic register is closed (T37.7)** — T1–T37 stay citable under `docs/plans/kit-review-topics/`; no new entries.
+- A kit decision produces a **working doc in `docs/plans/`** plus an **ADR** or a **register
+  row** — the kit uses the model it ships; reasoning stays in the working doc, cited by `Source:`.
+- `docs/plans/` is structured discovery only (T7.4). A decision → an ADR or register row;
+  work → an issue; how-to → runbook; term → glossary.
 - Ask for human approval before recording or updating decisions.
 
 ## Git & PRs
@@ -142,9 +140,8 @@ Use these as completion gates:
 
 ## Anti-Drift Rules
 
-- Decisions made in chat are not authoritative until recorded in `docs/plans/`.
-- When in doubt about a prior decision, grep the T-ID in the decision record —
-  do not trust conversation memory.
+- Chat is not authoritative until recorded: check ADRs and registers first, then grep the
+  T-ID for pre-T37 decisions — never trust conversation memory.
 - New shipped file → manifest entry, same PR. New kit-dev file → nothing to do
   (allowlist keeps it safe).
 - New module or command → every enumeration that lists them, same PR; editing a

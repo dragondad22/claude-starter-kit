@@ -129,7 +129,7 @@ Read these before writing code. Listed in dependency order.
 - [ ] `docs/uat/UAT_KIT-NNN.md` — create or update acceptance test doc
       (template: `ai/TEMPLATES/ACCEPTANCE_DOC_TEMPLATE.md`, if the reports module is installed)
 - [ ] `docs/architecture/decisions/ADR-NNN.md` — [create/update if decision changed]
-- [ ] `docs/decision-log.md` — [update if product/scope changed]
+- [ ] `docs/registers/PRODUCT_REGISTER.md` — [file the rules/stories/criteria this change establishes or changes]
 - [ ] [Any gap/tracking doc] — mark gap as resolved
 
 ## Completion Gate

@@ -14,15 +14,41 @@ layers in one file, ordered by audience:
 
 Specs are a generated founding artifact of a feature interview — derived from
 its `Final:` fields with `Source:` Q-ID provenance (see
-`ai/STANDARDS/INTERVIEW_STANDARD.md`). They outrank UAT docs in the
-source-of-truth precedence when they exist.
+`ai/STANDARDS/INTERVIEW_STANDARD.md`).
+
+## A spec is a proposal
+
+A spec is authoritative about what was **proposed** for a feature. It is never
+authoritative about what the product currently does — that is the register's job.
+
+**A proposal carries no authority until it is consumed.** At implementation, the
+assessor files the spec's content to its permanent homes: business rules, stories
+and their acceptance criteria, invariants, NFRs and UX clauses to
+`docs/registers/`, architecture to ADRs. The spec's `Landed in` field records
+where each part went, and its status becomes **Consumed**.
+
+Two things follow, and both are the point rather than side effects:
+
+- **A spec is safe to accept from anyone.** A collaborator, or a collaborator's AI
+  working from these templates, can hand over a spec without it silently binding
+  the product — nothing in it takes effect until someone with the architectural
+  context assesses it and files it.
+- **A consumed spec is not kept current.** It records what was agreed at a moment
+  in time. Editing it to match later behavior destroys the only thing it was good
+  for and produces a second, weaker copy of the register. Behavior changes update
+  the **register rows**, not the spec that first proposed them.
+
+Because specs are inputs rather than standing truth, they sit **outside** the
+source-of-truth precedence order — see `CLAUDE.md`. Where a spec and a register
+row disagree about what the product does, the register is right and the
+disagreement means the spec was never fully consumed.
 
 ## Self-contained: what a spec states, and what it must not
 
 A spec is a **complete, separate, environment-agnostic** document. It states
 *what* must be true, and it **refers to** existing ADRs and decisions by ID. It
 never **prescribes** an ADR, an architecture, a physical data model, or a
-decision-log entry.
+register entry.
 
 Two independent reasons:
 
@@ -66,11 +92,11 @@ individually:
 Project-wide UX rules stay in `ai/STANDARDS/UI_STANDARD.md` — a spec carries only
 what is specific to its feature.
 
-If the **review module** is installed, its independent reviewer agents consume
-both: the UAT driver is handed the feature's invariants and checks them
-alongside its universal set, and the UX evaluator may cite a spec's `UX-n`
-clause the same way it cites a standard's
-(`ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md`).
+If the **review module** is installed, its independent reviewer agents take these
+assertions from the **register** they were filed to at consumption — not from this
+spec. A reviewer judges a running application against what should be true *now*, and
+a spec may since have been superseded; it may still be read for orientation, never as
+the basis of a verdict (`ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md` § Independence).
 
 ## Business rules state requirements
 
@@ -92,9 +118,18 @@ it from the spec.
 
 Why v1 "workflow docs" rotted, designed against:
 
-- **Keep-current:** spec updates ride the documentation standard's same-PR
-  rule — behavior changes and their spec land together.
-- **UAT traceability:** UAT acceptance criteria cite journey step numbers and
+- **Nothing here is asked to stay current.** Rot was the symptom of one document
+  trying to be both the proposal and the record of the system. Split them and it
+  cannot happen: what must stay true is filed to the register at consumption and
+  kept current *there*, while the spec is dated by design and honest about it. A
+  document that never claimed to be current cannot go stale.
+- **Consumption is a gate, not a habit.** A spec reaching **Consumed** with an
+  empty `Landed in` is the failure this design has to catch — it means the
+  content was built but never filed, which looks identical to done. Two gates
+  enforce it: `ai/CHECKLISTS/coding.md` § Assessment as the completion gate, and
+  `/preflight`, which fails the check mechanically rather than relying on
+  anyone remembering.
+- **UAT traceability:** acceptance criteria cite journey step numbers and
   edge-case row IDs, so a spec that misses reality fails visibly at UAT
   instead of silently.
 - **Initial quality:** the feature interview stress-tests scenarios (invent

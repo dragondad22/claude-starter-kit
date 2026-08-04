@@ -1,16 +1,26 @@
 # SPEC-<DOMAIN>-NNN: <Feature name>
 
-**Status:** Draft | Confirmed | Implemented | Superseded
+**Status:** Draft | Confirmed | Consumed | Superseded
 **Owner:** <who answers questions about this spec>
 **Revision:** <n> — YYYY-MM-DD
 **Source:** <originating interview question(s), qualified Q-IDs: `001/Q-SCOPE-02`>
 **Personas:** <names from `docs/PERSONAS.md` — reference by name, never redefine here>
+**Landed in:** <empty until Consumed — then the permanent homes this spec's content
+became: `BR-014`, `AC-007`, `INV-003`, `ADR-012`>
 
-> **Self-contained and environment-agnostic.** This spec states *what* must be
-> true. It **refers to** existing ADRs and decisions by ID; it never **prescribes**
-> an ADR, an architecture, a physical data model, or a decision-log entry — those
-> are decided at development assessment, by whoever holds the architectural
-> context. Why, and what that excludes: `docs/specs/README.md`.
+> **A proposal, not a record of the system.** This spec is authoritative about what
+> was *proposed* for this feature — never about what the product currently does. It
+> carries **no authority until it is consumed**: at implementation its content is
+> filed to its permanent homes (the product register, ADRs), `Landed in` is filled,
+> and this spec becomes history. That is what makes a spec safe to accept from
+> anyone — a collaborator, a collaborator's AI — since nothing it says binds the
+> product until someone assesses it and files it.
+>
+> **Self-contained and environment-agnostic.** It states *what* must be true and
+> **refers to** existing ADRs and decisions by ID; it never **prescribes** an ADR,
+> an architecture, a physical data model, or a register entry — those are decided at
+> development assessment, by whoever holds the architectural context. Why, and what
+> that excludes: `docs/specs/README.md`.
 
 ## Journey
 
@@ -48,7 +58,7 @@ flowchart TD
 that needs architectural context is *raised* here as an open question and
 decided at assessment — never made here.>
 
-**Referenced decisions:** <existing ADRs / decision-log entries this feature
+**Referenced decisions:** <existing ADRs / register rows this feature
 relies on, by ID. Referenced, never restated — the source moves, this list doesn't.>
 
 **Preconditions:** <state that must hold before the journey starts — auth, data, config>
@@ -116,7 +126,12 @@ express it, use a representation that can and reference it here.>
 
 ---
 
-*UAT traceability: acceptance criteria for this feature cite journey step
-numbers, edge-case IDs (EC-n), and invariants (INV-n) from this spec.
-Keep-current: any PR that changes this feature's behavior updates this spec in
-the same PR.*
+*UAT traceability: acceptance criteria cite journey step numbers, edge-case IDs
+(EC-n), and invariants (INV-n) from this spec — the criteria themselves live in
+the product register as `AC-n` rows, against the story they close.*
+
+***Not kept current.** Once consumed, this spec is history: it records what was
+proposed, and is not updated when behavior later changes. What must stay true was
+filed to the register at consumption and is kept current there. A spec edited to
+match new behavior stops being evidence of what was agreed and becomes a second,
+weaker copy of the register.*
