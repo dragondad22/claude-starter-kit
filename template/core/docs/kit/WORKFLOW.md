@@ -79,10 +79,13 @@ flowchart TD
    warrants; feature-complete work gets its acceptance doc, and human beta
    testing (reports module) gets goals-not-steps beta guides.
 
-9. **Release.** `/release` bumps versions in lockstep and rolls the
-   CHANGELOG. The **first release triggers the interview retrospective**:
-   "what did the interview fail to ask?" — gaps become port-back issues
-   against the kit.
+9. **Release.** A release is a **promise to a named audience**, and the first
+   time a cut is due the kit asks for that promise and the project's
+   versioning archetype — recorded in `docs/releases/README.md`
+   (`ai/STANDARDS/RELEASE_STANDARD.md`). `/release` then bumps versions in
+   lockstep and rolls the CHANGELOG. The **first release triggers the
+   interview retrospective**: "what did the interview fail to ask?" — gaps
+   become port-back issues against the kit.
 
 10. **Steady state.** The session-start protocol (`ai/agent-setup.md`) keeps
     the board honest; `/evergreen` runs its seven lenses on a ~30-day cadence;
