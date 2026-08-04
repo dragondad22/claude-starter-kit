@@ -48,13 +48,20 @@ Beta-guide lifecycle:
 When documents conflict, resolve in this order (top wins). Adapt the paths to where
 these artifacts live in this project:
 
-1. The UAT spec for the work item: `{{UAT_DOC}}` (e.g.
-   `docs/uat/UAT_{{WORK_ITEM_PREFIX}}-<ID>_*.md`).
-2. The implementation plan for the matching work item.
-3. The relevant feature spec(s) in `docs/specs/`.
-4. Product workflow docs, if the project keeps them as an authoritative surface
+1. The product register (`docs/registers/`) — standing truth: acceptance criteria
+   (`AC-n`), invariants (`INV-n`), business rules, NFRs, UX clauses.
+2. The UAT spec for the work item: `{{UAT_DOC}}` (e.g.
+   `docs/uat/UAT_{{WORK_ITEM_PREFIX}}-<ID>_*.md`) — change-specific criteria and
+   this run's outcomes.
+3. The implementation plan for the matching work item.
+4. The relevant feature spec(s) in `docs/specs/`.
+5. Product workflow docs, if the project keeps them as an authoritative surface
    (e.g. a `docs/workflows/` tier listed in `CLAUDE.md`'s source-of-truth order).
-5. ADRs and the product decision log.
+6. ADRs and the product decision log.
+
+The register sits above the UAT doc because the UAT doc no longer holds durable
+criteria — it cites them and records outcomes. A feature spec ranks below both: it
+is authoritative about what was *proposed*, never about what is currently true.
 
 If conflict remains unresolved:
 - Follow the higher-precedence source.
@@ -64,10 +71,16 @@ If conflict remains unresolved:
 ## Acceptance Criteria Discipline
 - Acceptance criteria must be **explicit, written, and traceable to a source above** —
   do not invent acceptance criteria from conversation or memory during the UAT run.
-- When a feature spec exists, criteria cite its journey step numbers, edge-case IDs
-  (EC-n), and invariants (INV-n) — a spec that misses reality must fail visibly here,
-  not silently. An invariant failure is a failure even when every other criterion
-  passes.
+- **Durable criteria live in the product register** as `AC-n` rows against the story
+  they close, and are **cited by ID here, never restated**. What "working" means for a
+  capability outlives any one change; re-authoring it per run is how two runs come to
+  disagree about the same feature. Criteria specific to *this* change have no register
+  entry and are written out in the UAT doc.
+- A durable criterion discovered mid-run is **filed to the register**, not written into
+  the run's doc — otherwise the next run re-invents it.
+- Criteria cite journey step numbers, edge-case IDs (EC-n), and invariants (INV-n) —
+  a spec or register that misses reality must fail visibly here, not silently. An
+  invariant failure is a failure even when every other criterion passes.
 - Each criterion gets a recorded outcome (pass / fail / blocked) — no criterion is
   left unaddressed.
 - A feature is not "accepted" because it appears to work; it is accepted when every

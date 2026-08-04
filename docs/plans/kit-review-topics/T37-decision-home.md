@@ -98,6 +98,17 @@ defensive plumbing — it is the kit doing its main job.
   with typed sections to start; a section splits into its own file when it earns one,
   **IDs unchanged** so every existing reference survives.
 
+  > **Amended 2026-08-03 (#207, implementing T37.4).** The "product requirements"
+  > section shipped as `PR-` in #206 and is **replaced by user stories (`US-`)**.
+  > Writing a requirement in the standard story form makes `PR-` a second ID for the
+  > same fact — *"the product must let a volunteer see X"* and *"as a volunteer, I want
+  > to see X"* are one statement in two grammars, and two IDs for one fact is what a
+  > register exists to prevent. T37.4 already required the story form; keeping `PR-`
+  > alongside it would have duplicated every row. The original text stands as decided;
+  > this records what implementation revised. Bonus consequence worth keeping: a
+  > "requirement" that cannot be written as a story against a real persona is almost
+  > always a mechanism, so the form does T37's register-vs-ADR routing for free.
+
 - **T37.4 — Add the two missing industry-standard forms.** **User stories** are absent
   from the entire shipped tree (verified: zero hits). **Acceptance criteria** exist in
   four places with no owner. Both become first-class and linked. Preference for

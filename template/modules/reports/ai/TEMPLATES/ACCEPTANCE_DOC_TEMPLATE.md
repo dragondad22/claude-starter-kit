@@ -33,14 +33,29 @@ Precedence per `ai/STANDARDS/UAT_SOURCE_OF_TRUTH.md` — cite what governs this 
 
 ## Acceptance criteria
 
-Criteria are explicit, written, and traceable — each cites a journey step
-number or edge-case ID (EC-n) from the spec. Never invent criteria mid-run;
-a spec that misses reality must fail visibly here.
+Criteria are explicit, written, and traceable. **Never invent criteria mid-run** —
+a spec or register that misses reality must fail visibly here, not get patched
+silently from memory.
 
-| # | Criterion (observable behavior) | Source | Outcome (pass / fail / blocked) | Evidence |
+**Durable criteria live in the product register** (`AC-n`, against the story they
+close) and are cited here by ID, not restated — the criterion is standing truth,
+the outcome below is this run's record of it. Criteria specific to *this change*
+("the migration backfills existing rows") have no register entry and are written
+out in full here, citing the work item.
+
+| # | Criterion | Ref | Outcome (pass / fail / blocked) | Evidence |
 |---|---|---|---|---|
-| AC-1 | <what must observably happen> | <SPEC-… step 3> | <pass> | <artifact path / API snippet ref> |
-| AC-2 | <…> | <EC-2> | <…> | <…> |
+| 1 | <cited — leave blank, the register holds the text> | <AC-007> | <pass> | <artifact path / API snippet ref> |
+| 2 | <change-specific: what must observably happen this time> | <{{WORK_ITEM_PREFIX}}-NNN> | <…> | <…> |
+
+<!-- A durable criterion that is missing from the register is a finding: file it
+     to the register rather than writing it here, or the next run re-invents it. -->
+
+## Register coverage
+
+- Stories this change serves: <US-n, … — or "none recorded">
+- Register criteria left unverified by this run, and why: <AC-n + reason, or "none">
+- Durable criteria discovered during the run and filed to the register: <AC-n, or "none">
 
 ## Edge-case matrix
 
