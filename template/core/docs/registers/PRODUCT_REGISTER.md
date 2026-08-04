@@ -14,7 +14,13 @@ of what was once intended.
   where the review module is installed — by the independent reviewer agents, which
   need standing truth rather than a proposal that may since have been superseded.
 
-Empty sections below mean *nothing has been recorded yet* — not *nothing applies*.
+**An empty section means nothing has been recorded yet — not that nothing applies.**
+If a section is empty *on purpose*, say so under its heading in one line ("No
+product-wide UX clauses yet — added as they are decided"). Otherwise a reader cannot
+tell a considered decision from an omission, and neither can `/bootstrap`'s
+founding-doc audit, which reports this file while it still looks untouched. The
+compliance register uses the same convention for obligations scoped out: out-of-scope
+is a valid status, but it has to be recorded rather than left as a blank.
 
 ## The routing rule
 
