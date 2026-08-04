@@ -3,7 +3,7 @@
 
 Claude Starter Kit
 
-**Updated:** YYYY-MM-DD
+**Updated:** 2026-08-04
 
 This index tracks all architectural decisions for Claude Starter Kit:
 - Completed ADRs
@@ -19,7 +19,7 @@ Status labels: **Proposed** | **Accepted** | **Rejected** | **Superseded**
 
 | ADR # | Title | Status | File |
 |-------|-------|--------|------|
-| ADR-001 | (first decision title) | Proposed | `ADR-001-<slug>.md` |
+| ADR-001 | A release is a promise to a named audience | Accepted | `ADR-001-release-framework.md` |
 
 ---
 
