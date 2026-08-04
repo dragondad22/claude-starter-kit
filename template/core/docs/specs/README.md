@@ -125,7 +125,10 @@ Why v1 "workflow docs" rotted, designed against:
   document that never claimed to be current cannot go stale.
 - **Consumption is a gate, not a habit.** A spec reaching **Consumed** with an
   empty `Landed in` is the failure this design has to catch — it means the
-  content was built but never filed, which looks identical to done.
+  content was built but never filed, which looks identical to done. Two gates
+  enforce it: `ai/CHECKLISTS/coding.md` § Assessment as the completion gate, and
+  `/preflight`, which fails the check mechanically rather than relying on
+  anyone remembering.
 - **UAT traceability:** acceptance criteria cite journey step numbers and
   edge-case row IDs, so a spec that misses reality fails visibly at UAT
   instead of silently.

@@ -67,7 +67,15 @@ anything that cited it still resolves.
 
 **Status** is `Active`, `Proposed`, or `Superseded by <ID>`.
 **Source** cites where the rule was decided — a spec (`SPEC-ADOPT-003`), an ADR, or a
-qualified interview question (`000/Q-SCOPE-02`).
+qualified interview question (`000/Q-SCOPE-02`). Acceptance criteria carry this in
+their `Traces to` column instead of a separate `Source` — the spec they trace to is
+the spec they came from, and two columns naming one thing drift apart.
+
+**Provenance runs both ways.** A row filed from a spec cites that spec, *and* the
+spec's `Landed in` field names this row by ID. Neither direction alone survives a
+reorganisation: from the row you could not tell what else the same spec produced, and
+from the spec you could not tell whether anything landed at all. The gate that
+enforces both is in `ai/CHECKLISTS/coding.md` § Assessment.
 
 ## Business rules (`BR-`)
 
