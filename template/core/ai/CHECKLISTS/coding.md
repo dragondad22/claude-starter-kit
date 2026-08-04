@@ -17,6 +17,27 @@ default/seed value, a shared type or helper:
 - [ ] Prefer one shared constant over duplicated literals
 - [ ] (If the review module is installed) a shared-surface change is the cue to run an independent review over the flows that *consume* the changed thing — detection to pair with this prevention sweep (`ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md`)
 
+## Assessment — file the spec's content (when building from a feature spec)
+
+A spec is a **proposal**. Implementing it means building the behavior *and* **filing
+what the spec declared into the homes that keep it**. This is the step the kit exists
+to perform — turning answers into the decisions and standing truth a build runs on —
+and it is the one that looks identical to "done" when skipped: the code ships, the
+spec reads complete, and the rules it declared never landed anywhere durable.
+
+- [ ] **Every declared row in the spec has a destination.** Business rules, stories and
+      their acceptance criteria, NFRs, invariants and UX clauses → `docs/registers/`;
+      architecture → an ADR; a term → `docs/GLOSSARY.md`. A row deliberately **not**
+      carried forward is recorded as such with the reason — dropped silently is the
+      failure, not the decision to drop it.
+- [ ] **Provenance runs both ways.** Each filed row cites the spec (`Source:` /
+      `Traces to`), and the spec's **`Landed in`** names every destination by ID.
+      Neither direction alone survives a later reorganisation.
+- [ ] **Status is `Consumed` only once both directions are in place.** `Consumed` with
+      an empty `Landed in` means built-but-never-filed.
+- [ ] Every **Open question** the spec raised is resolved, or is now a tracked issue —
+      a spec cannot be consumed while still asking something.
+
 ## Security & Authorization
 
 - [ ] New/modified entry points enforce authorization with the correct permission/role
