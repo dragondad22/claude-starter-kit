@@ -92,6 +92,7 @@ core:
     - docs/kit/WORKFLOW.md
     - docs/PERSONAS.md
     - docs/plans/README.md
+    - docs/registers/PRODUCT_REGISTER.md
     - docs/runbooks/README.md
     - docs/specs/README.md
     - testing-reports/README.md

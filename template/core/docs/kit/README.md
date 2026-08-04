@@ -37,6 +37,7 @@ from is recorded in `bootstrap/KIT_VERSION`.
 | `docs/specs/` | Journey-first feature specs (created at promotion) |
 | `docs/architecture/decisions/` | ADRs |
 | `docs/decision-log.md` | Product/scope decisions |
+| `docs/registers/` | Standing truth: business rules, requirements, invariants, UX clauses |
 | `docs/GLOSSARY.md` · `docs/PERSONAS.md` | Naming authority · persona registry |
 | `docs/compliance/` | What externally binds this project |
 | `docs/runbooks/` | Anything operational done twice |
@@ -53,6 +54,7 @@ journey registry, and `/review`.
 | X | Home |
 |---|---|
 | An architectural decision | ADR (`docs/architecture/decisions/`) |
+| A rule, requirement, invariant or UX clause that stays true | `docs/registers/PRODUCT_REGISTER.md` — cite it by ID (`BR-014`), never by path |
 | A product/scope call | `docs/decision-log.md` |
 | A feature idea | `type:feature` issue, Horizon on the board — never a document |
 | Work to do | A tracked issue; branch `<type>/<issue#>-<slug>` |
