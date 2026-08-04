@@ -117,7 +117,7 @@ Read the relevant standard before starting work in that area:
 - Independent review (agent-driven UAT/UX/data-integrity): `ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md` (if applicable)
 - User documentation: `ai/STANDARDS/DOCUMENTATION_STANDARD.md`
 - External standards + compliance (APIs/OpenAPI, web/W3C-WCAG, mobile stores, messaging/UGC, minors): `ai/STANDARDS/EXTERNAL_STANDARDS_AND_COMPLIANCE.md`
-- Versioning and CHANGELOG: `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md`
+- Versioning and CHANGELOG: `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md` · What a release promises, and what MAJOR means here: `ai/STANDARDS/RELEASE_STANDARD.md`
 - Git branches/commits/PRs: `ai/STANDARDS/GIT_WORKFLOW_STANDARD.md`
 - Bug/finding reports: `ai/STANDARDS/GITHUB_ISSUES.md`
 - Task issues: `ai/STANDARDS/TASK_ISSUE_STANDARD.md` · Feature intake & roadmap: `ai/STANDARDS/ROADMAP_STANDARD.md`

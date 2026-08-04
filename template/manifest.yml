@@ -66,6 +66,7 @@ core:
     - ai/STANDARDS/INTERVIEW_STANDARD.md
     - ai/STANDARDS/LOGGING_STANDARD.md
     - ai/STANDARDS/PERFORMANCE_SMOKE_STANDARD.md
+    - ai/STANDARDS/RELEASE_STANDARD.md
     - ai/STANDARDS/ROADMAP_STANDARD.md
     - ai/STANDARDS/SECURITY_REVIEW_STANDARD.md
     - ai/STANDARDS/TASK_ISSUE_STANDARD.md
@@ -92,6 +93,7 @@ core:
     - docs/PERSONAS.md
     - docs/plans/README.md
     - docs/registers/PRODUCT_REGISTER.md
+    - docs/releases/README.md
     - docs/runbooks/README.md
     - docs/specs/README.md
     - testing-reports/README.md

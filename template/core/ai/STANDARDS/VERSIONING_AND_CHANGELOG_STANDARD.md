@@ -10,6 +10,10 @@ This standard governs how {{PROJECT_NAME}} tracks user-visible changes
 (`CHANGELOG.md`) and how it bumps version numbers (the files listed in
 `{{VERSION_FILES}}`). Apply it to every PR.
 
+**What a release *is*** — who it is for, what it promises them, and what MAJOR
+means for this project — is `ai/STANDARDS/RELEASE_STANDARD.md`. This standard
+versions the change; that one versions the promise.
+
 ---
 
 ## TL;DR
@@ -25,9 +29,11 @@ This standard governs how {{PROJECT_NAME}} tracks user-visible changes
 - Releases are **timeboxed**: cut one when `[Unreleased]` is non-empty and either
   ~2 weeks have elapsed since the last release **or** a batch has accumulated
   (see "Release trigger"). No milestone planning required.
-- The bump type is **mechanical**: only `Fixed`/`Security` → PATCH; any
-  `Added`/`Changed` → MINOR. Pre-1.0, breaking changes are MINOR; `1.0.0` is a
-  deliberate "API is stable" decision (see "When to bump the version").
+- MINOR and PATCH are **mechanical**: only `Fixed`/`Security` → PATCH; any
+  `Added`/`Changed` → MINOR. **MAJOR is decided by
+  `ai/STANDARDS/RELEASE_STANDARD.md`**, which is where "what is 1.0?" is
+  answerable at all — this standard versions the change; that one versions the
+  promise.
 - Use the **`/release`** skill (wraps the kit's generic `release.sh`) to do the
   cut — it bumps all version files and rolls the CHANGELOG in one step.
 - Format: [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.1.0/).
@@ -102,37 +108,53 @@ Examples:
 ## When to bump the version
 
 {{PROJECT_NAME}} follows `{{VERSION_SCHEME}}` (e.g. SemVer `MAJOR.MINOR.PATCH`).
-The bump type is **decided mechanically** from which `[Unreleased]` subsections
-have entries at cut time — there is no judgement call.
+MINOR and PATCH are **decided mechanically** from which `[Unreleased]`
+subsections have entries at cut time — there is no judgement call. MAJOR is a
+different kind of question and has a different home.
 
-### Rubric (recommended default, active pre-1.0)
+### Rubric
 
 | The release contains…                                    | Bump            |
 |----------------------------------------------------------|-----------------|
-| only `Fixed` and/or `Security` entries                   | **PATCH** (`0.0.X`) |
-| any `Added` / `Changed` / `Deprecated` / `Removed` entry | **MINOR** (`0.X.0`) |
-| a deliberate "the API is stable" decision                | **MAJOR** (`1.0.0`) |
+| only `Fixed` and/or `Security` entries                   | **PATCH** (`X.Y.Z`) |
+| any `Added` / `Changed` / `Deprecated` / `Removed` entry | **MINOR** (`X.Y.0`) |
+| the event this project's archetype defines as MAJOR      | **MAJOR** (`X.0.0`) — see below |
 
-- **Pre-1.0, breaking changes bump MINOR**, not MAJOR. While you are `0.x` you
-  have not promised a stable contract, so a breaking change is just another
-  `Changed` entry — but prefix it `**BREAKING:**` in the CHANGELOG and call it
-  out in the release notes so nobody misses it. Breaking changes include: API
-  contract removals/shape changes, auth/permission semantics changes, migrations
-  needing coordinated client work, and removal of CLI flags/env vars/settings.
-- **MAJOR (`1.0.0`) is never automatic.** It is a one-time, deliberate decision
-  that the project's contract is now stable. Until someone makes that call,
-  every release is MINOR or PATCH.
 - You do NOT bump per-PR. PRs accumulate under `[Unreleased]`; the bump happens
   only when a release is cut.
+- `release.sh` with no argument prints the recommended bump by reading the
+  `[Unreleased]` sections. It recommends MINOR or PATCH only — MAJOR is never
+  inferred from changelog sections, because no changelog section describes the
+  event that causes one.
 
-`release.sh` with no argument prints the recommended bump by reading the
-`[Unreleased]` sections, so the rubric is applied for you.
+### MAJOR — decided by the release standard
 
-### After 1.0 (inactive until the 1.0 cutover)
+**`ai/STANDARDS/RELEASE_STANDARD.md` owns this**, because MAJOR is a statement
+about a promise and this standard only sees changes. What it means depends on
+which archetype the project recorded in `docs/releases/README.md`:
 
-Once `1.0.0` ships, standard SemVer applies: breaking change → MAJOR, new feature
-→ MINOR, bug/security-only → PATCH. Flip this section to active when the team cuts
-1.0.
+- **Contract-versioned** (library, API, CLI, wire format) — MAJOR when a named
+  audience's integration breaks. Mechanical: it follows from a `**BREAKING:**`
+  entry.
+- **Release-versioned** (application, service, product) — MAJOR when a committed
+  promise lands: a new promise to a new audience.
+
+Two rules bind here regardless of archetype:
+
+- **Prefix a breaking entry `**BREAKING:**`** in the CHANGELOG and call it out in
+  the release notes, whatever the bump turns out to be. Breaking changes include
+  API contract removals and shape changes, auth/permission semantics changes,
+  migrations needing coordinated client work, and removal of CLI flags, env vars,
+  or settings.
+- **Breaking is always breaking *for whom*.** A claim that cannot name the
+  audience whose contract broke is not a breaking change — a runtime upgrade is
+  the standing example. Full rule:
+  `ai/STANDARDS/RELEASE_STANDARD.md` § Breaking is always breaking *for whom*.
+
+While a project is on `0.x` and has not yet recorded a release identity, a
+breaking change is a `Changed` entry and bumps MINOR — but that state is a
+question waiting to be asked, not a resting place. The session-start release
+trigger asks it the first time a cut is due.
 
 ---
 
@@ -157,6 +179,13 @@ If `[Unreleased]` is empty, skip — there is nothing to release. This check run
 as part of the **session-start protocol** in `ai/agent-setup.md` (it cannot fire
 on a wall-clock by itself) and surfaces as a one-line suggestion. No milestone or
 scope planning is required; the calendar and the accumulated batch are the trigger.
+
+**The first time this fires, it also asks for a release identity** if
+`docs/releases/README.md` has none — the archetype, and what the next named
+release promises to whom. That is the moment the question is cheap and worth
+something; asked at inception it is usually unanswerable, and never asked at all
+is how a project stays on `0.x` forever
+(`ai/STANDARDS/RELEASE_STANDARD.md` § Recording release identity).
 
 ---
 
@@ -227,8 +256,13 @@ mechanical steps (2–3 below). The full sequence:
   release time, in lockstep.
 - **Per-PR version bumps**: every PR bumps PATCH. Pre-1.0 this just creates
   noise. Mitigation: bump on releases, not on every PR.
-- **Unscoped MAJOR bumps**: bumping MAJOR for "feels big" rather than for
-  actual contract breakage. Mitigation: MAJOR requires identifiable breakage.
+- **Unscoped MAJOR bumps**: bumping MAJOR because a release "feels big".
+  Mitigation: MAJOR is defined by the project's archetype — an identifiable break
+  for a named audience, or a named promise landing — never by size.
+- **Perpetual `0.x`**: nothing ever asks the 1.0 question, so a shipped,
+  depended-on product still advertises itself as unstable. Mitigation: the
+  session-start release trigger asks for a release identity the first time a cut
+  is due (`ai/STANDARDS/RELEASE_STANDARD.md`).
 
 ---
 
@@ -255,3 +289,4 @@ When cutting a release:
 | Date       | Author          | Change |
 |------------|-----------------|--------|
 | 2026-06-24 | Starter kit     | Genericized from project-specific versioning standard |
+| 2026-08-04 | Starter kit     | MAJOR routed to `RELEASE_STANDARD.md`; dormant "After 1.0" section retired (it had no workflow owner) |
