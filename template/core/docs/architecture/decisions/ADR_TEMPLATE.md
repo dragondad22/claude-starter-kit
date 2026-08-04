@@ -4,7 +4,7 @@
 **Status:** Proposed | Accepted | Rejected | Superseded
 **Date:** YYYY-MM-DD
 **Deciders:** (Team / role names)
-**Related ADRs:** (optional)
+**Relates to:** (one line, by ID — `revises ADR-023`, `supersedes ADR-011`, `amends ADR-030 §2.3`, `depends on ADR-001`, `companion to ADR-049`. Omit only if this decision genuinely stands alone. This line is what the index row is copied from — see `ADR_INDEX.md`.)
 **Source:** (optional — originating interview question(s), qualified: `000/Q-ARCH-03`; see `ai/STANDARDS/INTERVIEW_STANDARD.md`)
 
 ## 1. Context
