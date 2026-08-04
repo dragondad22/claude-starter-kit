@@ -37,9 +37,14 @@ If the registry is sparse, say so — an undeclared journey can't be blast-radiu
 
 ## 3. Drive each selected journey
 
-For each journey, build a **brief** from the registry + its feature spec: the persona
-(by name, from `docs/PERSONAS.md`), the goal and done-condition, business rules, edge
-cases, and the invariant set. **Never put the diff or change description in the brief.**
+For each journey, build a **brief** from the journey registry + the **product register**:
+the persona (by name, from `docs/PERSONAS.md`), the goal and done-condition, and the
+business rules (`BR-`), acceptance criteria (`AC-`), invariants (`INV-`) and UX clauses
+(`UX-`) that apply. **Standing truth only** — a feature spec proposed what should be true
+and may since have been superseded, so it may supply *orientation* (journey narrative,
+edge cases, data touchpoints) but never the assertions a verdict rests on
+(`ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md` § Independence).
+**Never put the diff or change description in the brief.**
 
 - Invoke **`review-uat-driver`** with the brief → it walks the flow, checks the
   done-condition + invariants, and returns an **action log** + a codified-spec proposal.

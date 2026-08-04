@@ -51,9 +51,12 @@ production-like target, stop and report `BLOCKED`.
    - **No silent failure** — no unhandled 4xx/5xx and no uncaught client error on a path
      the persona should complete.
    - **No dead end** — every flow you can start can be completed or deliberately abandoned.
-3. Any **feature-specific invariant** handed to you from the feature's spec (`INV-n`
-   rows, each naming the evidence that proves it). Check these exactly as you check
-   the universal set — they are the assertions this feature would not survive losing.
+3. Any **feature-specific invariant** handed to you from the **product register**
+   (`INV-n` rows, each naming the evidence that proves it). Check these exactly as you
+   check the universal set — they are the assertions this feature would not survive
+   losing. They come from the register, never from a feature spec: a spec records what
+   was *proposed* and may since have been revised, so judging against one can fail a
+   requirement nobody holds any more.
 
 An invariant failure is a failure **even if every criterion passes** and even if a
 document says the behaviour is fine.

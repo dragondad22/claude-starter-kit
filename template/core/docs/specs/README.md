@@ -92,11 +92,11 @@ individually:
 Project-wide UX rules stay in `ai/STANDARDS/UI_STANDARD.md` — a spec carries only
 what is specific to its feature.
 
-If the **review module** is installed, its independent reviewer agents consume
-both: the UAT driver is handed the feature's invariants and checks them
-alongside its universal set, and the UX evaluator may cite a spec's `UX-n`
-clause the same way it cites a standard's
-(`ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md`).
+If the **review module** is installed, its independent reviewer agents take these
+assertions from the **register** they were filed to at consumption — not from this
+spec. A reviewer judges a running application against what should be true *now*, and
+a spec may since have been superseded; it may still be read for orientation, never as
+the basis of a verdict (`ai/STANDARDS/INDEPENDENT_REVIEW_STANDARD.md` § Independence).
 
 ## Business rules state requirements
 
