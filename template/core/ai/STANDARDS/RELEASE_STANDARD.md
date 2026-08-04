@@ -30,6 +30,9 @@ the questions that one cannot.
   four outcomes: committed, stretch, **triggered**, out.
 - **The milestone is the manifest.** Membership belongs to the release, not to the
   issue, because a milestone supplies an owning moment and a label cannot.
+- **Run the pass in both directions.** Forward filters the backlog; **reverse walks the
+  promise and finds what nobody wrote down.** Reverse output is candidate questions.
+- **Journeys, not user stories, answer "would the audience's work fail without this?"**
 - Release identity is recorded in `docs/releases/README.md` and answered when the
   project first has something to version — not only at inception.
 
@@ -182,6 +185,86 @@ re-litigated; filed as **triggered** they are dormant commitments that activate 
 their own terms. A triggered item records **the event, not a date** — unless the event
 *is* a date, as with a recurring annual obligation.
 
+### Run the pass in both directions
+
+**A filter over the backlog inherits the backlog's blind spots.** Applying the test to
+every tracked item answers *what of our work belongs in this release?* — and cannot,
+even in principle, answer *what does this release require that nobody has written down?*
+
+So the pass runs twice, in opposite directions:
+
+| Pass | Method | Answers |
+|---|---|---|
+| **Forward — filter** | Take each tracked item, apply the test, categorise | What of our work belongs here |
+| **Reverse — derive** | Walk the promise as a journey, **per party**, and enumerate what it requires; check each requirement for coverage | What this release requires that nobody wrote down |
+
+Only the reverse pass finds an **absence**. Run against a real product, it surfaced
+organisation self-registration — the step that turns an application into a product —
+tracked nowhere, while eleven issues carried a commercialization label and made the area
+look thoroughly covered. A forward filter reported that area as healthy, because a filter
+can only sort what already exists.
+
+Walk it per party. The promise names everyone it must satisfy (§ The promise), so each
+party gets its own row: how they **find** it, **sign up**, **operate** it, and — where
+the business is a party — how it **gets paid**. Each step names what it requires and
+whether anything tracks that.
+
+**Reverse-pass output is candidate questions, not findings.** Of six requirements raised
+in the worked derivation, two were genuinely untracked, one was a conflict needing a
+decision rather than an issue, and three resolved to *"already handled elsewhere"* once a
+human adjudicated them. That resolution rate is healthy — **the value is in the question
+being asked**, not in every answer being a gap. A reverse pass that reports only
+confirmed gaps has been filtered by the same blind spot it exists to defeat.
+
+### Where "would the audience's work fail?" is answered from
+
+The question *"does the audience actually need this?"* is the one that most tempts a
+guess. It has a source, and the source is **journeys** — not user stories.
+
+**A proposed user story is not standing truth.** The product does not do it yet, so
+filing one per backlog item would make the register a second tracker, duplicating the
+issue that already exists. `US-` rows describe what the product **does**; intent belongs
+in the tracker and in specs, which are proposals by design.
+
+Where the review module is installed, `docs/uat/JOURNEY_REGISTRY.md` is already *"the
+durable list of flows that must keep working"* — exactly the artifact this question
+needs, and walking the promise to enumerate its journeys **is** the reverse pass. One
+artifact, one operation, no duplication.
+
+> **The need test: does a journey this release's promise requires fail without this
+> item?**
+
+Coverage then falls out of the same walk:
+
+| Condition | What it means |
+|---|---|
+| A required journey with **no registry row** | The promise depends on a flow nobody has written down |
+| A registry row with **no covering issue** | Committed scope nobody is building |
+| A registry row still **unverified** | Built but not accepted — a *readiness* gap, not a scope gap |
+
+**Journeys split three ways against a promise**, and that split is what keeps the answer
+honest rather than generous:
+
+- Required by the promise and **not yet working** → **scope**. The release adds it.
+- Required by the promise and **already working** → a **regression gate**. The release
+  must not break it.
+- **Not required** by the promise → not this release's business.
+
+For a product already in production nearly every daily-operations journey is the second
+kind. That is what makes a later release's scope pass *short* — not what makes its bar
+*lower*.
+
+**An existing product needs a backfill first, and it is real work.** Converting what the
+product does into journeys is the precondition for this question being answerable from a
+document rather than judged. Two traps when doing it: a capability list written as prose
+drifts silently (one measured at **thirteen minor versions stale**, with its own header
+and footer disagreeing about their date), and **platform facts are not capabilities** —
+"PostgreSQL" and "Docker" are not journeys, because no user experiences them and nobody
+can accept them.
+
+Without a journey registry the walk still runs and is still worth running; its output is
+simply judged rather than checked, and the backfill is what upgrades it.
+
 ### The milestone is the manifest
 
 **Membership is a property of the release, not of the issue.** Record it as the
@@ -255,3 +338,4 @@ in the sequence.
 |------------|-------------|--------|
 | 2026-08-04 | Starter kit | Created: release identity — the promise, releases in sequence, the two archetypes, breaking-for-whom |
 | 2026-08-04 | Starter kit | Membership added: the delay test, four categories, the milestone as the manifest |
+| 2026-08-04 | Starter kit | The reverse pass added; journeys named as the source for "would the audience's work fail?" |
