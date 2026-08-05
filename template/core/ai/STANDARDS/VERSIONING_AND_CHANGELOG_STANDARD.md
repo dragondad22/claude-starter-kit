@@ -142,10 +142,15 @@ which archetype the project recorded in `docs/releases/README.md`:
 Two rules bind here regardless of archetype:
 
 - **Prefix a breaking entry `**BREAKING:**`** in the CHANGELOG and call it out in
-  the release notes, whatever the bump turns out to be. Breaking changes include
-  API contract removals and shape changes, auth/permission semantics changes,
-  migrations needing coordinated client work, and removal of CLI flags, env vars,
-  or settings.
+  the release notes, whatever the bump turns out to be. Each of the usual cases
+  has an audience, and naming it is what makes the claim checkable:
+
+  | Change | Whose contract broke |
+  |---|---|
+  | API contract removal or shape change | Integrators calling it |
+  | Auth or permission semantics change | Whoever relied on the old rule — often your own users |
+  | Migration needing coordinated client work | Client owners who must ship in step |
+  | Removal of a CLI flag, env var, or setting | Operators and scripts that set it |
 - **Breaking is always breaking *for whom*.** A claim that cannot name the
   audience whose contract broke is not a breaking change — a runtime upgrade is
   the standing example. Full rule:
@@ -297,3 +302,4 @@ When cutting a release:
 | 2026-06-24 | Starter kit     | Genericized from project-specific versioning standard |
 | 2026-08-04 | Starter kit     | MAJOR routed to `RELEASE_STANDARD.md`; dormant "After 1.0" section retired (it had no workflow owner) |
 | 2026-08-04 | Starter kit     | Timeboxed cuts distinguished from named releases, whose milestone is their manifest |
+| 2026-08-04 | Starter kit     | Each breaking-change case now names the audience whose contract broke |
