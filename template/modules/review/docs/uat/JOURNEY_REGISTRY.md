@@ -32,6 +32,31 @@ Each journey is one row. IDs mirror the feature-spec convention
   motivated this module.
 - **verified** — has a confirmed done-condition the driver checks against.
 
+## What this registry is for at release time
+
+Beyond driving reviews, this file answers the release question *"would the audience's
+work fail without this item?"* — which is why it is the source for that limb rather than
+`US-` rows, whose job is to describe what the product already does
+(`ai/STANDARDS/RELEASE_STANDARD.md` § Membership).
+
+Walking a release's promise enumerates the journeys it requires, and each one lands in
+exactly one of three places:
+
+| Against a release's promise | Role |
+|---|---|
+| Required, **not yet working** | **Scope** — the release adds it |
+| Required, **already working** | **Regression gate** — the release must not break it |
+| Not required | Not that release's business |
+
+For a product already in production, most rows here are the second kind. Two conditions
+read directly off the table: a row with no covering issue is committed scope nobody is
+building, and a required journey with **no row at all** means the promise depends on a
+flow nobody has written down. An `unverified` row is a *readiness* gap, not a scope gap.
+
+**Platform facts are not journeys.** A datastore or a container runtime has no persona
+and no done-condition — nobody experiences it and nobody can accept it — so it never
+becomes a row here, however prominent it is in an architecture list.
+
 ## Keep-current
 
 A PR that adds or changes a user-facing flow updates this registry in the same PR — a
