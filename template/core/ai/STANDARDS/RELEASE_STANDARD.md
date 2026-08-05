@@ -28,6 +28,9 @@ the questions that one cannot.
   whose contract broke is not a breaking change.
 - **Membership is a forced choice** — *"would you delay the release for this?"* — with
   four outcomes: committed, stretch, **triggered**, out.
+- **Four limbs answer it, three of them objective**: policy (read what you publish),
+  platform/legal (read the rules), commercial (can money move), need (judgment). An item
+  is committed if it fails **any** limb.
 - **The milestone is the manifest.** Membership belongs to the release, not to the
   issue, because a milestone supplies an owning moment and a label cannot.
 - **Run the pass in both directions.** Forward filters the backlog; **reverse walks the
@@ -185,6 +188,46 @@ re-litigated; filed as **triggered** they are dormant commitments that activate 
 their own terms. A triggered item records **the event, not a date** — unless the event
 *is* a date, as with a recurring annual obligation.
 
+### The four limbs — how the test is answered
+
+**Reproducibility is the design constraint here.** A framework two sessions cannot agree
+on is worthless: it produces a different manifest each time it is run, and a manifest
+that moves is not a commitment. So the test is not answered by intuition. It is routed to
+evidence first, and to judgment only where nothing else can decide it.
+
+| Limb | The question | Decided by | Reproducible? |
+|---|---|---|---|
+| **Policy** | Do we already promise this publicly? | Privacy policy, terms, store listing, marketing claims | **Yes** — read the document |
+| **Platform / legal** | Does a rule outside us require it? | Store policy, privacy law, payment rules — recorded in `docs/compliance/COMPLIANCE_REGISTER.md` | **Yes** — external and citable |
+| **Commercial** | Can money move without it? | Can a customer acquire the product and pay for it | **Mostly** |
+| **Need** | Would the audience's work fail? | Journeys required by the promise (below) | **Yes, once journeys exist** |
+
+> **An item is committed if it fails *any* limb.** They are not weighed against each
+> other, and three of the four never require an opinion.
+
+Three habits keep it reproducible in practice: **route to evidence before reaching for
+judgment**; where judgment is unavoidable, use the forced choice with a cost attached
+rather than an open-ended "is this valuable?"; and **record the outcome so it is never
+re-derived** — variance then only ever affects first triage.
+
+#### The policy limb is the sleeper
+
+It is the limb most projects never think to run, and the cheapest one to run: **read what
+you have already published.** In the worked derivation, auditing a live privacy policy
+confirmed four committed items **from a document rather than from judgment**, and
+surfaced a fifth — a "right to correct" promised in public with nothing anywhere tracking
+it. Nobody had decided not to build it. Nobody had noticed it was owed.
+
+It also produces the result that most reliably surprises people:
+
+> **A limited-availability release carries the same policy and platform obligations as
+> general availability.** A published policy binds when real user data reaches
+> production, not when money changes hands.
+
+Narrowing the audience drops the **commercial** limb entirely and leaves the other three
+untouched. Membership changes **by limb, not by proportion** — which is the concrete
+reason "pre-release" is the wrong word for a smaller release (§ Releases in sequence).
+
 ### Run the pass in both directions
 
 **A filter over the backlog inherits the backlog's blind spots.** Applying the test to
@@ -339,3 +382,4 @@ in the sequence.
 | 2026-08-04 | Starter kit | Created: release identity — the promise, releases in sequence, the two archetypes, breaking-for-whom |
 | 2026-08-04 | Starter kit | Membership added: the delay test, four categories, the milestone as the manifest |
 | 2026-08-04 | Starter kit | The reverse pass added; journeys named as the source for "would the audience's work fail?" |
+| 2026-08-04 | Starter kit | The four limbs added, with reproducibility stated as the design constraint |
