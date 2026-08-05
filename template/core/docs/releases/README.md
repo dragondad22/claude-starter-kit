@@ -56,10 +56,12 @@ record is where someone finds out it was withdrawn.
 
 ## Release records
 
-One file per release, named `RELEASE-<version>.md`. A record holds what was promised,
-what shipped against it, and the evidence — it is written as the release is prepared and
-kept afterwards, because "what did we actually promise in 1.0?" is asked long after the
-tag is cut.
+One file per release, named `RELEASE-<version>.md`, from
+`ai/TEMPLATES/RELEASE_READINESS_TEMPLATE.md`. A record holds what was promised, what
+shipped against it, and the **gate evidence with dates** — it is written as the release
+is prepared and kept afterwards, because "what did we actually promise in 1.0?" and "what
+did we actually verify?" are both asked long after the tag is cut, usually during an
+incident.
 
 The scope itself is **not** copied here: membership is a property of the release and
 lives in its milestone in {{ISSUE_TRACKER}}. A record cites the milestone; it does not

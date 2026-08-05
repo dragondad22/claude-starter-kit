@@ -36,6 +36,9 @@ the questions that one cannot.
 - **Run the pass in both directions.** Forward filters the backlog; **reverse walks the
   promise and finds what nobody wrote down.** Reverse output is candidate questions.
 - **Journeys, not user stories, answer "would the audience's work fail without this?"**
+- **Readiness is a second axis.** Gates are **universal**, **triggered**, or
+  **aspirational**, and produce evidence with dates rather than checkboxes. A release
+  ships when the milestone empties **and** the gates are green — neither alone.
 - Release identity is recorded in `docs/releases/README.md` and answered when the
   project first has something to version — not only at inception.
 
@@ -342,6 +345,80 @@ scope — and **adding an item to a milestone is the moment that records it**.
 
 ---
 
+## Readiness — the second axis
+
+**Scope-complete is not shippable.** An empty milestone says every committed capability
+was built; it says nothing about whether the thing can be operated, recovered, supported,
+or lawfully distributed. Those obligations belong to **no single issue**, which is exactly
+why most projects have nowhere to put them and discover them at submission time or during
+an incident.
+
+> **A release ships when the milestone empties *and* the gates are green. Neither alone.**
+
+Gates come in the same three kinds as scope, which is a sign the decomposition is the
+right one rather than two ad-hoc lists.
+
+| Kind | Behaviour |
+|---|---|
+| **Universal** | Runs for **every** release |
+| **Triggered** | Fires on context — the condition is checked, and if it holds the gate is mandatory |
+| **Aspirational** | A goal, **never** a gate |
+
+### Universal gates
+
+- **Every committed capability is *accepted*, not merely built.** "Merged" is a statement
+  about a diff; "accepted" is a statement about the capability.
+- **External providers verified in production.** A provider working in staging has not
+  been verified — email, SMS, payments and push each have production-only failure modes.
+- **A tested restore**, with the recovery objectives it met recorded. An untested backup
+  is a belief.
+- **Security posture** current for what this release exposes.
+- **Rollback planned and demonstrated.** For an initial release there is nothing to roll
+  back *to*, so the gate is exactly that — planned and demonstrated, not exercised.
+
+### Triggered gates
+
+| If the release… | Then it owes |
+|---|---|
+| Ships through an app store | A submission accepted — not merely prepared |
+| Publishes policies (privacy, terms, marketing claims) | Every claim honoured **and evidenced** |
+| Takes payment | Obligations disclosed, and billing verified end to end |
+| Has users who depend on it | **A documented support commitment** |
+
+**Support capacity is a real gate, and an easy one to dismiss** because it sits outside
+what a repository normally tracks. Where the scenario applies it still needs a written
+commitment — what someone can expect when something breaks — and a repository is a
+legitimate place to record one.
+
+### Aspirational goals
+
+A serious certification or maturity programme is usually **real and not realistic yet**.
+It has exactly two wrong homes: in a blocking list it **stops every release**; left out
+entirely it **never happens**. So it is recorded as aspirational — visible, owned, and
+non-blocking — and its tasks become committed scope **when a criterion fires** (a customer
+contract, an enterprise deal, an availability commitment). That is the same mechanism as
+a **triggered** scope item, one level up.
+
+### Gates produce evidence, not checkboxes
+
+Model a gate on a compliance-register row: **what it asserts, who owns it, its status, the
+date it was verified, and the evidence.** A tick with no date cannot be distinguished from
+a tick copied forward from the last release, which is the failure this shape exists to
+prevent.
+
+**A gate that is nobody's issue is nobody's problem.** In the worked derivation, two of
+seven gates had **no evidence and no tracked issue** — not deferred, simply absent, and
+invisible because nothing was scanning for them. A gate that cannot be evidenced gets a
+tracked issue like any other missing work, and that issue is release scope if the gate is
+universal or its trigger has fired.
+
+Record the outcome in a **release readiness record** — `docs/releases/RELEASE-<version>.md`,
+from `ai/TEMPLATES/RELEASE_READINESS_TEMPLATE.md`. It is written as the release is
+prepared and kept afterwards, because "what did we actually verify for that release?" is
+asked long after the tag is cut, usually during an incident.
+
+---
+
 ## Recording release identity
 
 Release identity is project data, not a standard, so it lives in
@@ -383,3 +460,4 @@ in the sequence.
 | 2026-08-04 | Starter kit | Membership added: the delay test, four categories, the milestone as the manifest |
 | 2026-08-04 | Starter kit | The reverse pass added; journeys named as the source for "would the audience's work fail?" |
 | 2026-08-04 | Starter kit | The four limbs added, with reproducibility stated as the design constraint |
+| 2026-08-04 | Starter kit | Readiness added: universal / triggered / aspirational gates, evidenced in a release readiness record |
