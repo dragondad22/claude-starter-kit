@@ -22,6 +22,14 @@ automation instead of by a user weeks later.
 This file is the single home for the *why*. The reviewer agents, the journey
 registry, and the run commands install with this module and point back here.
 
+**The same argument applies one level up**, and `/readiness` is where it lands:
+every gate the kit ships — including `/review`'s blast-radius scoping — is
+ultimately *scoped from a change*, so a release can be assembled entirely out of
+individually-green changes and never once be assessed as a release. Journeys the
+release's promise requires and that already work are its **regression set**, and
+`/readiness` runs `/review` against them rather than deriving a second list
+(`ai/STANDARDS/RELEASE_STANDARD.md` § Readiness).
+
 ## When it runs
 
 - **Locally, on demand** — never in CI, to keep the cost off shared minutes.

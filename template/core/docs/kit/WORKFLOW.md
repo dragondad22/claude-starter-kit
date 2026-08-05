@@ -21,7 +21,7 @@ flowchart TD
     I --> J{Feature complete?}
     J -->|more work| I
     J -->|yes| K[Accept: /qa · acceptance doc\n· beta guides if human-tested]
-    K --> L["/release — version + CHANGELOG roll\n(first release → interview retrospective)"]
+    K --> L["/readiness — gates vs the assembled product\n(named releases) → /release — version + CHANGELOG roll"]
     L --> G
     L -.-> M[Steady state: /evergreen cadence,\nmodule triggers as the project grows]
 ```
@@ -82,8 +82,11 @@ flowchart TD
 9. **Release.** A release is a **promise to a named audience**, and the first
    time a cut is due the kit asks for that promise and the project's
    versioning archetype — recorded in `docs/releases/README.md`
-   (`ai/STANDARDS/RELEASE_STANDARD.md`). `/release` then bumps versions in
-   lockstep and rolls the CHANGELOG. The **first release triggers the
+   (`ai/STANDARDS/RELEASE_STANDARD.md`). For a **named** release, membership
+   is its milestone and `/readiness` runs the gates against the assembled
+   product — every other gate in the kit is diff-scoped, so this is the only
+   one that ever assesses the release itself. `/release` then bumps versions
+   in lockstep and rolls the CHANGELOG. The **first release triggers the
    interview retrospective**: "what did the interview fail to ask?" — gaps
    become port-back issues against the kit.
 
@@ -105,6 +108,7 @@ flowchart TD
 | A promoted feature with no spec | Stage 6 | Write the spec, break down the work |
 | An issue assigned to you / In progress | Stage 7 | Build inside the rails |
 | `## [Unreleased]` full of entries | Stage 9 | `/release` |
+| A named release whose milestone is nearly empty | Stage 9 | `/readiness`, then `/release` |
 | Nothing urgent | Stage 10 | Session-start checks; `/evergreen` if due |
 
 ## Right-sizing — the same flow at three scales

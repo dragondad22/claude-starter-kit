@@ -42,6 +42,7 @@ core:
     - .claude/commands/perf.md
     - .claude/commands/preflight.md
     - .claude/commands/qa.md
+    - .claude/commands/readiness.md
     - .claude/commands/rebaseline.md
     - .claude/commands/release.md
     - .claude/commands/security.md
