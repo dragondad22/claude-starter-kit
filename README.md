@@ -11,8 +11,8 @@ template/                   # THE PRODUCT — the only tree scaffolding reads
   manifest.yml              # Allowlist: module -> shipped files -> scaffold trigger
   core/                     # Installed in every project (paths mirror the project root)
     CLAUDE.md               #   Root project context (loaded every session) — template
-    .claude/                #   Slash commands (/bootstrap /preflight /qa /security /compliance /perf /release
-                            #   /evergreen /conform /rebaseline), settings, hooks
+    .claude/                #   Slash commands (/bootstrap /preflight /qa /security /compliance /perf
+                            #   /readiness /release /evergreen /conform /rebaseline), settings, hooks
     ai/                     #   Standards, checklists, issue templates, automation scripts
     docs/                   #   ADR skeleton, decision log, glossary, personas, compliance register, runbooks, feature specs, plans
     bootstrap/              #   PLACEHOLDERS.md (token registry), INTERVIEW.md, SETUP.md

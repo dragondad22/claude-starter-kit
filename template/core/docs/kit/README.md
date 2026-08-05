@@ -16,6 +16,7 @@ from is recorded in `bootstrap/KIT_VERSION`.
 | `/security` | Security validation | Auth/authz/input-handling changes |
 | `/compliance` | External-standards + obligation check | A change touches APIs, UI, mobile, messaging/UGC, payments, personal data, minors |
 | `/perf` | Performance smoke | The perf signal that matters might have moved |
+| `/readiness` | Gates run against the **assembled product**, not a diff; writes the release readiness record | A named release is being prepared |
 | `/release` | Version bump + CHANGELOG roll, in lockstep | `## [Unreleased]` has shipped enough |
 | `/evergreen` | Seven-lens standards & process review | ~30-day cadence, non-interruptive |
 | `/conform` | Tidy to current kit standards, no behavior change (`github` = tracker only) | Adopting the kit into an untidy repo |

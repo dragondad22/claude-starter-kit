@@ -39,6 +39,8 @@ the questions that one cannot.
 - **Readiness is a second axis.** Gates are **universal**, **triggered**, or
   **aspirational**, and produce evidence with dates rather than checkboxes. A release
   ships when the milestone empties **and** the gates are green — neither alone.
+- **Every other gate is diff-scoped.** `/readiness` runs them against the **assembled
+  product**, asserting on the register's `AC-`, `INV-` and `NFR-` rows.
 - Release identity is recorded in `docs/releases/README.md` and answered when the
   project first has something to version — not only at inception.
 
@@ -417,6 +419,29 @@ from `ai/TEMPLATES/RELEASE_READINESS_TEMPLATE.md`. It is written as the release 
 prepared and kept afterwards, because "what did we actually verify for that release?" is
 asked long after the tag is cut, usually during an incident.
 
+### The gates run against the assembled product, not the diff
+
+**Every other verification surface in this project is diff-scoped.** `/qa` reads recent
+changes. `/security` reads recent changes. `/perf` measures what might have moved.
+`/preflight` reads the diff. Where an independent-review module is installed, even that
+scopes its blast radius *from* a change.
+
+So a release can be assembled **entirely out of individually-green changes and never once
+be assessed as a release**. Each gate was right about its own diff; none of them was ever
+asked about the product.
+
+`/readiness` is that run: the existing gates re-scoped to the assembled product, plus the
+gates above that belong to no diff at all. What makes it checkable rather than a wish
+list is the **product register** — every committed capability has `AC-` rows to verify,
+`INV-` rows that must hold **under any input, role or request shape** (so they are checked
+against the whole product, not the change that introduced them), and `NFR-` rows carrying
+numbers to measure **at the release's expected scale**. Before that register existed there
+was nothing product-wide to assert against, which is a large part of why this level went
+unnoticed.
+
+Run it while the release is being prepared. Its findings are usually work, and work found
+on cut day delays the cut.
+
 ---
 
 ## Recording release identity
@@ -443,6 +468,9 @@ in the sequence.
 
 ## See Also
 
+- `.claude/commands/readiness.md` — the release-scoped gate run
+- `ai/TEMPLATES/RELEASE_READINESS_TEMPLATE.md` — the record it writes
+- `docs/registers/PRODUCT_REGISTER.md` — the `AC-`/`INV-`/`NFR-` rows the run asserts against
 - `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md` — the CHANGELOG, the bump
   mechanics, the release trigger, and how a cut is performed
 - `ai/STANDARDS/TASK_ISSUE_STANDARD.md` — milestones mean releases only
@@ -461,3 +489,4 @@ in the sequence.
 | 2026-08-04 | Starter kit | The reverse pass added; journeys named as the source for "would the audience's work fail?" |
 | 2026-08-04 | Starter kit | The four limbs added, with reproducibility stated as the design constraint |
 | 2026-08-04 | Starter kit | Readiness added: universal / triggered / aspirational gates, evidenced in a release readiness record |
+| 2026-08-04 | Starter kit | `/readiness` added — the gates run against the assembled product rather than a diff |
