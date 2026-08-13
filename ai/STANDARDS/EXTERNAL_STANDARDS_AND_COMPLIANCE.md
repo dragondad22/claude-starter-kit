@@ -1,6 +1,6 @@
 # External Standards & Compliance
 
-Last Updated: 2026-07-09
+Last Updated: 2026-08-04
 
 Two jobs:
 
@@ -85,5 +85,7 @@ A change that touches data about under-18s, or ships a service "likely to be acc
 ---
 
 ## Where to record what applies
+
+**At release time this register is read as evidence, not as background.** Two of the four limbs that decide release membership are answered from documents rather than judgment — *do we already promise this publicly?* and *does an outside rule require it?* — and this register is where both are recorded (`ai/STANDARDS/RELEASE_STANDARD.md` § The four limbs). A published commitment with nothing tracking it is the single most common finding: it binds when real user data reaches production, **not** when money changes hands, so it attaches at a pilot release just as firmly as at a public one.
 
 The **trigger map is generic**; the **obligations that actually bind this project** live in `docs/compliance/COMPLIANCE_REGISTER.md` — each with an owner, status, and a date the live source was last verified. The register has two layers: a universal **Baseline** every project carries regardless of triggers (secrets handling, dependency hygiene, license correctness, data-subject basics once any user data exists) and **conditional** rows this trigger map drives. Update the register when the project's platforms, audience, data, or features change. The `/compliance` command checks a diff (or a described feature) against this standard and the register.

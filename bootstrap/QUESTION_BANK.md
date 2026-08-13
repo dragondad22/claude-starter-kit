@@ -61,7 +61,8 @@ registry (`docs/PERSONAS.md`).*
 
 ## 2. Scope — `SCOPE`
 
-*Downstream: register seeds, non-negotiables, the epic breakdown.*
+*Downstream: register seeds, non-negotiables, the epic breakdown, release
+identity (`docs/releases/README.md`).*
 
 - **Q-SCOPE-01 — What must the first usable version do?** The shortest list
   that makes it worth using.
@@ -72,6 +73,14 @@ registry (`docs/PERSONAS.md`).*
 - **Q-SCOPE-04 — What must never be compromised?** Push for at least one real
   non-negotiable: security/isolation invariants, data-integrity rules, privacy
   boundaries, "we will never do X".
+- **Q-SCOPE-05 — Who is the first release for, and what does it promise them?**
+  One sentence naming the audience and every party it must satisfy — including
+  the business, if the thing is a product ("if there is no way to sign up, there
+  is no product"). Follow up for the releases *after* it: a pilot customer
+  usually comes before an open market, and they are two promises, not one.
+  "Not yet decidable" is a legitimate answer this early — record it as that
+  rather than guessing; the release trigger asks again when a cut is first due.
+  Rules: `ai/STANDARDS/RELEASE_STANDARD.md`.
 
 ## 3. Architecture & Approach — `ARCH`
 

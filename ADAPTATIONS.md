@@ -45,6 +45,8 @@ stops carrying any signal about real divergence.
 | `docs/PERSONAS.md` | This project's persona registry. |
 | `docs/architecture/decisions/ADR_INDEX.md` | Index of this project's ADRs. |
 | `docs/compliance/COMPLIANCE_REGISTER.md` | What binds this project specifically. |
+| `docs/registers/PRODUCT_REGISTER.md` | This project's standing truth — rules, stories, criteria, NFRs, invariants (#244). |
+| `docs/releases/README.md` | This project's release identity: archetype and named releases (#244). |
 
 ## Reconciliation log
 
@@ -52,6 +54,14 @@ Each release, `self-conform.py --upgrade` names any declared adaptation that
 changed upstream. The judgement made then is recorded here, so the next upgrade
 re-reads a decision instead of re-making it.
 
+- **v0.13.0 → v0.14.0** (2026-08-12) — `CLAUDE.md` flagged. Upstream added a
+  release-standard pointer to the Standards list (#225). This repo's `CLAUDE.md` has a
+  counterpart line, so the pointer **was carried across by hand** and the row stands: the
+  adaptation exists for the two-tree identity, not to hold the standards index still.
+  *The upgrade also exposed #244 — two founding docs shipped since the Seeded table was
+  written were never added to it, so `--apply` rewrote `PRODUCT_REGISTER.md`. Harmless
+  only because it was still empty. Both are now seeded, which is what makes #242 able to
+  record the kit's release identity at all.*
 - **v0.11.0 → v0.12.0** (2026-08-03) — `CLAUDE.md` flagged. Upstream removed a
   redundant `Rules:` header and a blank line from the shipped file's Task Tracking
   section (#174). This repo's `CLAUDE.md` has no counterpart to either line, so

@@ -3,6 +3,8 @@ Cut a release — bump the version file(s) in lockstep and roll the CHANGELOG.
 Follow `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md`. Versions move only at release time, in lockstep; the bump type comes from the rubric, not from feel.
 
 1. **Confirm the trigger.** A release is due when `[Unreleased]` in `CHANGELOG.md` is non-empty AND either ~2 weeks have passed since the last release or a batch has accumulated (≥2 features / ~8+ entries). If `[Unreleased]` is empty, stop — nothing to release.
+   - **If this cut is a named release** (one with a promise in `docs/releases/README.md`), the trigger is different and stricter: its **milestone must be empty** and its **gates green**. Run `/readiness` first and read the record it writes — scope-complete is not shippable, and the gates that belong to no diff are the ones nothing else checks (`ai/STANDARDS/RELEASE_STANDARD.md`).
+   - If no release identity is recorded at all, ask for one now — the archetype and what the next named release promises to whom. It decides what MAJOR means here, and this is the moment the question is cheap.
 2. **Confirm the branch.** Work on a release-prep branch off the latest default branch (e.g. `chore/release-X.Y.Z`), not on the default branch directly.
 3. **Check sync.** Run `bash ai/scripts/check-version-sync.sh`. If it reports drift, fix that first — do not cut a release on top of drift.
 4. **Get the bump.** Run `bash ai/scripts/release.sh` (no arg) to see the recommended bump from `[Unreleased]` (only Fixed/Security → patch; any Added/Changed → minor). MAJOR/1.0.0 is never auto-recommended pre-1.0 — only on an explicit "API is stable" decision.

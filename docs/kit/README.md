@@ -16,6 +16,7 @@ from is recorded in `bootstrap/KIT_VERSION`.
 | `/security` | Security validation | Auth/authz/input-handling changes |
 | `/compliance` | External-standards + obligation check | A change touches APIs, UI, mobile, messaging/UGC, payments, personal data, minors |
 | `/perf` | Performance smoke | The perf signal that matters might have moved |
+| `/readiness` | Gates run against the **assembled product**, not a diff; writes the release readiness record | A named release is being prepared |
 | `/release` | Version bump + CHANGELOG roll, in lockstep | `## [Unreleased]` has shipped enough |
 | `/evergreen` | Seven-lens standards & process review | ~30-day cadence, non-interruptive |
 | `/conform` | Tidy to current kit standards, no behavior change (`github` = tracker only) | Adopting the kit into an untidy repo |
@@ -38,6 +39,7 @@ from is recorded in `bootstrap/KIT_VERSION`.
 | `docs/architecture/decisions/` | ADRs |
 | `docs/registers/` | Standing truth: business rules, user stories + acceptance criteria, NFRs, invariants, UX clauses |
 | `docs/GLOSSARY.md` · `docs/PERSONAS.md` | Naming authority · persona registry |
+| `docs/releases/` | Release identity — the archetype, and what each named release promises to whom |
 | `docs/compliance/` | What externally binds this project |
 | `docs/runbooks/` | Anything operational done twice |
 | `.claude/commands/` | The slash commands above |
@@ -56,6 +58,8 @@ journey registry, and `/review`.
 | A rule, requirement, invariant or UX clause that stays true | `docs/registers/PRODUCT_REGISTER.md` — cite it by ID (`BR-014`), never by path |
 | A product/scope call | ADR if it's a mechanism; otherwise a register row. Reasoning stays in its `docs/plans/` working doc |
 | A feature idea | `type:feature` issue, Horizon on the board — never a document |
+| What a release promises, and to whom | `docs/releases/README.md` — the promise and the archetype |
+| Whether something is **in** a release | Its milestone — the manifest. Never a label: *"would you delay the release for this?"* has four answers (committed / stretch / triggered / out) |
 | Work to do | A tracked issue; branch `<type>/<issue#>-<slug>` |
 | A term someone had to explain | `docs/GLOSSARY.md`, at coin time |
 | A how-to you'll need twice | `docs/runbooks/` |
