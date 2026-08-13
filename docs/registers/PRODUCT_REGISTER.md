@@ -61,7 +61,7 @@ and it is explicitly not the rule here.
 | What a term *means* | `docs/GLOSSARY.md` | It is vocabulary. But the **set of values a field may take** is a rule — that statement stays here as a `BR-` |
 | How *we* work — branching, naming, review, commits | `ai/STANDARDS/` | It binds the team, not the product |
 | An obligation imposed on us from outside | `docs/compliance/COMPLIANCE_REGISTER.md` | It needs an owner and a verified date |
-| Whether or when something gets built | The issue tracker (+ Horizon) | Scope is a plan, not standing truth |
+| Whether or when something gets built | The issue tracker (+ Horizon, and the release milestone once a release is named) | Scope is a plan, not standing truth |
 | Who the users are | `docs/PERSONAS.md` | Already a register |
 | A flow that must keep working | `docs/uat/JOURNEY_REGISTRY.md` (review module) | Already a register |
 | What seed, demo, or fixture data must contain | `docs/architecture/decisions/` (ADR) | It is a property of the build, not of the product — the rules do not change because a demo org exists |

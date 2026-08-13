@@ -81,7 +81,7 @@ Read the relevant one before starting work in that area (this repo's instance):
 
 - Documentation + `Last Updated` rule: `ai/STANDARDS/DOCUMENTATION_STANDARD.md`
 - Git branches/commits/PRs: `ai/STANDARDS/GIT_WORKFLOW_STANDARD.md`
-- Versioning and CHANGELOG: `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md`
+- Versioning and CHANGELOG: `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md` · What a release promises, and what MAJOR means here: `ai/STANDARDS/RELEASE_STANDARD.md`
 - Task issues: `ai/STANDARDS/TASK_ISSUE_STANDARD.md` · Bug/finding reports: `ai/STANDARDS/GITHUB_ISSUES.md`
 - Interviews (inception, epics/features, grills): `ai/STANDARDS/INTERVIEW_STANDARD.md`
 - Testing: `ai/STANDARDS/TESTING_STANDARD.md` · Feature intake: `ai/STANDARDS/ROADMAP_STANDARD.md`

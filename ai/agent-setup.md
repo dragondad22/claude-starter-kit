@@ -26,7 +26,8 @@ a persistent memory system.
 - `/security` — security validation
 - `/compliance` — external-standards + context-driven compliance check (APIs/OpenAPI, web/WCAG, mobile stores, messaging/UGC, minors)
 - `/perf` — performance smoke
-- `/release` — cut a release (version bump + CHANGELOG roll)
+- `/readiness` — assess a whole release against the assembled product: register assertions, existing gates re-scoped, plus the universal/triggered gates that belong to no diff; writes `docs/releases/RELEASE-<version>.md`
+- `/release` — cut a release (version bump + CHANGELOG roll; what a release *promises* is `ai/STANDARDS/RELEASE_STANDARD.md`)
 - `/evergreen` — standards & process evergreening: 7-lens review (repetition, platform delta, standards drift, date sweep, kit delta, context economy incl. the CLAUDE.md ~150-line budget, cleared blockers); findings → issue, run record → `docs/evergreen-log.md` (~30-day cadence, non-interruptive)
 - `/conform` — tidy the repo to current kit standards (renames, doc reorg, structure; no behavior/design changes); `/conform github` = tracker surface only
 - `/rebaseline` — salvage-and-rebuild for messy/false-start repos: harvest → pre-answered inception interview → critique → agreed plan → tracked rebuild
@@ -81,7 +82,10 @@ scattered into other docs.
    (`ai/STANDARDS/TASK_ISSUE_STANDARD.md`).
 2. **Release trigger** — if `[Unreleased]` in `CHANGELOG.md` is non-empty and ~2 weeks
    have passed or a batch has accumulated, propose a cut in one line
-   (`ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md` → Release trigger).
+   (`ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md` → Release trigger). If the cut
+   is due and `docs/releases/README.md` still records no archetype and no named
+   release, ask for the release identity in the same line — the promise and its
+   audience (`ai/STANDARDS/RELEASE_STANDARD.md`). Recorded once; not re-asked.
 3. **Evergreen cadence** — if the newest entry in `docs/evergreen-log.md` is older
    than ~30 days, run `/evergreen` in the background / at a natural pause — it files
    its findings as an issue, never an interactive review.
