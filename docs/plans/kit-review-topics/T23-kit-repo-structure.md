@@ -1,6 +1,20 @@
 # T23 — Kit repo structure: self-hosting kit + `template/` separation + manifest
 
-**Category:** Structural (implementation-enabling) · **Status:** **Decided (2026-07-09)** · **Related:** T3.7/T3.10 (modules), T18 (KIT_VERSION), T2 (self-test CI), T4 (kit's own README/LICENSE)
+**Category:** Structural (implementation-enabling) · **Status:** **Decided (2026-07-09)** — **amended in mechanism 2026-08-13 by [T32](T32-kit-runtime-evolution.md); not superseded** · **Related:** T3.7/T3.10 (modules), T18 (KIT_VERSION), T2 (self-test CI), T4 (kit's own README/LICENSE), T32 (delivery substrate), T36 (self-hosting apparatus)
+
+> **Amendment (2026-08-13, T32.14/T32.16) — mechanism only; every guarantee below holds.**
+> T32 asked whether a new (compiled) tooling artifact breaks physical separation or the
+> allowlist. It does not, and it strengthens the second:
+> - **T23.1** — `template/` remains the only shipped *content* tree. One-line amendment:
+>   scaffolding reads the **binary**, which is *built from* `template/`. The tool itself
+>   lives at `tool/`, is machinery rather than content, and is versioned in lockstep with
+>   the kit's `VERSION` (T32.13).
+> - **T23.2** — **strengthened.** The manifest becomes the **build-time embed list**, so an
+>   unlisted file cannot physically ship — enforced by the compiler instead of by a lint.
+> - **T23.3** — **extended.** The kit-dev Python tools (`validate-manifest.py`,
+>   `lint-dead-refs.py`, `lint-currency.py`, `self-conform.py`) retire *into* the shipped
+>   binary, so CI dogfoods the distributed artifact on every run rather than a smoke test.
+> - **T23.4** — historical; untouched.
 
 **Problem:** the repo root currently *is* the template — kit-dev files (this topics file, kit CI, fixtures) and shipped files live shoulder-to-shoulder with no boundary. Untenable once the kit is a real open-source project with its own development history.
 

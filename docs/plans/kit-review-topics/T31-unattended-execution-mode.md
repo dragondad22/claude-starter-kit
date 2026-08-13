@@ -4,7 +4,21 @@
 > pending [T32](T32-kit-runtime-evolution.md) (kit runtime/delivery evolution) — the
 > enforcement needs catalogued here are requirements input to T32.**
 
-**Category:** Process + Module (new capability) · **Status:** **Decided (2026-07-20)** — implementation deferred pending T32 · **Issue:** epic #160 (filed 2026-08-03; blocked by #159, sub-issues decomposed after it lands) · **Related:** T32 (blocking dependency — delivery substrate), T2 (portable-shell constraint the watchdog strains), T22 (context economy → firewall + journal), T18 (upgrade path signal)
+**Category:** Process + Module (new capability) · **Status:** **Decided (2026-07-20)** — **unblocked 2026-08-13: T32 decided; implementation is T32's phase 5, filed under epic #160** · **Issue:** epic #160 (filed 2026-08-03; unblocked by #159 closing, sub-issues decomposed now) · **Related:**
+
+> **Amendment (2026-08-13, from the [T32](T32-kit-runtime-evolution.md) grill).** Two items
+> below change under the decided substrate:
+> - **T31.13 — the run journal and T32.9's event log are the same artifact**, not two.
+>   It is the kit's only state channel: run state, cross-kit message channel, watchdog
+>   liveness source, and workbench feed.
+> - **T31.1 — the one-writer-per-repo lock is potentially *cross-kit*, not intra-kit.**
+>   T32.8 established that the Claude and Codex kits are independent implementations that
+>   may collaborate on one repo, so the lock is a protocol both must honour rather than a
+>   private mechanism.
+>
+> **T31.14 ("only the watchdog is throwaway if T32 replaces the substrate") is confirmed** —
+> the standards, commands, journal schema and all judgment protocol migrate unchanged; the
+> shell watchdog is never written, because it is built natively in `csk` at phase 5. T32 (blocking dependency — delivery substrate), T2 (portable-shell constraint the watchdog strains), T22 (context economy → firewall + journal), T18 (upgrade path signal)
 
 **Problem / Origin:** Chris works sessions to ~50–75% context and stops to avoid compaction, because compaction introduces uncertainty in *coding* sessions specifically. He wants long-running / larger batches (motivating case: run CrossWise's issue backlog while AFK — "nothing gets done if I have to sit there") without that risk, and not as a default mode; ShelterSync would grant a low/zero autonomy ceiling. Grilled 2026-07-20 across 11 questions; the design below is the result. This is genuinely epic-sized and, per the sequencing decision, waits on T32.
 

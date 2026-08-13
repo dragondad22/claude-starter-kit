@@ -3,7 +3,7 @@
 > **Decided 2026-08-03 (grilling session with Chris). This topic EXTENDS a finalized
 > decision — T23.3's self-hosting scope, stamped in place, not rewritten.**
 
-**Category:** Structural (extends a Decided topic) · **Status:** **Decided (2026-08-03)** — grilled · **Issue:** #181 (grill) → implementation epic **#183** (sub-issues #184–#188) · **Related:** T23.3 (the decision this extends), T18 (`KIT_VERSION` + upgrade path — the kit would become its own first adopter), T27 (`/conform` — the drift mechanism it would dogfood), T11 (duplication with sync burden — the central objection), T2 (does not bind kit-dev), T32 (delivery substrate — sequencing question)
+**Category:** Structural (extends a Decided topic) · **Status:** **Decided (2026-08-03)** — grilled; **amended in mechanism 2026-08-13 by [T32](T32-kit-runtime-evolution.md)** (`self-conform.py` becomes `csk conform`; the derived-instance model and the pin are unchanged) · **Issue:** #181 (grill) → implementation epic **#183** (sub-issues #184–#188) · **Related:** T23.3 (the decision this extends), T18 (`KIT_VERSION` + upgrade path — the kit would become its own first adopter), T27 (`/conform` — the drift mechanism it would dogfood), T11 (duplication with sync burden — the central objection), T2 (does not bind kit-dev), T32 (delivery substrate — sequencing question)
 
 **Problem / Origin (Chris, 2026-08-03):** *"Why doesn't this repo adhere to the same
 standards that it pushes? They work really well, I code with them every day in

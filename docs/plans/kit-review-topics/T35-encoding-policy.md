@@ -4,7 +4,21 @@
 > grilling session. Nothing decided. Cross-linked to [T32](T32-kit-runtime-evolution.md)
 > (runtime/delivery) — siblings, not the same: T32 is execution, T35 is data encoding.**
 
-**Category:** Structural (kit-wide convention) · **Status:** In discussion (2026-07-28) — opened, not yet grilled; **grill tracked (#162)** · **Issue:** #162 (the grilling session itself — a decided T35 spawns its own re-encoding issues) · **Related:** T32 (runtime/delivery — same judgment/enforcement seam, applied to encoding), T22 (context economy), T11 (duplication — the pipe-escaping-×3 note is markdown-table friction), T33 (first consumer — applied the principle in miniature)
+**Category:** Structural (kit-wide convention) · **Status:** **Partially folded into [T32](T32-kit-runtime-evolution.md) 2026-08-13 (T32.11)** — the machine-consumed half is decided; the remaining scope is prose-facing and still needs its grill (**#162**, rescoped) · **Issue:** #162 (rescoped 2026-08-13 to the prose half) · **Related:**
+
+> **Fold (2026-08-13, T32.11).** T32's grill decided the seam this topic was opened to find,
+> because the event log's encoding *is* an encoding decision and T32 could not be settled
+> without it. Two rulings now bind and are **not** re-litigated here:
+> - **T32.5 — customisation is markdown plus configuration, never code.** The customisation
+>   surface is prose a project edits; values live in a settings file.
+> - **Machine-consumed records** — the event log, config, manifest, and markers — take the
+>   format that fits, decided in T32 alongside the substrate that produces them.
+>
+> This is the candidate cut T35 itself proposed ("the same seam T32 found, applied to
+> encoding"), confirmed rather than overridden. **What is left for #162** is the prose half:
+> which *human-facing* markdown artifacts (registries, logs, tables carrying the ×3
+> pipe-escaping note) have not earned their keep, and how readability is preserved for the
+> humans who do occasionally look. That is a real question and it is unchanged. T32 (runtime/delivery — same judgment/enforcement seam, applied to encoding), T22 (context economy), T11 (duplication — the pipe-escaping-×3 note is markdown-table friction), T33 (first consumer — applied the principle in miniature)
 
 **Problem / Origin:** Markdown became the kit's default because it is human-readable **and**
 human-editable — letting users understand how things work and customize prompts/standards

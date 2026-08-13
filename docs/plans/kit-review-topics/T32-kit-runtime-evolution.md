@@ -1,12 +1,13 @@
 # T32 — Kit runtime / delivery evolution: templates-only → templates + a real tool
 
-> **DRAFT — opened 2026-07-20 from the T31 grilling session. This topic RECONSIDERS
-> finalized Non-Negotiables (T2 portable shell, T23 templates-only delivery). Per the
-> anti-drift rules those are not to be re-litigated from conversation drift — this is a
-> deliberate reopening by the kit owner. Needs its own grilling session; nothing decided
-> yet. If decided toward a tool, T2/T23 must be stamped-superseded in place, not rewritten.**
+> **DECIDED 2026-08-13 (grilling session with Chris, 17 questions over 5 rounds). Opened
+> 2026-07-20 from the T31 grilling session. This topic RECONSIDERED finalized
+> Non-Negotiables (T2 portable shell, T23 templates-only delivery) — a deliberate
+> reopening by the kit owner, not conversation drift. Outcome: a compiled kit-owned tool
+> (`csk`) for mechanical work; T2 partially superseded, T23 amended in mechanism only,
+> T35 folded. Both stamped in place, not rewritten.**
 
-**Category:** Structural (reconsiders Non-Negotiables) · **Status:** In discussion (2026-07-20) — opened, not yet grilled; **grill tracked (#159)** · **Issue:** #159 (the grilling session itself — a decided T32 spawns its own implementation epic) · **Related:** T2 (portable-shell constraint), T23 (self-hosting + `template/` separation + manifest), T18 (upgrade path), T31 (the forcing feature)
+**Category:** Structural (reconsiders Non-Negotiables) · **Status:** **Decided (2026-08-13)** — grilled; implementation phased across five epics · **Issue:** #159 (the grilling session — closed on this decision; the phase epics carry implementation) · **Related:** T2 (portable-shell constraint — partially superseded here), T23 (self-hosting + `template/` separation + manifest — amended in mechanism), T18 (upgrade path — amended), T31 (the forcing feature — unblocked by phase 5), T35 (encoding — folded), T33 (config-merge + interlock requirements), T36 (self-hosting apparatus — amended)
 
 **Problem / Origin:** The kit currently uses **one delivery mechanism — copied POSIX shell + markdown templates — for two jobs that want different mechanisms:**
 - **Judgment** (standards, playbooks, gates, the confidence/verdict/advisory model): protocol a model reads and follows. Templates + standards are the *right* fit — the kit's sweet spot.
@@ -35,7 +36,49 @@ Whatever the shape, it must still preserve the judgment surface as templates/sta
 
 **Blocks:** [T31](T31-unattended-execution-mode.md) implementation (Chris chose to evolve the substrate before building the unattended-execution feature). T31's catalogued enforcement needs are concrete requirements input to this topic.
 
-**Decision:** — (pending its own grilling session)
+**Decision (2026-08-13):**
+
+- **T32.1 — Two seams, two artifacts, two timelines.** The topic's stated judgment/enforcement seam explained only three of its eight accumulated pressure points. The real split is **(i) mechanical project tooling** — install, upgrade, config-merge, lint, structured records; invoked by a human or an agent, holds no opinion about correctness — and **(ii) runtime enforcement** — kill, lock, budget, non-prod interlock. Seam (i) has live pain today (#172 currency, T33a config-merge, T18 upgrade); seam (ii)'s only consumer (T31) is deferred behind this topic. **Build (i) first.**
+
+- **T32.2 — A compiled, kit-owned tool, distributed as prebuilt binaries; Go.** The gap being bridged is **OS/arch portability, not harness portability**. Go for fit: static single binary, trivial cross-compilation to darwin/arm64+amd64, linux, and windows with `CGO_ENABLED=0`, and a stdlib covering exactly the operations bash-3.2 cannot — JSON/YAML, file trees, HTTP. Matching the Codex kit's language buys **maintainer economy** (one head, two codebases, shared idioms), **not** interop — recorded explicitly so it is never later mistaken for a technical requirement.
+
+- **T32.3 — The motive of record is the compatibility tax, not enforcement.** Cross-OS compatibility taxed every shipped script for thirteen months under T2; it is why #172's currency lint was declined outright and why `scaffold-module.sh` hand-rolls an awk YAML parser. Under a compiled binary the same requirement costs one CI matrix line. The tax inverting from per-script-forever to one-line-once *is* the argument.
+
+- **T32.4 — The tool is the installer; templates are embedded in the binary.** One artifact, so version-consistency is structural and offline installs are the default. Costs accepted explicitly, not discovered later: an acquisition step exists, the hand-copy escape hatch narrows, and **every adopter project's CI needs the binary on PATH**. Distribution: GitHub Releases + a `curl … | sh` installer + Homebrew tap + Scoop bucket, all **unsigned** — the macOS quarantine attribute is set by the downloading *application*, not by the OS, so curl and Homebrew are unaffected. Notarization is required only for `.pkg`/`.dmg`/browser downloads, which the kit will not publish as a primary route.
+
+- **T32.5 — Customisation is markdown plus configuration — never code.** The customisation surface is prose a project edits (standards, playbooks, commands, prompts, rules) and values it sets in a settings file. Shipped machinery is compiled and identical everywhere: a project **configures** it, it does not **edit** it. Escape hatch: the tool runs a project-declared command, so bespoke behaviour remains possible — and that script is owned outright by the project, outside the kit's portability promise.
+
+- **T32.6 — Zero shipped shell.** Direct consequence of T32.5. The tool absorbs every operation identical in all projects: scaffold, module install + **config-merge**, upgrade/kit-delta, manifest validation, dead-ref lint, **currency lint**, version-sync, release bump, conform, secret redaction, and the label taxonomy — the last talking to the GitHub API directly, **dropping the `gh` dependency**. The two survivors, `performance-smoke.sh` and `security-review.sh`, are TODO-stubs by design: their uniform parts (report layout under `testing-reports/`, exit-code semantics, redaction) move into the tool and the project *declares* its command in the settings file.
+
+- **T32.7 — Hybrid harness binding.** Harness-native **only** where the harness owns the sole possible seam — blocking a tool call mid-flight (Claude Code `PreToolUse`, Codex's equivalent). Kit-owned everywhere else. Finding of record: `.claude/hooks/` already ships with `"hooks": {}` empty, and the stated blocker to a module shipping a hook is T33a's config-merge — **seam (i) was blocking seam (ii) all along.**
+
+- **T32.8 — Kits are independent implementations that share rules and interoperate.** Not one codebase with front-ends. What is portable between kits is a **contract**, not code. The long-term vision that motivates the substrate: a single interface the kits plug into — a chat-like application outside the editor, showing the full conversation, where the human participates across phases. That application is a separate project. **What T32 builds is the messaging, hook and trigger substrate that makes it possible.**
+
+- **T32.9 — CLI now, daemon later; the event log is the seam.** An append-only, versioned, self-describing on-disk log is the **only** state channel. One artifact, four roles: run state (T31.13's journal), cross-kit message channel, watchdog liveness source, workbench feed. Neither kit implementation has to own a server for the two to interoperate. A hook shim that must block does so by waiting on the log. A daemon, if ever built, is an optimisation *over* the log, never a second contract. **This is the most load-bearing artifact in T32.**
+
+- **T32.10 — Commit to the substrate, defer the vocabulary.** T32 decides that the log exists, is the only state channel, that every kit operation emits to it, and that the hook/trigger surface is "emit an event / react to an event." T32 does **not** decide the message vocabulary, the multi-kit collaboration semantics, or the workbench protocol — those get their own topic once a second participant exists to test against. Sequencing consequence: the phase-1 commands are the log's first producers, so the substrate meets real traffic before the workbench exists rather than being specified in the abstract.
+
+- **T32.11 — T35 folded.** Encoding of machine-consumed records (event log, config, manifest, markers) is decided here, by T32.5's cut. T35 shrinks to ruling on human-facing prose, where T32.5 already points.
+
+- **T32.12 — Upgrade is a mechanical three-way merge with model-resolved conflicts.** base (version scaffolded from) / theirs (local edits) / ours (new). Making prose the official customisation surface makes upgrade a merge into modified text, so it gets a deterministic floor. **Consequence: the staged `bootstrap/modules/` payloads stay** — they are the merge base, and they are what makes upgrade work offline. Genuine prose conflicts go to the model, because resolving those *is* judgment — the same seam, one level down. T18's kit-delta lens survives as the resolution layer, not the mechanism.
+
+- **T32.13 — The tool lives in this repo at `tool/`, versioned in lockstep with the kit's `VERSION`, named `csk`.** Embedding makes tool and templates a single artifact, so their versions cannot drift; one CHANGELOG, one release cut, and `KIT_VERSION` stays unambiguous — it records the binary that scaffolded the project. T23.1 holds: `template/` remains the only shipped *content* tree; `tool/` is machinery that consumes it. Name chosen for collision-freedom over cuteness (`cask` was considered and rejected — it collides with Homebrew's own vocabulary, and the kit ships a Homebrew tap).
+
+- **T32.14 — T23 preserved, MIT unchanged, migration additive.** T23.2's allowlist **strengthens**: the manifest becomes the build-time embed list, so an unlisted file physically cannot ship — enforced by the compiler instead of a lint. MIT posture is unchanged; the only new obligation is Go module licence attribution in the release artifact. CrossWise, ShelterSync and life-os keep working installs; the tool arrives as an additional capability and existing scripts keep functioning until each project runs an explicit `csk adopt`. Nothing is rebased.
+
+- **T32.15 — Phasing; the first shipped capability is the currency lint.**
+
+  | Phase | Content | Unblocks |
+  |---|---|---|
+  | 1 | Tool exists: manifest validate, dead-ref lint, **currency lint (#172)**, version-sync, conform. Kit-dev Python retires into it. Distribution pipeline proven end to end. | dogfooding on day one |
+  | 2 | **Event log substrate** + folded T35 encoding rulings; phase-1 commands become its first producers. | the workbench vision |
+  | 3 | Scaffold / module install / **config-merge**; three-way-merge upgrade; `csk adopt`. | T33 permissions + hooks, T18 |
+  | 4 | Zero shipped shell: absorb redact, labels, perf/security runners; settings file. | the T2 stamp lands here |
+  | 5 | Enforcement: lock, watchdog, budget, non-prod interlock + harness hook shims. | **T31** |
+
+  Currency lint ships first because it is live pain, small, and proves build → release → install → CI at low stakes; leading with the scaffolder would mean debugging distribution and the riskiest command at once. One epic per phase — each ends in something releasable — and phase 5 is filed under T31's epic (#160), not T32's.
+
+- **T32.16 — Supersessions.** **T2 is partially superseded**: the portable-shell *implementation constraint* falls (no shipped shell survives to be portable), while its *goal* — out-of-box on as many systems as possible — is upheld by a different mechanism. Recorded with its provenance: **T2's own option (c) was "rewrite scripts in a truly portable language later (bigger lift, probably not worth it)"** — T32 is option (c), thirteen months on, reversed on accumulated evidence. **T23 is not superseded, only amended in mechanism** (T23.1 one-line amendment: scaffolding reads the binary, which is built from `template/`; T23.2 strengthened per T32.14; T23.3 extended — kit-dev Python becomes the shipped tool, so CI dogfoods the distributed binary; T23.4 historical). **T36 amended**: `self-conform.py` becomes `csk conform`. **T18 amended** per T32.12. **T31 gains requirements back**: the one-writer lock is potentially **cross-kit** rather than intra-kit, and its run journal is the same artifact as T32.9's event log.
 
 **Requirements input from other topics (concrete enforcement/tooling pressure points):**
 - **T31** — runaway/liveness kill, one-writer-per-repo lock, budget accounting, run-journal integrity (T31.14).
@@ -46,3 +89,9 @@ Whatever the shape, it must still preserve the judgment surface as templates/sta
 **Discussion notes:**
 - Chris, 2026-07-20: "the kit goes beyond just templates … tools make sense, particularly if we're trying to maintain consistent quality and deliverability." Wants to re-examine how the kit is installed/deployed to projects and how it should evolve. Prefers to make this change *before* building T31.
 - Chris, 2026-07-20: the direction must come **purely from the grill**. Go is a valid option (and Codex's choice) but must not be seeded as the default — it should fit *this* kit rather than standardize a language across kits. Don't force a single-binary rule; it may start as one artifact but that's not a constraint. Removed the earlier "candidate direction" framing for seeding biased conclusions.
+- **Grill, 2026-08-13** — 17 questions over 5 rounds. Two prep findings reframed the topic before questioning started: (a) sorting the eight accumulated pressure points showed only three are genuinely "must run outside model judgment" while four or five are *structured-data manipulation at install/lint time* — the stated seam explained less than half its own evidence (→ T32.1); (b) `.claude/hooks/` already ships with `"hooks": {}` empty, so the harness enforcement seam existed and was unused, blocked by an install-tooling limitation (→ T32.7).
+- Chris, 2026-08-13, on the guardrail: Go was named by the kit owner in answer to the dependency-budget question, not seeded by the grill. The grill then separated the two reasons for it and recorded only the one the evidence supports — OS/arch portability and maintainer economy, **not** interop (T32.2), because the same session established that the kits are independent implementations (T32.8).
+- Chris, 2026-08-13: *"Part of me feels like I'm over thinking this and putting too much emphasis on compatibility."* Answer of record: the anxiety was a residue of the bash substrate. Compatibility was expensive *under T2* and is nearly free under a compiled binary — which is itself the argument for the binary (T32.3).
+- Chris, 2026-08-13, on customisation: *"I was thinking more of MD files and customizing to users workflows and preferences in terms of communication and rules. I think the tools themselves need to be compatible, but variables need to be configurable in maybe a settings file."* → T32.5, which in turn produced T32.6 (zero shipped shell) and forced T32.12 (upgrade must merge into user-edited prose).
+- Chris, 2026-08-13, on the long-term vision: *"My vision is to eventually have a single interface that the kits plug into. It operates like a chat window where you can see the full conversation and participate in the different phases. It functions like an application outside of VS Code … What we are building here is essentially the messaging system, hooks, triggers, and so on that make that possible."* → T32.8/T32.9/T32.10. Recorded prominently because it is the reason the event log is non-negotiable; a later reader who takes `csk` for "just an installer" would optimise away the part that matters.
+- Naming, 2026-08-13: `cask` proposed (a play on CSK), withdrawn on the Homebrew-vocabulary collision — the kit ships a tap. `csk` chosen; `rig`, `keel`, `stark` rejected on existing-tool collisions.
