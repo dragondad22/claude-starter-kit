@@ -1,6 +1,21 @@
 # T2 — macOS portability of `ai/scripts/*.sh` vs. the "native on macOS/Linux" claim
 
-**Category:** Bug / OS-agnostic principle · **Status:** **Decided (2026-07-08)** — option (a), portable scripts; kit to be open-sourced
+**Category:** Bug / OS-agnostic principle · **Status:** **Decided (2026-07-08)** — option (a), portable scripts; kit to be open-sourced · **PARTIALLY SUPERSEDED 2026-08-13 by [T32](T32-kit-runtime-evolution.md) (T32.16)**
+
+> **Supersession stamp (2026-08-13).** T32 decided the kit ships a compiled tool (`csk`) that
+> absorbs every operation identical in all projects, leaving **zero shipped shell** (T32.6).
+> The **implementation constraint** below — POSIX shell, bash 3.2, portable `sed`, no `mapfile` —
+> is therefore superseded: no shipped shell survives for it to govern. The **goal** it served —
+> "out-of-box compatibility with as many systems as possible" — is **upheld**, by a different
+> mechanism (static cross-compiled binaries, T32.2/T32.4). The residue is project-owned:
+> a project may declare its own command for perf/security, and it owns that script outright,
+> outside the kit's portability promise (T32.5).
+>
+> Provenance worth reading: **option (c) below — "rewrite scripts in a truly portable language
+> later (bigger lift, probably not worth it)" — is what T32 chose**, thirteen months on and
+> reversed on accumulated evidence (config-merge, currency lint, upgrade merge, and an
+> awk YAML parser in `scaffold-module.sh`). T2's cost estimate was right for 2026-07-08 and
+> wrong by 2026-08-13. The T2 stamp lands physically in T32's phase 4.
 
 `release.sh`, `new-report.sh`, and `lib/redact.sh` use GNU-only `sed -i` (no suffix arg; release.sh also uses the GNU-only `0,/addr/` form). `release.sh` and `check-version-sync.sh` use `mapfile` (bash 4+; macOS ships bash 3.2). README and `agent-setup.md` claim the scripts run "native on macOS/Linux" — on stock macOS they fail. OS-agnosticism is a headline design principle of the kit.
 
