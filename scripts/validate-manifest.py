@@ -8,6 +8,9 @@ Checks:
      the manifest itself) — the allowlist stays complete.
   3. No shipped (manifest-listed) file references a kit-dev path
      (template/…, docs/plans/<kit decision records>, scripts/, test/…).
+  4. Every `seeded:` entry names a destination the manifest actually ships —
+     a typo there is worse than a missing row, because it silently protects
+     nothing while looking like it protects something (#262).
 
 Kit-dev tool: does not ship. Run from the repo root: python3 scripts/validate-manifest.py
 """
@@ -65,12 +68,21 @@ def main() -> int:
             if KIT_DEV_REF.search(line):
                 errors.append(f"shipped file references kit-dev path: {path}:{n}: {line.strip()}")
 
+    # 4. Every seeded destination is actually shipped.
+    destinations = set(listed.values())
+    for f in manifest.get("seeded") or []:
+        if f not in destinations:
+            errors.append(
+                f"seeded: names a file the manifest does not ship: {f} "
+                f"(fix the path, or add it to core.files / modules.<name>.files)")
+
     if errors:
         print("MANIFEST VALIDATION FAILED:")
         for e in errors:
             print(f"  - {e}")
         return 1
-    print(f"OK: manifest valid — {len(listed)} shipped files, allowlist complete, no kit-dev leaks.")
+    print(f"OK: manifest valid — {len(listed)} shipped files "
+          f"({len(manifest.get('seeded') or [])} seeded), allowlist complete, no kit-dev leaks.")
     return 0
 
 

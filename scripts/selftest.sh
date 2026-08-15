@@ -14,7 +14,8 @@ python3 scripts/validate-manifest.py
 python3 scripts/lint-dead-refs.py
 python3 scripts/lint-currency.py
 python3 scripts/self-conform.py --check
+bash scripts/self-conform-smoke.sh
 bash scripts/bootstrap-smoke.sh
 bash scripts/upgrade-smoke.sh
 
-echo "OK: kit self-test passed (manifest, dead refs, currency, self-conformance, bootstrap + upgrade smoke)."
+echo "OK: kit self-test passed (manifest, dead refs, currency, self-conformance, bootstrap + upgrade + self-conform smoke)."
