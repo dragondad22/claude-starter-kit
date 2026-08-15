@@ -13,6 +13,7 @@ and this project adheres to Semantic Versioning.
 
 ### Fixed
 
+- **`/release` and `release.sh` still defined MAJOR as an "API is stable" decision** (#263) — the pre-ADR-001 wording, surviving in shipped files after v0.14.0 routed MAJOR to `RELEASE_STANDARD.md`. It contradicted the standard, and contradicted step 1 of the same command four lines above it. The worst copy was in `release.sh` itself, printed *at the moment a MAJOR bump is being cut*, which is exactly when wrong guidance costs something. All four survivals replaced: MAJOR is never inferred from changelog sections, and what causes one is the archetype recorded in `docs/releases/README.md`.
 - **An apostrophe in a label description silently broke `bootstrap-labels.sh`** (#261). The table lived in a single-quoted string, so the first `'` in a description closed it and the rest became shell code — failing at assignment, before any label was touched, with an error naming a word from a comment. Since the `area:*` rows are marked PROJECT-DEFINED, the person most likely to hit it was an adopter writing their own descriptions. The table is now a quoted heredoc, where every character is literal. `bash -n` passed on the broken form, so the smoke test now runs `--dry-run`, which executes the table rather than merely parsing it.
 
 ## [0.14.0] - 2026-08-12

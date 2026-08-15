@@ -7,7 +7,7 @@ Follow `ai/STANDARDS/VERSIONING_AND_CHANGELOG_STANDARD.md`. Versions move only a
    - If no release identity is recorded at all, ask for one now — the archetype and what the next named release promises to whom. It decides what MAJOR means here, and this is the moment the question is cheap.
 2. **Confirm the branch.** Work on a release-prep branch off the latest default branch (e.g. `chore/release-X.Y.Z`), not on the default branch directly.
 3. **Check sync.** Run `bash ai/scripts/check-version-sync.sh`. If it reports drift, fix that first — do not cut a release on top of drift.
-4. **Get the bump.** Run `bash ai/scripts/release.sh` (no arg) to see the recommended bump from `[Unreleased]` (only Fixed/Security → patch; any Added/Changed → minor). MAJOR/1.0.0 is never auto-recommended pre-1.0 — only on an explicit "API is stable" decision.
+4. **Get the bump.** Run `bash ai/scripts/release.sh` (no arg) to see the recommended bump from `[Unreleased]` (only Fixed/Security → patch; any Added/Changed → minor). MAJOR is never inferred, because no changelog section describes the event that causes one — whether one is due follows from the archetype in `docs/releases/README.md`, and is the question step 1 already asked (`ai/STANDARDS/RELEASE_STANDARD.md`).
 5. **Consolidate `[Unreleased]` first** if it drifted: merge duplicate `### Added`/`### Fixed`/`### Changed` blocks, drop non-standard sections, prefix breaking entries with `**BREAKING:**`.
 6. **Cut.** Run `bash ai/scripts/release.sh <bump>` (add `--date YYYY-MM-DD` only to override today). Show the resulting `git diff`.
 7. **Verify.** `[Unreleased]` is now empty, `## [X.Y.Z] - DATE` is populated, and `bash ai/scripts/check-version-sync.sh` passes at the new version.
