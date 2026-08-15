@@ -25,7 +25,7 @@ the kit's role as the product genuinely makes the generic file wrong.
 | `.claude/settings.json` | Merged by hand: the kit's own permissions plus the shipped ones. The scaffold can only *copy*, never merge into existing config — the config-merge gap recorded against T32 by T33 and confirmed again in #184. |
 | `docs/plans/README.md` | Drops the interview-directory paragraph: this repo's `docs/plans/` holds decision working docs and the closed T-topic register, and has never held an interview directory. **Corrected 2026-08-03** — the previous reason claimed the file was adapted to resolve a routing-rule contradiction, which it never did; T37 resolved that contradiction instead, in favour of the shipped rule. |
 | `bootstrap/VERIFY_IGNORE` | Four exclusions no other adopter needs: `template/` (the product tree's tokens are unfilled by design), `CHANGELOG.md` and `docs/plans/` (both quote token syntax when describing it), and `scripts/bootstrap-smoke.sh` (which manipulates token syntax by nature). The GitHub Actions `${{ }}` exclusion was part of this row until v0.13.0 and is now shipped by default (#199). |
-| `ai/scripts/bootstrap-labels.sh` | Two divergences (#261). **(1)** The `area:*` block: this repo's real areas (`kit-dev`, `template`, `process`) in place of the shipped `api`/`web`/`infra` examples. That section is marked PROJECT-DEFINED in the shipped file, so **every adopter diverges here** — a label table is configuration living inside a script, T32.5's case in miniature, and #249 fixes it by making the table declarative config. **(2)** The `--check` mode, carried **ahead of the pin** because CI runs it against this repo's tracker now; it folds back into the derived file at the next self-upgrade. Until #249, a change to the rest of the script has to be hand-copied across. |
+| `ai/scripts/bootstrap-labels.sh` | The `area:*` block (#261): this repo's real areas (`kit-dev`, `template`, `process`) in place of the shipped `api`/`web`/`infra` examples. That section is marked PROJECT-DEFINED in the shipped file, so **every adopter diverges here** — a label table is configuration living inside a script, T32.5's case in miniature, and #249 fixes it by making the table declarative config. Until #249, a change to the rest of the script has to be hand-copied across. |
 | `ai/CHECKLISTS/coding.md` | Adds a kit-specific completion gate: manifest entry, the kit-docs keep-current trigger named by artifact (module / command / structure), `Last Updated` bumps, and the derived-instance rule. The generic checklist cannot name kit artifacts, and an installed-but-unadapted gate does not fire (T36.8) — this is the gate whose absence let epic #145 miss the same rule four PRs running. |
 
 ## Seeded (install-once, then owned by this project)
@@ -55,6 +55,16 @@ Each release, `self-conform.py --upgrade` names any declared adaptation that
 changed upstream. The judgement made then is recorded here, so the next upgrade
 re-reads a decision instead of re-making it.
 
+- **v0.14.0 → v0.15.0** (2026-08-15) — `ai/scripts/bootstrap-labels.sh` flagged, and the
+  flag was the point: the row declared **two** divergences, one of them (`--check`) held
+  deliberately *ahead of the pin* with "it folds back at the next self-upgrade" written
+  into the reason. It did. Diffing the instance against `template/core/` at the new tag
+  leaves only the `area:*` block, so the second half of the reason was **deleted rather
+  than carried** — a reason that has come true is no longer a reason, and leaving it
+  would have made the row look twice as load-bearing as it is. The `area:*` half stands
+  until #249 makes the label table declarative config. *A row whose reason is written
+  with an expiry condition is worth more than one that isn't: this reconciliation was a
+  check, not a judgement.*
 - **v0.13.0 → v0.14.0** (2026-08-12) — `CLAUDE.md` flagged. Upstream added a
   release-standard pointer to the Standards list (#225). This repo's `CLAUDE.md` has a
   counterpart line, so the pointer **was carried across by hand** and the row stands: the
