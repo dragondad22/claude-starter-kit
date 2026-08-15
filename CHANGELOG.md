@@ -7,6 +7,8 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+## [0.15.0] - 2026-08-15
+
 ### Added
 
 - **`bootstrap-labels.sh --check`** — reports label-table rows missing from the tracker and exits non-zero, so the taxonomy reaching the tracker is checked rather than remembered (#261). The table grows and nothing prompted a re-run, which had left this repo 14 labels behind its own shipped table, including every `severity:*` — and `ai/STANDARDS/GITHUB_ISSUES.md` says a bug without one is untriaged. Skips rather than fails when `gh` is absent, unauthenticated, or the API is unreachable, so an offline suite still passes. `GITHUB_ISSUES.md`, `TASK_ISSUE_STANDARD.md` and `bootstrap/SETUP.md` now point at it instead of telling a human to notice drift.
