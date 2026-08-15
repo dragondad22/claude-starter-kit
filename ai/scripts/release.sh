@@ -27,9 +27,13 @@
 #   VERSION_FILES_LIST=<file> read the version-file list from <file> instead of
 #                             $ROOT/ai/scripts/version-files.txt
 #
-# Bump rubric (pre-1.0; mechanical, from which [Unreleased] subsections have entries):
+# Bump rubric (mechanical, from which [Unreleased] subsections have entries):
 #   only Fixed/Security                       -> patch
-#   any Added/Changed/Deprecated/Removed      -> minor   (incl. breaking; 1.0.0 is a manual call)
+#   any Added/Changed/Deprecated/Removed      -> minor   (including breaking entries)
+# MAJOR is never inferred here: no changelog section describes the event that
+# causes one. What does is the archetype recorded in docs/releases/README.md —
+# a named audience's integration breaking, or a committed promise landing
+# (ai/STANDARDS/RELEASE_STANDARD.md). Pass it explicitly when that has happened.
 
 set -euo pipefail
 
@@ -88,7 +92,7 @@ if [ -z "$BUMP" ]; then
     none)  echo "  [Unreleased] has no user-visible entries — nothing to release." ;;
   esac
   echo ""
-  echo "  (MAJOR / 1.0.0 is never auto-recommended pre-1.0 — it is a deliberate decision.)"
+  echo "  (MAJOR is never inferred from changelog sections — see docs/releases/README.md.)"
   echo "  Re-run with the bump type to perform the cut, e.g.: ai/scripts/release.sh ${RECO/none/minor}"
   exit 0
 fi
@@ -135,8 +139,10 @@ case "$BUMP" in
 esac
 
 if [ "$BUMP" = "major" ] || [ "${NEW%%.*}" -gt "$MA" ]; then
-  echo "NOTE: this is a MAJOR bump ($CURRENT -> $NEW). Pre-1.0, MAJOR is reserved for a"
-  echo "      deliberate 'API is stable' (1.0.0) decision — make sure that is intended."
+  echo "NOTE: this is a MAJOR bump ($CURRENT -> $NEW). MAJOR marks the event this"
+  echo "      project's archetype defines as one, in docs/releases/README.md: a named"
+  echo "      audience's integration breaking, or a committed promise landing. Confirm"
+  echo "      which one this is before continuing."
 fi
 
 echo "=== Cutting release $CURRENT -> $NEW (date $DATE) ==="
