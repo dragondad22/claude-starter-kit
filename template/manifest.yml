@@ -26,6 +26,40 @@
 
 version: 1
 
+# SEEDED FILES (#262) — shipped as starting skeletons the project then owns.
+#
+# A seeded file's content belongs to the adopting project the moment it is
+# filled: a register, an index, a rolling log, the project's own history. Any
+# tool that re-derives an installed tree from this template must treat these as
+# create-if-absent and NEVER overwrite — re-deriving one destroys recorded
+# answers that exist nowhere else. Everything not listed here is DERIVED: the
+# kit owns the content and re-deriving it is the correct, lossless action.
+#
+# The test is "after install, whose information is in this file?" A file the
+# project merely *configures* (.gitignore, .claude/settings.json) is not seeded
+# — divergence there is an adaptation, declared and reasoned per project.
+#
+# This lives in the manifest rather than in a consuming tool because it is a
+# fact about the product, not about any one installation. Adding a file below
+# without classifying it here is the failure #262 exists to stop: the kit's own
+# conformance tooling refuses to re-derive an instance while a seeded file is
+# unclassified, and csk phase 3's three-way-merge upgrade (#248) needs the same
+# set to know what it must never overwrite.
+#
+# Paths are destinations relative to the project root, and each must also appear
+# in core.files or modules.<name>.files below; the manifest validator checks it.
+seeded:
+  - CHANGELOG.md
+  - VERSION
+  - docs/GLOSSARY.md
+  - docs/PERSONAS.md
+  - docs/evergreen-log.md
+  - docs/architecture/decisions/ADR_INDEX.md
+  - docs/compliance/COMPLIANCE_REGISTER.md
+  - docs/registers/PRODUCT_REGISTER.md
+  - docs/releases/README.md
+  - docs/uat/JOURNEY_REGISTRY.md
+
 core:
   trigger: always            # installed at project inception, every project
   files:

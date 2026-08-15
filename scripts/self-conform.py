@@ -20,6 +20,11 @@ project is meant to fill, such as a rolling log or registry — existence checke
 content not). The declared count prints on every run so growth stays visible
 rather than becoming a quiet dumping ground.
 
+Which files are *seeded* is a property of the product, so it is declared in
+`template/manifest.yml`; ADAPTATIONS.md says what this instance keeps in each.
+Every mode checks the two agree before touching anything, because a seeded file
+missing its row is a file `--apply` will silently overwrite (#262, seen in #244).
+
 Modes:
   --check   verify the instance matches (exit 1 on drift) — what CI runs
   --apply   rewrite the instance from the pinned template (the upgrade action)
@@ -101,6 +106,56 @@ def load_declared():
     return adapted, seeded
 
 
+def validate_classification():
+    """Errors for every seeded file the product declares and this instance has not classified.
+
+    The failure this prevents (#262, seen for real in #244): a founding doc
+    ships, nobody adds a row here, and `--apply` re-derives it — replacing the
+    project's recorded answers with the generic skeleton. It is silent by
+    construction, because rewriting a file is exactly what `--apply` is *for*;
+    nothing distinguishes "correctly re-derived a generic file" from "destroyed
+    this project's answers".
+
+    Before this check the classification had no authority: `seeded` was asserted
+    in ADAPTATIONS.md and nowhere else, so there was nothing to check it against
+    and a founding doc was classified only if a human remembered. The authority
+    now sits in `template/manifest.yml`, where the file is already being
+    declared to ship at all (T23.2) — so the reminder arrives at a step the
+    author cannot skip.
+
+    Read from the **working tree**, deliberately, while the conformance loop
+    below reads the manifest at the pin. A seeded file added this release is not
+    in the pinned manifest, so a pin-scoped check would stay quiet until the
+    next release — which is one `--apply` too late. This fires in the PR that
+    adds the file.
+    """
+    with open('template/manifest.yml') as fh:
+        head = yaml.safe_load(fh)
+    seeded_product = set(head.get('seeded') or [])
+    core_head = set(head['core']['files'])
+    adapted, seeded = load_declared()
+
+    errors = []
+    # Only core files reach the instance: a module's seeded files matter once
+    # that module is installed, and this repo installs none.
+    for rel in sorted(seeded_product & core_head):
+        if rel in seeded or rel in adapted:
+            continue
+        errors.append(
+            f'{rel}: shipped as a SEEDED file but classified nowhere in ADAPTATIONS.md.\n'
+            f'      --apply would overwrite this project\'s content with the generic\n'
+            f'      skeleton. Add it under "## Seeded", with why it is seeded:\n'
+            f'        | `{rel}` | <what this project keeps here> |')
+    # The reverse: a row naming something the product no longer seeds protects
+    # nothing, while reading as though it does.
+    for rel in sorted(set(seeded) - seeded_product):
+        errors.append(
+            f'{rel}: listed under "## Seeded" but template/manifest.yml does not '
+            f'seed it.\n      Either add it to the manifest\'s seeded: list, or move the row '
+            f'to\n      "## Adapted" with the reason this instance keeps its own version.')
+    return errors
+
+
 def upgrade(old_ref):
     """Move the pin to the released VERSION and report what the upgrade costs.
 
@@ -154,6 +209,22 @@ def main():
     if sum([args.check, args.apply, args.upgrade]) != 1:
         sys.exit('FAIL: pass exactly one of --check / --apply / --upgrade')
 
+    # Runs in every mode, before anything is read at the pin or written to disk.
+    # `--apply` is the operation that loses data, so it must refuse rather than
+    # warn; `--check` fires it in CI so a founding doc cannot reach the default
+    # branch unclassified; `--upgrade` fires it too, because the documented
+    # sequence is `--upgrade && --apply` and the earlier stop is the kinder one.
+    errors = validate_classification()
+    if errors:
+        print(f'FAIL: {len(errors)} seeded file(s) unclassified — refusing to touch the '
+              f'instance.\n')
+        for e in errors:
+            print(f'  - {e}')
+        print('\n  A seeded file holds this project\'s own answers, so re-deriving it '
+              'destroys\n  them. ADAPTATIONS.md must say so before the instance is '
+              'rewritten (#262).')
+        return 1
+
     version = pinned_version()
     if args.upgrade:
         return upgrade(f'v{version}')
@@ -184,7 +255,7 @@ def main():
         answers = {k: str(v) for k, v in yaml.safe_load(fh).items()}
 
     adapted, seeded = load_declared()
-    drift, applied, skipped = [], 0, 0
+    drift, rewritten, skipped = [], [], 0
 
     for rel in core:
         if rel in adapted:
@@ -207,7 +278,7 @@ def main():
                 os.makedirs(os.path.dirname(rel) or '.', exist_ok=True)
                 with open(rel, 'w') as fh:
                     fh.write(want)
-                applied += 1
+                rewritten.append(('created' if have is None else 'overwrote', rel))
         elif have is None:
             drift.append(f'{rel}: missing from the instance — run --apply')
         elif have != want:
@@ -221,10 +292,15 @@ def main():
                 os.makedirs(os.path.dirname(rel) or '.', exist_ok=True)
                 with open(rel, 'w') as fh:
                     fh.write(transform(src, answers, rel))
-                applied += 1
+                rewritten.append(('seeded', rel))
 
     if args.apply:
-        print(f'OK: instance conformed to template@{ref} — {applied} file(s) rewritten, '
+        # Named, not counted. A count is what made #244 invisible: "2 file(s)
+        # rewritten" reads identically whether the two were stale generic docs
+        # or this project's founding records.
+        for what, rel in rewritten:
+            print(f'  {what:<9} {rel}')
+        print(f'OK: instance conformed to template@{ref} — {len(rewritten)} file(s) rewritten, '
               f'{skipped} declared adaptation(s) left alone.')
         return 0
 

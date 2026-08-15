@@ -39,6 +39,16 @@ Keeping them out of the table above matters: without this split, every log entry
 would need an adaptation row, and a list that grows on every ordinary action
 stops carrying any signal about real divergence.
 
+**Which files are seeded is not decided here.** It is a property of the kit, so
+it is declared in `template/manifest.yml` under `seeded:`; this table records
+what *this instance* keeps in each one. `self-conform.py` checks the two agree
+in both directions and refuses to touch the instance while they disagree — a
+seeded file with no row is one `--apply` away from losing its content, and a row
+the manifest no longer backs protects nothing while reading as though it does
+(#262). `CHANGELOG.md` and `VERSION` are seeded upstream but sit in the
+**Adapted** table above, which satisfies the check just as well: either table
+tells `--apply` to keep its hands off.
+
 | Path | Why it is seeded |
 |---|---|
 | `docs/evergreen-log.md` | Rolling review record, append-only by design. |

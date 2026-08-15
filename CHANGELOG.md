@@ -7,6 +7,10 @@ and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
+### Added
+
+- **`template/manifest.yml` now declares which shipped files are `seeded:`** — installed once and then owned by the project, never re-derived (#262). A seeded file holds answers that exist nowhere else: the product register, the glossary, the release identity, the ADR index, the compliance register, the persona registry, the evergreen log, the changelog. Everything not listed is derived, and re-deriving it is lossless. The distinction was previously asserted only in this repo's `ADAPTATIONS.md`, so nothing could check it — a founding doc was classified only if a human remembered, and in #244 nobody did: two founding docs were silently rewritten with the generic skeleton during the v0.14.0 adoption, harmless only because both were still empty. Both now hold real content. The kit's conformance tooling refuses to touch an instance while a seeded file is unclassified or a classification names a file the manifest no longer seeds, and it names the files it rewrites instead of counting them — the count is what made the original loss invisible. csk phase 3's three-way-merge upgrade (#248) needs the same declaration to know what it must never overwrite.
+
 ## [0.15.0] - 2026-08-15
 
 ### Added

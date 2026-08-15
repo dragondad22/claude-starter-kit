@@ -7,7 +7,9 @@
 #   table grows and nothing prompted a re-run, so it had drifted 14 labels out
 #   of date (#261). Skips rather than fails when the API is unreachable.
 # - self-conformance: the kit's own installed instance still equals the template at
-#   its pinned release, except where ADAPTATIONS.md declares otherwise (T36)
+#   its pinned release, except where ADAPTATIONS.md declares otherwise (T36), and
+#   `--apply` refuses to run while a shipped seeded file is unclassified — the
+#   silent-clobber path that ate two founding docs in #244 (#262)
 # - portability: shipped scripts + the bootstrap smoke test run on ubuntu AND macos
 #   (stock macOS bash 3.2 / BSD sed is the portability claim being enforced)
 # - upgrade smoke: scaffold at a prior release, upgrade to HEAD, assert, tear down
@@ -40,6 +42,8 @@ jobs:
         run: python3 scripts/lint-currency.py
       - name: Verify the kit's own instance is conformant (T36)
         run: python3 scripts/self-conform.py --check
+      - name: Prove --apply cannot clobber an unclassified founding doc (#262)
+        run: bash scripts/self-conform-smoke.sh
       - name: Check the label taxonomy reached the tracker (#261)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
