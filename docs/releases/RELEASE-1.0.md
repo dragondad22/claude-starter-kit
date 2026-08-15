@@ -1,0 +1,136 @@
+# Release readiness — Claude Starter Kit `1.0`
+
+**Release:** Safe to depend on · **Version:** `1.0.0`
+**Status:** Preparing
+**Milestone:** [`1.0 — safe to depend on`](https://github.com/dragondad22/claude-starter-kit/milestone/1)
+
+> **Promise:** A developer who has this repository can install the kit into a new or
+> existing project, run that project by it from inception through release, and take a later
+> kit release without losing or damaging what they have adapted.
+> **Audience:** the named adopters (CrossWise, ShelterSync, life-os) and anyone who clones
+> the repo · **Parties:** the adopting developer; the maintainer
+
+This record is written *while* the release is prepared and kept afterwards. It holds what
+was promised and the evidence behind shipping it. **It does not mirror the scope** —
+membership lives in the milestone, and a copied list drifts.
+
+First written 2026-08-14 by the #242 run. Reasoning:
+`docs/plans/2026-08-14-kit-release-identity.md`.
+
+---
+
+## 1. Scope
+
+| | Count | Where |
+|---|---|---|
+| Committed | 10 | The milestone |
+| Removed after commitment | 0 | Below — deferral is a recorded removal with a reason |
+| Triggered (out until an event fires) | 2 | `triggered` label, and one recorded decision |
+
+Nothing has been removed after commitment: the milestone was created on 2026-08-14 and
+this is its first pass.
+
+The two triggered items are **#257** (Homebrew tap and Scoop bucket — event: the two public
+repositories exist; belongs to 2.0's area, not this one) and **`CONTRIBUTING.md`** (event:
+the first outside PR; decided 2026-08-12, not yet an issue because nothing is owed until it
+fires).
+
+**Reverse-pass questions** — what walking the promise raised, and how each resolved.
+Full walk in the working doc § 5.2.
+
+| Promise step | Party | Requires | Resolution |
+|---|---|---|---|
+| Find / acquire | Adopting developer | The repository, `git clone` | Already handled — 1.0's audience is defined as people who have it |
+| Install | Adopting developer | Scaffold, then fill | Already handled — `scaffold.sh` + `/bootstrap`, evidenced by `bootstrap-smoke.sh` on ubuntu and macos |
+| Operate | Adopting developer | Standards, commands, session protocol | Already handled — `docs/kit/WORKFLOW.md` |
+| Take a later release | Adopting developer | Knowing one exists, and what taking it does | **Gap** — tracked as #258 |
+| Take a later release | Adopting developer | Knowing what left the kit | **Gap** — tracked as #265 |
+| Take a later release | Adopting developer | A stable upgrade marker | Already handled elsewhere — `bootstrap/KIT_VERSION` becomes #248's merge base and will be formalised there |
+| Report a problem | Adopting developer | A channel and a posture | **Gap** — tracked as #259 |
+| Know what to expect | Adopting developer | A support commitment | **Gap** — tracked as #260 |
+| Contribute | Adopting developer | `CONTRIBUTING.md` | Triggered — event is the first outside PR (decided 2026-08-12) |
+| Cut a release | Maintainer | `release.sh` at an alternate root | Already handled — #45 |
+| Cut a release | Maintainer | A parseable CHANGELOG | **Gap** — tracked as #264 |
+| Cut a release | Maintainer | Guidance matching the standard | **Gap** — tracked as #263 |
+| Re-derive the instance | Maintainer | `self-conform --upgrade/--apply` | **Gap** — tracked as #262 |
+| Evidence the promise | Maintainer | `upgrade-smoke.sh` | **Decision needed, not an issue** — it tests one hop from the second-newest tag, evidencing *a* release rather than *any* 1.x. Adequate for 1.0; revisit at 2.0 when #248 replaces the mechanism |
+| Run the prescribed tracker | Maintainer | The shipped label set | **Gap** — tracked as #261 |
+
+Eight gaps, all tracked and all in the milestone. The full walk — seventeen candidates,
+with the find/acquire and contribute steps split per party — is in the working doc § 5.2;
+the rows above collapse a few of them.
+
+---
+
+## 2. Universal gates
+
+Every release. Evidence with a date, never a bare tick.
+
+| Gate | Owner | Status | Verified | Evidence |
+|---|---|---|---|---|
+| Every committed capability **accepted**, not merely built | Chris | ◐ | 2026-08-14 | `scripts/selftest.sh` green on ubuntu and macos in `.github/workflows/kit-selftest.yml`, covering the install path (`bootstrap-smoke.sh`) and the upgrade path (`upgrade-smoke.sh`). Three projects run the kit in earnest — ShelterSync in production since 2026-05-15. **Judged, not checked:** no `AC-` rows exist to verify against (see below). Re-assess when the milestone empties. |
+| External providers verified **in production** | Chris | ➖ N/A | 2026-08-14 | 1.0 has no runtime, no deployed environment and no distribution channel: the kit is files copied into a repository from a clone. Consistent with compliance register B-001. **Not a skipped row** — the gate becomes live at 2.0, where the provider is GitHub Releases and the `curl … \| sh` installer, and "verified in production" means a real install on each target platform. Ported back as #267. |
+| Restore **tested**, recovery objectives met | Chris | ☐ | — | No data to restore, and the honest reading is not "not applicable": the question is whether an adopter can get back to the state before they took a release. Testable today — `scaffold.sh`'s `copy_into()` skips existing files, so nothing is destroyed and reverting the adoption commit restores the tree. **Needs a demonstration, not an argument.** Shares its evidence with the rollback row; ported back as #267. |
+| Security posture current for what this release exposes | Chris | ☐ | — | Real exposure, not empty: the kit writes nine shell scripts an adopter runs, plus `.claude/settings.json` permissions and `.claude/hooks/` into their repository, and `bootstrap-labels.sh` authenticates as the user via `gh`. Nothing states this anywhere an adopter looks, and there is no reporting channel. Tracked as **#259**. |
+| Rollback **planned and demonstrated** | Chris | ☐ | — | Same evidence as the restore row. For a first named release there is nothing to roll back *to*, so the gate is exactly planned-and-demonstrated: the procedure written down, and shown to work once. |
+
+**Step 3 of `/readiness` could not run.** The command asserts against `AC-` rows per
+committed capability, `INV-` rows against the assembled product and `NFR-` rows at the
+release's expected scale. `docs/registers/PRODUCT_REGISTER.md` has none — every section is
+an empty skeleton — and there is no journey registry, because the review module's trigger is
+a driveable UI the kit does not have. **This whole record's need-limb evidence is therefore
+judged rather than checked.** Backfill tracked as **#268**; the missing home for journeys in
+a project the review module does not fit is part of #267.
+
+---
+
+## 3. Triggered gates
+
+Conditions checked explicitly, including the ones that do not hold.
+
+| Condition | Applies? | Gate | Owner | Status | Verified | Evidence |
+|---|---|---|---|---|---|---|
+| Ships through an app store | **no** | Submission accepted | Chris | ➖ N/A | 2026-08-14 | No mobile or desktop store distribution. Re-check at 2.0 if Homebrew or Scoop (#257) is judged store-like; it is not, but the question should be asked rather than assumed. |
+| Publishes policies | **yes** | Every published claim honoured and evidenced | Chris | ☐ | — | An open-source project publishes the README's claims and the LICENSE, and they are auditable exactly as a privacy policy is. Claims to audit: "stack-agnostic", "never overwrites existing files", bash-3.2/macOS portability, the module trigger table, and `docs/kit/` accuracy. Not yet run. That the standard's document set had to be reinterpreted is ported back as #267. |
+| Takes payment | **no** | Obligations disclosed; billing verified | Chris | ➖ N/A | 2026-08-14 | MIT, no money moves. The commercial limb is empty for both named releases; register row B-003. |
+| Has dependent users | **yes** | A **documented support commitment** | Chris | ☐ | — | Three named projects depend on the kit; ShelterSync in production since 2026-05-15. No commitment of any kind exists. Tracked as **#260**. The standard singles this gate out as the easiest to dismiss, and it was — nothing had asked. |
+
+---
+
+## 4. Aspirational
+
+Goals, never gates — visible and owned, blocking nothing.
+
+| Goal | Owner | Criterion that activates it |
+|---|---|---|
+| Signed / notarised binaries | Chris | A distribution route that requires them. T32.4 records unsigned as deliberate for Releases, `curl \| sh`, Homebrew and Scoop. |
+| Homebrew tap and Scoop bucket (#257) | Chris | The two public repositories exist. Filed as `triggered` scope rather than aspirational — noted here so the two are not confused. |
+| A published documentation site | Chris | The kit has users who arrive without a clone — i.e. 2.0 has shipped. |
+| Outside contributors | Chris | The first outside PR, which is also `CONTRIBUTING.md`'s trigger. |
+
+---
+
+## 5. Gates with no evidence
+
+**A gate that is nobody's issue is nobody's problem.**
+
+| Gate | Issue | In this release? |
+|---|---|---|
+| Restore tested | #265 covers the removal half; the demonstration itself needs an issue when the procedure is written — see #259's PR | **Yes** — universal |
+| Security posture | #259 | **Yes** — universal |
+| Rollback planned and demonstrated | Shares #259's PR (the procedure) | **Yes** — universal |
+| Published claims honoured | Audit runs against #260's and #259's output; file separately if the audit finds a claim that is not true | **Yes** — trigger has fired |
+| Documented support commitment | #260 | **Yes** — trigger has fired |
+| Capability acceptance, checkable rather than judged | #268 | **No** — stretch. Upgrades the evidence; the gate itself is met by the suite and three real adopters. |
+
+---
+
+## 6. Sign-off
+
+A gate that cannot be automated is human-attested, dated, and named.
+
+| Who | What they attest | Date |
+|---|---|---|
+| Chris | Release identity — the archetype, both promises, and that MAJOR is reserved for a landed promise | 2026-08-14 |
+| Chris | Membership — the forward and reverse passes, and that the eight gaps found are the ones worth blocking on | 2026-08-14 |
+| | Universal and triggered gates green with evidence | *(pending — the release cannot ship until this row is signed)* |

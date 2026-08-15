@@ -107,6 +107,12 @@ derives from it.
   *concepts* were taken: release triggering separate from version selection, a milestone as
   the finite manifest, and deferral that cannot hide a failed gate.
 
+  **Note (2026-08-14, #242):** this alternative's *rejection reason* is now historical.
+  T32 (decided 2026-08-13, #159) has the kit shipping a compiled Go tool, `csk`, and
+  partially supersedes T2. The decision this ADR records is unaffected — the machinery was
+  rejected on its own merits as well, and the framework here is documents and a milestone,
+  not a CLI. Only "it would breach T2" has stopped being true.
+
 ## 5. Implementation Notes
 
 Epic **#224**, six sub-issues (#225–#230). Sub-issue 6 depends on epic #205's register:
@@ -114,8 +120,11 @@ before it, nothing product-wide existed to assert against.
 
 ## 6. Follow-Up Actions
 
-- The kit's own release identity is undecided — it is at `0.12.0` and has never been asked
-  the question. Apply this framework to the kit itself once shipped.
+- ~~The kit's own release identity is undecided — it is at `0.12.0` and has never been asked
+  the question. Apply this framework to the kit itself once shipped.~~ **Done 2026-08-14
+  (#242).** The kit is release-versioned, with `1.0` and `2.0` named in sequence; recorded
+  in `docs/releases/README.md`, reasoned in
+  `docs/plans/2026-08-14-kit-release-identity.md`.
 - The ShelterSync membership pass in the working doc was judged from issue titles and
   labels; at least one label was stale and one title misleading. Re-run against issue bodies
   before anyone acts on it.
