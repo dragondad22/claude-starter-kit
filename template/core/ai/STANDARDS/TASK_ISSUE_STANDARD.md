@@ -2,7 +2,7 @@
 
 # Task Issue Standard
 
-Last Updated: 2026-08-04
+Last Updated: 2026-08-15
 
 > Written assuming GitHub Issues, but the structure ports to any tracker
 > (`{{ISSUE_TRACKER_KIND}}` at `{{ISSUE_TRACKER}}`). Replace `gh` commands with
@@ -80,7 +80,9 @@ Examples:
 
 The label taxonomy has one source of truth: the manifest table in
 `ai/scripts/bootstrap-labels.sh` (applied idempotently at bootstrap; re-run it
-any time labels drift). Do not maintain label lists here or anywhere else.
+any time labels drift, and `--check` reports drift without changing anything —
+wire it into CI so the table reaching the tracker is checked, not remembered).
+Do not maintain label lists here or anywhere else.
 
 Labels to apply at creation:
 

@@ -100,6 +100,17 @@ echo "  release.sh (recommend mode): OK"
     && grep -q '^## \[0\.2\.0\] - 2026-01-01$' CHANGELOG.md )
 echo "  release.sh minor cut: OK (0.1.0 -> 0.2.0, changelog rolled)"
 
+# bootstrap-labels.sh --dry-run: the only mode that needs no network, and the
+# only check that actually *executes* the label table. `bash -n` parses a table
+# broken by an apostrophe as valid shell (#261) — an adopter editing the
+# PROJECT-DEFINED area rows is exactly who hits that, so the table gets run.
+LABEL_ROWS=$( cd "$WORK" && bash ai/scripts/bootstrap-labels.sh --dry-run | grep -c '^  [a-z]' )
+[ "$LABEL_ROWS" -ge 20 ] || {
+  echo "FAIL: bootstrap-labels.sh --dry-run listed $LABEL_ROWS rows; the table did not parse." >&2
+  exit 1
+}
+echo "  bootstrap-labels.sh --dry-run: OK ($LABEL_ROWS labels in the table)"
+
 # 4c. Alternate-root override (#45): drive the project from OUTSIDE it with the
 #     kit's own copy of the scripts — the shape the kit repo and monorepos use.
 RELEASE_ROOT="$WORK" bash "$ROOT_DIR/template/core/ai/scripts/check-version-sync.sh" >/dev/null

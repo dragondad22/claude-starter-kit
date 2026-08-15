@@ -41,6 +41,8 @@ time (`bootstrap/modules/README.md` explains the staging).
 - [ ] Add any hooks you want (`.claude/hooks/README.md` has examples)
 - [ ] Edit the `area:*` section of `ai/scripts/bootstrap-labels.sh` to your project's areas,
   then apply the label taxonomy: `bash ai/scripts/bootstrap-labels.sh` (GitHub; idempotent).
+  `--check` reports table labels missing from the tracker — worth a CI step, because
+  the table grows and nothing otherwise prompts a re-run.
   Other trackers: mirror the manifest table by hand.
 - [ ] Create the project board (one per repo) per "Project Board & Issue Lifecycle" in
   `ai/STANDARDS/TASK_ISSUE_STANDARD.md`: Status = Backlog / Next / In progress / Done,
