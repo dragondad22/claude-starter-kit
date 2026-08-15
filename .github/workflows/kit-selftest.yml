@@ -3,6 +3,9 @@
 # - dead-cross-reference lint: shipped docs cite only files that ship
 # - currency lint: every standard is dated and current; modules and commands appear
 #   in every enumeration (epic #172 — currency is checked, not remembered)
+# - label taxonomy: every label in the shipped table exists in the tracker. The
+#   table grows and nothing prompted a re-run, so it had drifted 14 labels out
+#   of date (#261). Skips rather than fails when the API is unreachable.
 # - self-conformance: the kit's own installed instance still equals the template at
 #   its pinned release, except where ADAPTATIONS.md declares otherwise (T36)
 # - portability: shipped scripts + the bootstrap smoke test run on ubuntu AND macos
@@ -20,6 +23,9 @@ jobs:
   validate:
     name: manifest + dead-ref lint
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read          # bootstrap-labels.sh --check reads the tracker's labels
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,6 +40,10 @@ jobs:
         run: python3 scripts/lint-currency.py
       - name: Verify the kit's own instance is conformant (T36)
         run: python3 scripts/self-conform.py --check
+      - name: Check the label taxonomy reached the tracker (#261)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash ai/scripts/bootstrap-labels.sh --check
 
   scripts:
     name: shipped scripts + bootstrap smoke (${{ matrix.os }})

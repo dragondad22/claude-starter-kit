@@ -2,7 +2,7 @@
 
 # Quality Issue Standard for Quality Agents
 
-Last Updated: 2026-07-13
+Last Updated: 2026-08-15
 
 > This standard is written assuming **GitHub Issues** (`gh` CLI). The structure —
 > severity model, title format, body fields, label mapping — ports cleanly to any
@@ -22,7 +22,9 @@ tracked issues.
 
 The label taxonomy has one source of truth: the manifest table in
 `ai/scripts/bootstrap-labels.sh` (applied idempotently at bootstrap; re-run it
-any time labels drift). Do not maintain label lists here or anywhere else.
+any time labels drift, and `--check` reports drift without changing anything —
+wire it into CI so the table reaching the tracker is checked, not remembered).
+Do not maintain label lists here or anywhere else.
 
 A quality finding carries:
 - `type:bug` — the kind label (exactly one `type:*` per issue)
