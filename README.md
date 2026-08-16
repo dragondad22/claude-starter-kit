@@ -83,6 +83,17 @@ sub-issues, decision records in `docs/plans/`, CHANGELOG discipline). Start with
 `CLAUDE.md`. Improvements made in a downstream project that are generic enough to belong
 here should be ported back as issues on this repo.
 
+## Support and security
+
+The kit writes shell scripts you run and permissions an AI agent uses, so it is worth
+knowing what it does before you install it.
+
+- **[SECURITY.md](SECURITY.md)** — what the kit executes, what it writes into your
+  repository, what it deliberately does not do, and how to report a suspected
+  vulnerability privately.
+- **[SUPPORT.md](SUPPORT.md)** — what you can expect when something breaks. Short version:
+  best effort, no guaranteed response time, fixes on the newest release only.
+
 ## License
 
 [MIT](LICENSE) © dragondad22 — the kit repo's README and LICENSE are kit artifacts;
